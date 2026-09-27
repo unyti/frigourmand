@@ -616,7 +616,7 @@ module.exports = function ajouter(R) {
 
   R('couscous-royal', 'Couscous royal', 'Maghrébine', 'Plat', 140, 'Moyenne', 8, [
     ['agneau', 800, 'g'], ['cuisses-poulet', 4], ['merguez', 8], ['semoule', 750, 'g'], ['carottes', 4], ['navets', 3], ['courgettes', 3],
-    ['oignons', 2], ['tomates', 3], ['concentre-tomate', 2, 'cs'], ['pois-chiches', 400, 'g'], ['epices-a-couscous', 2, 'cc'],
+    ['oignons', 2], ['tomates', 3], ['concentre-tomate', 2, 'cs', 'opt'], ['pois-chiches', 400, 'g'], ['epices-a-couscous', 2, 'cc'],
     ['harissa', 1, 'cc'], ['huile-olive', 4, 'cs'], ['beurre', 50, 'g'], ['coriandre', 0.5], ['sel', null], ['poivre', null]
   ], [
     'Dans un grand faitout, chauffer 2 cs d’huile à feu moyen-vif et dorer 10 min l’agneau en morceaux et les cuisses de poulet coupées en deux, puis ajouter les oignons émincés et cuire 5 min.',

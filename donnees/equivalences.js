@@ -35,8 +35,8 @@ const GROUPES = [
   ['thym', 'thym-frais'],
   ['crevettes', 'crevettes-surgelees'],
   // Épicerie
-  ['tomates-concassees', 'tomates-pelees'],
-  ['coulis-tomate', 'sauce-tomate-cuisinee'],
+  // Conserves de tomate : toutes interchangeables en cuisine (seules pulpe et pelées sont vraiment équivalentes).
+  ['tomates-concassees', 'tomates-pelees', 'coulis-tomate', 'sauce-tomate-cuisinee'],
   ['huile', 'huile-de-colza'],
   ['vinaigre', 'vinaigre-de-cidre', 'vinaigre-blanc', 'vinaigre-de-xeres'],
   ['moutarde', 'moutarde-a-l-ancienne'],
@@ -56,7 +56,7 @@ const REMPLACANTS = {
   huile: ['huile-olive'],
   'huile-olive': ['huile', 'huile-de-colza'],
   vinaigre: ['vinaigre-balsamique'],
-  'tomates-concassees': ['coulis-tomate', 'sauce-tomate-cuisinee'],
+  'concentre-tomate': ['coulis-tomate', 'tomates-concassees', 'sauce-tomate-cuisinee'],
   'cuisses-poulet': ['poulet', 'blanc-de-poulet'],
   'pilons-de-poulet': ['poulet'],
   'hauts-de-cuisse-de-poulet': ['poulet'],
@@ -72,7 +72,10 @@ const APPROXIMATIFS = new Set([
   'oignons>echalotes', 'oignons-blancs>echalotes', 'oignons-surgeles>echalotes',
   'creme-liquide>creme-fraiche', 'creme-liquide>creme-fraiche-legere', 'creme-fraiche>creme-liquide', 'creme-fraiche>creme-fraiche-legere',
   'cuisses-poulet>poulet', 'cuisses-poulet>blanc-de-poulet', 'pilons-de-poulet>poulet', 'hauts-de-cuisse-de-poulet>poulet',
-  'tomates-concassees>coulis-tomate', 'tomates-concassees>sauce-tomate-cuisinee',
+  'tomates-concassees>coulis-tomate', 'tomates-concassees>sauce-tomate-cuisinee', 'tomates-pelees>coulis-tomate', 'tomates-pelees>sauce-tomate-cuisinee',
+  'coulis-tomate>tomates-concassees', 'coulis-tomate>tomates-pelees', 'coulis-tomate>sauce-tomate-cuisinee',
+  'sauce-tomate-cuisinee>tomates-concassees', 'sauce-tomate-cuisinee>tomates-pelees', 'sauce-tomate-cuisinee>coulis-tomate',
+  'concentre-tomate>coulis-tomate', 'concentre-tomate>tomates-concassees', 'concentre-tomate>sauce-tomate-cuisinee',
   'huile-olive>huile', 'huile-olive>huile-de-colza', 'sucre>sucre-roux', 'sucre-roux>sucre',
   'parmesan>pecorino', 'pecorino>parmesan', 'riz>riz-complet', 'riz-basmati>riz-complet', 'riz-complet>riz', 'riz-complet>riz-basmati',
   'lait-coco>creme-de-coco', 'creme-de-coco>lait-coco', 'lardons>bacon', 'bacon>lardons'

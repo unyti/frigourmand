@@ -77,7 +77,7 @@ module.exports = function ajouter(R) {
   ]);
 
   R('mafe', 'Mafé de bœuf', 'Africaine', 'Plat', 100, 'Facile', 4, [
-    ['boeuf-braiser', 600, 'g'], ['beurre-de-cacahuete', 5, 'cs'], ['tomates-concassees', 400, 'g'], ['concentre-tomate', 2, 'cs'],
+    ['boeuf-braiser', 600, 'g'], ['beurre-de-cacahuete', 5, 'cs'], ['tomates-concassees', 400, 'g'], ['concentre-tomate', 2, 'cs', 'opt'],
     ['oignons', 2], ['carottes', 2], ['patate-douce', 1], ['ail', 2], ['riz', 300, 'g'], ['huile', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Dans une cocotte, faire dorer la viande en cubes 8 min à feu moyen-vif dans l’huile, puis ajouter les oignons émincés et les faire fondre 5 min.',

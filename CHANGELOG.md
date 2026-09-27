@@ -1,5 +1,14 @@
 # Journal des versions
 
+## 0.9.2 — 27 septembre 2026
+
+- **Conserves de tomate** : pulpe (tomates concassées), tomates pelées, coulis et sauce tomate en bocal peuvent se
+  remplacer entre elles (signalé « à adapter » quand ce n'est pas l'équivalent exact).
+- Le **concentré de tomate** devient facultatif dans les recettes qui contiennent déjà des tomates (bolognaise, chili…),
+  et peut être remplacé par du coulis, de la pulpe ou de la sauce tomate ailleurs.
+- **22 nouvelles recettes** à base de sauce tomate, coulis, pulpe ou tomates pelées (pâtes express, gnocchis à la
+  sorrentine, saucisses sauce tomate, cabillaud à la tomate, amatriciana, penne rosa, riz à l'espagnole…) : 668 recettes.
+
 ## 0.9.1 — 27 septembre 2026
 
 - **Remplacements « à adapter »** : quand l'ingrédient qui remplace change le goût ou la texture (vinaigre balsamique

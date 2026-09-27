@@ -673,7 +673,7 @@
 
   R('spaghetti-bolognaise', 'Spaghetti bolognaise', 'Italienne', 'Plat', 60, 'Facile', 4, [
     ['spaghetti', 400, 'g'], ['boeuf-hache', 400, 'g'], ['tomates-concassees', 400, 'g'], ['oignons', 1], ['carottes', 1],
-    ['celeri', 1, 'pc', 'opt'], ['ail', 1], ['concentre-tomate', 1, 'cs'], ['vin-rouge', 10, 'cl', 'opt'], ['huile-olive', 2, 'cs'],
+    ['celeri', 1, 'pc', 'opt'], ['ail', 1], ['concentre-tomate', 1, 'cs', 'opt'], ['vin-rouge', 10, 'cl', 'opt'], ['huile-olive', 2, 'cs'],
     ['parmesan', 40, 'g', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Faire revenir l’oignon, la carotte, le céleri et l’ail hachés finement dans l’huile, 5 min à feu moyen.',
@@ -887,7 +887,7 @@
     ['lentilles', 100, 'g'], ['pois-chiches', 250, 'g'], ['tomates-concassees', 400, 'g'], ['oignons', 1],
     ['celeri', 2], ['coriandre', 1], ['persil', 1], ['farine', 30, 'g'], ['agneau', 200, 'g', 'opt'],
     ['vermicelles', 50, 'g', 'opt'], ['gingembre', 5, 'g', 'opt'], ['curcuma', 1, 'cc'], ['cannelle', 0.5, 'cc'],
-    ['concentre-tomate', 1, 'cs'], ['huile-olive', 2, 'cs'], ['citron', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+    ['concentre-tomate', 1, 'cs', 'opt'], ['huile-olive', 2, 'cs'], ['citron', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Dans un grand faitout, faire revenir l’agneau en petits dés et l’oignon haché dans l’huile avec le gingembre râpé et les épices, 5 min à feu moyen.',
     'Ajouter le céleri émincé, les herbes hachées, les tomates, le concentré et les lentilles rincées. Couvrir de 2 L d’eau, saler, poivrer et porter à ébullition.',
@@ -1248,5 +1248,6 @@ require('./recettes-simples-fruits-legumes')(R);
 require('./recettes-simples-viandes-poissons')(R);
 require('./recettes-simples-cremerie')(R);
 require('./recettes-simples-epicerie')(R);
+require('./recettes-tomate')(R);
 
 module.exports = recettes;
