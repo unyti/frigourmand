@@ -38,20 +38,27 @@ Les envois qui ne changent pas la version ne publient rien.
 
 À chaque envoi sur `master`, un second workflow (`verifier.yml`) contrôle la syntaxe et les données.
 
-## Données
+## Comptes et données
 
-Base SQLite locale : `%APPDATA%\Frigourmand\frigourmand.sqlite` (le chemin exact est affiché dans Paramètres).
-Les données de l'époque où l'appli s'appelait Popote (`%APPDATA%\Popote`) sont reprises automatiquement au premier lancement.
+Un compte est obligatoire (Supabase Auth : e-mail + mot de passe, confirmation par code).
+Les données personnelles sont stockées sur Supabase (PostgreSQL) et gardées en copie locale
+(`%APPDATA%\Frigourmand\frigourmand.sqlite`) pour fonctionner hors ligne :
 
-Le schéma est prévu pour un futur site web : chaque donnée personnelle porte un `utilisateur_id`
-(« local » sur le bureau), les ingrédients et recettes du catalogue ont `proprietaire = NULL`.
-Il pourra être repris tel quel sur PostgreSQL (Supabase, par exemple) avec des comptes utilisateurs.
+- chaque modification est appliquée en local puis placée dans une file d'attente envoyée au serveur ;
+- l'état du serveur est récupéré au démarrage, au retour sur la fenêtre et toutes les 2 minutes,
+  uniquement quand la file est vide (une modification locale n'est jamais écrasée).
+
+Mise en place côté Supabase (tables, sécurité, e-mails) : voir `supabase/LISEZMOI.md`.
+Pour les tests, `FRIGOURMAND_FAUX_SERVEUR=chemin.json` remplace Supabase par un faux serveur local
+(code de confirmation : 123456).
 
 ## Structure
 
 - `main.js`, `preload.js` : processus Electron (fenêtre, échanges avec l'interface).
 - `main/base.js` : base de données (schéma, migrations, lecture, écritures en transaction, import / export).
 - `main/mises-a-jour.js` : mises à jour automatiques (electron-updater, GitHub Releases).
+- `main/compte.js`, `main/synchro.js`, `main/configuration.js` : comptes Supabase et synchronisation.
+- `supabase/` : schéma SQL du serveur et guide de configuration.
 - `donnees/` : catalogue d'ingrédients (≈ 540) et recettes de base (241), injectés dans la base à chaque nouvelle version.
 - `src/` : interface (HTML, CSS, JavaScript sans framework). Elle ne parle aux données qu'à travers
   `window.frigourmandBureau` : pour le site web, il suffira de fournir la même interface au-dessus d'une API HTTP.

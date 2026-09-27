@@ -1,7 +1,7 @@
 {
   "name": "frigourmand",
   "productName": "Frigourmand",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Trouver quoi cuisiner avec ce qu'on a dans le frigo et les placards.",
   "main": "main.js",
   "author": "Unyti",
@@ -19,6 +19,7 @@
     "resedit": "^3.1.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.117.2",
     "electron-updater": "^6.8.9"
   },
   "build": {

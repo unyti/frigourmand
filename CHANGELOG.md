@@ -1,5 +1,18 @@
 # Journal des versions
 
+## 0.4.0 — 27 septembre 2026
+
+- **Comptes obligatoires** : inscription avec confirmation par code reçu par e-mail, connexion, mot de passe oublié
+  (code + nouveau mot de passe), changement de mot de passe et déconnexion dans Paramètres.
+  La session reste ouverte d’un lancement à l’autre, et elle est chiffrée sur le disque.
+- **Synchronisation** avec le serveur (Supabase) : garde-manger, liste de courses, recettes perso, favoris et réglages
+  sont enregistrés sur le compte. L’appli fonctionne aussi sans Internet : les modifications sont gardées
+  et envoyées au retour de la connexion. Les changements faits ailleurs arrivent au démarrage,
+  au retour sur la fenêtre et toutes les 2 minutes. Indicateur d’état en haut à droite.
+- Les données saisies avant la création du compte sont reprises par le premier compte ouvert.
+- **Bandeau de mise à jour** en haut de la fenêtre quand une nouvelle version est prête.
+- Garde-manger : les suggestions d’ingrédients ne recouvrent plus le formulaire.
+
 ## 0.3.0 — 27 septembre 2026
 
 - **Pages plus compactes** : moins d’espace perdu, textes et lignes resserrés. Le garde-manger passe sur deux colonnes :

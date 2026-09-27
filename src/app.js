@@ -11,6 +11,8 @@
   let RECETTES_BASE = [];
   let infosAppli = { version: '', donnees: '', installee: false };
   let etatMaj = { etat: 'inactif' };
+  let utilisateur = null;
+  let etatSynchro = { etat: 'inconnu', enAttente: 0 };
   const bureau = window.frigourmandBureau || null;
 
   /* ═════════════ Utilitaires ═════════════ */
@@ -437,7 +439,8 @@
     ouvert3: false,
     personnesFiche: {},
     erreurs: {},
-    brouillon: null
+    brouillon: null,
+    auth: null
   };
   const personnesFiltre = () => ui.filtres.personnes || etat.reglages.personnes;
 
@@ -471,7 +474,21 @@
 
   /* ═════════════ Vues ═════════════ */
 
+  function texteSynchro() {
+    const e = etatSynchro;
+    const attente = e.enAttente ? ' · ' + pluriel(e.enAttente, 'modification', 'modifications') + ' en attente' : '';
+    switch (e.etat) {
+      case 'ok': return ['ok', 'Synchronisé'];
+      case 'envoi': return ['envoi', 'Synchronisation…'];
+      case 'hors-ligne': return ['hors-ligne', 'Hors ligne' + attente];
+      case 'erreur': return ['erreur', 'Synchronisation en échec' + attente];
+      default: return ['envoi', 'Connexion au serveur…'];
+    }
+  }
+
   function vueEntete() {
+    if (!utilisateur) return `<span class="marque">${ICONES.casserole}Frigourmand</span>`;
+    const [classeSynchro, libelleSynchro] = texteSynchro();
     const onglets = [
       ['garde-manger', 'Garde-manger'],
       ['recettes', 'Recettes'],
@@ -485,6 +502,7 @@
       <nav class="nav" aria-label="Navigation principale">
         ${onglets.map(([r, l]) => `<a href="#${r}" id="nav-${r}"${actif === r ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}
       </nav>
+      <a href="#parametres" class="synchro synchro-${classeSynchro}" id="indicateur-synchro" title="État de la synchronisation"><span class="point" aria-hidden="true"></span>${esc(libelleSynchro)}</a>
       <button type="button" class="bouton-theme" id="bouton-theme" data-action="basculer-theme" aria-pressed="${sombre}">${ICONES.lune}Mode sombre</button>
       <a href="#parametres" id="nav-parametres" class="lien-entete"${actif === 'parametres' ? ' aria-current="page"' : ''}>Paramètres</a>`;
   }
@@ -496,7 +514,7 @@
   function champRecherche(id, options) {
     const o = options || {};
     const decrit = ['aide-recherche'].concat(ui.erreurs[o.cleErreur || id] ? [(o.cleErreur || id) + '-err'] : []).join(' ');
-    return `<div class="recherche">
+    return `<div class="recherche${o.enLigne ? ' en-ligne' : ''}">
       <input class="saisie" id="${id}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="${id}-liste"
         aria-describedby="${decrit}" autocomplete="off" spellcheck="false" data-recherche="${o.mode || 'ingredient'}"
         ${o.attrs || ''} value="${esc(o.valeur || '')}" placeholder="${esc(o.placeholder || '')}"${ui.erreurs[o.cleErreur || id] ? ' aria-invalid="true"' : ''}>
@@ -507,6 +525,182 @@
     return ui.erreurs[cle] ? `<p class="erreur" id="${cle}-err">${esc(ui.erreurs[cle])}</p>` : '';
   }
   const ariaErreur = (cle) => (ui.erreurs[cle] ? ` aria-invalid="true" aria-describedby="${cle}-err"` : '');
+
+  /* ─── Connexion, inscription, codes ─── */
+
+  const RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function champAuth(id, libelle, type, options) {
+    const o = options || {};
+    const a = ui.auth;
+    const err = a.erreursChamps[id];
+    const aide = o.aide ? `<p class="aide aide-champ" id="${id}-aide">${esc(o.aide)}</p>` : '';
+    const decrit = [o.aide ? id + '-aide' : '', err ? id + '-err' : ''].filter(Boolean).join(' ');
+    const saisie = `<input class="saisie" id="${id}" type="${type}" data-auth="${id}" value="${esc(a.valeurs[id] || '')}"
+      autocomplete="${o.autocomplete || 'off'}"${o.inputmode ? ` inputmode="${o.inputmode}"` : ''}${o.requis === false ? '' : ' required'}
+      ${decrit ? `aria-describedby="${decrit}"` : ''}${err ? ' aria-invalid="true"' : ''}${o.maxlength ? ` maxlength="${o.maxlength}"` : ''}>`;
+    return `<div class="champ">
+      <label class="etiquette" for="${id}">${esc(libelle)}${o.requis === false ? ' <span class="facultatif">(facultatif)</span>' : ''}</label>
+      ${type === 'password' ? `<div class="mot-de-passe">${saisie}<button type="button" class="bouton-lien bouton-voir" data-action="auth-voir" data-cible="${id}" aria-pressed="false" aria-label="Afficher le mot de passe">Afficher</button></div>` : saisie}
+      ${aide}
+      ${err ? `<p class="erreur" id="${id}-err">${esc(err)}</p>` : ''}
+    </div>`;
+  }
+
+  function vueAuth() {
+    const a = ui.auth;
+    const bouton = (texte, enCours) => `<button type="submit" class="bouton bouton-plein" id="auth-valider"${a.occupe ? ' disabled' : ''}>${esc(a.occupe ? enCours : texte)}</button>`;
+    const lien = (mode, texte, id) => `<button type="button" class="bouton-lien" id="${id}" data-action="auth-mode" data-mode="${mode}">${esc(texte)}</button>`;
+    const MODES = {
+      connexion: {
+        titre: 'Connexion',
+        intro: 'Connecte-toi pour retrouver ton garde-manger, tes listes et tes recettes sur tous tes appareils.',
+        corps: champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' })
+          + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'current-password' })
+          + bouton('Se connecter', 'Connexion…'),
+        liens: lien('oubli', 'Mot de passe oublié ?', 'lien-oubli') + lien('inscription', 'Pas encore de compte ? Créer un compte', 'lien-inscription')
+      },
+      inscription: {
+        titre: 'Créer un compte',
+        intro: 'Ton compte permet de synchroniser Frigourmand entre cet ordinateur, le futur site et d’autres appareils.',
+        corps: champAuth('auth-nom', 'Prénom', 'text', { autocomplete: 'given-name', requis: false })
+          + champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' })
+          + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'new-password', aide: '8 caractères minimum.' })
+          + bouton('Créer mon compte', 'Création…'),
+        liens: lien('connexion', 'J’ai déjà un compte', 'lien-connexion')
+      },
+      code: {
+        titre: 'Confirme ton adresse',
+        intro: 'Un code de confirmation a été envoyé à ' + (a.valeurs['auth-email'] || 'ton adresse') + '. Saisis-le ci-dessous.',
+        corps: champAuth('auth-code', 'Code reçu par e-mail', 'text', { autocomplete: 'one-time-code', inputmode: 'numeric', maxlength: 10 })
+          + bouton('Valider', 'Vérification…'),
+        liens: `<button type="button" class="bouton-lien" id="lien-renvoyer" data-action="auth-renvoyer"${a.occupe ? ' disabled' : ''}>Renvoyer le code</button>`
+          + lien('inscription', 'Changer d’adresse', 'lien-changer')
+      },
+      oubli: {
+        titre: 'Mot de passe oublié',
+        intro: 'Indique ton adresse : tu recevras un code pour choisir un nouveau mot de passe.',
+        corps: champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' }) + bouton('Recevoir un code', 'Envoi…'),
+        liens: lien('connexion', 'Retour à la connexion', 'lien-connexion')
+      },
+      reinit: {
+        titre: 'Nouveau mot de passe',
+        intro: 'Saisis le code reçu à ' + (a.valeurs['auth-email'] || 'ton adresse') + ' et choisis un nouveau mot de passe.',
+        corps: champAuth('auth-code', 'Code reçu par e-mail', 'text', { autocomplete: 'one-time-code', inputmode: 'numeric', maxlength: 10 })
+          + champAuth('auth-mdp', 'Nouveau mot de passe', 'password', { autocomplete: 'new-password', aide: '8 caractères minimum.' })
+          + bouton('Changer le mot de passe', 'Enregistrement…'),
+        liens: lien('oubli', 'Renvoyer un code', 'lien-oubli') + lien('connexion', 'Retour à la connexion', 'lien-connexion')
+      },
+      chargement: { titre: 'Un instant…', intro: 'Synchronisation de tes données.', corps: '', liens: '' }
+    };
+    const m = MODES[a.mode];
+    return `
+      <div class="auth">
+        <section class="panneau auth-carte" aria-labelledby="auth-titre">
+          <h1 class="titre" id="auth-titre" tabindex="-1">${esc(m.titre)}</h1>
+          <p class="auth-intro">${esc(m.intro)}</p>
+          ${a.erreur ? `<div class="alerte" role="alert" id="auth-erreur" tabindex="-1">${esc(a.erreur)}</div>` : ''}
+          ${a.message ? `<p class="info" role="status" id="auth-message">${esc(a.message)}</p>` : ''}
+          ${m.corps ? `<form class="auth-formulaire" data-action="auth-${a.mode}" novalidate>${m.corps}</form>` : ''}
+          ${m.liens ? `<div class="auth-liens">${m.liens}</div>` : ''}
+        </section>
+      </div>`;
+  }
+
+  function changerModeAuth(mode, message) {
+    Object.assign(ui.auth, { mode, erreur: null, message: message || null, erreursChamps: {}, occupe: false });
+    const premier = { connexion: 'auth-email', inscription: 'auth-nom', code: 'auth-code', oubli: 'auth-email', reinit: 'auth-code' }[mode];
+    rendre({ focus: premier || true });
+  }
+
+  function validerAuth(champs) {
+    const v = ui.auth.valeurs;
+    const e = {};
+    for (const c of champs) {
+      const val = (v[c] || '').trim();
+      if (c === 'auth-email' && !RE_EMAIL.test(val)) e[c] = 'Indique une adresse e-mail valide, par exemple nom@exemple.fr.';
+      if (c === 'auth-mdp' && ui.auth.mode !== 'connexion' && (v[c] || '').length < 8) e[c] = 'Le mot de passe doit contenir au moins 8 caractères.';
+      if (c === 'auth-mdp' && ui.auth.mode === 'connexion' && !v[c]) e[c] = 'Indique ton mot de passe.';
+      if (c === 'auth-code' && !/^\d{6,10}$/.test(val.replace(/\s/g, ''))) e[c] = 'Le code est composé de chiffres (6 en général).';
+    }
+    ui.auth.erreursChamps = e;
+    ui.auth.erreur = null;
+    if (Object.keys(e).length) {
+      rendre({ focus: Object.keys(e)[0] });
+      return false;
+    }
+    return true;
+  }
+
+  async function executerAuth(appel, suite) {
+    ui.auth.occupe = true;
+    ui.auth.message = null;
+    rendre();
+    const r = await appel();
+    ui.auth.occupe = false;
+    if (r && r.erreur) {
+      if (r.code === 'email_not_confirmed') { changerModeAuth('code', r.erreur); return; }
+      ui.auth.erreur = r.erreur;
+      rendre({ focus: 'auth-erreur' });
+      return;
+    }
+    await suite(r || {});
+  }
+
+  async function terminerConnexion(u) {
+    ui.auth.mode = 'chargement';
+    ui.auth.erreur = null;
+    rendre({ focus: true });
+    try {
+      const r = await bureau.compte.ouvrir(u);
+      utilisateur = r.utilisateur;
+      etatSynchro = r.synchro || etatSynchro;
+      initialiserDepuis(r.donnees);
+      appliquerApparence();
+      ui.auth = etatAuthInitial();
+      if (location.hash && location.hash !== '#garde-manger') location.hash = '#garde-manger'; else lireRoute();
+      toast('Bienvenue' + (utilisateur.nom ? ' ' + utilisateur.nom : '') + ' !');
+    } catch (e) {
+      console.error(e);
+      ui.auth.mode = 'connexion';
+      ui.auth.erreur = 'Impossible d’ouvrir tes données : ' + e.message;
+      rendre({ focus: 'auth-erreur' });
+    }
+  }
+
+  function actionAuth(mode) {
+    const v = ui.auth.valeurs;
+    const email = (v['auth-email'] || '').trim();
+    const code = (v['auth-code'] || '').replace(/\s/g, '');
+    switch (mode) {
+      case 'connexion':
+        if (!validerAuth(['auth-email', 'auth-mdp'])) return;
+        executerAuth(() => bureau.compte.connecter(email, v['auth-mdp']), (r) => terminerConnexion(r.utilisateur));
+        break;
+      case 'inscription':
+        if (!validerAuth(['auth-email', 'auth-mdp'])) return;
+        executerAuth(() => bureau.compte.inscrire(email, v['auth-mdp'], (v['auth-nom'] || '').trim()), (r) => {
+          if (r.utilisateur) terminerConnexion(r.utilisateur);
+          else changerModeAuth('code', 'Compte créé. Vérifie ta boîte mail (et les indésirables).');
+        });
+        break;
+      case 'code':
+        if (!validerAuth(['auth-code'])) return;
+        executerAuth(() => bureau.compte.confirmer(email, code), (r) => terminerConnexion(r.utilisateur));
+        break;
+      case 'oubli':
+        if (!validerAuth(['auth-email'])) return;
+        executerAuth(() => bureau.compte.demanderReinitialisation(email), () => changerModeAuth('reinit', 'Si un compte existe pour cette adresse, un code vient d’être envoyé.'));
+        break;
+      case 'reinit':
+        if (!validerAuth(['auth-code', 'auth-mdp'])) return;
+        executerAuth(() => bureau.compte.reinitialiser(email, code, v['auth-mdp']), (r) => terminerConnexion(r.utilisateur));
+        break;
+      default: break;
+    }
+  }
+
+  const etatAuthInitial = () => ({ mode: 'connexion', valeurs: {}, erreursChamps: {}, erreur: null, message: null, occupe: false });
 
   /* ─── Garde-manger ─── */
 
@@ -533,7 +727,7 @@
             <h2 id="gm-titre-ajout" class="titre-bloc">Ajouter un ingrédient</h2>
             <div class="champ">
               <label class="etiquette" for="gm-nom">Ingrédient</label>
-              ${champRecherche('gm-nom', { placeholder: 'ex. œufs, tomates, crème…' })}
+              ${champRecherche('gm-nom', { placeholder: 'ex. œufs, tomates, crème…', enLigne: true })}
               ${erreurChamp('gm-nom')}
             </div>
             <div class="rangee-champs">
@@ -1022,6 +1216,17 @@
     return `
       <h1 class="titre" tabindex="-1">Paramètres</h1>
       <div class="grille-2 grille-parametres">
+        <section class="panneau corps-panneau" aria-labelledby="p-compte">
+          <h2 id="p-compte" class="titre-section">Mon compte</h2>
+          <p>Connecté${utilisateur && utilisateur.nom ? ' en tant que <strong>' + esc(utilisateur.nom) + '</strong>' : ''} avec l’adresse <strong>${esc(utilisateur ? utilisateur.email : '')}</strong>.</p>
+          <p class="etat-maj">Synchronisation : <span id="p-etat-synchro">${esc(texteSynchro()[1])}</span></p>
+          <div class="barre-actions">
+            <button type="button" class="bouton-secondaire" id="p-synchro" data-action="synchro-maintenant">Synchroniser maintenant</button>
+            <button type="button" class="bouton-secondaire" id="p-mdp" data-action="compte-mdp">Changer le mot de passe</button>
+            <button type="button" class="bouton-secondaire bouton-danger" id="p-deconnexion" data-action="compte-deconnecter">Se déconnecter</button>
+          </div>
+        </section>
+
         <section class="panneau corps-panneau" aria-labelledby="p-apparence">
           <h2 id="p-apparence" class="titre-section">Apparence</h2>
           <fieldset class="groupe-choix"><legend>Thème</legend>${radios('theme', [['systeme', 'Comme le système'], ['clair', 'Clair'], ['sombre', 'Sombre']], r.theme)}</fieldset>
@@ -1045,7 +1250,7 @@
 
         <section class="panneau corps-panneau" aria-labelledby="p-donnees">
           <h2 id="p-donnees" class="titre-section">Mes données</h2>
-          <p class="aide">Tout est enregistré sur cet ordinateur, dans une base de données locale. L’export crée un fichier de sauvegarde que tu peux réimporter plus tard ou sur un autre appareil.</p>
+          <p class="aide">Tes données sont enregistrées sur ton compte et gardées aussi sur cet ordinateur, pour fonctionner sans Internet. L’export crée un fichier de sauvegarde que tu peux réimporter plus tard.</p>
           <div class="barre-actions">
             <button type="button" class="bouton-secondaire" id="p-exporter" data-action="exporter">Exporter</button>
             <button type="button" class="bouton-secondaire" id="p-importer" data-action="importer">Importer</button>
@@ -1087,10 +1292,11 @@
     const defilement = window.scrollY;
 
     $('#entete').innerHTML = vueEntete();
-    $('#contenu').innerHTML = (VUES[ui.route] || vueGardeManger)();
+    $('#bandeau-maj').innerHTML = vueBandeauMaj();
+    $('#contenu').innerHTML = utilisateur ? (VUES[ui.route] || vueGardeManger)() : vueAuth();
 
     const r = ui.route === 'recette' ? recetteParId(ui.params[0]) : null;
-    document.title = (r ? r.nom : TITRES[ui.route] || 'Frigourmand') + ' · Frigourmand';
+    document.title = utilisateur ? (r ? r.nom : TITRES[ui.route] || 'Frigourmand') + ' · Frigourmand' : 'Connexion · Frigourmand';
 
     if (o.focus) {
       const cible = typeof o.focus === 'string' ? document.getElementById(o.focus) : $('#contenu h1');
@@ -1111,6 +1317,7 @@
   }
 
   function lireRoute() {
+    if (!utilisateur) { rendre({ focus: true }); return; }
     const h = decodeURIComponent(location.hash.replace(/^#/, '')) || 'garde-manger';
     const [route, ...params] = h.split('/');
     ui.route = VUES[route] ? route : 'garde-manger';
@@ -1488,6 +1695,39 @@
     toast('Toutes les données ont été effacées.');
   }
 
+  function vueBandeauMaj() {
+    if (etatMaj.etat !== 'prete') return '';
+    return `<div class="bandeau-maj" role="region" aria-label="Mise à jour">
+      <span>La version ${esc(etatMaj.version)} de Frigourmand est prête.</span>
+      <button type="button" class="bouton" id="bandeau-maj-installer" data-action="maj-installer">Redémarrer et mettre à jour</button>
+    </div>`;
+  }
+
+  async function actionChangerMotDePasse() {
+    const res = await dialogue(`
+      <form method="dialog" novalidate>
+        <h2 id="dialogue-titre">Changer le mot de passe</h2>
+        <div class="champ">
+          <label class="etiquette" for="dl-mdp">Nouveau mot de passe</label>
+          <input class="saisie" id="dl-mdp" type="password" autocomplete="new-password" aria-describedby="dl-mdp-aide" autofocus>
+          <p class="aide aide-champ" id="dl-mdp-aide">8 caractères minimum.</p>
+        </div>
+        <div class="champ">
+          <label class="etiquette" for="dl-mdp2">Confirmer le mot de passe</label>
+          <input class="saisie" id="dl-mdp2" type="password" autocomplete="new-password">
+        </div>
+        <div class="barre-actions">
+          <button type="submit" class="bouton">Enregistrer</button>
+          <button type="button" class="bouton-secondaire" data-reponse="non">Annuler</button>
+        </div>
+      </form>`, { valeur: () => ({ a: $('#dl-mdp').value, b: $('#dl-mdp2').value }) });
+    if (!res) return;
+    if (res.a.length < 8) { toast('Le mot de passe doit contenir au moins 8 caractères.'); return; }
+    if (res.a !== res.b) { toast('Les deux mots de passe ne correspondent pas.'); return; }
+    const r = await bureau.compte.changerMotDePasse(res.a);
+    toast(r.erreur || 'Mot de passe modifié.');
+  }
+
   function texteMaj() {
     const e = etatMaj;
     switch (e.etat) {
@@ -1508,7 +1748,8 @@
     if (ui.route === 'parametres' && (avant !== etatMaj.etat)) rendre();
     else if (zone) zone.textContent = texteMaj();
     if (etatMaj.etat === 'prete' && avant !== 'prete') {
-      toast('La version ' + etatMaj.version + ' de Frigourmand est prête.', { libelle: 'Redémarrer', fn: () => bureau.majInstaller() });
+      $('#bandeau-maj').innerHTML = vueBandeauMaj();
+      toast('La version ' + etatMaj.version + ' de Frigourmand est prête : un bandeau en haut de la fenêtre permet de redémarrer.');
     }
   }
 
@@ -1620,7 +1861,8 @@
     if (!f) return;
     e.preventDefault();
     const a = f.dataset.action;
-    if (a === 'gm-ajouter') actionAjouterGardeManger();
+    if (a.startsWith('auth-')) actionAuth(a.slice(5));
+    else if (a === 'gm-ajouter') actionAjouterGardeManger();
     else if (a === 'courses-ajouter') actionAjouterCourse();
     else if (a === 'editeur-enregistrer') actionEnregistrerRecette();
   });
@@ -1641,6 +1883,38 @@
       case 'basculer-theme':
         etat.reglages.theme = themeEffectif() === 'sombre' ? 'clair' : 'sombre';
         appliquerApparence(); sauvegarder(); rendre();
+        break;
+      case 'auth-mode': changerModeAuth(el.dataset.mode); break;
+      case 'auth-voir': {
+        const champ = document.getElementById(el.dataset.cible);
+        const visible = champ.type === 'password';
+        champ.type = visible ? 'text' : 'password';
+        el.setAttribute('aria-pressed', String(visible));
+        el.textContent = visible ? 'Masquer' : 'Afficher';
+        el.setAttribute('aria-label', visible ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+        break;
+      }
+      case 'auth-renvoyer':
+        executerAuth(() => bureau.compte.renvoyerCode((ui.auth.valeurs['auth-email'] || '').trim()), () => {
+          ui.auth.message = 'Un nouveau code vient d’être envoyé.';
+          rendre({ focus: 'auth-code' });
+        });
+        break;
+      case 'compte-deconnecter':
+        confirmer('Se déconnecter ?', 'Tes données restent enregistrées sur ton compte. Il faudra te reconnecter pour les retrouver.', 'Se déconnecter').then(async (ok) => {
+          if (!ok) return;
+          await enregistrerMaintenant();
+          await bureau.compte.deconnecter();
+          utilisateur = null;
+          ui.auth = etatAuthInitial();
+          etat = etatDefaut();
+          location.hash = '';
+          rendre({ focus: true });
+        });
+        break;
+      case 'compte-mdp': actionChangerMotDePasse(); break;
+      case 'synchro-maintenant':
+        bureau.synchroniser().then((e) => { if (e) recevoirEtatSynchro(e); toast(e && e.etat === 'ok' ? 'Données synchronisées.' : 'Synchronisation impossible pour le moment.'); });
         break;
       case 'gm-modifier': actionModifierStock(id); break;
       case 'gm-retirer': actionRetirerStock(id); break;
@@ -1769,6 +2043,7 @@
   let minuteurRecherche = null;
   document.addEventListener('input', (e) => {
     const el = e.target;
+    if (el.dataset && el.dataset.auth) { ui.auth.valeurs[el.dataset.auth] = el.value; return; }
     if (el.dataset.action === 'filtre' && el.dataset.cle === 'q') {
       ui.filtres.q = el.value;
       clearTimeout(minuteurRecherche);
@@ -1802,14 +2077,56 @@
       $('#contenu').innerHTML = '<h1 class="titre">Frigourmand</h1><p>Cette page doit être ouverte depuis l’application Frigourmand.</p>';
       return;
     }
-    const [donnees, infos, maj] = await Promise.all([bureau.charger(), bureau.infos(), bureau.majEtat()]);
+    const [etatCompte, infos, maj] = await Promise.all([bureau.compte.etat(), bureau.infos(), bureau.majEtat()]);
     infosAppli = infos;
     etatMaj = maj;
-    initialiserDepuis(donnees);
-    appliquerApparence();
     bureau.surMaj(recevoirEtatMaj);
+    bureau.surSynchro(recevoirEtatSynchro);
+    bureau.surDonneesDistantes(recevoirDonneesDistantes);
+    ui.auth = etatAuthInitial();
+    if (etatCompte.utilisateur) {
+      await terminerConnexionSilencieuse(etatCompte.utilisateur, etatCompte.horsLigne);
+    } else {
+      rendre({ focus: true });
+    }
+  }
+  async function terminerConnexionSilencieuse(u, horsLigne) {
+    ui.auth.mode = 'chargement';
+    rendre();
+    const r = await bureau.compte.ouvrir(u);
+    utilisateur = r.utilisateur;
+    etatSynchro = horsLigne ? { etat: 'hors-ligne', enAttente: r.synchro.enAttente } : r.synchro;
+    initialiserDepuis(r.donnees);
+    appliquerApparence();
     lireRoute();
   }
+
+  function recevoirEtatSynchro(e) {
+    const avant = etatSynchro.etat;
+    etatSynchro = e;
+    const el = document.getElementById('indicateur-synchro');
+    if (el && utilisateur) {
+      const [classe, libelle] = texteSynchro();
+      el.className = 'synchro synchro-' + classe;
+      el.lastChild.textContent = libelle;
+    }
+    const zone = document.getElementById('p-etat-synchro');
+    if (zone) zone.textContent = texteSynchro()[1];
+    if (avant !== 'hors-ligne' && e.etat === 'hors-ligne' && utilisateur) {
+      toast('Connexion perdue : tes modifications sont gardées et seront envoyées dès le retour d’Internet.');
+    }
+  }
+
+  async function recevoirDonneesDistantes() {
+    if (!utilisateur) return;
+    // Pas de rechargement pendant l'édition d'une recette : on attendra la prochaine synchronisation.
+    if (ui.route === 'editeur' || document.querySelector('dialog[open]')) return;
+    await enregistrerMaintenant();
+    initialiserDepuis(await bureau.charger());
+    appliquerApparence();
+    rendre();
+  }
+
   demarrer().catch((e) => {
     console.error(e);
     $('#contenu').innerHTML = '<h1 class="titre">Frigourmand n’a pas pu démarrer</h1><p>' + esc(e.message) + '</p>';

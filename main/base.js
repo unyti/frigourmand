@@ -106,6 +106,16 @@ const MIGRATIONS = [
     valeur TEXT NOT NULL,
     PRIMARY KEY (utilisateur_id, cle)
   );
+  `,
+  // Version 2 : file d'attente des modifications à envoyer au serveur (synchronisation hors ligne).
+  `
+  CREATE TABLE file_attente (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    utilisateur_id TEXT NOT NULL,
+    ops TEXT NOT NULL,
+    cree_le TEXT NOT NULL
+  );
+  CREATE INDEX file_attente_utilisateur ON file_attente(utilisateur_id, id);
   `
 ];
 
@@ -264,6 +274,7 @@ class Base {
        type: 'put' | 'del', cle, val } */
 
   appliquer(ops, u) {
+    this.assurerUtilisateur(u || UTILISATEUR_LOCAL);
     this.transaction(() => this.appliquerSansTransaction(ops, u));
     return true;
   }
@@ -351,6 +362,7 @@ class Base {
   /** Remplace toutes les données de l'utilisateur par celles d'un export (format 1 = ancien fichier JSON, ou 2). */
   importer(etat, u) {
     const utilisateur = u || UTILISATEUR_LOCAL;
+    this.assurerUtilisateur(utilisateur);
     const tab = (x) => (Array.isArray(x) ? x : []);
     const ops = [];
     for (const i of tab(etat.ingredientsPerso)) if (i && i.id && i.nom) ops.push({ col: 'ingredientsPerso', type: 'put', cle: i.id, val: i });
@@ -365,5 +377,41 @@ class Base {
     });
   }
 }
+
+/* ─── File d'attente de synchronisation ─── */
+
+Base.prototype.enfiler = function (ops, u) {
+  if (!ops.length) return;
+  this.db.prepare('INSERT INTO file_attente (utilisateur_id, ops, cree_le) VALUES (?, ?, ?)').run(u, JSON.stringify(ops), maintenant());
+};
+Base.prototype.premierEnAttente = function (u) {
+  const l = this.db.prepare('SELECT id, ops FROM file_attente WHERE utilisateur_id = ? ORDER BY id LIMIT 1').get(u);
+  return l ? { id: l.id, ops: JSON.parse(l.ops) } : null;
+};
+Base.prototype.retirerDeLaFile = function (id) {
+  this.db.prepare('DELETE FROM file_attente WHERE id = ?').run(id);
+};
+Base.prototype.tailleFile = function (u) {
+  return this.db.prepare('SELECT COUNT(*) AS n FROM file_attente WHERE utilisateur_id = ?').get(u).n;
+};
+
+/** Vrai si l'utilisateur a des données personnelles en local. */
+Base.prototype.aDesDonnees = function (u) {
+  const n = (sql) => this.db.prepare(sql).get(u).n;
+  return n('SELECT COUNT(*) AS n FROM garde_manger WHERE utilisateur_id = ?') + n('SELECT COUNT(*) AS n FROM courses WHERE utilisateur_id = ?')
+    + n('SELECT COUNT(*) AS n FROM favoris WHERE utilisateur_id = ?') + n('SELECT COUNT(*) AS n FROM recettes WHERE proprietaire = ?') > 0;
+};
+
+/** Transforme un export complet en liste d'opérations (pour tout envoyer au serveur). */
+Base.opsDepuisExport = function (e) {
+  const ops = [];
+  for (const i of e.ingredientsPerso || []) ops.push({ col: 'ingredientsPerso', type: 'put', cle: i.id, val: i });
+  for (const r of e.recettesPerso || []) ops.push({ col: 'recettesPerso', type: 'put', cle: r.id, val: r });
+  for (const x of e.gardeManger || []) ops.push({ col: 'gardeManger', type: 'put', cle: x.id, val: x });
+  (e.courses || []).forEach((c, position) => ops.push({ col: 'courses', type: 'put', cle: c.cle, val: Object.assign({}, c, { position }) }));
+  for (const id of e.favoris || []) ops.push({ col: 'favoris', type: 'put', cle: id });
+  for (const [cle, val] of Object.entries(e.reglages || {})) ops.push({ col: 'reglages', type: 'put', cle, val });
+  return ops;
+};
 
 module.exports = { Base, UTILISATEUR_LOCAL };
