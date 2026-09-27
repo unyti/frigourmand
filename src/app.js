@@ -184,7 +184,8 @@
       gardeManger: tab(d.gardeManger),
       ingredientsPerso: tab(d.ingredientsPerso),
       courses: tab(d.courses),
-      recettesPerso: tab(d.recettesPerso),
+      // Anciennes recettes perso de type « Soupe » ou « Accompagnement » : désormais des plats.
+      recettesPerso: tab(d.recettesPerso).map((r) => (['Entrée', 'Plat', 'Dessert'].includes(r.type) ? r : Object.assign({}, r, { type: 'Plat' }))),
       favoris: tab(d.favoris),
       reglages: Object.assign(reglagesDefaut(), d.reglages || {})
     };
@@ -517,57 +518,69 @@
     })).filter((g) => g.items.length);
     const basiques = etat.reglages.basiques.map((id) => ing(id).nom);
 
+    const pers = personnesFiltre();
+    const realisables = items.length ? toutesRecettes().filter((r) => analyser(r, pers).nb === 0).length : 0;
+
     return `
       <div class="titre-page">
         <h1 class="titre" tabindex="-1">Garde-manger</h1>
         <p class="sous-titre">${items.length ? pluriel(items.length, 'ingrédient') : 'Vide pour l’instant'}</p>
       </div>
 
-      <form class="panneau formulaire-ajout" data-action="gm-ajouter" novalidate aria-label="Ajouter un ingrédient au garde-manger">
-        <div class="champ champ-large">
-          <label class="etiquette" for="gm-nom">Ingrédient</label>
-          ${champRecherche('gm-nom', { placeholder: 'ex. melon, tabasco, comté…' })}
-          ${erreurChamp('gm-nom')}
-        </div>
-        <div class="champ champ-qte">
-          <label class="etiquette" for="gm-qte">Quantité</label>
-          <input class="saisie" id="gm-qte" inputmode="decimal" autocomplete="off" placeholder="facultatif"${ariaErreur('gm-qte')}>
-          ${erreurChamp('gm-qte')}
-        </div>
-        <div class="champ champ-unite">
-          <label class="etiquette" for="gm-unite">Unité</label>
-          <select class="saisie" id="gm-unite">${optionsSelect(UNITES_STOCK, 'g')}</select>
-        </div>
-        <div class="champ champ-rangement">
-          <label class="etiquette" for="gm-rangement">Rangé dans</label>
-          <select class="saisie" id="gm-rangement">${optionsSelect(RANGEMENTS.map((r) => [r.id, r.nom]), 'legumes')}</select>
-        </div>
-        <button type="submit" class="bouton" id="gm-bouton-ajouter">Ajouter</button>
-      </form>
+      <div class="mise-deux-colonnes">
+        <aside class="colonne-laterale">
+          <form class="panneau formulaire-lateral" data-action="gm-ajouter" novalidate aria-labelledby="gm-titre-ajout">
+            <h2 id="gm-titre-ajout" class="titre-bloc">Ajouter un ingrédient</h2>
+            <div class="champ">
+              <label class="etiquette" for="gm-nom">Ingrédient</label>
+              ${champRecherche('gm-nom', { placeholder: 'ex. œufs, tomates, crème…' })}
+              ${erreurChamp('gm-nom')}
+            </div>
+            <div class="rangee-champs">
+              <div class="champ">
+                <label class="etiquette" for="gm-qte">Quantité</label>
+                <input class="saisie" id="gm-qte" inputmode="decimal" autocomplete="off" placeholder="facultatif"${ariaErreur('gm-qte')}>
+              </div>
+              <div class="champ">
+                <label class="etiquette" for="gm-unite">Unité</label>
+                <select class="saisie" id="gm-unite">${optionsSelect(UNITES_STOCK, 'g')}</select>
+              </div>
+            </div>
+            ${erreurChamp('gm-qte')}
+            <div class="champ">
+              <label class="etiquette" for="gm-rangement">Rangé dans</label>
+              <select class="saisie" id="gm-rangement">${optionsSelect(RANGEMENTS.map((r) => [r.id, r.nom]), 'frigo')}</select>
+            </div>
+            <button type="submit" class="bouton bouton-plein" id="gm-bouton-ajouter">Ajouter</button>
+          </form>
+          ${items.length ? `<p class="encart-info"><strong>${pluriel(realisables, 'recette réalisable', 'recettes réalisables')}</strong> avec ce que tu as, pour ${pluriel(pers, 'personne')}. <a href="#recettes">Voir les recettes</a></p>` : ''}
+          <p class="note">Toujours considérés comme disponibles : ${esc(basiques.join(', ') || 'aucun')}. <a href="#parametres">Modifier</a></p>
+        </aside>
 
-      ${groupes.length ? `<div class="grille-2">${groupes.map(({ r, items: liste }) => `
-        <section class="panneau" aria-labelledby="gm-g-${r.id}">
-          <div class="panneau-tete teinte-${COULEUR_RANGEMENT[r.id]}">
-            <span class="marqueur" aria-hidden="true"></span>
-            <h2 id="gm-g-${r.id}">${esc(r.nom)}</h2>
-            <span class="compte">${pluriel(liste.length, 'article')}</span>
-          </div>
-          <ul class="lignes">
-            ${liste.map(({ x, i }) => `
-              <li class="ligne">
-                <span class="ligne-nom">${esc(i.nom)}</span>
-                <span class="ligne-qte">${esc(x.qte == null ? '' : formatQteCourt(x.qte, x.unite, i))}</span>
-                <button type="button" class="bouton-icone" id="gm-mod-${esc(x.id)}" data-action="gm-modifier" data-id="${esc(x.id)}" aria-label="Modifier ${esc(i.nom)}">${ICONES.crayon}</button>
-                <button type="button" class="bouton-icone" id="gm-sup-${esc(x.id)}" data-action="gm-retirer" data-id="${esc(x.id)}" aria-label="Retirer ${esc(i.nom)} du garde-manger">${ICONES.croix}</button>
-              </li>`).join('')}
-          </ul>
-        </section>`).join('')}</div>` : `
-        <div class="vide">
-          <h2>Ton garde-manger est vide</h2>
-          <p>Ajoute ce que tu as dans le frigo et les placards. La quantité est facultative : sans quantité, Frigourmand considère que tu en as assez.</p>
-        </div>`}
-
-      <p class="note">Toujours considérés comme disponibles : ${esc(basiques.join(', ') || 'aucun')}. <a href="#parametres">Modifier</a></p>`;
+        <div class="colonne-principale">
+        ${groupes.length ? `<div class="colonnes-rangements">${groupes.map(({ r, items: liste }) => `
+          <section class="panneau bloc-rangement" aria-labelledby="gm-g-${r.id}">
+            <div class="panneau-tete teinte-${COULEUR_RANGEMENT[r.id]}">
+              <span class="marqueur" aria-hidden="true"></span>
+              <h2 id="gm-g-${r.id}">${esc(r.nom)}</h2>
+              <span class="compte">${liste.length}</span>
+            </div>
+            <ul class="lignes">
+              ${liste.map(({ x, i }) => `
+                <li class="ligne">
+                  <span class="ligne-nom">${esc(i.nom)}</span>
+                  <span class="ligne-qte">${esc(x.qte == null ? '' : formatQteCourt(x.qte, x.unite, i))}</span>
+                  <button type="button" class="bouton-icone" id="gm-mod-${esc(x.id)}" data-action="gm-modifier" data-id="${esc(x.id)}" aria-label="Modifier ${esc(i.nom)}">${ICONES.crayon}</button>
+                  <button type="button" class="bouton-icone" id="gm-sup-${esc(x.id)}" data-action="gm-retirer" data-id="${esc(x.id)}" aria-label="Retirer ${esc(i.nom)} du garde-manger">${ICONES.croix}</button>
+                </li>`).join('')}
+            </ul>
+          </section>`).join('')}</div>` : `
+          <div class="vide">
+            <h2>Ton garde-manger est vide</h2>
+            <p>Ajoute ce que tu as dans le frigo et les placards. La quantité est facultative : sans quantité, Frigourmand considère que tu en as assez.</p>
+          </div>`}
+        </div>
+      </div>`;
   }
 
   /* ─── Recettes ─── */
@@ -606,19 +619,22 @@
           <th scope="col" class="col-cuisine">Cuisine</th>
           <th scope="col" class="col-temps">Temps</th>
           <th scope="col">${avecAchats ? 'À acheter (pour ' + pluriel(pers, 'personne') + ')' : 'Type'}</th>
-          ${avecAchats ? '<th scope="col" class="col-action"><span class="sr-only">Action</span></th>' : ''}
+          <th scope="col" class="col-action"><span class="sr-only">Actions</span></th>
         </tr></thead>
         <tbody>
           ${liste.map(({ r, a }) => {
             const tousDansListe = a.manquants.every((l) => dansListe(l.id));
             return `<tr>
-              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${estFavori(r.id) ? `<span class="favori">${ICONES.etoilePleine}<span class="sr-only"> (favori)</span></span>` : ''}${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}</th>
+              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}</th>
               <td class="col-cuisine">${esc(r.cuisine)}</td>
               <td class="col-temps">${esc(duree(r.minutes))}</td>
               <td>${avecAchats ? `<span class="achats">${celluleAchats(a)}</span>` : esc(r.type)}</td>
-              ${avecAchats ? `<td class="col-action">${tousDansListe
-                ? `<span class="deja">${ICONES.coche}Dans la liste</span>`
-                : `<button type="button" class="bouton-secondaire" id="aj-${idSection}-${esc(r.id)}" data-action="liste-ajouter-recette" data-id="${esc(r.id)}" aria-label="Ajouter à la liste de courses ce qui manque pour ${esc(r.nom)}">Ajouter à la liste</button>`}</td>` : ''}
+              <td class="col-action"><div class="actions-recette">
+                ${avecAchats ? (tousDansListe
+                  ? `<span class="deja">${ICONES.coche}Dans la liste</span>`
+                  : `<button type="button" class="bouton-secondaire" id="aj-${idSection}-${esc(r.id)}" data-action="liste-ajouter-recette" data-id="${esc(r.id)}" aria-label="Ajouter à la liste de courses ce qui manque pour ${esc(r.nom)}">Ajouter à la liste</button>`) : ''}
+                <button type="button" class="bouton-etoile" id="fav-${idSection}-${esc(r.id)}" data-action="favori" data-id="${esc(r.id)}" aria-pressed="${estFavori(r.id)}" aria-label="Favori : ${esc(r.nom)}" title="${estFavori(r.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'}">${estFavori(r.id) ? ICONES.etoilePleine : ICONES.etoile}</button>
+              </div></td>
             </tr>`;
           }).join('')}
         </tbody>
@@ -636,7 +652,7 @@
     ];
     const plus = analyses.filter((x) => x.a.nb >= 3);
     const cuisines = [...new Set(toutesRecettes().map((r) => r.cuisine))].sort(trierFr);
-    const types = [...new Set(toutesRecettes().map((r) => r.type))].sort(trierFr);
+    const types = ['Entrée', 'Plat', 'Dessert'];
     const f = ui.filtres;
 
     return `
@@ -797,10 +813,15 @@
         <section class="panneau panneau-courses" aria-label="Articles à acheter">
           <form class="ajout-courses" data-action="courses-ajouter" novalidate>
             <label for="c-ajout" class="sr-only">Ajouter un article</label>
-            ${champRecherche('c-ajout', { mode: 'courses', placeholder: 'Ajouter un article, ex. 500 g de pâtes ou café' })}
+            ${champRecherche('c-ajout', { mode: 'courses', placeholder: 'Ajouter un article, ex. 6 œufs, 500 g de pâtes, lait' })}
             <button type="submit" class="bouton" id="c-bouton-ajouter">Ajouter</button>
           </form>
           ${erreurChamp('c-ajout')}
+          ${etat.courses.length ? `<div class="barre-selection" role="group" aria-label="Actions sur les articles">
+            <span>${nbCoches ? pluriel(nbCoches, 'article coché', 'articles cochés') : 'Coche des articles pour agir dessus'}</span>
+            <button type="button" class="bouton-secondaire" id="c-tout" data-action="courses-tout-cocher">${nbCoches === etat.courses.length ? 'Tout décocher' : 'Tout cocher'}</button>
+            ${nbCoches ? `<button type="button" class="bouton-secondaire bouton-danger" id="c-sup-coches" data-action="courses-supprimer-coches">Supprimer ${nbCoches > 1 ? 'les ' + nbCoches + ' articles cochés' : 'l’article coché'}</button>` : ''}
+          </div>` : ''}
           ${groupes.length ? groupes.map(({ ray, items }) => `
             <div class="groupe-rayon">
               <h2 class="tete-rayon teinte-${COULEUR_RAYON[ray.id]}"><span class="marqueur" aria-hidden="true"></span>${esc(ray.nom)}</h2>
@@ -908,7 +929,7 @@
   function vueEditeur() {
     const b = ui.brouillon;
     const cuisines = [...new Set(toutesRecettes().map((r) => r.cuisine))].sort(trierFr);
-    const types = ['Entrée', 'Soupe', 'Plat', 'Accompagnement', 'Dessert'];
+    const types = ['Entrée', 'Plat', 'Dessert'];
     const nbErreurs = Object.keys(ui.erreurs).filter((c) => c.startsWith('ed-')).length;
     return `
       <a href="#mes-recettes" class="lien-retour" id="lien-retour">${ICONES.retour}Mes recettes</a>
@@ -1647,6 +1668,22 @@
         break;
       }
       case 'courses-ranger': actionRangerCourses(); break;
+      case 'courses-tout-cocher': {
+        const tout = etat.courses.every((c) => c.coche);
+        modifier(() => { etat.courses.forEach((c) => { c.coche = !tout; }); });
+        break;
+      }
+      case 'courses-supprimer-coches': {
+        const retires = etat.courses.filter((c) => c.coche);
+        if (!retires.length) break;
+        const avant = etat.courses.slice();
+        modifier(() => { etat.courses = etat.courses.filter((c) => !c.coche); }, { focus: 'c-ajout' });
+        toast(pluriel(retires.length, 'article retiré', 'articles retirés') + ' de la liste.', {
+          libelle: 'Annuler',
+          fn: () => modifier(() => { etat.courses = avant; }, { focus: 'c-ajout' })
+        });
+        break;
+      }
       case 'courses-copier': actionCopierCourses(); break;
       case 'courses-vider':
         confirmer('Vider la liste de courses ?', 'Tous les articles seront retirés de la liste.', 'Vider la liste', true).then((ok) => {

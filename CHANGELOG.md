@@ -1,5 +1,16 @@
 # Journal des versions
 
+## 0.3.0 — 27 septembre 2026
+
+- **Pages plus compactes** : moins d’espace perdu, textes et lignes resserrés. Le garde-manger passe sur deux colonnes :
+  le formulaire d’ajout à gauche (avec le nombre de recettes réalisables), les rangements à droite.
+- **Liste de courses** : « Tout cocher / Tout décocher » et « Supprimer les articles cochés » (avec annulation).
+- **Favoris depuis la liste des recettes** : bouton étoile à côté de « Ajouter à la liste », dans toutes les sections.
+- **241 recettes** au lieu de 117 : coq au vin, blanquette, tarte Tatin, crème brûlée, fondue, raclette, aligot,
+  osso buco, biryani, pho, bulgogi, mafé, rougail, cheesecake, brownies… et bien d’autres.
+- **Trois types seulement** : Entrée, Plat, Dessert. Les soupes et les accompagnements sont désormais des plats.
+- Exemples d’ingrédients plus courants dans les champs de saisie.
+
 ## 0.2.0 — 27 septembre 2026
 
 - **Nouveau nom : Frigourmand** (anciennement Popote). Les données déjà saisies sont reprises automatiquement.

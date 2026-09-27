@@ -256,6 +256,7 @@ const GROUPES = [
     ['Sirop d’agave', 'cs'],
     ['Confiture', 'g', { alias: ['confiture de fraises', 'confiture d’abricots'] }],
     ['Pâte à tartiner', 'g', { alias: ['nutella'] }],
+    ['Beurre de cacahuète', 'cs', { alias: ['beurre d’arachide', 'pâte d’arachide'] }],
     ['Chocolat au lait', 'g'],
     ['Chocolat blanc', 'g'],
     ['Pépites de chocolat', 'g'],

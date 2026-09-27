@@ -52,7 +52,7 @@ Il pourra être repris tel quel sur PostgreSQL (Supabase, par exemple) avec des 
 - `main.js`, `preload.js` : processus Electron (fenêtre, échanges avec l'interface).
 - `main/base.js` : base de données (schéma, migrations, lecture, écritures en transaction, import / export).
 - `main/mises-a-jour.js` : mises à jour automatiques (electron-updater, GitHub Releases).
-- `donnees/` : catalogue d'ingrédients (≈ 540) et recettes de base (117), injectés dans la base à chaque nouvelle version.
+- `donnees/` : catalogue d'ingrédients (≈ 540) et recettes de base (241), injectés dans la base à chaque nouvelle version.
 - `src/` : interface (HTML, CSS, JavaScript sans framework). Elle ne parle aux données qu'à travers
   `window.frigourmandBureau` : pour le site web, il suffira de fournir la même interface au-dessus d'une API HTTP.
 - `build/` : icône et script qui pose l'icône sur `Frigourmand.exe`.

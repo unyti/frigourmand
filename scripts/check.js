@@ -30,6 +30,8 @@ for (const r of recettes) {
     if (opt && opt !== 'opt') erreurs.push(`${r.id} : drapeau invalide pour ${id}`);
   }
   if (!r.etapes.length) erreurs.push(r.id + ' : aucune étape');
+  if (!/^[a-z0-9-]+$/.test(r.id)) erreurs.push('Identifiant de recette invalide : ' + r.id);
+  if (!['Entrée', 'Plat', 'Dessert'].includes(r.type)) erreurs.push(r.id + ' : type invalide ' + r.type);
 }
 const parCuisine = {};
 for (const r of recettes) parCuisine[r.cuisine] = (parCuisine[r.cuisine] || 0) + 1;

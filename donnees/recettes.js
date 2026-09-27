@@ -1,5 +1,5 @@
 /* Recettes de base de Frigourmand.
-   R(id, nom, cuisine, type, minutes, difficulté, personnes, ingrédients, étapes)
+   R(id, nom, cuisine, type, minutes, difficulté, personnes, ingrédients, étapes) — type : Entrée | Plat | Dessert
    Ingrédient : [idCatalogue, quantité, unité?, 'opt'?]
    - unité omise : unité par défaut du catalogue
    - quantité null : « selon goût »
@@ -7,8 +7,11 @@
 'use strict';
 
   const recettes = [];
+  // Trois types seulement : les soupes et les accompagnements comptent comme des plats.
+  const TYPES = { 'Entrée': 'Entrée', 'Plat': 'Plat', 'Dessert': 'Dessert', 'Soupe': 'Plat', 'Accompagnement': 'Plat' };
   function R(id, nom, cuisine, type, minutes, difficulte, personnes, ingredients, etapes) {
-    recettes.push({ id, nom, cuisine, type, minutes, difficulte, personnes, ingredients, etapes, source: 'catalogue' });
+    if (!TYPES[type]) throw new Error('Type de recette inconnu : ' + type + ' (' + id + ')');
+    recettes.push({ id, nom, cuisine, type: TYPES[type], minutes, difficulte, personnes, ingredients, etapes, source: 'catalogue' });
   }
 
   /* ───────────── Cuisine française ───────────── */
@@ -1220,5 +1223,7 @@
     'Ajouter la farine, la levure, le sel, puis le chocolat en morceaux.',
     'Former des boules, les aplatir sur une plaque et cuire 10 à 12 min : ils doivent rester mous au centre.'
   ]);
+
+require('./recettes-supplementaires')(R);
 
 module.exports = recettes;
