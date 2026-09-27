@@ -1,5 +1,17 @@
 # Journal des versions
 
+## 0.8.0 — 27 septembre 2026
+
+- **Ingrédients équivalents** : un ingrédient proche en stock remplace celui de la recette (pâtes pour des spaghetti,
+  ail en poudre pour l'ail, fromage râpé pour de l'emmental, blancs de poulet pour des cuisses, crème fraîche pour
+  de la crème liquide, oignon pour échalote…). La fiche indique « remplacé par … ».
+- **Réalisables pour moins de personnes** : quand il ne manque que de la quantité, la recette est proposée pour le
+  nombre de personnes possible (par exemple « pour 2 personnes, limité par les lardons »), dans les recettes et à l'accueil.
+- **392 recettes** : 57 nouvelles recettes du quotidien avec peu d'ingrédients (œufs, pâtes, riz, lentilles, poulet,
+  canard, tortillas…) dont 12 salades-repas ; les salades composées (riz, pâtes, lentilles, piémontaise, périgourdine)
+  passent en plats.
+- Blancs de poulet : on peut maintenant les compter à la pièce.
+
 ## 0.7.0 — 27 septembre 2026
 
 - **Nouvelle page de présentation** : illustration, et un essai sans compte (touche des ingrédients, les recettes

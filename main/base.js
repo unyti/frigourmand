@@ -9,6 +9,7 @@ const crypto = require('crypto');
 const { DatabaseSync } = require('node:sqlite');
 const { INGREDIENTS, RANGEMENTS, RAYONS } = require('../donnees/ingredients');
 const RECETTES = require('../donnees/recettes');
+const EQUIVALENCES = require('../donnees/equivalences').construire(new Set(INGREDIENTS.map((i) => i.id)));
 
 const UTILISATEUR_LOCAL = 'local';
 
@@ -253,6 +254,7 @@ class Base {
     }
     return {
       catalogue: {
+        equivalences: EQUIVALENCES,
         ingredients: this.db.prepare('SELECT * FROM ingredients WHERE proprietaire IS NULL ORDER BY rowid').all().map(ligneVersIngredient),
         rangements: RANGEMENTS,
         rayons: RAYONS,

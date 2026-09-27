@@ -9,6 +9,7 @@
   let RANGEMENTS = [];
   let RAYONS = [];
   let RECETTES_BASE = [];
+  let EQUIVALENCES = {};
   let infosAppli = { version: '', donnees: '', installee: false };
   let etatMaj = { etat: 'inactif' };
   let utilisateur = null;
@@ -189,6 +190,7 @@
     RANGEMENTS = d.catalogue.rangements;
     RAYONS = d.catalogue.rayons;
     RECETTES_BASE = d.catalogue.recettes;
+    EQUIVALENCES = d.catalogue.equivalences || {};
     const tab = (x) => (Array.isArray(x) ? x : []);
     etat = {
       gardeManger: tab(d.gardeManger),
@@ -395,7 +397,14 @@
       if (opt) l.statut = stock ? 'ok' : 'facultatif';
       else if (estBasique(id)) l.statut = 'basique';
       else {
-        const c = comparer(q, unite, stock, i);
+        let c = comparer(q, unite, stock, i);
+        // Pas assez ou pas du tout : un ingrédient équivalent en stock peut le remplacer (ail en poudre pour l'ail…).
+        if (c.etat !== 'ok') {
+          for (const sub of EQUIVALENCES[id] || []) {
+            const s2 = enStock(sub);
+            if (estBasique(sub) || (s2 && comparer(q, unite, s2, ing(sub)).etat === 'ok')) { l.substitut = sub; c = { etat: 'ok' }; break; }
+          }
+        }
         if (c.etat === 'absent') { l.statut = 'manque'; l.manque = q; }
         else if (c.etat === 'partiel') { l.statut = 'manque'; l.partiel = true; l.manque = c.manque; l.detenu = c.detenu; }
       }
@@ -624,7 +633,7 @@
 
   function carteRecette(r, o) {
     const opt = o || {};
-    const titre = opt.lien === false ? esc(r.nom) : `<a href="#recette/${esc(r.id)}" id="${opt.prefixe || 'carte'}-${esc(r.id)}">${esc(r.nom)}</a>`;
+    const titre = opt.lien === false ? esc(r.nom) : `<a href="#recette/${esc(r.id)}${opt.suffixe || ''}" id="${opt.prefixe || 'carte'}-${esc(r.id)}">${esc(r.nom)}</a>`;
     return `<li class="carte-recette">
         <div class="carte-illu teinte-${TEINTE_TYPE[r.type] || 'ocre'}">${ILLU.pourRecette(r, ing)}</div>
         <div class="carte-corps">
@@ -917,7 +926,9 @@
     const pers = personnesFiltre();
     const analyses = recettesVisibles().map((r) => ({ r, a: analyser(r, pers) }));
     const realisables = analyses.filter((x) => x.a.nb === 0);
-    const presque = analyses.filter((x) => x.a.nb === 1).sort((x, y) => x.a.gravite - y.a.gravite || x.r.minutes - y.r.minutes);
+    for (const x of analyses) x.p = maxPersonnes(x.r, pers, x.a);
+    const reduits = analyses.filter((x) => x.p);
+    const presque = analyses.filter((x) => x.a.nb === 1 && !x.p).sort((x, y) => x.a.gravite - y.a.gravite || x.r.minutes - y.r.minutes);
     const favoris = analyses.filter((x) => estFavori(x.r.id)).sort((x, y) => x.a.nb - y.a.nb);
     const aAcheter = etat.courses.filter((c) => !c.coche).length;
     const moment = momentDuJour();
@@ -925,12 +936,13 @@
     // Idée du moment : une recette réalisable (du bon type si possible), sinon une presque prête.
     let pool = realisables.filter((x) => !moment.type || x.r.type === moment.type);
     if (!pool.length) pool = realisables;
+    if (!pool.length) pool = reduits;
     if (!pool.length) pool = presque.slice(0, 12);
     pool = melangeDuJour(pool).sort((x, y) => estFavori(y.r.id) - estFavori(x.r.id));
     const idee = pool.length ? pool[(ui.idee || 0) % pool.length] : null;
 
     const filtre = ui.filtreAccueil || '';
-    const affichees = melangeDuJour(realisables).filter((x) => !filtre || x.r.type === filtre);
+    const affichees = melangeDuJour(realisables).concat(melangeDuJour(reduits)).filter((x) => !filtre || x.r.type === filtre);
     const manques = (a) => a.manquants.map((l) => `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(l.ing.nom.replace(/\s*\(.*?\)/, ''))}${l.partiel ? ' (pas assez)' : ''}</span>`).join('');
     const ligneResume = (href, id, n, texte) => `<li><a href="${href}" id="${id}"><strong>${n}</strong> ${esc(texte)}</a></li>`;
     const segments = [['', 'Tout'], ['Entrée', 'Entrées'], ['Plat', 'Plats'], ['Dessert', 'Desserts']];
@@ -945,9 +957,9 @@
             <p class="surtitre">${esc(moment.libelle)}${utilisateur && utilisateur.nom ? ', ' + esc(utilisateur.nom) : ''}</p>
             <h2 class="idee-titre" id="idee-titre">${esc(idee.r.nom)}</h2>
             <p class="carte-meta">${esc(idee.r.type)} · ${esc(duree(idee.r.minutes))} · ${esc(idee.r.difficulte)} · ${esc(idee.r.cuisine)}</p>
-            <p class="idee-etat">${idee.a.nb ? `Il te manque : ${manques(idee.a)}` : `<span class="pastille ok">${ICONES.coche}Tu as tout ce qu’il faut</span>`}</p>
+            <p class="idee-etat">${idee.p ? `<span class="pastille ok">${ICONES.coche}Tu as tout pour ${pluriel(idee.p, 'personne')}</span>` : idee.a.nb ? `Il te manque : ${manques(idee.a)}` : `<span class="pastille ok">${ICONES.coche}Tu as tout ce qu’il faut</span>`}</p>
             <div class="barre-actions">
-              <a class="bouton" href="#recette/${esc(idee.r.id)}" id="idee-voir">Voir la recette</a>
+              <a class="bouton" href="#recette/${esc(idee.r.id)}${idee.p ? '/' + idee.p : ''}" id="idee-voir">Voir la recette</a>
               ${pool.length > 1 ? '<button type="button" class="bouton-secondaire" id="idee-autre" data-action="idee-autre">Une autre idée</button>' : ''}
             </div>
           </div>
@@ -975,7 +987,7 @@
         </aside>
       </div>
 
-      ${realisables.length ? `
+      ${realisables.length + reduits.length ? `
       <section class="bloc-accueil" aria-labelledby="acc-maintenant">
         <div class="bloc-tete">
           <h2 id="acc-maintenant" class="titre-section">Tu peux cuisiner maintenant</h2>
@@ -983,7 +995,10 @@
             ${segments.map(([v, l]) => `<button type="button" class="segment" id="seg-${v || 'tout'}" data-action="filtre-accueil" data-type="${v}" aria-pressed="${filtre === v}">${l}</button>`).join('')}
           </div>
         </div>
-        ${affichees.length ? `<ul class="cartes">${affichees.slice(0, 8).map((x) => carteRecette(x.r, { prefixe: 'acc-r' })).join('')}</ul>` : '<p class="aide">Aucune recette de ce type pour l’instant.</p>'}
+        ${affichees.length ? `<ul class="cartes">${affichees.slice(0, 8).map((x) => carteRecette(x.r, {
+          prefixe: 'acc-r', suffixe: x.p ? '/' + x.p : '',
+          extra: x.p ? `<p class="carte-manque"><span class="pastille ok">${ICONES.coche}pour ${pluriel(x.p, 'personne')}</span></p>` : ''
+        })).join('')}</ul>` : '<p class="aide">Aucune recette de ce type pour l’instant.</p>'}
         ${realisables.length > 8 ? `<p><a href="#recettes" id="acc-toutes">Voir les ${realisables.length} recettes réalisables</a></p>` : ''}
       </section>` : ''}
 
@@ -1114,6 +1129,13 @@
     }).join('');
   }
 
+  /** Plus grand nombre de personnes (moins que demandé) pour lequel on a tout : 0 si aucun. */
+  function maxPersonnes(r, pers, a) {
+    if (!a.nb || !a.manquants.every((l) => l.partiel)) return 0;
+    for (let p = pers - 1; p >= 1; p--) if (analyser(r, p).nb === 0) return p;
+    return 0;
+  }
+
   function tableauRecettes(liste, avecAchats, idSection) {
     const pers = personnesFiltre();
     return `
@@ -1122,17 +1144,17 @@
           <th scope="col" class="col-nom">Recette</th>
           <th scope="col" class="col-cuisine">Cuisine</th>
           <th scope="col" class="col-temps">Temps</th>
-          <th scope="col">${avecAchats ? 'À acheter (pour ' + pluriel(pers, 'personne') + ')' : 'Type'}</th>
+          <th scope="col">${avecAchats ? 'À acheter (pour ' + pluriel(pers, 'personne') + ')' : idSection === 'moins' ? 'Possible pour' : 'Type'}</th>
           <th scope="col" class="col-action"><span class="sr-only">Actions</span></th>
         </tr></thead>
         <tbody>
-          ${liste.map(({ r, a }) => {
+          ${liste.map(({ r, a, p }) => {
             const tousDansListe = a.manquants.every((l) => dansListe(l.id));
             return `<tr>
-              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}</th>
+              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}${p ? '/' + p : ''}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}</th>
               <td class="col-cuisine">${esc(r.cuisine)}</td>
               <td class="col-temps">${esc(duree(r.minutes))}</td>
-              <td>${avecAchats ? `<span class="achats">${celluleAchats(a)}</span>` : esc(r.type)}</td>
+              <td>${avecAchats ? `<span class="achats">${celluleAchats(a)}</span>` : p ? `<span class="pastille ok">${ICONES.coche}pour ${pluriel(p, 'personne')}</span> <span class="note-inline">limité par ${esc(a.manquants.map((l) => l.ing.nom.replace(/\s*\(.*?\)/, '').toLowerCase()).join(', '))}</span>` : esc(r.type)}</td>
               <td class="col-action"><div class="actions-recette">
                 ${avecAchats ? (tousDansListe
                   ? `<span class="deja">${ICONES.coche}Dans la liste</span>`
@@ -1154,7 +1176,11 @@
       { cle: 'un', titre: 'Il manque 1 ingrédient', teinte: 'ocre', liste: analyses.filter((x) => x.a.nb === 1), achats: true },
       { cle: 'deux', titre: 'Il manque 2 ingrédients', teinte: 'rouge', liste: analyses.filter((x) => x.a.nb === 2), achats: true }
     ];
-    const plus = analyses.filter((x) => x.a.nb >= 3);
+    // Il ne manque que de la quantité : réalisable pour moins de personnes ?
+    for (const x of analyses) x.p = maxPersonnes(x.r, pers, x.a);
+    sections.splice(1, 0, { cle: 'moins', titre: 'Réalisables pour moins de personnes', teinte: 'bleu', liste: analyses.filter((x) => x.p), achats: false });
+    for (const sec of sections) if (sec.cle !== 'moins') sec.liste = sec.liste.filter((x) => !x.p);
+    const plus = analyses.filter((x) => x.a.nb >= 3 && !x.p);
     const cuisines = [...new Set(toutesRecettes().map((r) => r.cuisine))].sort(trierFr);
     const types = ['Entrée', 'Plat', 'Dessert'];
     const f = ui.filtres;
@@ -1226,11 +1252,12 @@
   function vueFiche() {
     const r = recetteParId(ui.params[0]);
     if (!r) return `<h1 class="titre" tabindex="-1">Recette introuvable</h1><p><a href="#recettes">Retour aux recettes</a></p>`;
-    const pers = ui.personnesFiche[r.id] || personnesFiltre();
+    const pers = ui.personnesFiche[r.id] || Number(ui.params[1]) || personnesFiltre();
     const a = analyser(r, pers);
     const libellePers = pluriel(pers, 'personne');
     const statut = (l) => {
       if (exclus().has(l.id)) return `<span class="pastille manque">${ICONES.alerte}exclu</span>`;
+      if (l.statut === 'ok' && l.substitut) return `<span class="pastille ok">${ICONES.coche}remplacé par ${esc(ing(l.substitut).nom.replace(/\s*\(.*?\)/, ''))}</span>`;
       if (l.statut === 'ok') return `<span class="pastille ok">${ICONES.coche}en stock</span>`;
       if (l.statut === 'basique') return '<span class="pastille neutre">basique</span>';
       if (l.statut === 'facultatif') return '<span class="pastille neutre">facultatif</span>';
@@ -1850,7 +1877,7 @@
   async function actionRecetteCuisinee(id) {
     const r = recetteParId(id);
     if (!r) return;
-    const pers = ui.personnesFiche[r.id] || personnesFiltre();
+    const pers = ui.personnesFiche[r.id] || Number(ui.params[1]) || personnesFiltre();
     const a = analyser(r, pers);
     const utilises = a.lignes.filter((l) => l.statut === 'ok' && enStock(l.id));
     if (!utilises.length) { toast('Aucun ingrédient du garde-manger à retirer.'); return; }
@@ -2456,6 +2483,7 @@
     const [etatCompte, infos, maj, catalogue] = await Promise.all([bureau.compte.etat(), bureau.infos(), bureau.majEtat(), bureau.catalogue()]);
     // Catalogue disponible dès la page de présentation (essai sans compte).
     INGREDIENTS = catalogue.ingredients; RANGEMENTS = catalogue.rangements; RAYONS = catalogue.rayons; RECETTES_BASE = catalogue.recettes;
+    EQUIVALENCES = catalogue.equivalences || {};
     indexIngredients = null;
     infosAppli = infos;
     etatMaj = maj;

@@ -414,7 +414,7 @@ module.exports = function ajouter(R) {
     'Mélanger, parsemer de roquefort émietté et de noix concassées.'
   ]);
 
-  R('piemontaise', 'Salade piémontaise', 'Française', 'Entrée', 50, 'Facile', 6, [
+  R('piemontaise', 'Salade piémontaise', 'Française', 'Plat', 50, 'Facile', 6, [
     ['pommes-de-terre', 800, 'g'], ['oeufs', 3], ['tomates', 3], ['jambon', 3], ['cornichons', 50, 'g'], ['mayonnaise', 5, 'cs'],
     ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
@@ -423,7 +423,7 @@ module.exports = function ajouter(R) {
     'Mélanger avec la mayonnaise, saler, poivrer et parsemer de persil haché. Servir frais.'
   ]);
 
-  R('salade-riz', 'Salade de riz', 'Française', 'Entrée', 40, 'Facile', 6, [
+  R('salade-riz', 'Salade de riz', 'Française', 'Plat', 40, 'Facile', 6, [
     ['riz', 250, 'g'], ['thon-boite', 150, 'g'], ['tomates', 3], ['mais-doux', 150, 'g'], ['oeufs', 3], ['olives', 50, 'g', 'opt'],
     ['huile', 4, 'cs'], ['vinaigre', 2, 'cs'], ['moutarde', 1, 'cc'], ['sel', null], ['poivre', null]
   ], [
@@ -442,7 +442,7 @@ module.exports = function ajouter(R) {
     'Égrainer la semoule à la fourchette, ajouter les légumes, les herbes et les raisins. Saler, poivrer. Servir frais.'
   ]);
 
-  R('salade-pates', 'Salade de pâtes à l’italienne', 'Française', 'Entrée', 25, 'Facile', 4, [
+  R('salade-pates', 'Salade de pâtes à l’italienne', 'Française', 'Plat', 25, 'Facile', 4, [
     ['pates', 250, 'g'], ['tomates-cerises', 200, 'g'], ['mozzarella', 125, 'g'], ['olives', 50, 'g'], ['basilic', 0.25, 'pc', 'opt'],
     ['huile-olive', 3, 'cs'], ['vinaigre-balsamique', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [

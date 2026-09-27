@@ -47,5 +47,10 @@ for (const i of INGREDIENTS) {
   if (vus.has(n)) erreurs.push('Nom en double : ' + i.nom + ' (' + vus.get(n) + ', ' + i.id + ')');
   vus.set(n, i.id);
 }
+// Équivalences : tous les identifiants doivent exister.
+const { GROUPES, REMPLACANTS } = require('../donnees/equivalences');
+for (const id of GROUPES.flat().concat(Object.keys(REMPLACANTS), Object.values(REMPLACANTS).flat())) {
+  if (!ids.has(id)) erreurs.push('Équivalence : ingrédient inconnu ' + id);
+}
 if (erreurs.length) { console.error(erreurs.join('\n')); process.exit(1); }
 console.log('OK');

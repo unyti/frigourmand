@@ -54,7 +54,7 @@ const SUPPLEMENTAIRES = require('./ingredients-supplementaires');
     ['lardons', 'Lardons', 'frigo', 'bou', 'g', { alias: ['lardons fumés', 'lardons nature', 'allumettes'] }],
     ['jambon', 'Jambon blanc', 'frigo', 'bou', 'pc', { piece: ['tranche', 'tranches'], entier: 1, pieceG: 45, alias: ['jambon', 'jambon de paris'] }],
     ['chorizo', 'Chorizo', 'frigo', 'bou', 'g'],
-    ['poulet', 'Blancs de poulet', 'frigo', 'bou', 'g', { alias: ['poulet', 'filets de poulet', 'escalopes de poulet', 'blanc de poulet'] }],
+    ['poulet', 'Blancs de poulet', 'frigo', 'bou', 'g', { piece: ['blanc', 'blancs'], pieceG: 150, alias: ['poulet', 'filets de poulet', 'escalopes de poulet', 'blanc de poulet'] }],
     ['cuisses-poulet', 'Cuisses de poulet', 'frigo', 'bou', 'pc', { piece: ['cuisse', 'cuisses'], entier: 1, pieceG: 250 }],
     ['poulet-entier', 'Poulet entier', 'frigo', 'bou', 'pc', { piece: ['poulet', 'poulets'], entier: 1, pieceG: 1500, alias: ['poulet fermier', 'poulet label rouge'] }],
     ['boeuf-hache', 'Bœuf haché', 'frigo', 'bou', 'g', { alias: ['steak haché', 'steaks hachés', 'viande hachée'] }],

@@ -286,7 +286,7 @@
     'Assaisonner les carottes et parsemer de persil ciselé.'
   ]);
 
-  R('salade-lentilles', 'Salade de lentilles', 'Française', 'Entrée', 40, 'Facile', 4, [
+  R('salade-lentilles', 'Salade de lentilles', 'Française', 'Plat', 40, 'Facile', 4, [
     ['lentilles', 250, 'g'], ['carottes', 1], ['echalotes', 1], ['moutarde', 1, 'cs'], ['vinaigre', 2, 'cs'],
     ['huile', 4, 'cs'], ['lardons', 100, 'g', 'opt'], ['persil', 0.5, 'pc', 'opt'], ['laurier', 1, 'pc', 'opt'],
     ['sel', null], ['poivre', null]

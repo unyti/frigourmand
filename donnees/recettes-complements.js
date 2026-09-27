@@ -15,7 +15,7 @@ module.exports = function ajouter(R) {
     'Enrober le céleri de cette sauce, couvrir et réserver au moins 30 min au frais : le céleri s’attendrit et la sauce l’imprègne.'
   ]);
 
-  R('salade-perigourdine', 'Salade périgourdine', 'Française', 'Entrée', 25, 'Facile', 4, [
+  R('salade-perigourdine', 'Salade périgourdine', 'Française', 'Plat', 25, 'Facile', 4, [
     ['salade', 1], ['gesiers-de-canard-confits', 250, 'g'], ['magret-de-canard-fume', 80, 'g'], ['cerneaux-de-noix', 40, 'g'],
     ['tomates-cerises', 150, 'g', 'opt'], ['echalotes', 1], ['vinaigre', 1, 'cs'], ['huile-de-noix', 3, 'cs'], ['moutarde', 1, 'cc'],
     ['sel', null], ['poivre', null]
@@ -1009,5 +1009,581 @@ module.exports = function ajouter(R) {
     'Chantilly : fouetter la crème très froide avec le mascarpone et le sucre glace jusqu’à ce qu’elle soit ferme.',
     'Montage : poser un disque, l’imbiber de sirop, étaler de la chantilly et la moitié des griottes égouttées. Recommencer, puis poser le dernier disque imbibé et couvrir tout le gâteau de chantilly.',
     'Décorer de copeaux de chocolat faits à l’économe et de quelques griottes. Réfrigérer au moins 4 h avant de servir.'
+  ]);
+
+  /* ───────────── Cuisine du placard et du frigo ───────────── */
+
+  R('omelette-fromage', 'Omelette au fromage', 'Française', 'Plat', 10, 'Facile', 2, [
+    ['oeufs', 5], ['fromage-rape', 60, 'g'], ['beurre', 15, 'g'], ['ciboulette', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Battre les œufs à la fourchette avec une pincée de sel, du poivre et la ciboulette ciselée, sans les faire mousser.',
+    'Faire fondre le beurre dans une poêle de 24 cm à feu moyen jusqu’à ce qu’il mousse. Verser les œufs et cuire 2 à 3 min en ramenant les bords vers le centre avec une spatule.',
+    'Quand le dessus est encore légèrement baveux, parsemer de fromage râpé, laisser fondre 30 s, puis plier l’omelette en deux et la faire glisser sur l’assiette.'
+  ]);
+
+  R('oeufs-brouilles', 'Œufs brouillés crémeux', 'Française', 'Plat', 10, 'Facile', 2, [
+    ['oeufs', 6], ['beurre', 20, 'g'], ['creme-fraiche', 3, 'cl', 'opt'], ['pain', 2, 'pc', 'opt'], ['ciboulette', 0.25, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Battre les œufs dans une casserole froide avec la moitié du beurre en dés.',
+    'Cuire à feu doux en remuant sans cesse avec une spatule, 5 à 6 min : les œufs doivent prendre en petits grumeaux crémeux. Retirer du feu dès qu’ils sont encore un peu coulants, la cuisson continue.',
+    'Hors du feu, ajouter le reste du beurre et la crème pour stopper la cuisson. Saler, poivrer et parsemer de ciboulette ciselée.',
+    'Servir aussitôt avec les tranches de pain grillées.'
+  ]);
+
+  R('omelette-paysanne', 'Omelette paysanne', 'Française', 'Plat', 30, 'Facile', 2, [
+    ['oeufs', 5], ['pommes-de-terre', 300, 'g'], ['lardons', 100, 'g'], ['oignons', 1], ['huile', 1, 'cs'],
+    ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les pommes de terre et les couper en dés de 1 cm. Émincer l’oignon.',
+    'Faire revenir les lardons 3 min à feu moyen dans une poêle de 26 cm, sans matière grasse. Ajouter l’huile, les pommes de terre et l’oignon, couvrir et cuire 15 min à feu moyen en remuant souvent, jusqu’à ce que les pommes de terre soient dorées et tendres.',
+    'Battre les œufs avec le persil ciselé, peu de sel (les lardons sont salés) et du poivre. Les verser dans la poêle.',
+    'Cuire 4 à 5 min à feu doux, en ramenant les bords vers le centre, jusqu’à ce que l’omelette soit prise mais encore moelleuse au centre. La servir à plat, sans la plier.'
+  ]);
+
+  R('frittata-pommes-fromage', 'Frittata aux pommes de terre et au fromage', 'Italienne', 'Plat', 45, 'Facile', 4, [
+    ['oeufs', 8], ['pommes-de-terre', 500, 'g'], ['oignons', 1], ['fromage-rape', 80, 'g'], ['huile-olive', 3, 'cs'],
+    ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 180 °C. Éplucher les pommes de terre et les couper en fines rondelles de 3 mm. Émincer l’oignon.',
+    'Chauffer l’huile à feu moyen dans une poêle de 26 cm allant au four. Cuire les pommes de terre et l’oignon 15 min, couvercle posé, en remuant de temps en temps, jusqu’à ce qu’ils soient tendres et légèrement dorés. Saler.',
+    'Battre les œufs avec le fromage râpé, le persil ciselé, du sel et du poivre. Verser sur les pommes de terre et cuire 3 min à feu doux, sans remuer, pour saisir le dessous.',
+    'Enfourner 12 à 15 min, jusqu’à ce que le centre soit pris et le dessus doré. Laisser tiédir 5 min avant de découper en parts.'
+  ]);
+
+  R('frittata-pates', 'Frittata de pâtes', 'Italienne', 'Plat', 30, 'Facile', 4, [
+    ['spaghetti', 200, 'g'], ['oeufs', 6], ['fromage-rape', 80, 'g'], ['beurre', 20, 'g'], ['huile-olive', 1, 'cs'],
+    ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les spaghetti dans 2 L d’eau bouillante salée, 2 min de moins que le temps indiqué sur le paquet. Les égoutter et les laisser tiédir 5 min.',
+    'Battre les œufs avec le fromage râpé, le persil ciselé, du sel et beaucoup de poivre, puis y mélanger les pâtes.',
+    'Chauffer le beurre et l’huile à feu moyen dans une poêle de 26 cm. Verser les pâtes, bien tasser et cuire 8 min à feu moyen-doux, jusqu’à ce que le dessous soit doré et croustillant.',
+    'Retourner la frittata à l’aide d’une assiette, la faire glisser dans la poêle et cuire encore 5 min. Servir chaude ou tiède.'
+  ]);
+
+  R('oeufs-durs-curry', 'Œufs durs sauce curry', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['oeufs', 8], ['oignons', 1], ['curry', 2, 'cc'], ['creme-fraiche', 20, 'cl'], ['beurre', 20, 'g'], ['riz', 280, 'g'],
+    ['coriandre', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire le riz dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, puis l’égoutter.',
+    'Pendant ce temps, cuire les œufs 10 min à l’eau bouillante, les plonger dans l’eau froide et les écaler.',
+    'Faire fondre le beurre à feu doux et y cuire l’oignon finement émincé 8 min, jusqu’à ce qu’il soit tendre et translucide. Ajouter le curry et remuer 1 min pour le torréfier.',
+    'Verser la crème et 5 cl d’eau, saler, poivrer et laisser frémir 3 min à feu doux, jusqu’à ce que la sauce nappe la cuillère.',
+    'Couper les œufs en deux, les poser dans la sauce 2 min pour les réchauffer. Servir sur le riz, parsemé de coriandre.'
+  ]);
+
+  R('quiche-sans-pate', 'Quiche sans pâte aux lardons', 'Française', 'Plat', 55, 'Facile', 4, [
+    ['oeufs', 4], ['farine', 60, 'g'], ['lait', 25, 'cl'], ['creme-fraiche', 20, 'cl'], ['lardons', 200, 'g'], ['fromage-rape', 100, 'g'],
+    ['beurre', 10, 'g'], ['muscade', 1, 'pincee', 'opt'], ['poivre', null]
+  ], [
+    'Préchauffer le four à 180 °C. Beurrer un moule à gratin de 24 cm environ.',
+    'Faire revenir les lardons 5 min à feu moyen dans une poêle sans matière grasse, puis les égoutter sur du papier absorbant.',
+    'Fouetter les œufs avec la farine jusqu’à ce qu’il n’y ait plus de grumeaux, puis ajouter peu à peu le lait et la crème. Poivrer, ajouter la muscade (ne pas saler : lardons et fromage le sont).',
+    'Répartir les lardons et le fromage dans le moule, verser l’appareil et enfourner 35 à 40 min, jusqu’à ce que la quiche soit gonflée, dorée et que la lame d’un couteau ressorte sèche.'
+  ]);
+
+  R('pates-creme-fromage', 'Pâtes à la crème et au fromage', 'Française', 'Plat', 20, 'Facile', 4, [
+    ['pates', 400, 'g'], ['creme-fraiche', 20, 'cl'], ['fromage-rape', 100, 'g'], ['beurre', 20, 'g', 'opt'], ['muscade', 1, 'pincee', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet. Réserver une tasse d’eau de cuisson avant de les égoutter.',
+    'Dans la casserole encore chaude, à feu doux, faire chauffer la crème et le beurre 2 min, avec la muscade et beaucoup de poivre.',
+    'Remettre les pâtes, ajouter le fromage râpé et mélanger 1 min à feu doux jusqu’à ce qu’il soit fondu. Détendre avec un peu d’eau de cuisson si la sauce est trop épaisse. Servir aussitôt.'
+  ]);
+
+  R('pates-thon-creme', 'Pâtes au thon et à la crème', 'Française', 'Plat', 20, 'Facile', 4, [
+    ['pates', 400, 'g'], ['thon-boite', 280, 'g'], ['creme-fraiche', 20, 'cl'], ['oignons', 1], ['huile', 1, 'cs'],
+    ['citron', 0.5, 'pc', 'opt'], ['persil', 0.25, 'pc', 'opt'], ['fromage-rape', 50, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet, puis les égoutter.',
+    'Pendant ce temps, faire revenir l’oignon émincé dans l’huile 5 min à feu moyen, jusqu’à ce qu’il soit tendre.',
+    'Ajouter le thon égoutté et émietté, puis la crème. Poivrer et laisser chauffer 3 min à feu doux. Ajouter le jus du demi-citron et goûter pour le sel.',
+    'Mélanger la sauce avec les pâtes, parsemer de persil ciselé et servir avec le fromage râpé.'
+  ]);
+
+  R('spaghetti-aglio-olio', 'Spaghetti ail, huile et piment', 'Italienne', 'Plat', 15, 'Facile', 4, [
+    ['spaghetti', 400, 'g'], ['ail', 4], ['huile-olive', 8, 'cs'], ['piment', 2, 'pincee', 'opt'], ['persil', 0.5, 'pc', 'opt'],
+    ['parmesan', 40, 'g', 'opt'], ['sel', null]
+  ], [
+    'Cuire les spaghetti dans 4 L d’eau bouillante salée, 1 min de moins que le temps indiqué sur le paquet. Réserver un verre d’eau de cuisson avant d’égoutter.',
+    'Pendant ce temps, chauffer l’huile à feu doux dans une grande poêle avec l’ail coupé en fines lamelles et le piment, 3 à 4 min : l’ail doit à peine blondir, jamais brunir, sinon il devient amer.',
+    'Ajouter les spaghetti égouttés et 5 cl d’eau de cuisson, et faire sauter 1 min à feu vif pour lier l’huile en une sauce légère.',
+    'Parsemer de persil ciselé et servir aussitôt, avec du parmesan râpé.'
+  ]);
+
+  R('gratin-pates-fromage', 'Gratin de pâtes au fromage', 'Française', 'Plat', 40, 'Facile', 4, [
+    ['pates', 350, 'g'], ['creme-fraiche', 20, 'cl'], ['lait', 20, 'cl'], ['fromage-rape', 150, 'g'], ['beurre', 10, 'g'],
+    ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Beurrer un plat à gratin.',
+    'Cuire les pâtes dans 4 L d’eau bouillante salée, 2 min de moins que le temps indiqué sur le paquet (elles finiront de cuire au four), puis les égoutter.',
+    'Mélanger la crème, le lait, les deux tiers du fromage, la muscade, du sel et du poivre. Y enrober les pâtes et verser dans le plat.',
+    'Parsemer du reste de fromage et enfourner 20 min, jusqu’à ce que le dessus soit bien doré et que la sauce bouillonne sur les bords.'
+  ]);
+
+  R('pates-lardons-tomate', 'Pâtes à la tomate et aux lardons', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['pates', 400, 'g'], ['lardons', 200, 'g'], ['tomates-concassees', 400, 'g'], ['oignons', 1], ['ail', 1, 'pc', 'opt'],
+    ['herbes-provence', 1, 'cc', 'opt'], ['fromage-rape', 50, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Faire revenir les lardons 3 min à feu moyen dans une sauteuse sans matière grasse, puis ajouter l’oignon émincé et l’ail haché et cuire 5 min, jusqu’à ce que l’oignon soit tendre.',
+    'Ajouter les tomates concassées et les herbes, poivrer et laisser mijoter 15 min à feu doux, à découvert, jusqu’à ce que la sauce épaississe. Goûter avant de saler.',
+    'Pendant ce temps, cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet, puis les égoutter.',
+    'Mélanger les pâtes à la sauce et servir avec le fromage râpé.'
+  ]);
+
+  R('pates-sauce-tomate', 'Pâtes à la sauce tomate maison', 'Italienne', 'Plat', 30, 'Facile', 4, [
+    ['pates', 400, 'g'], ['tomates-concassees', 800, 'g'], ['oignons', 1], ['ail', 2], ['huile-olive', 3, 'cs'], ['sucre', 1, 'cc', 'opt'],
+    ['basilic', 0.25, 'pc', 'opt'], ['parmesan', 40, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Chauffer l’huile à feu doux dans une sauteuse et y cuire l’oignon finement haché 8 min, jusqu’à ce qu’il soit tendre sans colorer. Ajouter l’ail haché et cuire 1 min.',
+    'Verser les tomates concassées, saler, poivrer et ajouter le sucre si les tomates sont acides. Laisser mijoter 20 min à feu doux, à découvert, en remuant de temps en temps, jusqu’à ce que la sauce soit épaisse.',
+    'Pendant ce temps, cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet, puis les égoutter.',
+    'Mélanger les pâtes à la sauce, ajouter le basilic déchiré et servir avec le parmesan râpé.'
+  ]);
+
+  R('pates-poulet-creme', 'Pâtes au poulet et à la crème', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['pates', 350, 'g'], ['poulet', 400, 'g'], ['creme-fraiche', 20, 'cl'], ['oignons', 1], ['huile', 1, 'cs'],
+    ['champignons', 200, 'g', 'opt'], ['fromage-rape', 50, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet, puis les égoutter.',
+    'Pendant ce temps, couper le poulet en lanières. Le faire dorer 5 min à feu vif dans l’huile, jusqu’à ce qu’il ne soit plus rosé à cœur. Saler, poivrer et réserver.',
+    'Dans la même poêle, faire revenir à feu moyen l’oignon émincé et les champignons en lamelles 6 min, jusqu’à ce que leur eau soit évaporée.',
+    'Remettre le poulet, verser la crème et laisser frémir 2 min à feu doux. Mélanger avec les pâtes et servir avec le fromage râpé.'
+  ]);
+
+  R('riz-saute-poulet-soja', 'Riz sauté au poulet et à la sauce soja', 'Chinoise', 'Plat', 40, 'Facile', 4, [
+    ['riz', 280, 'g'], ['poulet', 350, 'g'], ['oeufs', 2], ['oignons', 1], ['sauce-soja', 4, 'cs'], ['huile', 3, 'cs'],
+    ['ail', 1, 'pc', 'opt'], ['petits-pois', 150, 'g', 'opt'], ['ciboule', 0.5, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Cuire le riz dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet. L’égoutter, l’étaler sur une plaque et le laisser refroidir au moins 15 min (idéalement, utiliser du riz cuit la veille : il colle moins).',
+    'Couper le poulet en petits dés. Le faire sauter 4 à 5 min à feu vif dans une grande poêle ou un wok avec 1 cuillère à soupe d’huile, jusqu’à ce qu’il soit doré et cuit. Réserver.',
+    'Battre les œufs, les cuire en omelette brouillée 1 min à feu vif dans un peu d’huile, puis réserver avec le poulet.',
+    'Faire sauter l’oignon émincé et l’ail haché 2 min à feu vif dans le reste d’huile. Ajouter les petits pois et le riz, et faire sauter 4 min en remuant sans cesse.',
+    'Remettre le poulet et les œufs, arroser de sauce soja, poivrer et faire sauter encore 1 min. Parsemer de ciboule émincée.'
+  ]);
+
+  R('poulet-curry-creme', 'Poulet au curry et à la crème', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['oignons', 1], ['curry', 2, 'cc'], ['creme-fraiche', 20, 'cl'], ['huile', 1, 'cs'], ['riz', 280, 'g'],
+    ['coriandre', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire le riz dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, puis l’égoutter.',
+    'Pendant ce temps, couper le poulet en cubes de 3 cm. Les faire dorer 5 min à feu vif dans l’huile, dans une sauteuse. Réserver.',
+    'Baisser à feu moyen et faire revenir l’oignon émincé 5 min, jusqu’à ce qu’il soit tendre. Ajouter le curry et remuer 1 min.',
+    'Remettre le poulet, verser la crème et 10 cl d’eau, saler, poivrer et laisser mijoter 10 min à feu doux, jusqu’à ce que le poulet soit cuit à cœur et la sauce nappante.',
+    'Servir avec le riz, parsemé de coriandre ciselée.'
+  ]);
+
+  R('poulet-paprika', 'Poulet au paprika', 'Hongroise', 'Plat', 40, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['oignons', 2], ['paprika', 3, 'cc'], ['creme-fraiche', 15, 'cl'], ['bouillon', 0.5], ['huile', 2, 'cs'],
+    ['pates', 300, 'g'], ['tomates-concassees', 200, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Couper le poulet en cubes de 3 cm. Les faire dorer 4 à 5 min à feu vif dans l’huile, dans une sauteuse. Réserver.',
+    'Baisser à feu doux et cuire les oignons émincés 8 min, jusqu’à ce qu’ils soient fondants. Retirer du feu, ajouter le paprika et remuer 30 s (il brûle vite et devient amer).',
+    'Remettre le poulet, ajouter les tomates et le demi-cube de bouillon délayé dans 15 cl d’eau chaude. Couvrir et laisser mijoter 15 min à feu doux.',
+    'Pendant ce temps, cuire les pâtes dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, puis les égoutter.',
+    'Hors du feu, incorporer la crème, poivrer et goûter pour le sel. Servir avec les pâtes.'
+  ]);
+
+  R('poulet-soja-miel', 'Poulet sauté soja et miel', 'Chinoise', 'Plat', 35, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['sauce-soja', 4, 'cs'], ['miel', 2, 'cs'], ['ail', 2], ['huile', 1, 'cs'], ['riz', 280, 'g'],
+    ['graines-sesame', 1, 'cs', 'opt'], ['ciboule', 0.5, 'pc', 'opt']
+  ], [
+    'Cuire le riz dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, puis l’égoutter.',
+    'Pendant ce temps, mélanger la sauce soja, le miel, l’ail haché et 3 cuillères à soupe d’eau.',
+    'Couper le poulet en cubes de 2 cm et les faire dorer 5 à 6 min à feu vif dans l’huile, dans une grande poêle, jusqu’à ce qu’ils soient cuits à cœur.',
+    'Verser la sauce et laisser réduire 2 à 3 min à feu moyen en remuant, jusqu’à ce qu’elle devienne sirupeuse et enrobe le poulet.',
+    'Parsemer de sésame et de ciboule émincée, et servir avec le riz.'
+  ]);
+
+  R('poulet-tomate', 'Poulet à la tomate et aux herbes', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['tomates-concassees', 400, 'g'], ['oignons', 1], ['ail', 2], ['huile-olive', 2, 'cs'],
+    ['herbes-provence', 1, 'cc', 'opt'], ['riz', 280, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Si vous servez du riz, le cuire dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet.',
+    'Couper le poulet en gros cubes et les faire dorer 5 min à feu vif dans l’huile, dans une sauteuse. Réserver.',
+    'Baisser à feu moyen et faire revenir l’oignon émincé 5 min, puis l’ail haché 1 min.',
+    'Ajouter les tomates concassées et les herbes, saler, poivrer, puis remettre le poulet. Couvrir et laisser mijoter 15 min à feu doux, jusqu’à ce que le poulet soit cuit à cœur et la sauce épaissie.'
+  ]);
+
+  R('poulet-oignons-fond-veau', 'Poulet aux oignons fondants', 'Française', 'Plat', 40, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['oignons', 3], ['fond-de-veau', 20, 'g'], ['beurre', 20, 'g'], ['huile', 1, 'cs'],
+    ['vinaigre-balsamique', 1, 'cs', 'opt'], ['thym', 2, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Faire dorer les blancs de poulet entiers dans l’huile et la moitié du beurre, 3 min par face à feu moyen-vif. Saler, poivrer et réserver.',
+    'Dans la même sauteuse, cuire à feu doux les oignons finement émincés avec le reste du beurre et le thym, 15 min, en remuant souvent, jusqu’à ce qu’ils soient fondants et blonds.',
+    'Déglacer avec le vinaigre balsamique, puis ajouter le fond de veau délayé dans 25 cl d’eau chaude. Porter à frémissement.',
+    'Remettre le poulet, couvrir et laisser mijoter 10 à 12 min à feu doux, en le retournant à mi-cuisson, jusqu’à ce qu’il soit cuit à cœur. Trancher et servir nappé de sauce, avec des pâtes, du riz ou une purée.'
+  ]);
+
+  R('poulet-pane', 'Escalopes de poulet panées', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['poulet', 600, 'g'], ['oeufs', 2], ['farine', 50, 'g'], ['chapelure', 100, 'g'], ['huile', 5, 'cs'],
+    ['citron', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Ouvrir les blancs de poulet en deux dans l’épaisseur pour obtenir des escalopes d’environ 1 cm. Saler et poivrer.',
+    'Préparer trois assiettes creuses : la farine, les œufs battus, la chapelure. Passer chaque escalope successivement dans la farine (tapoter l’excédent), dans l’œuf, puis dans la chapelure en appuyant.',
+    'Chauffer l’huile à feu moyen dans une grande poêle. Cuire les escalopes 3 à 4 min par face, jusqu’à ce qu’elles soient bien dorées et que la chair soit blanche à cœur.',
+    'Les égoutter sur du papier absorbant et servir aussitôt avec des quartiers de citron.'
+  ]);
+
+  R('lentilles-curry', 'Lentilles au curry', 'Indienne', 'Plat', 45, 'Facile', 4, [
+    ['lentilles', 300, 'g'], ['oignons', 1], ['ail', 2], ['curry', 2, 'cc'], ['tomates-concassees', 400, 'g'], ['bouillon', 1],
+    ['huile', 2, 'cs'], ['lait-coco', 20, 'cl', 'opt'], ['coriandre', 0.25, 'pc', 'opt'], ['sel', null]
+  ], [
+    'Rincer les lentilles. Faire revenir l’oignon émincé dans l’huile 5 min à feu moyen, puis ajouter l’ail haché et le curry et remuer 1 min.',
+    'Ajouter les lentilles, les tomates concassées, le cube de bouillon émietté et 70 cl d’eau. Porter à ébullition, puis couvrir et cuire 25 à 30 min à feu doux, jusqu’à ce que les lentilles soient tendres. Ajouter un peu d’eau en cours de cuisson si elles attachent.',
+    'Verser le lait de coco et laisser épaissir 5 min à découvert. Goûter pour le sel.',
+    'Parsemer de coriandre ciselée et servir avec du riz ou du pain.'
+  ]);
+
+  R('lentilles-lardons', 'Lentilles aux lardons', 'Française', 'Plat', 45, 'Facile', 4, [
+    ['lentilles', 300, 'g'], ['lardons', 200, 'g'], ['oignons', 1], ['carottes', 2, 'pc', 'opt'], ['bouillon', 1],
+    ['laurier', 1, 'pc', 'opt'], ['thym', 1, 'pc', 'opt'], ['persil', 0.25, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Faire revenir les lardons 5 min à feu moyen dans une cocotte sans matière grasse, jusqu’à ce qu’ils soient dorés. Ajouter l’oignon émincé et les carottes en rondelles, et cuire 3 min.',
+    'Ajouter les lentilles rincées, le laurier, le thym, le cube de bouillon émietté et 80 cl d’eau. Porter à ébullition.',
+    'Couvrir et cuire 25 à 30 min à feu doux, jusqu’à ce que les lentilles soient tendres et aient absorbé presque tout le liquide. Poivrer (le sel est souvent inutile avec les lardons et le bouillon).',
+    'Retirer le laurier et le thym et parsemer de persil ciselé.'
+  ]);
+
+  R('lentilles-confit-canard', 'Lentilles au confit de canard', 'Française', 'Plat', 60, 'Facile', 4, [
+    ['lentilles', 300, 'g'], ['confit-canard', 4], ['oignons', 1], ['carottes', 2], ['bouillon', 1], ['ail', 1, 'pc', 'opt'],
+    ['laurier', 1, 'pc', 'opt'], ['thym', 1, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Réchauffer la boîte de confit quelques minutes au bain-marie pour liquéfier la graisse, puis sortir les cuisses.',
+    'Dans une cocotte, faire revenir l’oignon émincé et les carottes en dés 5 min à feu moyen dans 1 cuillère à soupe de graisse de canard.',
+    'Ajouter les lentilles rincées, l’ail écrasé, le laurier, le thym, le cube de bouillon émietté et 80 cl d’eau. Porter à ébullition, puis couvrir et cuire 25 à 30 min à feu doux.',
+    'Pendant ce temps, poser les cuisses côté peau vers le haut dans un plat et les enfourner 20 à 25 min, jusqu’à ce que la peau soit croustillante.',
+    'Poivrer les lentilles, retirer le laurier et le thym, et servir avec les cuisses posées dessus.'
+  ]);
+
+  R('semoule-legumes-epices', 'Semoule aux légumes et aux épices', 'Maghrébine', 'Plat', 40, 'Facile', 4, [
+    ['semoule', 250, 'g'], ['oignons', 1], ['carottes', 2], ['tomates-concassees', 400, 'g'], ['cumin', 1, 'cc'], ['bouillon', 1],
+    ['huile-olive', 3, 'cs'], ['pois-chiches', 250, 'g', 'opt'], ['courgettes', 1, 'pc', 'opt'], ['paprika', 1, 'cc', 'opt'],
+    ['beurre', 20, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Faire revenir l’oignon émincé dans 2 cuillères à soupe d’huile 5 min à feu moyen. Ajouter le cumin et le paprika et remuer 30 s.',
+    'Ajouter les carottes en rondelles, la courgette en dés, les tomates concassées, le cube de bouillon émietté et 40 cl d’eau. Couvrir et cuire 20 min à feu doux, jusqu’à ce que les carottes soient tendres. Ajouter les pois chiches égouttés les 5 dernières minutes. Saler et poivrer.',
+    'Pendant ce temps, mettre la semoule dans un saladier avec le reste d’huile et une pincée de sel. Verser 25 cl d’eau bouillante, couvrir et laisser gonfler 5 min.',
+    'Égrainer la semoule à la fourchette avec le beurre. Servir avec les légumes et leur bouillon.'
+  ]);
+
+  R('riz-tomate', 'Riz à la tomate', 'Française', 'Plat', 30, 'Facile', 4, [
+    ['riz', 250, 'g'], ['tomates-concassees', 400, 'g'], ['oignons', 1], ['ail', 1], ['bouillon', 1], ['huile-olive', 2, 'cs'],
+    ['fromage-rape', 60, 'g', 'opt'], ['paprika', 1, 'cc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Faire revenir l’oignon finement haché dans l’huile 5 min à feu moyen, puis l’ail haché et le paprika 30 s.',
+    'Ajouter le riz et le nacrer 2 min en remuant, jusqu’à ce que les grains deviennent translucides.',
+    'Verser les tomates concassées et le cube de bouillon délayé dans 35 cl d’eau chaude. Porter à ébullition, couvrir et cuire 15 à 18 min à feu doux, sans remuer, jusqu’à ce que le liquide soit absorbé.',
+    'Laisser reposer 5 min à couvert hors du feu, égrainer à la fourchette, goûter pour le sel et servir avec le fromage râpé.'
+  ]);
+
+  R('riz-fromage', 'Riz crémeux au fromage', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['riz', 280, 'g'], ['bouillon', 1], ['fromage-rape', 100, 'g'], ['beurre', 30, 'g'], ['oignons', 1, 'pc', 'opt'],
+    ['creme-fraiche', 5, 'cl', 'opt'], ['poivre', null]
+  ], [
+    'Faire fondre la moitié du beurre à feu moyen et y cuire l’oignon finement haché 4 min, sans colorer.',
+    'Ajouter le riz et le nacrer 2 min en remuant. Verser le cube de bouillon délayé dans 60 cl d’eau chaude, couvrir et cuire 15 à 18 min à feu doux, jusqu’à ce que le riz soit tendre et le liquide presque absorbé.',
+    'Hors du feu, incorporer le reste du beurre, le fromage râpé et la crème en remuant vivement pour rendre le riz crémeux. Poivrer et servir aussitôt.'
+  ]);
+
+  R('riz-pilaf', 'Riz pilaf', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['riz', 250, 'g'], ['oignons', 1], ['bouillon', 1], ['beurre', 30, 'g'], ['laurier', 1, 'pc', 'opt'], ['thym', 1, 'pc', 'opt'], ['sel', null]
+  ], [
+    'Préchauffer le four à 180 °C. Délayer le cube de bouillon dans 40 cl d’eau bouillante.',
+    'Dans une cocotte allant au four, faire fondre 20 g de beurre à feu moyen et y cuire l’oignon finement haché 3 min, sans colorer.',
+    'Ajouter le riz et le nacrer 2 min en remuant, jusqu’à ce que les grains deviennent translucides. Verser le bouillon bouillant, ajouter le laurier et le thym, et porter à ébullition.',
+    'Couvrir et enfourner 17 min. Laisser reposer 5 min à couvert, retirer les herbes, ajouter le reste du beurre et égrainer à la fourchette. Goûter pour le sel.'
+  ]);
+
+  R('curry-pommes-de-terre', 'Curry de pommes de terre', 'Indienne', 'Plat', 40, 'Facile', 4, [
+    ['pommes-de-terre', 800, 'g'], ['oignons', 1], ['ail', 2], ['curry', 2, 'cc'], ['tomates-concassees', 400, 'g'], ['huile', 2, 'cs'],
+    ['lait-coco', 20, 'cl', 'opt'], ['cumin', 1, 'cc', 'opt'], ['coriandre', 0.25, 'pc', 'opt'], ['sel', null]
+  ], [
+    'Éplucher les pommes de terre et les couper en cubes de 3 cm.',
+    'Faire revenir l’oignon émincé dans l’huile 5 min à feu moyen, puis ajouter l’ail haché, le cumin et le curry et remuer 1 min.',
+    'Ajouter les pommes de terre, les tomates concassées, 20 cl d’eau et du sel. Porter à ébullition, couvrir et cuire 20 à 25 min à feu doux, jusqu’à ce que les pommes de terre soient tendres sous la pointe d’un couteau.',
+    'Verser le lait de coco et laisser épaissir 5 min à découvert. Parsemer de coriandre ciselée et servir avec du riz ou du pain.'
+  ]);
+
+  R('pommes-terre-paprika', 'Quartiers de pommes de terre au paprika', 'Française', 'Plat', 45, 'Facile', 4, [
+    ['pommes-de-terre', 1000, 'g'], ['huile-olive', 4, 'cs'], ['paprika', 2, 'cc'], ['ail-en-poudre', 1, 'cc', 'opt'],
+    ['herbes-provence', 1, 'cc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 210 °C. Laver les pommes de terre sans les éplucher et les couper en quartiers dans la longueur.',
+    'Les sécher dans un torchon, puis les mélanger dans un saladier avec l’huile, le paprika, l’ail en poudre, les herbes, du sel et du poivre.',
+    'Les étaler en une seule couche sur une plaque tapissée de papier cuisson, peau vers le bas. Enfourner 35 à 40 min en les retournant à mi-cuisson, jusqu’à ce qu’elles soient dorées et croustillantes, et tendres à cœur.'
+  ]);
+
+  R('rosti', 'Rösti', 'Suisse', 'Plat', 35, 'Facile', 4, [
+    ['pommes-de-terre', 800, 'g'], ['beurre', 40, 'g'], ['huile', 2, 'cs'], ['oignons', 1, 'pc', 'opt'], ['oeufs', 4, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les pommes de terre (à chair ferme de préférence) et les râper à la grosse grille avec l’oignon. Les presser fortement dans un torchon pour en retirer le maximum d’eau. Saler et poivrer.',
+    'Chauffer la moitié du beurre et de l’huile à feu moyen dans une poêle de 26 cm. Y étaler les pommes de terre en galette de 2 cm en tassant légèrement.',
+    'Cuire 10 à 12 min à feu moyen, sans remuer, jusqu’à ce que le dessous soit bien doré. Retourner la galette à l’aide d’une assiette, ajouter le reste de beurre et d’huile, et cuire encore 10 min.',
+    'Si vous le souhaitez, cuire les œufs au plat et les servir sur les parts de rösti.'
+  ]);
+
+  R('gratin-pommes-terre-lardons', 'Gratin de pommes de terre aux lardons', 'Française', 'Plat', 75, 'Facile', 4, [
+    ['pommes-de-terre', 1000, 'g'], ['lardons', 200, 'g'], ['oignons', 1], ['creme-fraiche', 20, 'cl'], ['lait', 20, 'cl'],
+    ['fromage-rape', 100, 'g'], ['beurre', 10, 'g'], ['muscade', 1, 'pincee', 'opt'], ['poivre', null]
+  ], [
+    'Préchauffer le four à 180 °C. Beurrer un plat à gratin.',
+    'Faire revenir les lardons et l’oignon émincé 5 min à feu moyen, sans matière grasse.',
+    'Éplucher les pommes de terre et les couper en rondelles de 3 mm. Les mettre dans une casserole avec le lait et la crème, poivrer, ajouter la muscade et porter à frémissement à feu moyen. Cuire 8 min en remuant délicatement, jusqu’à ce que la crème épaississe.',
+    'Alterner dans le plat pommes de terre et lardons, verser le reste de crème et parsemer de fromage râpé.',
+    'Enfourner 45 min, jusqu’à ce que le dessus soit doré et qu’une lame traverse les pommes de terre sans résistance.'
+  ]);
+
+  R('pommes-terre-farcies', 'Pommes de terre farcies lardons et fromage', 'Française', 'Plat', 80, 'Facile', 4, [
+    ['pommes-de-terre', 1200, 'g'], ['lardons', 150, 'g'], ['creme-fraiche', 10, 'cl'], ['fromage-rape', 100, 'g'],
+    ['ciboulette', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Laver 4 grosses pommes de terre de même taille, les piquer à la fourchette et les cuire 50 min à 1 h sur la grille du four, jusqu’à ce qu’une lame les traverse sans résistance.',
+    'Pendant ce temps, faire dorer les lardons 5 min à feu moyen, sans matière grasse.',
+    'Couper un chapeau dans la longueur de chaque pomme de terre et évider la chair à la cuillère en laissant 5 mm autour de la peau.',
+    'Écraser la chair à la fourchette avec la crème, les lardons, la moitié du fromage et la ciboulette ciselée. Saler légèrement et poivrer.',
+    'Remplir les pommes de terre de cette farce, parsemer du reste de fromage et gratiner 10 à 15 min, jusqu’à ce que le dessus soit doré.'
+  ]);
+
+  R('parmentier-poulet', 'Parmentier de poulet', 'Française', 'Plat', 70, 'Facile', 4, [
+    ['poulet', 500, 'g'], ['pommes-de-terre', 1000, 'g'], ['oignons', 1], ['lait', 20, 'cl'], ['beurre', 40, 'g'], ['fromage-rape', 60, 'g'],
+    ['creme-fraiche', 10, 'cl', 'opt'], ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les pommes de terre, les couper en morceaux et les cuire 20 à 25 min à l’eau salée frémissante, jusqu’à ce qu’elles s’écrasent facilement.',
+    'Pendant ce temps, couper le poulet en petits dés. Faire revenir l’oignon haché dans 10 g de beurre 4 min à feu moyen, ajouter le poulet et le cuire 6 min, jusqu’à ce qu’il soit cuit à cœur. Ajouter la crème, saler et poivrer.',
+    'Préchauffer le four à 200 °C. Écraser les pommes de terre égouttées avec le lait chaud, le reste du beurre et la muscade. Saler et poivrer.',
+    'Étaler le poulet dans un plat à gratin, couvrir de purée, parsemer de fromage râpé et enfourner 20 min, jusqu’à ce que le dessus soit doré.'
+  ]);
+
+  R('confit-pommes-sautees', 'Confit de canard et pommes de terre sautées', 'Française', 'Plat', 50, 'Facile', 4, [
+    ['confit-canard', 4], ['pommes-de-terre', 1000, 'g'], ['ail', 3], ['persil', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Réchauffer la boîte de confit quelques minutes au bain-marie pour liquéfier la graisse, sortir les cuisses et récupérer 3 cuillères à soupe de graisse.',
+    'Poser les cuisses côté peau vers le haut dans un plat et les enfourner 25 min, jusqu’à ce que la peau soit dorée et croustillante.',
+    'Pendant ce temps, éplucher les pommes de terre et les couper en cubes de 2 cm. Les sécher dans un torchon.',
+    'Chauffer la graisse de canard à feu moyen-vif dans une grande poêle et y faire sauter les pommes de terre 20 à 25 min, en les retournant régulièrement, jusqu’à ce qu’elles soient dorées et tendres. Saler et poivrer.',
+    'Ajouter l’ail et le persil hachés 1 min avant la fin. Servir les pommes de terre avec les cuisses de canard.'
+  ]);
+
+  R('aiguillettes-canard-moutarde', 'Aiguillettes de canard à la crème moutardée', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['aiguillettes-de-canard', 600, 'g'], ['oignons', 1], ['creme-fraiche', 15, 'cl'], ['moutarde', 1, 'cs'], ['huile', 1, 'cs'],
+    ['fond-de-veau', 10, 'g', 'opt'], ['pates', 300, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Si vous servez des pâtes, les cuire dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet.',
+    'Chauffer l’huile à feu vif dans une grande poêle et saisir les aiguillettes 2 min en les retournant : elles doivent rester rosées. Saler, poivrer et réserver.',
+    'Baisser à feu moyen et faire revenir l’oignon finement émincé 4 min. Ajouter le fond de veau délayé dans 10 cl d’eau chaude et laisser réduire 2 min.',
+    'Incorporer la crème et la moutarde, et laisser épaissir 2 min à feu doux, sans faire bouillir. Remettre les aiguillettes 1 min pour les réchauffer et servir aussitôt.'
+  ]);
+
+  R('aiguillettes-canard-haricots', 'Aiguillettes de canard aux haricots verts, sauce soja', 'Chinoise', 'Plat', 25, 'Facile', 4, [
+    ['aiguillettes-de-canard', 500, 'g'], ['haricots-verts-surgeles', 500, 'g'], ['sauce-soja', 3, 'cs'], ['ail', 2], ['huile', 2, 'cs'],
+    ['miel', 1, 'cs', 'opt'], ['graines-sesame', 1, 'cs', 'opt'], ['riz', 250, 'g', 'opt']
+  ], [
+    'Si vous servez du riz, le cuire dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet.',
+    'Cuire les haricots verts surgelés 6 min à l’eau bouillante salée : ils doivent rester croquants. Les égoutter.',
+    'Chauffer 1 cuillère à soupe d’huile à feu vif dans un wok ou une grande poêle et saisir les aiguillettes 2 min en les retournant. Réserver.',
+    'Ajouter le reste d’huile, l’ail haché et les haricots, et faire sauter 3 min à feu vif. Ajouter la sauce soja et le miel, remettre le canard et faire sauter 1 min, jusqu’à ce que la sauce enrobe le tout. Parsemer de sésame.'
+  ]);
+
+  R('haricots-verts-lardons', 'Haricots verts aux lardons', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['haricots-verts-surgeles', 600, 'g'], ['lardons', 150, 'g'], ['oignons', 1], ['beurre', 10, 'g', 'opt'], ['ail', 1, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les haricots verts surgelés 8 min à l’eau bouillante salée, jusqu’à ce qu’ils soient tendres mais encore un peu croquants. Les égoutter.',
+    'Pendant ce temps, faire revenir les lardons 5 min à feu moyen dans une grande poêle sans matière grasse, puis ajouter l’oignon émincé et cuire 5 min, jusqu’à ce qu’il soit doré.',
+    'Ajouter les haricots, le beurre et l’ail haché, et faire sauter 3 min à feu moyen. Poivrer et goûter avant de saler.'
+  ]);
+
+  R('haricots-verts-ail', 'Haricots verts sautés à l’ail', 'Française', 'Plat', 20, 'Facile', 4, [
+    ['haricots-verts-surgeles', 600, 'g'], ['ail', 3], ['beurre', 30, 'g'], ['persil', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les haricots verts surgelés 7 à 8 min à l’eau bouillante salée, jusqu’à ce qu’ils soient tendres mais encore croquants. Les égoutter.',
+    'Faire fondre le beurre à feu moyen dans une grande poêle, ajouter les haricots et les faire sauter 3 min.',
+    'Ajouter l’ail et le persil hachés et cuire encore 1 min, sans laisser brunir l’ail. Saler, poivrer et servir.'
+  ]);
+
+  R('wraps-poulet-cheddar', 'Wraps poulet cheddar', 'Américaine', 'Plat', 25, 'Facile', 2, [
+    ['tortillas', 4], ['poulet', 300, 'g'], ['cheddar', 4], ['paprika', 1, 'cc'], ['huile', 1, 'cs'], ['creme-fraiche', 6, 'cl', 'opt'],
+    ['salade', 0.25, 'pc', 'opt'], ['tomates', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Couper le poulet en lanières, le mélanger avec le paprika, du sel et du poivre. Le faire sauter 5 à 6 min à feu vif dans l’huile, jusqu’à ce qu’il soit doré et cuit à cœur.',
+    'Chauffer les tortillas 20 s de chaque côté dans une poêle sèche à feu moyen pour les assouplir.',
+    'Tartiner chaque tortilla de crème, poser une tranche de cheddar, le poulet chaud, quelques feuilles de salade et des rondelles de tomate.',
+    'Rouler serré en repliant le bas. Pour un wrap croustillant, le dorer 1 min de chaque côté dans la poêle, soudure en dessous. Couper en deux en biais.'
+  ]);
+
+  R('burritos-poulet-riz', 'Burritos au poulet et au riz', 'Mexicaine', 'Plat', 35, 'Facile', 4, [
+    ['tortillas', 4], ['riz', 120, 'g'], ['poulet', 300, 'g'], ['cheddar', 4], ['cumin', 1, 'cc'], ['paprika', 1, 'cc'], ['huile', 1, 'cs'],
+    ['haricots-rouges', 250, 'g', 'opt'], ['creme-fraiche', 8, 'cl', 'opt'], ['sel', null]
+  ], [
+    'Cuire le riz dans 2 L d’eau bouillante salée, le temps indiqué sur le paquet, puis l’égoutter.',
+    'Couper le poulet en petits dés et le faire sauter 5 min à feu vif dans l’huile avec le cumin, le paprika et du sel. Ajouter les haricots rouges rincés et égouttés, et chauffer 2 min.',
+    'Chauffer les tortillas 20 s de chaque côté dans une poêle sèche. Au centre de chacune, poser une tranche de cheddar, du riz, la garniture au poulet et une cuillerée de crème.',
+    'Replier les côtés, puis rouler serré. Dorer les burritos 1 à 2 min de chaque côté à feu moyen, soudure en dessous, jusqu’à ce qu’ils soient croustillants.'
+  ]);
+
+  R('croque-tortillas', 'Croque-tortillas jambon fromage', 'Française', 'Plat', 15, 'Facile', 2, [
+    ['tortillas', 4], ['jambon', 2], ['fromage-rape', 100, 'g'], ['beurre', 10, 'g'], ['moutarde', 1, 'cc', 'opt']
+  ], [
+    'Tartiner légèrement 2 tortillas de moutarde. Répartir la moitié du fromage, les tranches de jambon, puis le reste du fromage. Couvrir avec les 2 autres tortillas en appuyant.',
+    'Faire fondre la moitié du beurre à feu moyen dans une grande poêle, y poser un croque et le cuire 2 à 3 min, jusqu’à ce qu’il soit doré.',
+    'Le retourner à l’aide d’une assiette et cuire encore 2 min, jusqu’à ce que le fromage soit fondu. Recommencer avec le second. Couper en quartiers.'
+  ]);
+
+  R('pizzas-tortilla', 'Pizzas express sur tortilla', 'Italienne', 'Plat', 20, 'Facile', 2, [
+    ['tortillas', 4], ['coulis-tomate', 12, 'cl'], ['fromage-rape', 120, 'g'], ['jambon', 2, 'pc', 'opt'], ['olives', 30, 'g', 'opt'],
+    ['origan', 1, 'cc', 'opt'], ['huile-olive', 1, 'cs', 'opt']
+  ], [
+    'Préchauffer le four à 220 °C. Poser les tortillas sur deux plaques tapissées de papier cuisson.',
+    'Les tartiner de coulis de tomate en laissant 1 cm de bord. Ajouter le jambon en morceaux, les olives, puis le fromage râpé et l’origan.',
+    'Enfourner 7 à 9 min, jusqu’à ce que le fromage soit fondu et les bords croustillants. Arroser d’un filet d’huile et servir aussitôt.'
+  ]);
+
+  R('wraps-thon', 'Wraps au thon', 'Française', 'Plat', 15, 'Facile', 2, [
+    ['tortillas', 4], ['thon-boite', 140, 'g'], ['creme-fraiche', 8, 'cl'], ['citron', 0.5, 'pc', 'opt'], ['salade', 0.25, 'pc', 'opt'],
+    ['tomates', 1, 'pc', 'opt'], ['mais-doux', 70, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Égoutter et émietter le thon. Le mélanger avec la crème, le jus du demi-citron, le maïs égoutté, du sel et du poivre.',
+    'Répartir la préparation au centre des tortillas, ajouter quelques feuilles de salade et des rondelles de tomate.',
+    'Rouler serré en repliant le bas et couper en deux. Servir aussitôt ou garder au frais, filmés, jusqu’au repas.'
+  ]);
+
+  R('tartines-pate-fromage', 'Tartines gratinées pâté et fromage', 'Française', 'Plat', 15, 'Facile', 2, [
+    ['pain', 4], ['pate', 150, 'g'], ['fromage-rape', 80, 'g'], ['cornichons', 30, 'g', 'opt'], ['salade', 0.25, 'pc', 'opt']
+  ], [
+    'Préchauffer le four en position gril à 220 °C.',
+    'Tartiner généreusement les tranches de pain de pâté, ajouter quelques rondelles de cornichon et couvrir de fromage râpé.',
+    'Poser les tartines sur une plaque et les enfourner 6 à 8 min, en haut du four, jusqu’à ce que le fromage soit fondu et doré. Servir aussitôt avec la salade.'
+  ]);
+
+  /* ───────────── Salades-repas ───────────── */
+
+  R('salade-lentilles-feta', 'Salade de lentilles à la feta', 'Française', 'Plat', 40, 'Facile', 4, [
+    ['lentilles', 250, 'g'], ['feta', 150, 'g'], ['vinaigre', 2, 'cs'], ['huile-olive', 4, 'cs'], ['moutarde', 1, 'cc'],
+    ['oignon-rouge', 1, 'pc', 'opt'], ['tomates-cerises', 200, 'g', 'opt'], ['persil', 0.5, 'pc', 'opt'], ['laurier', 1, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Mettre les lentilles rincées dans 3 fois leur volume d’eau froide avec le laurier. Porter à ébullition puis cuire 20 à 25 min à feu doux : elles doivent être tendres mais se tenir. Saler en fin de cuisson, égoutter et laisser tiédir.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis l’huile.',
+    'Émincer finement l’oignon rouge et couper les tomates cerises en deux.',
+    'Mélanger les lentilles tièdes avec la vinaigrette, l’oignon et les tomates. Émietter la feta par-dessus et parsemer de persil ciselé.'
+  ]);
+
+  R('salade-pates-poulet', 'Salade de pâtes au poulet', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['pates', 300, 'g'], ['poulet', 350, 'g'], ['tomates', 3], ['huile', 5, 'cs'], ['vinaigre', 2, 'cs'], ['moutarde', 1, 'cc'],
+    ['mais-doux', 140, 'g', 'opt'], ['fromage-rape', 60, 'g', 'opt'], ['ciboulette', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet. Les rincer à l’eau froide, les égoutter et les mélanger avec 1 cuillère à soupe d’huile.',
+    'Saler et poivrer les blancs de poulet, les cuire 5 à 6 min par face à feu moyen dans 1 cuillère à soupe d’huile, jusqu’à ce qu’ils soient cuits à cœur. Laisser tiédir et couper en dés.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis le reste d’huile.',
+    'Couper les tomates en dés. Mélanger les pâtes, le poulet, les tomates, le maïs égoutté et le fromage avec la vinaigrette. Parsemer de ciboulette et servir frais.'
+  ]);
+
+  R('salade-riz-poulet-curry', 'Salade de riz au poulet et au curry', 'Française', 'Plat', 40, 'Facile', 4, [
+    ['riz', 250, 'g'], ['poulet', 350, 'g'], ['curry', 2, 'cc'], ['yaourt', 1], ['huile', 1, 'cs'], ['citron', 0.5, 'pc', 'opt'],
+    ['pommes', 1, 'pc', 'opt'], ['raisins-secs', 40, 'g', 'opt'], ['mais-doux', 140, 'g', 'opt'], ['coriandre', 0.25, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Cuire le riz dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, le rincer à l’eau froide et l’égoutter.',
+    'Couper le poulet en dés, le saupoudrer de 1 cuillère à café de curry et le faire sauter 5 à 6 min à feu vif dans l’huile, jusqu’à ce qu’il soit doré et cuit à cœur. Saler et laisser tiédir.',
+    'Préparer la sauce : mélanger le yaourt avec le reste du curry, le jus du demi-citron, du sel et du poivre.',
+    'Mélanger le riz, le poulet, la pomme en petits dés, les raisins secs, le maïs égoutté et la sauce. Parsemer de coriandre ciselée et servir frais.'
+  ]);
+
+  R('taboule-poulet', 'Taboulé au poulet', 'Maghrébine', 'Plat', 45, 'Facile', 4, [
+    ['semoule', 250, 'g'], ['poulet', 350, 'g'], ['tomates', 3], ['citron', 2], ['huile-olive', 6, 'cs'], ['cumin', 1, 'cc'],
+    ['concombre', 0.5, 'pc', 'opt'], ['menthe', 0.5, 'pc', 'opt'], ['persil', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Mélanger la semoule avec le jus des citrons, 5 cuillères à soupe d’huile, une pincée de sel et 20 cl d’eau froide. Couvrir et laisser gonfler 30 min au réfrigérateur, en l’égrainant à la fourchette à mi-temps.',
+    'Pendant ce temps, couper le poulet en dés, le mélanger avec le cumin, du sel et du poivre, et le faire sauter 5 à 6 min à feu vif dans le reste d’huile, jusqu’à ce qu’il soit doré et cuit à cœur. Laisser refroidir.',
+    'Couper les tomates et le concombre en petits dés, ciseler la menthe et le persil.',
+    'Égrainer la semoule, ajouter les légumes, les herbes et le poulet. Goûter, rectifier en sel et en citron, et servir bien frais.'
+  ]);
+
+  R('salade-pommes-terre-lardons', 'Salade tiède de pommes de terre aux lardons', 'Française', 'Plat', 40, 'Facile', 4, [
+    ['pommes-de-terre', 800, 'g'], ['lardons', 200, 'g'], ['echalotes', 1], ['vinaigre', 2, 'cs'], ['huile', 4, 'cs'], ['moutarde', 1, 'cc'],
+    ['oeufs', 4, 'pc', 'opt'], ['salade', 0.5, 'pc', 'opt'], ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pommes de terre dans leur peau 20 à 25 min à l’eau salée frémissante, jusqu’à ce qu’une lame les traverse sans résistance. Cuire les œufs 9 min à l’eau bouillante, les refroidir et les écaler.',
+    'Pendant ce temps, faire dorer les lardons 5 à 6 min à feu moyen, sans matière grasse.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis l’huile. Ajouter l’échalote ciselée.',
+    'Éplucher les pommes de terre encore chaudes, les couper en rondelles et les arroser aussitôt de vinaigrette : elles l’absorbent mieux tièdes.',
+    'Ajouter les lardons chauds et les œufs en quartiers, parsemer de persil ciselé et servir tiède, sur un lit de salade.'
+  ]);
+
+  R('salade-tiede-canard', 'Salade tiède au confit de canard', 'Française', 'Plat', 45, 'Facile', 2, [
+    ['confit-canard', 2], ['pommes-de-terre', 400, 'g'], ['salade', 0.5], ['vinaigre', 1, 'cs'], ['moutarde', 1, 'cc'], ['huile', 2, 'cs'],
+    ['cerneaux-de-noix', 30, 'g', 'opt'], ['echalotes', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Réchauffer la boîte de confit quelques minutes au bain-marie, sortir les cuisses et récupérer 2 cuillères à soupe de graisse.',
+    'Poser les cuisses côté peau vers le haut dans un plat et les enfourner 20 à 25 min, jusqu’à ce que la peau soit croustillante.',
+    'Pendant ce temps, éplucher les pommes de terre, les couper en cubes de 2 cm et les faire sauter 20 min à feu moyen-vif dans la graisse de canard, jusqu’à ce qu’elles soient dorées et tendres. Saler.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis l’huile. Ajouter l’échalote ciselée. Laver et essorer la salade.',
+    'Effilocher la chair des cuisses en gardant la peau croustillante en morceaux. Assaisonner la salade, ajouter les pommes de terre chaudes, le canard et les noix. Servir aussitôt.'
+  ]);
+
+  R('salade-aiguillettes-canard', 'Salade tiède d’aiguillettes de canard au balsamique', 'Française', 'Plat', 20, 'Facile', 4, [
+    ['aiguillettes-de-canard', 500, 'g'], ['salade', 1], ['vinaigre-balsamique', 3, 'cs'], ['huile-olive', 3, 'cs'],
+    ['miel', 1, 'cs', 'opt'], ['tomates-cerises', 200, 'g', 'opt'], ['cerneaux-de-noix', 40, 'g', 'opt'], ['pain', 4, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Laver et essorer la salade. Couper les tomates cerises en deux. Faire griller les tranches de pain et les couper en croûtons.',
+    'Préparer la vinaigrette avec 1 cuillère à soupe de vinaigre balsamique, l’huile, du sel et du poivre.',
+    'Saisir les aiguillettes 2 min à feu vif dans une poêle sans matière grasse, en les retournant : elles doivent rester rosées. Saler et poivrer.',
+    'Hors du feu, verser dans la poêle le reste du vinaigre balsamique et le miel, et remuer 30 s pour enrober les aiguillettes d’un jus sirupeux.',
+    'Assaisonner la salade, la répartir dans les assiettes avec les tomates, les noix et les croûtons, puis poser les aiguillettes chaudes et leur jus. Servir aussitôt.'
+  ]);
+
+  R('salade-haricots-verts-thon', 'Salade de haricots verts, œufs et thon', 'Française', 'Plat', 30, 'Facile', 4, [
+    ['haricots-verts-surgeles', 500, 'g'], ['oeufs', 4], ['thon-boite', 200, 'g'], ['vinaigre', 2, 'cs'], ['huile', 4, 'cs'], ['moutarde', 1, 'cc'],
+    ['tomates', 2, 'pc', 'opt'], ['echalotes', 1, 'pc', 'opt'], ['olives', 50, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les haricots verts surgelés 7 à 8 min à l’eau bouillante salée : ils doivent rester légèrement croquants. Les plonger dans l’eau glacée, puis les égoutter soigneusement.',
+    'Cuire les œufs 9 min à l’eau bouillante, les refroidir à l’eau froide et les écaler.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis l’huile. Ajouter l’échalote ciselée.',
+    'Mélanger les haricots avec la vinaigrette, ajouter les tomates en quartiers, le thon égoutté en gros morceaux, les œufs en quartiers et les olives.'
+  ]);
+
+  R('bowl-riz-poulet-soja', 'Bowl de riz au poulet et à la sauce soja', 'Japonaise', 'Plat', 35, 'Facile', 4, [
+    ['riz', 280, 'g'], ['poulet', 500, 'g'], ['sauce-soja', 5, 'cs'], ['carottes', 2], ['huile', 1, 'cs'], ['miel', 1, 'cs', 'opt'],
+    ['concombre', 0.5, 'pc', 'opt'], ['avocat', 1, 'pc', 'opt'], ['graines-sesame', 1, 'cs', 'opt'], ['vinaigre-riz', 1, 'cs', 'opt']
+  ], [
+    'Cuire le riz le temps indiqué sur le paquet et le laisser tiédir.',
+    'Couper le poulet en lanières et le mariner 10 min avec 3 cuillères à soupe de sauce soja et le miel.',
+    'Râper les carottes, couper le concombre en fines rondelles et l’avocat en tranches. Mélanger le reste de sauce soja avec le vinaigre de riz pour l’assaisonnement.',
+    'Faire sauter le poulet égoutté 5 à 6 min à feu vif dans l’huile, puis ajouter la marinade et laisser réduire 1 min, jusqu’à ce qu’elle soit sirupeuse.',
+    'Répartir le riz dans des bols, disposer le poulet et les légumes en secteurs, arroser d’assaisonnement et parsemer de sésame.'
+  ]);
+
+  R('salade-pates-thon', 'Salade de pâtes au thon', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['pates', 300, 'g'], ['thon-boite', 200, 'g'], ['tomates', 3], ['huile', 4, 'cs'], ['vinaigre', 2, 'cs'], ['moutarde', 1, 'cc'],
+    ['oeufs', 2, 'pc', 'opt'], ['mais-doux', 140, 'g', 'opt'], ['oignon-rouge', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, les rincer à l’eau froide et les égoutter. Cuire les œufs 9 min à l’eau bouillante, les refroidir et les écaler.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, du sel et du poivre, puis l’huile.',
+    'Couper les tomates en dés et émincer finement l’oignon rouge. Égoutter le thon et le maïs.',
+    'Mélanger les pâtes avec la vinaigrette, les tomates, l’oignon, le thon émietté en gros morceaux et le maïs. Ajouter les œufs en quartiers et servir frais.'
+  ]);
+
+  R('salade-pates-feta', 'Salade de pâtes à la feta et aux tomates', 'Grecque', 'Plat', 25, 'Facile', 4, [
+    ['pates', 300, 'g'], ['feta', 200, 'g'], ['tomates-cerises', 250, 'g'], ['huile-olive', 4, 'cs'], ['vinaigre', 1, 'cs'],
+    ['olives', 60, 'g', 'opt'], ['concombre', 0.5, 'pc', 'opt'], ['oignon-rouge', 0.5, 'pc', 'opt'], ['origan', 1, 'cc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Cuire les pâtes dans 3 L d’eau bouillante salée, le temps indiqué sur le paquet, les rincer à l’eau froide et les égoutter.',
+    'Couper les tomates cerises en deux, le concombre en dés et l’oignon rouge en fines lamelles.',
+    'Fouetter l’huile, le vinaigre, l’origan, peu de sel (la feta est salée) et du poivre.',
+    'Mélanger les pâtes, les légumes, les olives et la vinaigrette. Émietter la feta en gros morceaux par-dessus et servir frais.'
+  ]);
+
+  R('salade-pois-chiches-thon', 'Salade de pois chiches au thon', 'Maghrébine', 'Plat', 15, 'Facile', 4, [
+    ['pois-chiches', 500, 'g'], ['thon-boite', 200, 'g'], ['tomates', 3], ['citron', 1], ['huile-olive', 4, 'cs'],
+    ['oignon-rouge', 1, 'pc', 'opt'], ['cumin', 1, 'cc', 'opt'], ['persil', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Rincer et égoutter les pois chiches. Égoutter le thon.',
+    'Couper les tomates en dés et émincer finement l’oignon rouge. Ciseler le persil.',
+    'Fouetter le jus du citron, l’huile, le cumin, du sel et du poivre.',
+    'Mélanger les pois chiches, les tomates, l’oignon, le persil et la sauce. Ajouter le thon en gros morceaux et laisser reposer 10 min au frais avant de servir.'
   ]);
 };
