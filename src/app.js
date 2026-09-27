@@ -400,9 +400,9 @@
         let c = comparer(q, unite, stock, i);
         // Pas assez ou pas du tout : un ingrédient équivalent en stock peut le remplacer (ail en poudre pour l'ail…).
         if (c.etat !== 'ok') {
-          for (const sub of EQUIVALENCES[id] || []) {
+          for (const { id: sub, approx } of EQUIVALENCES[id] || []) {
             const s2 = enStock(sub);
-            if (estBasique(sub) || (s2 && comparer(q, unite, s2, ing(sub)).etat === 'ok')) { l.substitut = sub; c = { etat: 'ok' }; break; }
+            if (estBasique(sub) || (s2 && comparer(q, unite, s2, ing(sub)).etat === 'ok')) { l.substitut = sub; l.approx = approx; c = { etat: 'ok' }; break; }
           }
         }
         if (c.etat === 'absent') { l.statut = 'manque'; l.manque = q; }
@@ -411,6 +411,8 @@
       return l;
     });
     const manquants = lignes.filter((l) => l.statut === 'manque');
+    // Remplacements qui changent le goût (vinaigre balsamique au lieu du vinaigre de vin…) : signalés dans les listes.
+    const adaptations = lignes.filter((l) => l.approx);
     // Gravité : un ingrédient principal qui manque pèse plus qu'une herbe ; un manque partiel pèse moins qu'un manque total.
     let gravite = 0;
     for (const l of manquants) {
@@ -419,7 +421,8 @@
       if (l.partiel && l.q) part = Math.min(1, Math.max(0.25, l.manque / l.q));
       gravite += l.poids * part;
     }
-    return { lignes, manquants, nb: manquants.length, gravite, partiels: manquants.filter((l) => l.partiel).length };
+    gravite += adaptations.length * 0.3;
+    return { lignes, manquants, adaptations, nb: manquants.length, gravite, partiels: manquants.filter((l) => l.partiel).length };
   }
 
   /* Importance d'un ingrédient dans une recette :
@@ -531,6 +534,7 @@
     chevron: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>',
     etoile: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>',
     etoilePleine: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>',
+    echange: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 8h14l-4-4M20 16H6l4 4"/></svg>',
     partiel: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>',
     retour: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>'
   };
@@ -639,6 +643,7 @@
         <div class="carte-corps">
           <h3 class="carte-titre">${titre}</h3>
           <p class="carte-meta">${esc(r.type)} · ${esc(duree(r.minutes))}${estFavori(r.id) ? ' · <span class="favori-texte">favori</span>' : ''}</p>
+          ${opt.a ? noteAdaptations(opt.a) : ''}
           ${opt.extra || ''}
         </div>
       </li>`;
@@ -938,11 +943,12 @@
     if (!pool.length) pool = realisables;
     if (!pool.length) pool = reduits;
     if (!pool.length) pool = presque.slice(0, 12);
-    pool = melangeDuJour(pool).sort((x, y) => estFavori(y.r.id) - estFavori(x.r.id));
+    pool = melangeDuJour(pool).sort((x, y) => estFavori(y.r.id) - estFavori(x.r.id) || x.a.adaptations.length - y.a.adaptations.length);
     const idee = pool.length ? pool[(ui.idee || 0) % pool.length] : null;
 
     const filtre = ui.filtreAccueil || '';
-    const affichees = melangeDuJour(realisables).concat(melangeDuJour(reduits)).filter((x) => !filtre || x.r.type === filtre);
+    const exactsDabord = (l) => l.sort((x, y) => x.a.adaptations.length - y.a.adaptations.length);
+    const affichees = exactsDabord(melangeDuJour(realisables)).concat(exactsDabord(melangeDuJour(reduits))).filter((x) => !filtre || x.r.type === filtre);
     const manques = (a) => a.manquants.map((l) => `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(l.ing.nom.replace(/\s*\(.*?\)/, ''))}${l.partiel ? ' (pas assez)' : ''}</span>`).join('');
     const ligneResume = (href, id, n, texte) => `<li><a href="${href}" id="${id}"><strong>${n}</strong> ${esc(texte)}</a></li>`;
     const segments = [['', 'Tout'], ['Entrée', 'Entrées'], ['Plat', 'Plats'], ['Dessert', 'Desserts']];
@@ -958,6 +964,7 @@
             <h2 class="idee-titre" id="idee-titre">${esc(idee.r.nom)}</h2>
             <p class="carte-meta">${esc(idee.r.type)} · ${esc(duree(idee.r.minutes))} · ${esc(idee.r.difficulte)} · ${esc(idee.r.cuisine)}</p>
             <p class="idee-etat">${idee.p ? `<span class="pastille ok">${ICONES.coche}Tu as tout pour ${pluriel(idee.p, 'personne')}</span>` : idee.a.nb ? `Il te manque : ${manques(idee.a)}` : `<span class="pastille ok">${ICONES.coche}Tu as tout ce qu’il faut</span>`}</p>
+            ${noteAdaptations(idee.a)}
             <div class="barre-actions">
               <a class="bouton" href="#recette/${esc(idee.r.id)}${idee.p ? '/' + idee.p : ''}" id="idee-voir">Voir la recette</a>
               ${pool.length > 1 ? '<button type="button" class="bouton-secondaire" id="idee-autre" data-action="idee-autre">Une autre idée</button>' : ''}
@@ -996,7 +1003,7 @@
           </div>
         </div>
         ${affichees.length ? `<ul class="cartes">${affichees.slice(0, 8).map((x) => carteRecette(x.r, {
-          prefixe: 'acc-r', suffixe: x.p ? '/' + x.p : '',
+          a: x.a, prefixe: 'acc-r', suffixe: x.p ? '/' + x.p : '',
           extra: x.p ? `<p class="carte-manque"><span class="pastille ok">${ICONES.coche}pour ${pluriel(x.p, 'personne')}</span></p>` : ''
         })).join('')}</ul>` : '<p class="aide">Aucune recette de ce type pour l’instant.</p>'}
         ${realisables.length > 8 ? `<p><a href="#recettes" id="acc-toutes">Voir les ${realisables.length} recettes réalisables</a></p>` : ''}
@@ -1006,7 +1013,7 @@
       <section class="bloc-accueil" aria-labelledby="acc-presque">
         <h2 id="acc-presque" class="titre-section">Il ne manque presque rien</h2>
         <ul class="cartes">${presque.slice(0, 4).map((x) => carteRecette(x.r, {
-          prefixe: 'acc-p',
+          a: x.a, prefixe: 'acc-p',
           extra: `<p class="carte-manque">${manques(x.a)}</p>${x.a.manquants.every((l) => dansListe(l.id))
             ? `<span class="deja">${ICONES.coche}Dans la liste</span>`
             : `<button type="button" class="bouton-secondaire bouton-petit" id="acc-aj-${esc(x.r.id)}" data-action="liste-ajouter-recette" data-id="${esc(x.r.id)}" aria-label="Ajouter à la liste ce qui manque pour ${esc(x.r.nom)}">Ajouter à la liste</button>`}`
@@ -1017,7 +1024,7 @@
       <section class="bloc-accueil" aria-labelledby="acc-favoris">
         <h2 id="acc-favoris" class="titre-section">Tes favoris</h2>
         <ul class="cartes">${favoris.slice(0, 4).map((x) => carteRecette(x.r, {
-          prefixe: 'acc-f',
+          a: x.a, prefixe: 'acc-f',
           extra: x.a.nb ? `<p class="carte-manque">${manques(x.a)}</p>` : `<p class="carte-manque"><span class="pastille ok">${ICONES.coche}réalisable</span></p>`
         })).join('')}</ul>
       </section>` : ''}`;
@@ -1129,6 +1136,14 @@
     }).join('');
   }
 
+  /** Mention courte des remplacements approximatifs, affichée avant d'ouvrir la recette. */
+  const court = (i) => i.nom.replace(/\s*\(.*?\)/, '').toLowerCase();
+  const auLieuDe = (i) => (/^[aeiouyhâéèêîôœ]/i.test(court(i)) ? 'au lieu d’' : 'au lieu de ') + court(i);
+  function noteAdaptations(a) {
+    if (!a.adaptations || !a.adaptations.length) return '';
+    return `<span class="note-adapte">${ICONES.echange}à adapter : ${esc(a.adaptations.map((l) => court(ing(l.substitut)) + ' ' + auLieuDe(l.ing)).join(', '))}</span>`;
+  }
+
   /** Plus grand nombre de personnes (moins que demandé) pour lequel on a tout : 0 si aucun. */
   function maxPersonnes(r, pers, a) {
     if (!a.nb || !a.manquants.every((l) => l.partiel)) return 0;
@@ -1151,7 +1166,7 @@
           ${liste.map(({ r, a, p }) => {
             const tousDansListe = a.manquants.every((l) => dansListe(l.id));
             return `<tr>
-              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}${p ? '/' + p : ''}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}</th>
+              <th scope="row" class="col-nom"><a href="#recette/${esc(r.id)}${p ? '/' + p : ''}" id="lien-${idSection}-${esc(r.id)}">${esc(r.nom)}</a>${r.source === 'perso' ? ' <span class="etiquette-perso">perso</span>' : ''}${noteAdaptations(a)}</th>
               <td class="col-cuisine">${esc(r.cuisine)}</td>
               <td class="col-temps">${esc(duree(r.minutes))}</td>
               <td>${avecAchats ? `<span class="achats">${celluleAchats(a)}</span>` : p ? `<span class="pastille ok">${ICONES.coche}pour ${pluriel(p, 'personne')}</span> <span class="note-inline">limité par ${esc(a.manquants.map((l) => l.ing.nom.replace(/\s*\(.*?\)/, '').toLowerCase()).join(', '))}</span>` : esc(r.type)}</td>
@@ -1257,6 +1272,7 @@
     const libellePers = pluriel(pers, 'personne');
     const statut = (l) => {
       if (exclus().has(l.id)) return `<span class="pastille manque">${ICONES.alerte}exclu</span>`;
+      if (l.statut === 'ok' && l.substitut && l.approx) return `<span class="pastille partiel">${ICONES.echange}à adapter : ${esc(court(ing(l.substitut)) + ' ' + auLieuDe(l.ing))}</span>`;
       if (l.statut === 'ok' && l.substitut) return `<span class="pastille ok">${ICONES.coche}remplacé par ${esc(ing(l.substitut).nom.replace(/\s*\(.*?\)/, ''))}</span>`;
       if (l.statut === 'ok') return `<span class="pastille ok">${ICONES.coche}en stock</span>`;
       if (l.statut === 'basique') return '<span class="pastille neutre">basique</span>';

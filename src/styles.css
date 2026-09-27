@@ -834,3 +834,4 @@ a.marque:hover, .bouton-marque:hover { color: var(--accent); }
   .idee-illu .illu { max-width: 14rem; }
   .cartes-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+.note-adapte { display: flex; align-items: center; gap: 0.3rem; margin-top: 0.2rem; font-size: 0.85rem; font-weight: 400; color: var(--partiel); }

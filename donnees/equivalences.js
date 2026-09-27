@@ -1,7 +1,9 @@
 /* Ingrédients qui peuvent en remplacer d'autres dans une recette.
    - GROUPES : interchangeables entre eux (n'importe lequel convient pour n'importe quel autre).
    - REMPLACANTS : dans un seul sens (« ail » peut être remplacé par « ail en poudre », pas l'inverse).
-   L'appli cherche d'abord l'ingrédient exact, puis un remplaçant en stock, et l'indique sur la fiche. */
+   - APPROXIMATIFS : remplacements possibles mais qui changent le goût ou la texture (« à adapter ») :
+     la recette reste proposée, mais c'est signalé dès la liste des recettes.
+   L'appli cherche d'abord l'ingrédient exact, puis un remplaçant exact, puis un remplaçant approximatif. */
 'use strict';
 
 const GROUPES = [
@@ -61,16 +63,33 @@ const REMPLACANTS = {
   ciboule: ['oignons', 'ciboulette']
 };
 
-/** { idRecette: [ids qui peuvent le remplacer, dans l'ordre de préférence] } */
+/* « recette > stock » : remplacement qui change le résultat. Les autres sont considérés comme équivalents. */
+const APPROXIMATIFS = new Set([
+  'vinaigre>vinaigre-balsamique', 'vinaigre-de-xeres>vinaigre-blanc', 'vinaigre-de-cidre>vinaigre-blanc',
+  'ail>ail-en-poudre', 'persil>persil-seche', 'ciboulette>ciboulette-sechee', 'basilic>basilic-seche',
+  'ciboule>oignons', 'ciboule>ciboulette',
+  'echalotes>oignons', 'echalotes>oignons-blancs', 'echalotes>oignons-surgeles',
+  'oignons>echalotes', 'oignons-blancs>echalotes', 'oignons-surgeles>echalotes',
+  'creme-liquide>creme-fraiche', 'creme-liquide>creme-fraiche-legere', 'creme-fraiche>creme-liquide', 'creme-fraiche>creme-fraiche-legere',
+  'cuisses-poulet>poulet', 'cuisses-poulet>blanc-de-poulet', 'pilons-de-poulet>poulet', 'hauts-de-cuisse-de-poulet>poulet',
+  'tomates-concassees>coulis-tomate', 'tomates-concassees>sauce-tomate-cuisinee',
+  'huile-olive>huile', 'huile-olive>huile-de-colza', 'sucre>sucre-roux', 'sucre-roux>sucre',
+  'parmesan>pecorino', 'pecorino>parmesan', 'riz>riz-complet', 'riz-basmati>riz-complet', 'riz-complet>riz', 'riz-complet>riz-basmati',
+  'lait-coco>creme-de-coco', 'creme-de-coco>lait-coco', 'lardons>bacon', 'bacon>lardons'
+]);
+
+/** { idRecette: [{ id, approx }] } dans l'ordre de préférence : remplaçants exacts d'abord. */
 function construire(idsConnus) {
   const r = {};
   const ajouter = (a, b) => {
     if (a === b || (idsConnus && (!idsConnus.has(a) || !idsConnus.has(b)))) return;
-    (r[a] = r[a] || []).includes(b) || r[a].push(b);
+    const liste = (r[a] = r[a] || []);
+    if (!liste.some((x) => x.id === b)) liste.push({ id: b, approx: APPROXIMATIFS.has(a + '>' + b) });
   };
   for (const g of GROUPES) for (const a of g) for (const b of g) ajouter(a, b);
   for (const [a, liste] of Object.entries(REMPLACANTS)) for (const b of liste) ajouter(a, b);
+  for (const liste of Object.values(r)) liste.sort((x, y) => x.approx - y.approx);
   return r;
 }
 
-module.exports = { GROUPES, REMPLACANTS, construire };
+module.exports = { GROUPES, REMPLACANTS, APPROXIMATIFS, construire };

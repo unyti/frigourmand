@@ -48,8 +48,8 @@ for (const i of INGREDIENTS) {
   vus.set(n, i.id);
 }
 // Équivalences : tous les identifiants doivent exister.
-const { GROUPES, REMPLACANTS } = require('../donnees/equivalences');
-for (const id of GROUPES.flat().concat(Object.keys(REMPLACANTS), Object.values(REMPLACANTS).flat())) {
+const { GROUPES, REMPLACANTS, APPROXIMATIFS } = require('../donnees/equivalences');
+for (const id of GROUPES.flat().concat(Object.keys(REMPLACANTS), Object.values(REMPLACANTS).flat(), [...APPROXIMATIFS].flatMap((p) => p.split('>')))) {
   if (!ids.has(id)) erreurs.push('Équivalence : ingrédient inconnu ' + id);
 }
 if (erreurs.length) { console.error(erreurs.join('\n')); process.exit(1); }

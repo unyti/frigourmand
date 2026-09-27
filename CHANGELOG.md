@@ -1,5 +1,13 @@
 # Journal des versions
 
+## 0.9.1 — 27 septembre 2026
+
+- **Remplacements « à adapter »** : quand l'ingrédient qui remplace change le goût ou la texture (vinaigre balsamique
+  au lieu du vinaigre de vin, ail en poudre au lieu d'ail frais, oignon au lieu d'échalote, crème épaisse au lieu de
+  crème liquide…), la recette reste proposée mais c'est indiqué dès la liste des recettes et sur les cartes de l'accueil.
+  Les recettes sans adaptation passent en premier. Les remplacements vraiment équivalents (pâtes pour des spaghetti,
+  emmental pour du fromage râpé…) restent discrets et ne sont indiqués que sur la fiche.
+
 ## 0.9.0 — 27 septembre 2026
 
 - **646 recettes** (254 nouvelles recettes simples, souvent 2 à 6 ingrédients) : melon-feta-menthe, melon au jambon cru,
