@@ -57,6 +57,13 @@ jobs:
         run: npm run check
 
       - name: Construire et publier l'installeur
-        run: npm run publier
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run publier 2>&1 | tee construction.log || {
+            # En cas d'échec, les dernières lignes remontent en annotations (visibles sans ouvrir le journal).
+            tail -n 40 construction.log | sed -e 's/%/%25/g' | while IFS= read -r ligne; do echo "::error::$ligne"; done
+            exit 1
+          }
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
