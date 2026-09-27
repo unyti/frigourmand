@@ -1244,5 +1244,9 @@
 require('./recettes-supplementaires')(R);
 require('./recettes-supplementaires-2')(R);
 require('./recettes-complements')(R);
+require('./recettes-simples-fruits-legumes')(R);
+require('./recettes-simples-viandes-poissons')(R);
+require('./recettes-simples-cremerie')(R);
+require('./recettes-simples-epicerie')(R);
 
 module.exports = recettes;

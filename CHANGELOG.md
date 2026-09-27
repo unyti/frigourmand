@@ -1,5 +1,13 @@
 # Journal des versions
 
+## 0.9.0 — 27 septembre 2026
+
+- **646 recettes** (254 nouvelles recettes simples, souvent 2 à 6 ingrédients) : melon-feta-menthe, melon au jambon cru,
+  salade de pastèque, radis beurre, camembert rôti, galettes de sarrasin, bavette à l'échalote, sardines grillées,
+  boudin noir aux pommes, planche de charcuterie, porridge, cookies, curry jaune…
+- Presque tous les ingrédients courants du catalogue ont maintenant au moins une recette (fruits, légumes, fromages,
+  viandes, poissons, pains, épicerie, surgelés). Il reste surtout des épices et des condiments, utilisés en facultatif.
+
 ## 0.8.0 — 27 septembre 2026
 
 - **Ingrédients équivalents** : un ingrédient proche en stock remplace celui de la recette (pâtes pour des spaghetti,

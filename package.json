@@ -1,7 +1,7 @@
 {
   "name": "frigourmand",
   "productName": "Frigourmand",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Trouver quoi cuisiner avec ce qu'on a dans le frigo et les placards.",
   "main": "main.js",
   "author": "Unyti",
