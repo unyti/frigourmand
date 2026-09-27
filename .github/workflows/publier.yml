@@ -1,17 +1,46 @@
-# Publie une nouvelle version de Frigourmand quand on pousse une étiquette « vX.Y.Z ».
-# GitHub compile l'installeur Windows et crée la release : les Frigourmand installées
-# la détectent et se mettent à jour toutes seules.
+# Publie automatiquement une nouvelle version de Frigourmand.
+# Déclenchement : chaque envoi sur master. Si la version de package.json n'a pas encore de release,
+# GitHub compile l'installeur Windows et crée la release « vX.Y.Z » ; les Frigourmand installées
+# la détectent et se mettent à jour toutes seules. Sinon, rien n'est fait.
 name: Publier une version
 
 on:
   push:
-    tags: ['v*']
+    branches: [master]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: publier
+  cancel-in-progress: false
+
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+      nouvelle: ${{ steps.v.outputs.nouvelle }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: v
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if gh release view "v$VERSION" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            echo "La version $VERSION est déjà publiée : rien à faire."
+            echo "nouvelle=non" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nouvelle version $VERSION à publier."
+            echo "nouvelle=oui" >> "$GITHUB_OUTPUT"
+          fi
+
   windows:
+    needs: version
+    if: needs.version.outputs.nouvelle == 'oui'
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,15 +52,6 @@ jobs:
 
       - name: Installer les dépendances
         run: npm ci
-
-      - name: Vérifier que l'étiquette correspond à la version
-        shell: bash
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
-            echo "L'étiquette $GITHUB_REF_NAME ne correspond pas à la version $VERSION de package.json."
-            exit 1
-          fi
 
       - name: Vérifier les données
         run: npm run check

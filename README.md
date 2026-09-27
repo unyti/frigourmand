@@ -24,17 +24,17 @@ npm run installeur     # fabrique l'installeur dans dist\ (sans publier)
 Tout est automatisé par GitHub Actions (`.github/workflows/publier.yml`) :
 
 1. Monter la version dans `package.json` (ex. 0.2.0 → 0.3.0) et compléter `CHANGELOG.md`.
-2. Committer, puis créer et pousser l'étiquette correspondante :
+2. Committer et envoyer sur `master` :
 
 ```
 git commit -am "Version 0.3.0"
-git tag v0.3.0
-git push --follow-tags
+git push
 ```
 
-GitHub compile l'installeur sur une machine Windows, crée la release et y dépose l'installeur,
-`latest.yml` et le `.blockmap`. Les Frigourmand installées détectent la nouvelle version au démarrage
-(puis toutes les 6 h), la téléchargent et proposent de redémarrer.
+Si cette version n'a pas encore de release, GitHub compile l'installeur sur une machine Windows, crée la release
+`v0.3.0` et y dépose l'installeur, `latest.yml` et le `.blockmap`. Les Frigourmand installées détectent la nouvelle
+version au démarrage (puis toutes les 6 h), la téléchargent et proposent de redémarrer.
+Les envois qui ne changent pas la version ne publient rien.
 
 À chaque envoi sur `master`, un second workflow (`verifier.yml`) contrôle la syntaxe et les données.
 
