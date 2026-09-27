@@ -1,0 +1,18 @@
+# Contrôle rapide à chaque envoi de code : syntaxe et cohérence des données.
+name: Vérifier
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check main.js && node --check preload.js && node --check main/base.js && node --check main/mises-a-jour.js && node --check src/app.js
+      - run: node scripts/check.js

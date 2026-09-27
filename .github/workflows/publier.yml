@@ -1,0 +1,42 @@
+# Publie une nouvelle version de Frigourmand quand on pousse une étiquette « vX.Y.Z ».
+# GitHub compile l'installeur Windows et crée la release : les Frigourmand installées
+# la détectent et se mettent à jour toutes seules.
+name: Publier une version
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Vérifier que l'étiquette correspond à la version
+        shell: bash
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [ "v$VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "L'étiquette $GITHUB_REF_NAME ne correspond pas à la version $VERSION de package.json."
+            exit 1
+          fi
+
+      - name: Vérifier les données
+        run: npm run check
+
+      - name: Construire et publier l'installeur
+        run: npm run publier
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
