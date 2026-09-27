@@ -61,6 +61,16 @@ jobs:
       - name: Vérifier les données
         run: npm run check
 
+      - name: Préparer la release (brouillon)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.version.outputs.version }}
+        run: |
+          # Notes de version : la section correspondante du CHANGELOG.
+          awk -v v="## $VERSION" 'index($0, v) == 1 { garder = 1; next } /^## / { garder = 0 } garder' CHANGELOG.md > notes.md
+          gh release create "v$VERSION" --draft --target "$GITHUB_SHA" --title "Frigourmand $VERSION" --notes-file notes.md
+
       - name: Construire et publier l'installeur
         shell: bash
         run: |
@@ -72,3 +82,10 @@ jobs:
           }
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rendre la release publique
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.version.outputs.version }}
+        run: gh release edit "v$VERSION" --draft=false --latest

@@ -72,7 +72,7 @@
         "provider": "github",
         "owner": "unyti",
         "repo": "frigourmand",
-        "releaseType": "release"
+        "releaseType": "draft"
       }
     ]
   },
