@@ -5,6 +5,11 @@
 
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
+
+/** Port local qui reçoit le retour de Google (à déclarer dans Supabase : Redirect URLs). */
+const PORT_GOOGLE = 53117;
+const RETOUR_GOOGLE = `http://127.0.0.1:${PORT_GOOGLE}/connexion`;
 
 /** Stockage de session pour supabase-js, chiffré quand le système le permet. */
 function stockageSession(fichier, safeStorage) {
@@ -64,8 +69,17 @@ function traduire(erreur) {
 
 function utilisateurPublic(u) {
   if (!u) return null;
-  return { id: u.id, email: u.email, nom: (u.user_metadata && u.user_metadata.nom) || '' };
+  const m = u.user_metadata || {};
+  // Compte Google : pas de champ « nom », on prend le prénom du nom complet.
+  const nom = m.nom || m.given_name || String(m.full_name || m.name || '').split(' ')[0] || '';
+  return { id: u.id, email: u.email, nom };
 }
+
+const PAGE_RETOUR = (titre, texte) => `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Frigourmand</title>
+<style>body{font:17px/1.5 system-ui,sans-serif;background:#F6EFE3;color:#2B2520;display:grid;place-items:center;min-height:90vh;margin:0}
+main{max-width:30rem;padding:2rem;text-align:center}h1{font-weight:600;font-size:1.5rem}
+@media (prefers-color-scheme:dark){body{background:#1C1916;color:#EFE6D8}}</style></head>
+<body><main><h1>${titre}</h1><p>${texte}</p></main></body></html>`;
 
 class Compte {
   /**
@@ -78,13 +92,41 @@ class Compte {
     this.client = o.client;
     this.fichierDernier = o.fichierDernier;
     this.enLigne = o.enLigne;
+    this.ouvrirNavigateur = o.ouvrirNavigateur || (() => {});
+    const dossier = path.dirname(o.fichierDernier);
+    this.fichierAdresse = path.join(dossier, 'derniere-adresse.json');
+    this.fichierTemporaire = path.join(dossier, 'session-temporaire');
+    this.attenteGoogle = null;
   }
 
   memoriser(u) {
     try {
-      if (u) fs.writeFileSync(this.fichierDernier, JSON.stringify(u));
-      else fs.rmSync(this.fichierDernier, { force: true });
+      if (u) {
+        fs.writeFileSync(this.fichierDernier, JSON.stringify(u));
+        // L'adresse est gardée même après une déconnexion, pour pré-remplir la connexion.
+        fs.writeFileSync(this.fichierAdresse, JSON.stringify({ email: u.email }));
+      } else fs.rmSync(this.fichierDernier, { force: true });
     } catch (_) { /* rien */ }
+  }
+
+  derniereAdresse() {
+    try { return JSON.parse(fs.readFileSync(this.fichierAdresse, 'utf8')).email || ''; } catch (_) { return ''; }
+  }
+
+  /** « Rester connecté » décoché : la session sera oubliée au prochain lancement. */
+  resterConnecte(rester) {
+    try {
+      if (rester === false) fs.writeFileSync(this.fichierTemporaire, '1');
+      else fs.rmSync(this.fichierTemporaire, { force: true });
+    } catch (_) { /* rien */ }
+  }
+
+  /** À appeler au démarrage, avant de créer le client : efface une session marquée temporaire. */
+  static oublierSessionTemporaire(dossier, fichierSession) {
+    const drapeau = path.join(dossier, 'session-temporaire');
+    if (!fs.existsSync(drapeau)) return false;
+    for (const f of [fichierSession, path.join(dossier, 'dernier-compte.json'), drapeau]) fs.rmSync(f, { force: true });
+    return true;
   }
 
   dernier() {
@@ -105,7 +147,7 @@ class Compte {
     }
     const dernier = this.dernier();
     if (dernier && !(await this.enLigne())) return { utilisateur: dernier, horsLigne: true };
-    return { utilisateur: null, horsLigne: false };
+    return { utilisateur: null, horsLigne: false, derniereAdresse: this.derniereAdresse() };
   }
 
   async resultat(promesse) {
@@ -124,8 +166,68 @@ class Compte {
     return this.resultat(this.client.auth.signUp({ email, password: motDePasse, options: { data: { nom: nom || '' } } }));
   }
 
-  connecter(email, motDePasse) {
-    return this.resultat(this.client.auth.signInWithPassword({ email, password: motDePasse }));
+  async connecter(email, motDePasse, rester) {
+    const r = await this.resultat(this.client.auth.signInWithPassword({ email, password: motDePasse }));
+    if (r.utilisateur) this.resterConnecte(rester);
+    return r;
+  }
+
+  /**
+   * Connexion avec Google : la page Google s'ouvre dans le navigateur, qui revient ensuite
+   * sur un petit serveur local (127.0.0.1) avec un code échangé contre une session (PKCE).
+   */
+  async connecterGoogle(rester) {
+    this.annulerGoogle();
+    let serveur;
+    try {
+      const code = await new Promise((resolve, reject) => {
+        serveur = http.createServer((req, res) => {
+          const url = new URL(req.url, RETOUR_GOOGLE);
+          if (url.pathname !== '/connexion') { res.writeHead(404); res.end(); return; }
+          const c = url.searchParams.get('code');
+          const erreur = url.searchParams.get('error_description') || url.searchParams.get('error');
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(c
+            ? PAGE_RETOUR('Connexion réussie', 'Tu peux fermer cet onglet et revenir dans Frigourmand.')
+            : PAGE_RETOUR('Connexion annulée', 'Reviens dans Frigourmand pour réessayer.'));
+          if (c) resolve(c); else reject(Object.assign(new Error(erreur || 'annulé'), { code: 'google_annule' }));
+        });
+        serveur.on('error', (e) => reject(e.code === 'EADDRINUSE'
+          ? Object.assign(new Error('port'), { code: 'google_port' }) : e));
+        const minuteur = setTimeout(() => reject(Object.assign(new Error('délai'), { code: 'google_delai' })), 5 * 60 * 1000);
+        this.attenteGoogle = () => { clearTimeout(minuteur); reject(Object.assign(new Error('annulé'), { code: 'google_stop' })); };
+        serveur.listen(PORT_GOOGLE, '127.0.0.1', async () => {
+          try {
+            const { data, error } = await this.client.auth.signInWithOAuth({
+              provider: 'google',
+              options: { redirectTo: RETOUR_GOOGLE, skipBrowserRedirect: true, queryParams: { prompt: 'select_account' } }
+            });
+            if (error) throw error;
+            await this.ouvrirNavigateur(data.url);
+          } catch (e) { reject(e); }
+        });
+      });
+      const r = await this.resultat(this.client.auth.exchangeCodeForSession(code));
+      if (r.utilisateur) this.resterConnecte(rester);
+      return r;
+    } catch (e) {
+      if (e.code === 'google_stop') return { annule: true };
+      if (e.code === 'google_annule') return { erreur: 'La connexion avec Google a été annulée.' };
+      if (e.code === 'google_delai') return { erreur: 'La connexion avec Google a pris trop de temps. Réessaie.' };
+      if (e.code === 'google_port') return { erreur: 'Une autre connexion Google est déjà en cours. Ferme l’onglet ouvert puis réessaie.' };
+      if (/provider is not enabled|unsupported provider/i.test(String(e.message))) {
+        return { erreur: 'La connexion avec Google n’est pas encore activée sur le serveur.' };
+      }
+      return { erreur: traduire(e) };
+    } finally {
+      this.attenteGoogle = null;
+      if (serveur) serveur.close();
+    }
+  }
+
+  annulerGoogle() {
+    if (this.attenteGoogle) this.attenteGoogle();
+    return true;
   }
 
   /** Confirme l'adresse avec le code reçu après l'inscription. */
@@ -167,8 +269,9 @@ class Compte {
       try { await this.client.auth.signOut({ scope: 'local' }); } catch (__) { /* rien */ }
     }
     this.memoriser(null);
+    this.resterConnecte(true);
     return { ok: true };
   }
 }
 
-module.exports = { Compte, stockageSession, traduire };
+module.exports = { Compte, stockageSession, traduire, RETOUR_GOOGLE };

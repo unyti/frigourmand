@@ -112,6 +112,7 @@ function creerClient() {
   const { createClient } = require('@supabase/supabase-js');
   return createClient(SUPABASE_URL, SUPABASE_CLE, {
     auth: {
+      flowType: 'pkce',
       storage: stockageSession(path.join(app.getPath('userData'), 'session.bin'), safeStorage),
       persistSession: true,
       autoRefreshToken: true,
@@ -166,7 +167,18 @@ ipcMain.handle('compte:etat', () => compte.etat());
 ipcMain.handle('compte:inscrire', (_e, email, mdp, nom) => compte.inscrire(email, mdp, nom));
 ipcMain.handle('compte:confirmer', (_e, email, code) => compte.confirmer(email, code));
 ipcMain.handle('compte:renvoyerCode', (_e, email) => compte.renvoyerCode(email));
-ipcMain.handle('compte:connecter', (_e, email, mdp) => compte.connecter(email, mdp));
+ipcMain.handle('compte:connecter', (_e, email, mdp, rester) => compte.connecter(email, mdp, rester));
+ipcMain.handle('compte:google', async (_e, rester) => {
+  const r = await compte.connecterGoogle(rester);
+  // Le navigateur est passé devant : on ramène Frigourmand au premier plan.
+  if (fenetre && !fenetre.isDestroyed() && !r.annule) {
+    if (fenetre.isMinimized()) fenetre.restore();
+    fenetre.show();
+    fenetre.focus();
+  }
+  return r;
+});
+ipcMain.handle('compte:annulerGoogle', () => compte.annulerGoogle());
 ipcMain.handle('compte:demanderReinitialisation', (_e, email) => compte.demanderReinitialisation(email));
 ipcMain.handle('compte:reinitialiser', (_e, email, code, mdp) => compte.reinitialiser(email, code, mdp));
 ipcMain.handle('compte:changerMotDePasse', (_e, mdp) => compte.changerMotDePasse(mdp));
@@ -267,8 +279,18 @@ ipcMain.handle('appli:infos', () => ({
 
 app.whenReady().then(() => {
   ouvrirBase();
+  // « Rester connecté » décoché à la dernière connexion : on repart de l'écran de connexion.
+  Compte.oublierSessionTemporaire(app.getPath('userData'), process.env.FRIGOURMAND_FAUX_SERVEUR
+    ? process.env.FRIGOURMAND_FAUX_SERVEUR + '.session'
+    : path.join(app.getPath('userData'), 'session.bin'));
   client = creerClient();
-  compte = new Compte({ client, fichierDernier: path.join(app.getPath('userData'), 'dernier-compte.json'), enLigne });
+  compte = new Compte({
+    client,
+    fichierDernier: path.join(app.getPath('userData'), 'dernier-compte.json'),
+    enLigne,
+    // Tests : le faux serveur « ouvre » la page Google en appelant directement l'adresse de retour.
+    ouvrirNavigateur: client.estFaux ? (url) => { setTimeout(() => fetch(url).catch(() => {}), 200); } : (url) => shell.openExternal(url)
+  });
   creerFenetre();
   // Retour sur la fenêtre : on récupère les modifications faites ailleurs (site, autre appareil).
   fenetre.on('focus', () => { if (synchro) synchro.tirer().catch(() => {}); });

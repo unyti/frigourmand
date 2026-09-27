@@ -68,6 +68,22 @@ function creerFauxClient(fichier) {
       ecrire(d);
       return { data: { user: session.user }, error: null };
     },
+    async signInWithOAuth({ options }) {
+      reseau();
+      return { data: { url: options.redirectTo + '?code=faux-google' }, error: null };
+    },
+    async exchangeCodeForSession(code) {
+      reseau();
+      if (code !== 'faux-google') return err('bad_code', 'invalid flow state');
+      const d = lire();
+      const email = d.emailGoogle || 'google@exemple.fr';
+      if (!d.comptes[email]) d.comptes[email] = { id: crypto.randomUUID(), email, password: null, nom: 'Camille', confirme: true };
+      d.comptes[email].confirme = true;
+      ecrire(d);
+      const s = sessionPour(d.comptes[email]);
+      garderSession(s);
+      return { data: { user: s.user, session: s }, error: null };
+    },
     async signOut() { garderSession(null); return { error: null }; }
   };
 

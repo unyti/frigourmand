@@ -473,6 +473,7 @@ select.saisie { padding-right: 0.5rem; }
 .resume-erreurs a { color: var(--texte); font-weight: 600; }
 
 .grille-parametres .panneau { overflow: visible; }
+.colonne-parametres { display: flex; flex-direction: column; gap: 1.25rem; min-width: 0; }
 
 /* ═════════════ Toast et dialogues ═════════════ */
 
@@ -670,3 +671,9 @@ select.saisie { padding-right: 0.5rem; }
 .bandeau-maj .bouton { min-height: 2.1rem; }
 /* Dans la colonne étroite du garde-manger, la liste pousse le formulaire au lieu de le recouvrir. */
 .recherche.en-ligne .suggestions { position: static; margin-top: 0.25rem; box-shadow: none; max-height: 18rem; }
+
+/* Connexion avec Google */
+.bouton-google { width: 100%; justify-content: center; }
+.separateur-auth { display: flex; align-items: center; gap: 0.75rem; margin: 0; color: var(--attenue); font-size: 0.9rem; }
+.separateur-auth::before, .separateur-auth::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
+.corps-panneau .champ + .groupe-choix { margin-top: 1rem; }

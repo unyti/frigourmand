@@ -41,7 +41,22 @@ Dans **Authentication → Emails → Templates** (ou *Email Templates*) :
 <p>Si tu n’as rien demandé, ignore ce message : ton mot de passe ne change pas.</p>
 ```
 
-## 3. Avant d'ouvrir l'appli à d'autres personnes
+## 3. Connexion avec Google
+
+1. **Google Cloud** (https://console.cloud.google.com) : créer un projet « Frigourmand », puis
+   **APIs & Services → OAuth consent screen** : type « External », nom « Frigourmand », ton adresse en contact.
+2. **APIs & Services → Credentials → Create credentials → OAuth client ID** :
+   - Application type : **Web application**
+   - Authorized redirect URIs : `https://towsoeuzgrkymphplkdt.supabase.co/auth/v1/callback`
+   - Copier le **Client ID** et le **Client secret**.
+3. **Supabase → Authentication → Sign In / Providers → Google** : activer, coller le Client ID et le secret, enregistrer.
+4. **Supabase → Authentication → URL Configuration → Redirect URLs** : ajouter
+   `http://127.0.0.1:53117/connexion` (c'est l'adresse locale où Frigourmand reçoit la réponse de Google).
+
+Un compte Google qui a la même adresse qu'un compte déjà créé par e-mail est relié au même compte :
+on retrouve les mêmes données.
+
+## 4. Avant d'ouvrir l'appli à d'autres personnes
 
 Le service d'e-mails fourni par Supabase est limité (quelques e-mails par heure, et seulement vers
 les adresses des membres du projet). Pour de vrais utilisateurs, brancher un service d'envoi

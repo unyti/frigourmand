@@ -1,5 +1,13 @@
 # Journal des versions
 
+## 0.5.0 — 27 septembre 2026
+
+- **Connexion avec Google** (« Continuer avec Google ») sur les écrans de connexion et de création de compte.
+- **Rester connecté sur cet ordinateur** : case cochée par défaut ; décochée, il faudra se reconnecter au prochain lancement.
+- L’adresse e-mail de la dernière connexion est pré-remplie.
+- L’écran de connexion garde le thème (clair ou sombre) choisi sur cet ordinateur.
+- Paramètres : les sections sont rangées en deux colonnes sans trou (« Recettes » remonte sous « Mon compte »).
+
 ## 0.4.0 — 27 septembre 2026
 
 - **Comptes obligatoires** : inscription avec confirmation par code reçu par e-mail, connexion, mot de passe oublié

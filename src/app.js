@@ -161,10 +161,15 @@
   const BASIQUES_CANDIDATS = ['sel', 'poivre', 'huile-olive', 'huile', 'sucre', 'farine', 'vinaigre', 'moutarde',
     'bouillon', 'herbes-provence', 'thym', 'laurier', 'beurre', 'lait'];
 
+  /* Apparence gardée sur cet ordinateur : l'écran de connexion garde le thème choisi, même déconnecté. */
+  function apparenceLocale() {
+    try { return JSON.parse(localStorage.getItem('frigourmand-apparence')) || {}; } catch (_) { return {}; }
+  }
   function reglagesDefaut() {
+    const a = apparenceLocale();
     return {
-      theme: 'systeme',
-      texte: 'normal',
+      theme: ['systeme', 'clair', 'sombre'].includes(a.theme) ? a.theme : 'systeme',
+      texte: ['normal', 'grand', 'tres-grand'].includes(a.texte) ? a.texte : 'normal',
       personnes: 4,
       basiques: INGREDIENTS.filter((i) => i.basique).map((i) => i.id)
     };
@@ -470,6 +475,7 @@
     racine.dataset.theme = etat.reglages.theme;
     racine.dataset.texte = etat.reglages.texte;
     if (bureau) bureau.definirTheme(etat.reglages.theme);
+    try { localStorage.setItem('frigourmand-apparence', JSON.stringify({ theme: etat.reglages.theme, texte: etat.reglages.texte })); } catch (_) { /* rien */ }
   }
 
   /* ═════════════ Vues ═════════════ */
@@ -551,18 +557,24 @@
     const a = ui.auth;
     const bouton = (texte, enCours) => `<button type="submit" class="bouton bouton-plein" id="auth-valider"${a.occupe ? ' disabled' : ''}>${esc(a.occupe ? enCours : texte)}</button>`;
     const lien = (mode, texte, id) => `<button type="button" class="bouton-lien" id="${id}" data-action="auth-mode" data-mode="${mode}">${esc(texte)}</button>`;
+    const google = `<button type="button" class="bouton-secondaire bouton-google" id="auth-google" data-action="auth-google"${a.occupe ? ' disabled' : ''}>Continuer avec Google</button>
+      <p class="separateur-auth"><span>ou avec ton adresse e-mail</span></p>`;
+    const rester = `<div class="choix"><input type="checkbox" class="case" id="auth-rester" data-action="auth-rester"${a.rester ? ' checked' : ''}><label for="auth-rester">Rester connecté sur cet ordinateur</label></div>`;
     const MODES = {
       connexion: {
         titre: 'Connexion',
         intro: 'Connecte-toi pour retrouver ton garde-manger, tes listes et tes recettes sur tous tes appareils.',
+        avant: google,
         corps: champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' })
           + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'current-password' })
+          + rester
           + bouton('Se connecter', 'Connexion…'),
         liens: lien('oubli', 'Mot de passe oublié ?', 'lien-oubli') + lien('inscription', 'Pas encore de compte ? Créer un compte', 'lien-inscription')
       },
       inscription: {
         titre: 'Créer un compte',
         intro: 'Ton compte permet de synchroniser Frigourmand entre cet ordinateur, le futur site et d’autres appareils.',
+        avant: google,
         corps: champAuth('auth-nom', 'Prénom', 'text', { autocomplete: 'given-name', requis: false })
           + champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' })
           + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'new-password', aide: '8 caractères minimum.' })
@@ -591,6 +603,12 @@
           + bouton('Changer le mot de passe', 'Enregistrement…'),
         liens: lien('oubli', 'Renvoyer un code', 'lien-oubli') + lien('connexion', 'Retour à la connexion', 'lien-connexion')
       },
+      google: {
+        titre: 'Connexion avec Google',
+        intro: 'La page de connexion Google s’est ouverte dans ton navigateur. Choisis ton compte, puis reviens ici : Frigourmand continuera tout seul.',
+        corps: '',
+        liens: `<button type="button" class="bouton-lien" id="auth-annuler-google" data-action="auth-annuler-google">Annuler et revenir à la connexion</button>`
+      },
       chargement: { titre: 'Un instant…', intro: 'Synchronisation de tes données.', corps: '', liens: '' }
     };
     const m = MODES[a.mode];
@@ -601,6 +619,7 @@
           <p class="auth-intro">${esc(m.intro)}</p>
           ${a.erreur ? `<div class="alerte" role="alert" id="auth-erreur" tabindex="-1">${esc(a.erreur)}</div>` : ''}
           ${a.message ? `<p class="info" role="status" id="auth-message">${esc(a.message)}</p>` : ''}
+          ${m.avant || ''}
           ${m.corps ? `<form class="auth-formulaire" data-action="auth-${a.mode}" novalidate>${m.corps}</form>` : ''}
           ${m.liens ? `<div class="auth-liens">${m.liens}</div>` : ''}
         </section>
@@ -609,7 +628,7 @@
 
   function changerModeAuth(mode, message) {
     Object.assign(ui.auth, { mode, erreur: null, message: message || null, erreursChamps: {}, occupe: false });
-    const premier = { connexion: 'auth-email', inscription: 'auth-nom', code: 'auth-code', oubli: 'auth-email', reinit: 'auth-code' }[mode];
+    const premier = { connexion: ui.auth.valeurs['auth-email'] ? 'auth-mdp' : 'auth-email', inscription: 'auth-nom', code: 'auth-code', oubli: 'auth-email', reinit: 'auth-code' }[mode];
     rendre({ focus: premier || true });
   }
 
@@ -675,7 +694,7 @@
     switch (mode) {
       case 'connexion':
         if (!validerAuth(['auth-email', 'auth-mdp'])) return;
-        executerAuth(() => bureau.compte.connecter(email, v['auth-mdp']), (r) => terminerConnexion(r.utilisateur));
+        executerAuth(() => bureau.compte.connecter(email, v['auth-mdp'], ui.auth.rester), (r) => terminerConnexion(r.utilisateur));
         break;
       case 'inscription':
         if (!validerAuth(['auth-email', 'auth-mdp'])) return;
@@ -700,7 +719,25 @@
     }
   }
 
-  const etatAuthInitial = () => ({ mode: 'connexion', valeurs: {}, erreursChamps: {}, erreur: null, message: null, occupe: false });
+  let derniereAdresse = '';
+  const etatAuthInitial = () => ({
+    mode: 'connexion', valeurs: derniereAdresse ? { 'auth-email': derniereAdresse } : {},
+    erreursChamps: {}, erreur: null, message: null, occupe: false, rester: true
+  });
+
+  async function connexionGoogle() {
+    const depuis = ui.auth.mode;
+    Object.assign(ui.auth, { mode: 'google', erreur: null, message: null, erreursChamps: {} });
+    rendre({ focus: true });
+    const r = await bureau.compte.google(ui.auth.rester);
+    if (r.annule) return;
+    if (r.erreur) {
+      Object.assign(ui.auth, { mode: depuis === 'inscription' ? 'inscription' : 'connexion', erreur: r.erreur });
+      rendre({ focus: 'auth-erreur' });
+      return;
+    }
+    terminerConnexion(r.utilisateur);
+  }
 
   /* ─── Garde-manger ─── */
 
@@ -1216,6 +1253,7 @@
     return `
       <h1 class="titre" tabindex="-1">Paramètres</h1>
       <div class="grille-2 grille-parametres">
+        <div class="colonne-parametres">
         <section class="panneau corps-panneau" aria-labelledby="p-compte">
           <h2 id="p-compte" class="titre-section">Mon compte</h2>
           <p>Connecté${utilisateur && utilisateur.nom ? ' en tant que <strong>' + esc(utilisateur.nom) + '</strong>' : ''} avec l’adresse <strong>${esc(utilisateur ? utilisateur.email : '')}</strong>.</p>
@@ -1225,12 +1263,6 @@
             <button type="button" class="bouton-secondaire" id="p-mdp" data-action="compte-mdp">Changer le mot de passe</button>
             <button type="button" class="bouton-secondaire bouton-danger" id="p-deconnexion" data-action="compte-deconnecter">Se déconnecter</button>
           </div>
-        </section>
-
-        <section class="panneau corps-panneau" aria-labelledby="p-apparence">
-          <h2 id="p-apparence" class="titre-section">Apparence</h2>
-          <fieldset class="groupe-choix"><legend>Thème</legend>${radios('theme', [['systeme', 'Comme le système'], ['clair', 'Clair'], ['sombre', 'Sombre']], r.theme)}</fieldset>
-          <fieldset class="groupe-choix"><legend>Taille du texte</legend>${radios('texte', [['normal', 'Normale'], ['grand', 'Grande'], ['tres-grand', 'Très grande']], r.texte)}</fieldset>
         </section>
 
         <section class="panneau corps-panneau" aria-labelledby="p-recettes">
@@ -1246,6 +1278,13 @@
               ${BASIQUES_CANDIDATS.map((id) => `<div class="choix"><input type="checkbox" class="case" id="bq-${id}" data-action="basique" data-id="${id}"${r.basiques.includes(id) ? ' checked' : ''}><label for="bq-${id}">${esc(ing(id).nom)}</label></div>`).join('')}
             </div>
           </fieldset>
+        </section>
+        </div>
+        <div class="colonne-parametres">
+        <section class="panneau corps-panneau" aria-labelledby="p-apparence">
+          <h2 id="p-apparence" class="titre-section">Apparence</h2>
+          <fieldset class="groupe-choix"><legend>Thème</legend>${radios('theme', [['systeme', 'Comme le système'], ['clair', 'Clair'], ['sombre', 'Sombre']], r.theme)}</fieldset>
+          <fieldset class="groupe-choix"><legend>Taille du texte</legend>${radios('texte', [['normal', 'Normale'], ['grand', 'Grande'], ['tres-grand', 'Très grande']], r.texte)}</fieldset>
         </section>
 
         <section class="panneau corps-panneau" aria-labelledby="p-donnees">
@@ -1270,6 +1309,7 @@
           </div>
           <p class="aide">Raccourcis : Alt + 1 à 4 pour changer d’onglet.</p>
         </section>
+        </div>
       </div>`;
   }
 
@@ -1885,6 +1925,11 @@
         appliquerApparence(); sauvegarder(); rendre();
         break;
       case 'auth-mode': changerModeAuth(el.dataset.mode); break;
+      case 'auth-google': connexionGoogle(); break;
+      case 'auth-annuler-google':
+        bureau.compte.annulerGoogle();
+        changerModeAuth('connexion');
+        break;
       case 'auth-voir': {
         const champ = document.getElementById(el.dataset.cible);
         const visible = champ.type === 'password';
@@ -1905,6 +1950,7 @@
           if (!ok) return;
           await enregistrerMaintenant();
           await bureau.compte.deconnecter();
+          derniereAdresse = utilisateur ? utilisateur.email : derniereAdresse;
           utilisateur = null;
           ui.auth = etatAuthInitial();
           etat = etatDefaut();
@@ -2028,6 +2074,8 @@
       appliquerApparence();
       sauvegarder();
       rendre();
+    } else if (a === 'auth-rester') {
+      ui.auth.rester = el.checked;
     } else if (a === 'basique') {
       const id = el.dataset.id;
       modifier(() => {
@@ -2083,7 +2131,9 @@
     bureau.surMaj(recevoirEtatMaj);
     bureau.surSynchro(recevoirEtatSynchro);
     bureau.surDonneesDistantes(recevoirDonneesDistantes);
+    derniereAdresse = etatCompte.derniereAdresse || '';
     ui.auth = etatAuthInitial();
+    appliquerApparence();
     if (etatCompte.utilisateur) {
       await terminerConnexionSilencieuse(etatCompte.utilisateur, etatCompte.horsLigne);
     } else {

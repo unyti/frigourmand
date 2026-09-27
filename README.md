@@ -40,7 +40,7 @@ Les envois qui ne changent pas la version ne publient rien.
 
 ## Comptes et données
 
-Un compte est obligatoire (Supabase Auth : e-mail + mot de passe, confirmation par code).
+Un compte est obligatoire (Supabase Auth : e-mail + mot de passe avec confirmation par code, ou compte Google).
 Les données personnelles sont stockées sur Supabase (PostgreSQL) et gardées en copie locale
 (`%APPDATA%\Frigourmand\frigourmand.sqlite`) pour fonctionner hors ligne :
 
