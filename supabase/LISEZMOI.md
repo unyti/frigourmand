@@ -62,3 +62,5 @@ Le service d'e-mails fourni par Supabase est limité (quelques e-mails par heure
 les adresses des membres du projet). Pour de vrais utilisateurs, brancher un service d'envoi
 (Brevo, Resend, Mailjet… souvent gratuits pour de petits volumes) dans
 **Authentication → Emails → SMTP Settings**.
+
+Pour la suite (domaine, e-mails pro, sauvegardes, déménagement de la base) : [../docs/MIGRATION.md](../docs/MIGRATION.md).

@@ -44,6 +44,7 @@
   --bordure-champ: #8C8174;
   --ok: #3F6B2E; --ok-fond: #E6F0DC;
   --manque: #9E3118; --manque-fond: #FBE4DC;
+  --partiel: #7A5000; --partiel-fond: #FBEFCF;
   --neutre-fond: #EFE6D6;
   --focus: #1F5FC4;
   --ombre: 0 10px 30px rgba(42, 36, 32, 0.18);
@@ -72,6 +73,7 @@
   --bordure-champ: #8A7F73;
   --ok: #9CCB7E; --ok-fond: #2C3A24;
   --manque: #F09A80; --manque-fond: #4A2A20;
+  --partiel: #EBC46E; --partiel-fond: #3D3218;
   --neutre-fond: #322C28;
   --focus: #7DB1FF;
   --ombre: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -101,6 +103,8 @@
     --bordure-champ: #8A7F73;
     --ok: #9CCB7E; --ok-fond: #2C3A24;
     --manque: #F09A80; --manque-fond: #4A2A20;
+    --partiel: #EBC46E; --partiel-fond: #3D3218;
+  --partiel: #EBC46E; --partiel-fond: #3D3218;
     --neutre-fond: #322C28;
     --focus: #7DB1FF;
     --ombre: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -348,6 +352,7 @@ select.saisie { padding-right: 0.5rem; }
 }
 .pastille.ok { color: var(--ok); background: var(--ok-fond); }
 .pastille.manque { color: var(--manque); background: var(--manque-fond); }
+.pastille.partiel { color: var(--partiel); background: var(--partiel-fond); }
 .pastille.neutre { color: var(--attenue); background: var(--neutre-fond); font-weight: 400; }
 .note-inline { font-size: 0.9rem; font-weight: 400; color: var(--attenue); margin-left: 0.375rem; }
 .etiquette-perso {
@@ -677,3 +682,39 @@ select.saisie { padding-right: 0.5rem; }
 .separateur-auth { display: flex; align-items: center; gap: 0.75rem; margin: 0; color: var(--attenue); font-size: 0.9rem; }
 .separateur-auth::before, .separateur-auth::after { content: ''; flex: 1; border-top: 1px solid var(--filet); }
 .corps-panneau .champ + .groupe-choix { margin-top: 1rem; }
+
+/* ═════════════ Accueil ═════════════ */
+a.marque, .bouton-marque { color: inherit; text-decoration: none; border: 0; background: none; padding: 0; cursor: pointer; }
+a.marque:hover, .bouton-marque:hover { color: var(--accent); }
+
+.tuiles { list-style: none; margin: 0 0 1.25rem; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.tuile {
+  display: flex; flex-direction: column; gap: 0.25rem; padding: 0.875rem 1.125rem; border-radius: 10px;
+  background: var(--panneau); border: 1px solid var(--bordure); color: var(--texte); text-decoration: none; min-height: 44px;
+}
+.tuile strong { font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 1.9rem; line-height: 1.1; color: var(--accent-texte, var(--accent)); }
+.tuile span { color: var(--attenue); font-size: 0.95rem; }
+.tuile:hover { border-color: var(--accent); }
+.liste-accueil { list-style: none; margin: 0; padding: 0; }
+.ligne-accueil { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.625rem; padding: 0.45rem 0; border-top: 1px solid var(--filet); }
+.ligne-accueil:first-child { border-top: 0; }
+.ligne-accueil > a { font-weight: 600; }
+.encart-demarrage { margin-bottom: 1.25rem; }
+
+.vitrine { max-width: 60rem; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; padding-top: 2vh; }
+.vitrine-intro { display: flex; flex-direction: column; gap: 1rem; max-width: 44rem; }
+.vitrine-texte { margin: 0; font-size: 1.15rem; line-height: 1.55; color: var(--attenue); }
+.vitrine-etapes ol { list-style: none; margin: 0.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.vitrine-etapes li { display: flex; gap: 0.75rem; align-items: flex-start; }
+.vitrine-etapes h3 { margin: 0.1rem 0 0.25rem; font-size: 1.05rem; }
+.vitrine-etapes p { margin: 0; color: var(--attenue); line-height: 1.5; }
+.vitrine-chiffres { list-style: none; margin: 0; padding: 1rem 1.25rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem 2rem;
+  background: var(--panneau); border: 1px solid var(--bordure); border-radius: 10px; }
+.vitrine-chiffres strong { color: var(--texte); }
+@media (max-width: 900px) {
+  .tuiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vitrine-etapes ol, .vitrine-chiffres { grid-template-columns: minmax(0, 1fr); }
+}
+.legende { margin: 0 0 1rem; color: var(--attenue); font-size: 0.9rem; line-height: 1.8; }
+.vitrine .barre-actions { flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
+.vitrine .barre-actions .bouton-plein { width: auto; padding-left: 1.5rem; padding-right: 1.5rem; }

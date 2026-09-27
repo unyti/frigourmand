@@ -59,8 +59,12 @@ Pour les tests, `FRIGOURMAND_FAUX_SERVEUR=chemin.json` remplace Supabase par un 
 - `main/mises-a-jour.js` : mises à jour automatiques (electron-updater, GitHub Releases).
 - `main/compte.js`, `main/synchro.js`, `main/configuration.js` : comptes Supabase et synchronisation.
 - `supabase/` : schéma SQL du serveur et guide de configuration.
-- `donnees/` : catalogue d'ingrédients (≈ 540) et recettes de base (241), injectés dans la base à chaque nouvelle version.
+- `donnees/` : catalogue d'ingrédients (≈ 690) et recettes de base (335), injectés dans la base à chaque nouvelle version.
 - `src/` : interface (HTML, CSS, JavaScript sans framework). Elle ne parle aux données qu'à travers
   `window.frigourmandBureau` : pour le site web, il suffira de fournir la même interface au-dessus d'une API HTTP.
 - `build/` : icône et script qui pose l'icône sur `Frigourmand.exe`.
 - `scripts/check.js` : contrôle de cohérence des données.
+
+## Domaine, e-mails, base de données et site web
+
+Voir le guide pas à pas [docs/MIGRATION.md](docs/MIGRATION.md) (PulseHeberg, Brevo, Supabase hébergé ou auto-hébergé, déploiement du site).

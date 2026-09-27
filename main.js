@@ -121,6 +121,20 @@ function creerClient() {
   });
 }
 
+/** Changement d'adresse du serveur (déménagement de la base) : l'ancienne session n'y est pas valable.
+    On l'oublie pour repartir de l'écran de connexion ; les modifications en attente sont gardées. */
+function oublierSessionSiServeurChange() {
+  if (process.env.FRIGOURMAND_FAUX_SERVEUR) return;
+  const dossier = app.getPath('userData');
+  const fichier = path.join(dossier, 'serveur.txt');
+  let ancien = null;
+  try { ancien = fs.readFileSync(fichier, 'utf8').trim(); } catch (_) { /* premier lancement */ }
+  if (ancien && ancien !== SUPABASE_URL) {
+    for (const f of ['session.bin', 'dernier-compte.json']) fs.rmSync(path.join(dossier, f), { force: true });
+  }
+  if (ancien !== SUPABASE_URL) fs.writeFileSync(fichier, SUPABASE_URL);
+}
+
 async function enLigne() {
   if (client.estFaux) return client.enLigne();
   try {
@@ -272,7 +286,10 @@ ipcMain.handle('theme:definir', (_e, theme) => {
 ipcMain.handle('appli:infos', () => ({
   version: app.getVersion(),
   donnees: path.join(app.getPath('userData'), 'frigourmand.sqlite'),
-  installee: app.isPackaged
+  installee: app.isPackaged,
+  // Pour la page de présentation (avant connexion) : taille du catalogue.
+  nbRecettes: base.db.prepare('SELECT COUNT(*) AS n FROM recettes WHERE proprietaire IS NULL').get().n,
+  nbIngredients: base.db.prepare('SELECT COUNT(*) AS n FROM ingredients WHERE proprietaire IS NULL').get().n
 }));
 
 /* ─── Démarrage ─── */
@@ -283,6 +300,7 @@ app.whenReady().then(() => {
   Compte.oublierSessionTemporaire(app.getPath('userData'), process.env.FRIGOURMAND_FAUX_SERVEUR
     ? process.env.FRIGOURMAND_FAUX_SERVEUR + '.session'
     : path.join(app.getPath('userData'), 'session.bin'));
+  oublierSessionSiServeurChange();
   client = creerClient();
   compte = new Compte({
     client,

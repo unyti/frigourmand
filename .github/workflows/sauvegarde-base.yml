@@ -1,0 +1,45 @@
+# Sauvegarde chiffrée de la base (comptes + données) chaque lundi à 4 h, gardée 30 jours
+# dans les « artifacts » de GitHub Actions. Inactive tant que les secrets ne sont pas créés :
+#   SUPABASE_DB_URL      adresse de connexion (Supabase → Connect → Session pooler), avec le mot de passe
+#   SAUVEGARDE_PHRASE    phrase secrète de chiffrement (à garder aussi dans ton gestionnaire de mots de passe)
+# Le dépôt est public : le fichier est chiffré (AES-256), il est illisible sans la phrase secrète.
+name: Sauvegarde de la base
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sauvegarde:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secrets présents ?
+        id: secrets
+        env:
+          URL: ${{ secrets.SUPABASE_DB_URL }}
+          PHRASE: ${{ secrets.SAUVEGARDE_PHRASE }}
+        run: |
+          if [ -n "$URL" ] && [ -n "$PHRASE" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "::notice::Sauvegarde non configurée (secrets absents)."; fi
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ok
+      - name: Outils PostgreSQL 17
+        if: steps.secrets.outputs.ok
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSo /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client-17
+          echo "/usr/lib/postgresql/17/bin" >> "$GITHUB_PATH"
+      - name: Sauvegarde
+        if: steps.secrets.outputs.ok
+        env:
+          SOURCE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          CHIFFREMENT: ${{ secrets.SAUVEGARDE_PHRASE }}
+        run: ./scripts/migration/sauvegarder.sh sauvegardes
+      - uses: actions/upload-artifact@v4
+        if: steps.secrets.outputs.ok
+        with:
+          name: sauvegarde-${{ github.run_number }}
+          path: sauvegardes/*.gpg
+          retention-days: 30

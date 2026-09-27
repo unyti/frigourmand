@@ -23,6 +23,8 @@
   })[c]);
   const norm = (s) => String(s || '').toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae')
     .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’'`-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const cleAccents = (s) => String(s || '').replace(/\(.*?\)/g, '').toLowerCase().replace(/[’']/g, ' ').replace(/\s+/g, ' ').trim()
+    .split(' ').map((m) => m.replace(/[sx]$/, '')).join(' ');
   const cleNom = (s) => norm(String(s || '').replace(/\(.*?\)/g, '')).split(' ').map((m) => m.replace(/[sx]$/, '')).join(' ');
   const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
   const parseNombre = (s) => {
@@ -278,7 +280,10 @@
       recherche.push({ i, usages: usages.get(i.id) || 0, noms: [norm(i.nom.replace(/\s*\(.*?\)/g, ''))], alias: (i.alias || []).map(norm).concat(/\(/.test(i.nom) ? [norm(i.nom)] : []) });
     }
     for (const i of tous) for (const a of i.alias || []) { const c = cleNom(a); if (c && !parNom.has(c)) parNom.set(c, i); }
-    indexIngredients = { parId, parNom, recherche, usages };
+    const parNomAccents = new Map();
+    for (const i of tous) { const c = cleAccents(i.nom); if (c && !parNomAccents.has(c)) parNomAccents.set(c, i); }
+    for (const i of tous) for (const a of i.alias || []) { const c = cleAccents(a); if (c && !parNomAccents.has(c)) parNomAccents.set(c, i); }
+    indexIngredients = { parId, parNom, parNomAccents, recherche, usages };
     return indexIngredients;
   }
   const ing = (id) => index().parId.get(id) || { id, nom: id, rangement: 'placard', rayon: 'div', unite: '' };
@@ -287,7 +292,10 @@
   function ingParNom(nom) {
     const c = cleNom(nom);
     if (!c) return null;
-    const { parNom } = index();
+    const { parNom, parNomAccents } = index();
+    // Avec les accents d'abord : « pâté » ne doit pas donner « pâtes ».
+    const ca = cleAccents(nom);
+    if (parNomAccents.has(ca)) return parNomAccents.get(ca);
     if (parNom.has(c)) return parNom.get(c);
     // Sinon, début de nom : on préfère l'ingrédient le plus utilisé, puis le plus court.
     const { usages } = index();
@@ -383,12 +391,60 @@
       else {
         const c = comparer(q, unite, stock, i);
         if (c.etat === 'absent') { l.statut = 'manque'; l.manque = q; }
-        else if (c.etat === 'partiel') { l.statut = 'manque'; l.manque = c.manque; l.detenu = c.detenu; }
+        else if (c.etat === 'partiel') { l.statut = 'manque'; l.partiel = true; l.manque = c.manque; l.detenu = c.detenu; }
       }
       return l;
     });
     const manquants = lignes.filter((l) => l.statut === 'manque');
-    return { lignes, manquants, nb: manquants.length };
+    // Gravité : un ingrédient principal qui manque pèse plus qu'une herbe ; un manque partiel pèse moins qu'un manque total.
+    let gravite = 0;
+    for (const l of manquants) {
+      l.poids = poidsIngredient(recette, l.ing, recette.ingredients.findIndex(([id]) => id === l.id));
+      let part = 1;
+      if (l.partiel && l.q) part = Math.min(1, Math.max(0.25, l.manque / l.q));
+      gravite += l.poids * part;
+    }
+    return { lignes, manquants, nb: manquants.length, gravite, partiels: manquants.filter((l) => l.partiel).length };
+  }
+
+  /* Importance d'un ingrédient dans une recette :
+     3 = principal (viande, poisson, œufs, ingrédient cité dans le nom de la recette),
+     0.4 = aromate ou condiment (herbes, épices, sauces), 1 sinon. */
+  const AROMATES = new Set(['persil', 'ciboulette', 'coriandre', 'basilic', 'basilic-thai', 'menthe', 'aneth', 'estragon', 'cerfeuil',
+    'thym', 'romarin', 'laurier', 'sauge', 'origan', 'bouquet-garni', 'herbes-provence', 'zeste', 'graines-de-sesame']);
+  const PRINCIPAUX = new Set(['oeufs', 'tofu', 'tofu-soyeux']);
+  function poidsIngredient(recette, i, position) {
+    if (AROMATES.has(i.id) || i.rangement === 'epices') return 0.4;
+    if (PRINCIPAUX.has(i.id) || i.rayon === 'bou' || i.rayon === 'poi') return 3;
+    const titre = ' ' + cleNom(recette.nom) + ' ';
+    const mots = cleNom(i.nom).split(' ').filter((m) => m.length >= 4 && !['sauce', 'pate', 'fraiche', 'frai', 'blanc', 'rouge', 'vert', 'noir'].includes(m));
+    if (mots.some((m) => titre.includes(' ' + m + ' '))) return 3;
+    // Sinon : selon la part de l'ingrédient dans le poids total de la recette (400 g de tomme pèsent plus qu'un sachet de levure).
+    let total = 0;
+    let part = 0;
+    recette.ingredients.forEach(([id, q, u, opt], n) => {
+      if (opt) return;
+      const x = ing(id);
+      const g = grammes(q, u === undefined ? x.unite : u, x);
+      total += g;
+      if (n === position) part = g;
+    });
+    const poids = total ? 0.5 + 4 * (part / total) : 1;
+    return Math.min(2.5, Math.max(position === 0 ? 2 : 0.5, poids));
+  }
+  /** Poids approximatif en grammes, seulement pour comparer l'importance des ingrédients. */
+  function grammes(q, u, i) {
+    if (q == null) return 0;
+    switch (u) {
+      case 'g': case 'ml': return q;
+      case 'kg': case 'l': return q * 1000;
+      case 'cl': return q * 10;
+      case 'cs': return q * 15;
+      case 'cc': return q * 5;
+      case 'pincee': return 0.5;
+      case 'pc': return q * (i.pieceG || 50);
+      default: return q;
+    }
   }
 
   /** Quantité à acheter pour couvrir un manque (arrondie vers le haut, en unités « de magasin »). */
@@ -438,7 +494,7 @@
   /* ═════════════ Interface : état d'affichage ═════════════ */
 
   const ui = {
-    route: 'garde-manger',
+    route: 'accueil',
     params: [],
     filtres: { q: '', cuisine: '', type: '', temps: '', personnes: null, favoris: '' },
     ouvert3: false,
@@ -460,6 +516,7 @@
     chevron: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>',
     etoile: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>',
     etoilePleine: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>',
+    partiel: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>',
     retour: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>'
   };
 
@@ -493,9 +550,10 @@
   }
 
   function vueEntete() {
-    if (!utilisateur) return `<span class="marque">${ICONES.casserole}Frigourmand</span>`;
+    if (!utilisateur) return `<button type="button" class="marque bouton-marque" id="lien-marque" data-action="auth-mode" data-mode="accueil" aria-label="Frigourmand : accueil">${ICONES.casserole}Frigourmand</button>`;
     const [classeSynchro, libelleSynchro] = texteSynchro();
     const onglets = [
+      ['accueil', 'Accueil'],
       ['garde-manger', 'Garde-manger'],
       ['recettes', 'Recettes'],
       ['courses', 'Liste de courses' + (etat.courses.length ? ' (' + etat.courses.length + ')' : '')],
@@ -504,7 +562,7 @@
     const actif = ui.route === 'recette' ? 'recettes' : ui.route === 'editeur' ? 'mes-recettes' : ui.route;
     const sombre = themeEffectif() === 'sombre';
     return `
-      <span class="marque">${ICONES.casserole}Frigourmand</span>
+      <a href="#accueil" class="marque" id="lien-marque" aria-label="Frigourmand : accueil">${ICONES.casserole}Frigourmand</a>
       <nav class="nav" aria-label="Navigation principale">
         ${onglets.map(([r, l]) => `<a href="#${r}" id="nav-${r}"${actif === r ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}
       </nav>
@@ -553,8 +611,44 @@
     </div>`;
   }
 
+  /* ─── Présentation (avant connexion) ─── */
+
+  function vueVitrine() {
+    const nbR = infosAppli.nbRecettes || 300;
+    const nbI = infosAppli.nbIngredients || 600;
+    const etapes = [
+      ['Note ce que tu as', 'Frigo, placards, congélateur : tu ajoutes tes ingrédients en quelques lettres, avec la quantité si tu veux.'],
+      ['Vois ce que tu peux cuisiner', 'Les recettes réalisables tout de suite d’abord, puis celles où il manque un ou deux ingrédients, les moins gênants en premier.'],
+      ['Complète tes courses', 'Un clic ajoute ce qui manque à ta liste, avec les bonnes quantités pour le nombre de personnes.']
+    ];
+    return `
+      <div class="vitrine">
+        <section class="vitrine-intro" aria-labelledby="auth-titre">
+          <h1 class="titre titre-grand" id="auth-titre" tabindex="-1">Qu’est-ce qu’on mange avec ce qu’il y a dans le frigo ?</h1>
+          <p class="vitrine-texte">Frigourmand part de ce que tu as déjà chez toi et te propose des recettes, surtout françaises, mais aussi italiennes, asiatiques, maghrébines… Moins de gaspillage, moins de casse-tête.</p>
+          <div class="barre-actions">
+            <button type="button" class="bouton bouton-plein" id="vitrine-inscription" data-action="auth-mode" data-mode="inscription">Créer un compte</button>
+            <button type="button" class="bouton-secondaire" id="vitrine-connexion" data-action="auth-mode" data-mode="connexion">J’ai déjà un compte</button>
+          </div>
+        </section>
+        <section class="vitrine-etapes" aria-labelledby="vitrine-comment">
+          <h2 id="vitrine-comment" class="titre-section">Comment ça marche</h2>
+          <ol>
+            ${etapes.map(([t, d], n) => `<li><span class="num-etape" aria-hidden="true">${n + 1}</span><div><h3>${esc(t)}</h3><p>${esc(d)}</p></div></li>`).join('')}
+          </ol>
+        </section>
+        <ul class="vitrine-chiffres" aria-label="En bref">
+          <li><strong>${nbR}</strong> recettes vérifiées, entrées, plats et desserts</li>
+          <li><strong>${nbI}</strong> ingrédients reconnus</li>
+          <li><strong>Synchronisé</strong> entre ton ordinateur et bientôt le site et le mobile</li>
+          <li><strong>Accessible</strong> : clavier, lecteur d’écran, mode sombre, grand texte</li>
+        </ul>
+      </div>`;
+  }
+
   function vueAuth() {
     const a = ui.auth;
+    if (a.mode === 'accueil') return vueVitrine();
     const bouton = (texte, enCours) => `<button type="submit" class="bouton bouton-plein" id="auth-valider"${a.occupe ? ' disabled' : ''}>${esc(a.occupe ? enCours : texte)}</button>`;
     const lien = (mode, texte, id) => `<button type="button" class="bouton-lien" id="${id}" data-action="auth-mode" data-mode="${mode}">${esc(texte)}</button>`;
     const google = `<button type="button" class="bouton-secondaire bouton-google" id="auth-google" data-action="auth-google"${a.occupe ? ' disabled' : ''}>Continuer avec Google</button>
@@ -569,7 +663,7 @@
           + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'current-password' })
           + rester
           + bouton('Se connecter', 'Connexion…'),
-        liens: lien('oubli', 'Mot de passe oublié ?', 'lien-oubli') + lien('inscription', 'Pas encore de compte ? Créer un compte', 'lien-inscription')
+        liens: lien('oubli', 'Mot de passe oublié ?', 'lien-oubli') + lien('inscription', 'Pas encore de compte ? Créer un compte', 'lien-inscription') + lien('accueil', 'Découvrir Frigourmand', 'lien-accueil')
       },
       inscription: {
         titre: 'Créer un compte',
@@ -579,7 +673,7 @@
           + champAuth('auth-email', 'Adresse e-mail', 'email', { autocomplete: 'email' })
           + champAuth('auth-mdp', 'Mot de passe', 'password', { autocomplete: 'new-password', aide: '8 caractères minimum.' })
           + bouton('Créer mon compte', 'Création…'),
-        liens: lien('connexion', 'J’ai déjà un compte', 'lien-connexion')
+        liens: lien('connexion', 'J’ai déjà un compte', 'lien-connexion') + lien('accueil', 'Découvrir Frigourmand', 'lien-accueil')
       },
       code: {
         titre: 'Confirme ton adresse',
@@ -628,7 +722,7 @@
 
   function changerModeAuth(mode, message) {
     Object.assign(ui.auth, { mode, erreur: null, message: message || null, erreursChamps: {}, occupe: false });
-    const premier = { connexion: ui.auth.valeurs['auth-email'] ? 'auth-mdp' : 'auth-email', inscription: 'auth-nom', code: 'auth-code', oubli: 'auth-email', reinit: 'auth-code' }[mode];
+    const premier = { accueil: true, connexion: ui.auth.valeurs['auth-email'] ? 'auth-mdp' : 'auth-email', inscription: 'auth-nom', code: 'auth-code', oubli: 'auth-email', reinit: 'auth-code' }[mode];
     rendre({ focus: premier || true });
   }
 
@@ -677,7 +771,7 @@
       initialiserDepuis(r.donnees);
       appliquerApparence();
       ui.auth = etatAuthInitial();
-      if (location.hash && location.hash !== '#garde-manger') location.hash = '#garde-manger'; else lireRoute();
+      if (location.hash && location.hash !== '#accueil') location.hash = '#accueil'; else lireRoute();
       toast('Bienvenue' + (utilisateur.nom ? ' ' + utilisateur.nom : '') + ' !');
     } catch (e) {
       console.error(e);
@@ -721,7 +815,7 @@
 
   let derniereAdresse = '';
   const etatAuthInitial = () => ({
-    mode: 'connexion', valeurs: derniereAdresse ? { 'auth-email': derniereAdresse } : {},
+    mode: 'accueil', valeurs: derniereAdresse ? { 'auth-email': derniereAdresse } : {},
     erreursChamps: {}, erreur: null, message: null, occupe: false, rester: true
   });
 
@@ -737,6 +831,74 @@
       return;
     }
     terminerConnexion(r.utilisateur);
+  }
+
+  /* ─── Accueil (connecté) ─── */
+
+  function vueAccueil() {
+    const pers = personnesFiltre();
+    const analyses = toutesRecettes().map((r) => ({ r, a: analyser(r, pers) }));
+    const realisables = analyses.filter((x) => x.a.nb === 0)
+      .sort((x, y) => (estFavori(y.r.id) - estFavori(x.r.id)) || x.r.minutes - y.r.minutes);
+    const presque = analyses.filter((x) => x.a.nb === 1).sort((x, y) => x.a.gravite - y.a.gravite || x.r.minutes - y.r.minutes);
+    const favoris = analyses.filter((x) => estFavori(x.r.id)).sort((x, y) => x.a.nb - y.a.nb);
+    const aAcheter = etat.courses.filter((c) => !c.coche).length;
+    const derniers = etat.gardeManger.slice(-6).reverse();
+    const heure = new Date().getHours();
+    const salut = heure >= 18 || heure < 5 ? 'Bonsoir' : 'Bonjour';
+    const tuile = (href, id, n, texte) => `<li><a class="tuile" href="${href}" id="${id}"><strong>${n}</strong><span>${esc(texte)}</span></a></li>`;
+    const ligneRecette = ({ r, a }, avecManque) => `<li class="ligne-accueil">
+        <a href="#recette/${esc(r.id)}" id="acc-${avecManque ? 'p' : 'r'}-${esc(r.id)}">${esc(r.nom)}</a>
+        <span class="note-inline">${esc(r.type)} · ${esc(duree(r.minutes))}</span>
+        ${avecManque ? a.manquants.map((l) => `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(l.ing.nom)}${l.partiel ? ' (pas assez)' : ''}</span>`).join('') : ''}
+      </li>`;
+    const vide = !etat.gardeManger.length;
+    return `
+      <div class="titre-page">
+        <h1 class="titre" tabindex="-1">${salut}${utilisateur && utilisateur.nom ? ' ' + esc(utilisateur.nom) : ''}</h1>
+        <p class="sous-titre">Voici où en est ta cuisine.</p>
+      </div>
+      <ul class="tuiles" aria-label="En bref">
+        ${tuile('#garde-manger', 'tuile-gm', etat.gardeManger.length, etat.gardeManger.length > 1 ? 'ingrédients dans le garde-manger' : 'ingrédient dans le garde-manger')}
+        ${tuile('#recettes', 'tuile-rec', realisables.length, realisables.length > 1 ? 'recettes réalisables maintenant' : 'recette réalisable maintenant')}
+        ${tuile('#courses', 'tuile-courses', aAcheter, aAcheter > 1 ? 'articles à acheter' : 'article à acheter')}
+        ${tuile('#mes-recettes', 'tuile-fav', etat.favoris.length, etat.favoris.length > 1 ? 'recettes favorites' : 'recette favorite')}
+      </ul>
+      ${vide ? `
+        <section class="panneau corps-panneau encart-demarrage" aria-labelledby="acc-demarrer">
+          <h2 id="acc-demarrer" class="titre-section">Pour commencer</h2>
+          <p>Ajoute ce que tu as dans ton frigo et tes placards : Frigourmand te montrera aussitôt ce que tu peux cuisiner.</p>
+          <a class="bouton bouton-plein" href="#garde-manger" id="acc-remplir">Remplir mon garde-manger</a>
+        </section>` : ''}
+      <div class="grille-2">
+        <section class="panneau corps-panneau" aria-labelledby="acc-maintenant">
+          <h2 id="acc-maintenant" class="titre-section">À cuisiner maintenant</h2>
+          ${realisables.length ? `<ul class="liste-accueil">${realisables.slice(0, 6).map((x) => ligneRecette(x, false)).join('')}</ul>
+            ${realisables.length > 6 ? `<p><a href="#recettes" id="acc-toutes">Voir les ${realisables.length} recettes réalisables</a></p>` : ''}`
+            : '<p class="aide">Aucune recette réalisable pour l’instant avec ton garde-manger.</p>'}
+        </section>
+        <section class="panneau corps-panneau" aria-labelledby="acc-presque">
+          <h2 id="acc-presque" class="titre-section">Il ne manque presque rien</h2>
+          ${presque.length ? `<ul class="liste-accueil">${presque.slice(0, 6).map((x) => ligneRecette(x, true)).join('')}</ul>`
+            : '<p class="aide">Rien à signaler de ce côté.</p>'}
+        </section>
+        <section class="panneau corps-panneau" aria-labelledby="acc-favoris">
+          <h2 id="acc-favoris" class="titre-section">Tes favoris</h2>
+          ${favoris.length ? `<ul class="liste-accueil">${favoris.slice(0, 6).map(({ r, a }) => `<li class="ligne-accueil">
+              <a href="#recette/${esc(r.id)}" id="acc-f-${esc(r.id)}">${esc(r.nom)}</a>
+              ${a.nb ? (a.partiels === a.nb
+                ? `<span class="pastille partiel">${ICONES.partiel}pas assez</span>`
+                : `<span class="pastille manque">${ICONES.alerte}${pluriel(a.nb, 'manquant', 'manquants')}</span>`) : `<span class="pastille ok">${ICONES.coche}réalisable</span>`}
+            </li>`).join('')}</ul>`
+            : '<p class="aide">Touche l’étoile d’une recette pour la retrouver ici.</p>'}
+        </section>
+        <section class="panneau corps-panneau" aria-labelledby="acc-derniers">
+          <h2 id="acc-derniers" class="titre-section">Derniers ajouts au garde-manger</h2>
+          ${derniers.length ? `<ul class="liste-accueil">${derniers.map((x) => `<li class="ligne-accueil"><span>${esc(ing(x.id).nom)}</span>${x.qte != null ? `<span class="note-inline">${esc(formatQteCourt(x.qte, x.unite, ing(x.id)))}</span>` : ''}</li>`).join('')}</ul>
+            <p><a href="#garde-manger" id="acc-gm">Gérer le garde-manger</a></p>`
+            : '<p class="aide">Ton garde-manger est vide.</p>'}
+        </section>
+      </div>`;
   }
 
   /* ─── Garde-manger ─── */
@@ -837,7 +999,9 @@
       const achat = quantiteAchat(l);
       const txt = libelleArticle(l.ing, achat.q, achat.u);
       const note = l.detenu != null ? `<span class="note-inline">tu en as ${esc(formatQteCourt(Math.round(l.detenu * 100) / 100, l.u, l.ing))}</span>` : '';
-      return `<span class="achat"><span class="pastille manque">${ICONES.alerte}${esc(txt)}</span>${note}</span>`;
+      const classe = l.partiel ? 'partiel' : 'manque';
+      const sr = l.partiel ? '<span class="sr-only">(quantité insuffisante)</span>' : '<span class="sr-only">(absent)</span>';
+      return `<span class="achat"><span class="pastille ${classe}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(txt)}${sr}</span>${note}</span>`;
     }).join('');
   }
 
@@ -875,7 +1039,7 @@
   function vueRecettes() {
     const pers = personnesFiltre();
     const analyses = filtrerRecettes().map((r) => ({ r, a: analyser(r, pers) }))
-      .sort((x, y) => x.a.nb - y.a.nb || trierFr(x.r.nom, y.r.nom));
+      .sort((x, y) => x.a.nb - y.a.nb || x.a.gravite - y.a.gravite || trierFr(x.r.nom, y.r.nom));
     const sections = [
       { cle: 'ok', titre: 'Réalisables maintenant', teinte: 'vert', liste: analyses.filter((x) => x.a.nb === 0), achats: false },
       { cle: 'un', titre: 'Il manque 1 ingrédient', teinte: 'ocre', liste: analyses.filter((x) => x.a.nb === 1), achats: true },
@@ -920,6 +1084,7 @@
         </div>
       </div>
 
+      ${etat.gardeManger.length ? `<p class="legende">Légende : <span class="pastille partiel">${ICONES.partiel}pas assez</span> tu en as, mais pas la quantité demandée · <span class="pastille manque">${ICONES.alerte}à acheter</span> tu n’en as pas du tout. Dans chaque groupe, les recettes où il manque un ingrédient secondaire (herbes, épices…) passent avant celles où il manque l’ingrédient principal.</p>` : ''}
       ${etat.gardeManger.length ? '' : `<p class="bandeau">Ton garde-manger est vide : toutes les recettes sont rangées dans « 3 ingrédients ou plus ». <a href="#garde-manger">Ajouter des ingrédients</a></p>`}
 
       ${sections.filter((s) => s.liste.length).map((s) => `
@@ -960,8 +1125,9 @@
       if (l.statut === 'basique') return '<span class="pastille neutre">basique</span>';
       if (l.statut === 'facultatif') return '<span class="pastille neutre">facultatif</span>';
       const achat = quantiteAchat(l);
-      const txt = l.manque == null || achat.q == null ? 'à acheter' : 'il en manque ' + formatQteCourt(achat.q, achat.u, l.ing);
-      return `<span class="pastille manque">${ICONES.alerte}${esc(txt)}</span>${dansListe(l.id) ? '<span class="note-inline">dans ta liste</span>' : ''}`;
+      const txt = l.manque == null || achat.q == null ? (l.partiel ? 'pas assez' : 'à acheter') : 'il en manque ' + formatQteCourt(achat.q, achat.u, l.ing);
+      const detenu = l.partiel && l.detenu != null ? ` (tu en as ${formatQteCourt(Math.round(l.detenu * 100) / 100, l.u, l.ing)})` : '';
+      return `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(txt + detenu)}</span>${dansListe(l.id) ? '<span class="note-inline">dans ta liste</span>' : ''}`;
     };
     const tousDansListe = a.manquants.every((l) => dansListe(l.id));
 
@@ -1307,7 +1473,7 @@
               ? '<button type="button" class="bouton" id="p-maj-installer" data-action="maj-installer">Redémarrer et installer</button>'
               : `<button type="button" class="bouton-secondaire" id="p-maj" data-action="maj-verifier"${etatMaj.etat === 'dev' || etatMaj.etat === 'verification' || etatMaj.etat === 'telechargement' ? ' disabled' : ''}>Rechercher des mises à jour</button>`}
           </div>
-          <p class="aide">Raccourcis : Alt + 1 à 4 pour changer d’onglet.</p>
+          <p class="aide">Raccourcis : Alt + 1 à 5 pour changer d’onglet.</p>
         </section>
         </div>
       </div>`;
@@ -1316,11 +1482,11 @@
   /* ═════════════ Rendu ═════════════ */
 
   const VUES = {
-    'garde-manger': vueGardeManger, recettes: vueRecettes, recette: vueFiche, courses: vueCourses,
+    accueil: vueAccueil, 'garde-manger': vueGardeManger, recettes: vueRecettes, recette: vueFiche, courses: vueCourses,
     'mes-recettes': vueMesRecettes, editeur: vueEditeur, parametres: vueParametres
   };
   const TITRES = {
-    'garde-manger': 'Garde-manger', recettes: 'Recettes', courses: 'Liste de courses',
+    accueil: 'Accueil', 'garde-manger': 'Garde-manger', recettes: 'Recettes', courses: 'Liste de courses',
     'mes-recettes': 'Mes recettes', editeur: 'Éditeur de recette', parametres: 'Paramètres'
   };
 
@@ -1358,9 +1524,9 @@
 
   function lireRoute() {
     if (!utilisateur) { rendre({ focus: true }); return; }
-    const h = decodeURIComponent(location.hash.replace(/^#/, '')) || 'garde-manger';
+    const h = decodeURIComponent(location.hash.replace(/^#/, '')) || 'accueil';
     const [route, ...params] = h.split('/');
-    ui.route = VUES[route] ? route : 'garde-manger';
+    ui.route = VUES[route] ? route : 'accueil';
     ui.params = params;
     ui.erreurs = {};
     if (ui.route === 'editeur') {
@@ -2106,9 +2272,9 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.altKey && !e.ctrlKey && !e.metaKey && ['1', '2', '3', '4'].includes(e.key)) {
+    if (e.altKey && !e.ctrlKey && !e.metaKey && ['1', '2', '3', '4', '5'].includes(e.key) && utilisateur) {
       e.preventDefault();
-      location.hash = '#' + ['garde-manger', 'recettes', 'courses', 'mes-recettes'][Number(e.key) - 1];
+      location.hash = '#' + ['accueil', 'garde-manger', 'recettes', 'courses', 'mes-recettes'][Number(e.key) - 1];
     }
   });
 

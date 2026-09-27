@@ -151,7 +151,9 @@ class Synchro {
           const reseau = /fetch|network|ENOTFOUND|ECONN|timeout|allowlist/i.test(message);
           // Tables absentes côté serveur (schéma pas encore installé) : on garde tout et on réessaiera.
           const serveurIncomplet = /does not exist|could not find the table|schema cache/i.test(message);
-          if (!reseau && !serveurIncomplet) {
+          // Session refusée (expirée, serveur changé) : on garde tout jusqu'à la reconnexion.
+          const session = /jwt|token|unauthori[sz]ed|401|not authenticated/i.test(message);
+          if (!reseau && !serveurIncomplet && !session) {
             // Refus définitif (donnée invalide) : on écarte ce lot pour ne pas bloquer les suivants.
             console.error('Synchronisation : lot refusé par le serveur, ignoré.', message, JSON.stringify(lot.ops).slice(0, 500));
             this.base.retirerDeLaFile(lot.id);

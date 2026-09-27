@@ -1,0 +1,1013 @@
+/* Recettes ajoutées en 0.6. Même format que recettes.js :
+   R(id, nom, cuisine, type, minutes, difficulté, personnes, ingrédients, étapes)
+   Types : Entrée | Plat | Dessert */
+'use strict';
+
+module.exports = function ajouter(R) {
+  /* ───────────── Entrées françaises ───────────── */
+
+  R('celeri-remoulade', 'Céleri rémoulade', 'Française', 'Entrée', 50, 'Facile', 4, [
+    ['celeri-rave', 1], ['citron', 0.5], ['mayonnaise', 5, 'cs'], ['moutarde', 1, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher le céleri-rave (un petit, environ 600 g), le couper en quartiers et le râper finement, à la grille fine ou en julienne.',
+    'L’arroser aussitôt du jus du demi-citron et mélanger pour qu’il ne noircisse pas.',
+    'Mélanger la mayonnaise et la moutarde, saler et poivrer.',
+    'Enrober le céleri de cette sauce, couvrir et réserver au moins 30 min au frais : le céleri s’attendrit et la sauce l’imprègne.'
+  ]);
+
+  R('salade-perigourdine', 'Salade périgourdine', 'Française', 'Entrée', 25, 'Facile', 4, [
+    ['salade', 1], ['gesiers-de-canard-confits', 250, 'g'], ['magret-de-canard-fume', 80, 'g'], ['cerneaux-de-noix', 40, 'g'],
+    ['tomates-cerises', 150, 'g', 'opt'], ['echalotes', 1], ['vinaigre', 1, 'cs'], ['huile-de-noix', 3, 'cs'], ['moutarde', 1, 'cc'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Laver et essorer la salade. Couper les tomates cerises en deux et ciseler l’échalote.',
+    'Préparer la vinaigrette : fouetter la moutarde, le vinaigre, le sel et le poivre, puis l’huile de noix. Ajouter l’échalote.',
+    'Égoutter les gésiers de leur graisse, les émincer et les faire revenir 5 min à feu moyen dans une poêle sans matière grasse, jusqu’à ce qu’ils soient chauds et légèrement dorés.',
+    'Mélanger la salade avec la vinaigrette et la répartir sur les assiettes. Ajouter les tomates, les gésiers chauds, les tranches de magret fumé et les cerneaux de noix. Servir aussitôt.'
+  ]);
+
+  R('terrine-campagne', 'Terrine de campagne', 'Française', 'Entrée', 160, 'Moyenne', 8, [
+    ['porc-hache', 500, 'g'], ['foies-de-volaille', 250, 'g'], ['poitrine-de-porc', 200, 'g'], ['echalotes', 2], ['ail', 2],
+    ['oeufs', 1], ['cognac', 3, 'cl'], ['quatre-epices', 1, 'cc'], ['thym', 2], ['laurier', 2], ['sel', null], ['poivre', null]
+  ], [
+    'Nettoyer les foies de volaille (retirer les nerfs et les parties verdâtres) et les hacher grossièrement au couteau, ainsi que la poitrine sans sa couenne. Ciseler finement les échalotes et hacher l’ail.',
+    'Mélanger à la main le porc haché, les foies, la poitrine, les échalotes, l’ail, l’œuf, le cognac, le quatre-épices et les feuilles d’une branche de thym. Saler à raison de 15 g de sel par kilo de farce (environ 14 g) et poivrer généreusement.',
+    'Préchauffer le four à 160 °C. Tasser la farce dans une terrine de 1,2 L, lisser et poser dessus le laurier et la seconde branche de thym. Couvrir.',
+    'Cuire au bain-marie (eau chaude à mi-hauteur) 1 h 45 à 2 h : la terrine est cuite quand le jus qui remonte sur les bords est clair (70 °C à cœur).',
+    'Laisser tiédir, puis poser sur la terrine un poids (une planchette et des boîtes de conserve) et réfrigérer au moins 24 h (non compté dans le temps de la recette) avant de servir en tranches épaisses.'
+  ]);
+
+  R('rillettes-sardines', 'Rillettes de sardines', 'Française', 'Entrée', 40, 'Facile', 4, [
+    ['sardines-en-boite', 230, 'g'], ['fromage-frais-a-tartiner', 100, 'g'], ['citron', 0.5], ['ciboulette', 0.5], ['echalotes', 1],
+    ['pain', 8, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Égoutter les sardines (deux boîtes) et retirer l’arête centrale si vous le souhaitez.',
+    'Les écraser à la fourchette avec le fromage frais et le jus du demi-citron.',
+    'Ajouter l’échalote et la ciboulette finement ciselées, poivrer et mélanger. Réserver 30 min au frais.',
+    'Servir sur des tranches de pain grillées.'
+  ]);
+
+  R('tartare-saumon', 'Tartare de saumon', 'Française', 'Entrée', 35, 'Facile', 4, [
+    ['saumon', 3], ['citron-vert', 1], ['echalotes', 1], ['ciboulette', 0.5], ['aneth', 0.25, 'pc', 'opt'], ['huile-olive', 2, 'cs'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Utiliser un saumon extra-frais, de qualité à manger cru (ou congelé 7 jours au préalable). Retirer la peau et les arêtes, puis couper la chair en dés de 5 mm avec un couteau bien aiguisé.',
+    'Ciseler l’échalote, la ciboulette et l’aneth. Prélever le zeste du citron vert et le presser.',
+    'Mélanger le saumon avec l’huile, l’échalote, les herbes et le zeste. Saler, poivrer, couvrir et réserver 15 min au frais.',
+    'Ajouter le jus de citron vert au dernier moment (il « cuit » le poisson s’il attend), mélanger et dresser à l’aide d’un cercle. Servir bien frais.'
+  ]);
+
+  R('carpaccio-saint-jacques', 'Carpaccio de Saint-Jacques', 'Française', 'Entrée', 35, 'Facile', 4, [
+    ['noix-de-saint-jacques', 250, 'g'], ['citron-vert', 1], ['huile-olive', 3, 'cs'], ['fleur-de-sel', 2, 'pincee'],
+    ['baies-roses', 1, 'cc', 'opt'], ['ciboulette', 0.25], ['poivre', null]
+  ], [
+    'Placer les noix de Saint-Jacques (bien fraîches, sans corail) 15 à 20 min au congélateur pour les raffermir.',
+    'Prélever le zeste du citron vert, presser le jus et le mélanger avec l’huile d’olive.',
+    'Trancher les noix en fines lamelles de 2 mm et les disposer en rosace sur des assiettes froides.',
+    'Badigeonner de marinade et laisser reposer 10 min au frais.',
+    'Parsemer de zeste, de ciboulette ciselée, de fleur de sel et de baies roses légèrement écrasées. Poivrer et servir aussitôt.'
+  ]);
+
+  R('asperges-mousseline', 'Asperges blanches sauce mousseline', 'Française', 'Entrée', 45, 'Moyenne', 4, [
+    ['asperges-blanches', 1000, 'g'], ['beurre', 125, 'g'], ['oeufs', 3], ['citron', 0.5], ['creme-liquide', 10, 'cl'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les asperges à l’économe de la pointe vers la base et couper les 2 cm du bas, ligneux. Les lier en botte.',
+    'Les cuire 12 à 18 min selon leur grosseur dans une grande casserole d’eau bouillante salée : la pointe d’un couteau doit s’enfoncer sans résistance. Égoutter sur un linge et garder au chaud.',
+    'Pendant ce temps, fouetter la crème bien froide en chantilly souple et la réserver au frais. Faire fondre le beurre à feu doux.',
+    'Au bain-marie frémissant, fouetter les 3 jaunes d’œufs avec 3 cs d’eau pendant 5 min, jusqu’à obtenir une mousse épaisse et nappante, sans laisser cuire les œufs.',
+    'Hors du feu, verser le beurre fondu tiède en filet sans cesser de fouetter, puis ajouter le jus de citron, le sel et le poivre. Incorporer délicatement la crème fouettée et servir aussitôt avec les asperges tièdes.'
+  ]);
+
+  R('oeufs-mayonnaise', 'Œufs mayonnaise', 'Française', 'Entrée', 30, 'Facile', 4, [
+    ['oeufs', 7], ['moutarde', 1, 'cc'], ['huile', 10, 'cs'], ['vinaigre', 1, 'cc'], ['ciboulette', 0.25, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Plonger 6 œufs dans l’eau bouillante et les cuire 10 min. Les refroidir dans l’eau glacée, puis les écaler.',
+    'Préparer la mayonnaise avec des ingrédients à température ambiante : fouetter le jaune du 7e œuf avec la moutarde et une pincée de sel, puis verser l’huile en filet sans cesser de fouetter jusqu’à ce qu’elle soit ferme.',
+    'Ajouter le vinaigre et poivrer.',
+    'Couper les œufs durs en deux, en disposer 3 moitiés par assiette, face bombée vers le haut, et les napper généreusement de mayonnaise. Parsemer de ciboulette ciselée.'
+  ]);
+
+  R('avocats-crevettes', 'Avocats aux crevettes', 'Française', 'Entrée', 15, 'Facile', 4, [
+    ['avocat', 2], ['crevettes', 200, 'g'], ['mayonnaise', 3, 'cs'], ['ketchup', 1, 'cs'], ['cognac', 1, 'cl', 'opt'], ['citron', 0.5],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Préparer la sauce cocktail en mélangeant la mayonnaise, le ketchup et le cognac. Poivrer.',
+    'Mélanger les crevettes cuites décortiquées avec la sauce.',
+    'Couper les avocats en deux, retirer le noyau et arroser la chair de jus de citron. Saler légèrement.',
+    'Garnir chaque demi-avocat de crevettes à la sauce cocktail et servir bien frais.'
+  ]);
+
+  R('salade-betteraves', 'Salade de betteraves aux noix', 'Française', 'Entrée', 15, 'Facile', 4, [
+    ['betteraves-cuites', 3], ['echalotes', 1], ['cerneaux-de-noix', 30, 'g'], ['moutarde', 1, 'cc'], ['vinaigre', 1, 'cs'],
+    ['huile', 3, 'cs'], ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les betteraves et les couper en dés ou en fines tranches.',
+    'Fouetter la moutarde, le vinaigre, le sel et le poivre, puis l’huile. Ajouter l’échalote ciselée.',
+    'Mélanger les betteraves avec la vinaigrette, parsemer de noix concassées et de persil ciselé. Servir frais.'
+  ]);
+
+  R('rillettes-maquereau', 'Rillettes de maquereau fumé', 'Française', 'Entrée', 40, 'Facile', 4, [
+    ['maquereau-fume', 200, 'g'], ['fromage-frais-a-tartiner', 100, 'g'], ['moutarde-a-l-ancienne', 1, 'cc'], ['citron', 0.5],
+    ['ciboulette', 0.5], ['pain', 8, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Retirer la peau et les arêtes des filets de maquereau et les émietter.',
+    'Les écraser à la fourchette avec le fromage frais, la moutarde à l’ancienne et le jus du demi-citron, en gardant un peu de texture.',
+    'Ajouter la ciboulette ciselée et poivrer (inutile de saler, le poisson fumé l’est déjà). Réserver 30 min au frais.',
+    'Servir sur des tranches de pain grillées.'
+  ]);
+
+  R('blinis-saumon-fume', 'Blinis au saumon fumé', 'Française', 'Entrée', 15, 'Facile', 4, [
+    ['blinis', 16], ['saumon-fume', 4], ['creme-fraiche', 10, 'cl'], ['citron', 0.5], ['aneth', 0.25], ['oeufs-de-lump', 50, 'g', 'opt'],
+    ['poivre', null]
+  ], [
+    'Préchauffer le four à 180 °C et y réchauffer les blinis 3 à 4 min.',
+    'Mélanger la crème fraîche avec le jus du demi-citron et la moitié de l’aneth ciselé. Poivrer.',
+    'Couper le saumon fumé en lanières.',
+    'Garnir chaque blini d’une cuillerée de crème, d’un morceau de saumon, d’un peu d’œufs de lump et d’un brin d’aneth. Servir tiède.'
+  ]);
+
+  R('champignons-farcis', 'Champignons farcis', 'Française', 'Entrée', 40, 'Facile', 4, [
+    ['champignons', 500, 'g'], ['echalotes', 2], ['ail', 2], ['persil', 0.5], ['chapelure', 30, 'g'], ['beurre', 40, 'g'],
+    ['fromage-rape', 40, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Nettoyer 12 gros champignons, ôter les pieds et les hacher finement.',
+    'Faire fondre les échalotes ciselées 3 min à feu moyen dans 20 g de beurre, puis ajouter les pieds hachés et l’ail haché. Cuire 5 à 7 min, jusqu’à ce que l’eau des champignons soit évaporée.',
+    'Hors du feu, ajouter le persil ciselé et la chapelure. Saler, poivrer.',
+    'Garnir les têtes de champignons de cette farce, les ranger dans un plat beurré, parsemer de fromage et de noisettes du reste de beurre.',
+    'Cuire 15 à 20 min, jusqu’à ce que le dessus soit doré et les chapeaux tendres.'
+  ]);
+
+  R('cervelle-canut', 'Cervelle de canut', 'Française', 'Entrée', 70, 'Facile', 4, [
+    ['fromage-blanc', 400, 'g'], ['creme-fraiche', 5, 'cl'], ['echalotes', 1], ['ail', 1], ['ciboulette', 0.5], ['persil', 0.25],
+    ['vinaigre', 1, 'cs'], ['huile-olive', 2, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Si le fromage blanc est très liquide, le laisser égoutter 30 min dans une passoire fine.',
+    'Le battre à la fourchette avec la crème, le vinaigre et l’huile d’olive.',
+    'Ajouter l’échalote ciselée, l’ail haché très finement, la ciboulette et le persil ciselés. Saler, poivrer.',
+    'Réserver au moins 30 min au frais avant de servir.'
+  ]);
+
+  R('salade-haricots-verts', 'Salade de haricots verts', 'Française', 'Entrée', 30, 'Facile', 4, [
+    ['haricots-verts', 400, 'g'], ['tomates', 2], ['echalotes', 1], ['moutarde', 1, 'cc'], ['vinaigre', 1, 'cs'], ['huile', 3, 'cs'],
+    ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Équeuter les haricots verts et les cuire 8 à 10 min à l’eau bouillante salée : ils doivent rester légèrement croquants.',
+    'Les plonger dans l’eau glacée pour fixer la couleur, puis les égoutter soigneusement.',
+    'Préparer la vinaigrette avec la moutarde, le vinaigre, le sel, le poivre et l’huile. Ajouter l’échalote ciselée.',
+    'Couper les tomates en quartiers. Mélanger haricots, tomates et vinaigrette au dernier moment et parsemer de persil.'
+  ]);
+
+  R('harengs-pommes-huile', 'Harengs pommes à l’huile', 'Française', 'Entrée', 40, 'Facile', 4, [
+    ['harengs-fumes', 300, 'g'], ['huile', 20, 'cl'], ['carottes', 1], ['oignons', 1], ['thym', 2], ['laurier', 1],
+    ['pommes-de-terre', 600, 'g'], ['vinaigre', 1, 'cs'], ['echalotes', 1], ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Couper les filets de hareng en deux et les ranger dans un plat creux avec la carotte en fines rondelles, l’oignon en rondelles, le thym, le laurier et du poivre. Couvrir d’huile.',
+    'Filmer et laisser mariner au moins 12 h au frais (non compté dans le temps de la recette) (ils se gardent ainsi une semaine).',
+    'Le jour même, cuire les pommes de terre à chair ferme avec leur peau 20 à 25 min dans l’eau salée frémissante, jusqu’à ce qu’elles soient tendres.',
+    'Les éplucher tièdes, les couper en rondelles et les arroser du vinaigre, de l’échalote ciselée et de 3 cs de l’huile de marinade. Saler légèrement.',
+    'Servir les pommes de terre tièdes avec les harengs égouttés, les carottes et les oignons, et parsemer de persil.'
+  ]);
+
+  R('maquereaux-vin-blanc', 'Maquereaux marinés au vin blanc', 'Française', 'Entrée', 40, 'Facile', 4, [
+    ['maquereaux', 4], ['vin-blanc', 30, 'cl'], ['vinaigre', 3, 'cs'], ['carottes', 1], ['oignons', 1], ['citron', 1], ['thym', 2],
+    ['laurier', 2], ['graines-de-coriandre', 1, 'cc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Lever les filets des maquereaux (ou les faire lever par le poissonnier), retirer les arêtes et les ranger côté peau vers le haut dans un plat creux. Saler légèrement.',
+    'Dans une casserole, mettre le vin blanc, le vinaigre, la carotte et l’oignon en fines rondelles, le citron en rondelles, le thym, le laurier, la coriandre et du poivre. Porter à ébullition, puis laisser frémir 10 min à feu doux.',
+    'Verser la marinade bouillante sur les filets : la chaleur suffit à les cuire.',
+    'Laisser refroidir, couvrir et réfrigérer au moins 12 h, 24 h c’est encore mieux (non compté dans le temps de la recette). Servir froid avec la garniture de la marinade.'
+  ]);
+
+  R('huitres-champagne', 'Huîtres chaudes au champagne', 'Française', 'Entrée', 40, 'Moyenne', 4, [
+    ['huitres', 24], ['champagne', 15, 'cl'], ['echalotes', 2], ['creme-liquide', 15, 'cl'], ['oeufs', 2], ['beurre', 20, 'g'],
+    ['poivre', null]
+  ], [
+    'Ouvrir les huîtres, les détacher et recueillir leur eau en la filtrant. Laver les coquilles creuses et les caler sur une plaque avec du papier aluminium froissé.',
+    'Faire fondre les échalotes ciselées 3 min dans le beurre à feu doux. Ajouter le champagne et l’eau des huîtres, porter à frémissement et y pocher les huîtres 30 s, juste jusqu’à ce que leurs bords ondulent. Les remettre dans les coquilles.',
+    'Faire réduire le liquide à feu vif jusqu’à ce qu’il en reste environ 5 cl, ajouter la crème et réduire encore 3 min. Allumer le gril du four.',
+    'Hors du feu, verser la sauce sur les 2 jaunes d’œufs en fouettant, puis remettre sur feu très doux en fouettant jusqu’à ce qu’elle épaississe légèrement, sans bouillir. Poivrer.',
+    'Napper chaque huître de sauce et passer 1 à 2 min sous le gril très chaud, jusqu’à ce que le dessus blondisse. Servir aussitôt.'
+  ]);
+
+  /* ───────────── Entrées d’ailleurs ───────────── */
+
+  R('poivrons-marines', 'Poivrons grillés marinés', 'Italienne', 'Entrée', 120, 'Facile', 4, [
+    ['poivrons-rouges', 4], ['ail', 2], ['huile-olive', 5, 'cs'], ['vinaigre-balsamique', 1, 'cs', 'opt'], ['basilic', 0.25],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four en position gril à 240 °C. Y faire griller les poivrons entiers 25 à 30 min en les retournant, jusqu’à ce que la peau soit noircie et boursouflée.',
+    'Les enfermer 10 min dans un saladier couvert : la vapeur décolle la peau.',
+    'Les peler, retirer le pédoncule et les graines, et les couper en lanières.',
+    'Les arroser d’huile d’olive et de vinaigre balsamique, ajouter l’ail émincé et le basilic ciselé. Saler, poivrer et laisser mariner au moins 1 h avant de servir.'
+  ]);
+
+  R('vitello-tonnato', 'Vitello tonnato', 'Italienne', 'Entrée', 320, 'Moyenne', 6, [
+    ['roti-de-veau', 800, 'g'], ['carottes', 1], ['oignons', 1], ['celeri', 1], ['laurier', 1], ['vin-blanc', 25, 'cl'],
+    ['thon-boite', 150, 'g'], ['anchois', 15, 'g'], ['capres', 2, 'cs'], ['mayonnaise', 6, 'cs'], ['citron', 0.5],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Mettre le rôti ficelé dans une cocotte juste à sa taille avec la carotte, l’oignon et le céleri coupés en morceaux, le laurier et le vin blanc. Compléter d’eau à hauteur et saler.',
+    'Porter à frémissement et cuire 1 h à feu doux, sans bouillir. Laisser refroidir la viande dans son bouillon 1 h, puis l’égoutter et la réfrigérer 2 h pour pouvoir la trancher finement.',
+    'Mixer le thon égoutté, les anchois, 1 cs de câpres, le jus du demi-citron et la mayonnaise, en ajoutant 3 à 4 cs de bouillon pour obtenir une sauce lisse et nappante. Poivrer.',
+    'Trancher le veau très finement, disposer les tranches sur un plat, napper de sauce et parsemer du reste de câpres. Réserver 1 h au frais avant de servir.'
+  ]);
+
+  R('salade-fenouil-orange', 'Salade de fenouil à l’orange', 'Italienne', 'Entrée', 15, 'Facile', 4, [
+    ['fenouil', 2], ['oranges', 2], ['olives', 30, 'g'], ['oignon-rouge', 0.5, 'pc', 'opt'], ['huile-olive', 3, 'cs'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Émincer très finement les bulbes de fenouil, à la mandoline si possible. Garder quelques pluches.',
+    'Peler les oranges à vif et les couper en rondelles, en recueillant le jus.',
+    'Mélanger ce jus avec l’huile d’olive, du sel et du poivre.',
+    'Disposer le fenouil et les oranges sur un plat, ajouter l’oignon rouge en fines lamelles et les olives, arroser de sauce et parsemer de pluches. Servir frais.'
+  ]);
+
+  R('arancini', 'Arancini', 'Italienne', 'Entrée', 190, 'Moyenne', 6, [
+    ['riz-risotto', 250, 'g'], ['bouillon', 1], ['oignons', 0.5], ['beurre', 20, 'g'], ['parmesan', 50, 'g'], ['safran', 1, 'pincee', 'opt'],
+    ['mozzarella', 125, 'g'], ['oeufs', 2], ['farine', 50, 'g'], ['chapelure', 150, 'g'], ['huile', 1, 'l'], ['sel', null], ['poivre', null]
+  ], [
+    'Dissoudre le bouillon et le safran dans 80 cl d’eau chaude. Faire fondre l’oignon haché dans le beurre 3 min à feu moyen, ajouter le riz et le remuer 2 min jusqu’à ce qu’il soit nacré.',
+    'Ajouter le bouillon louche par louche en remuant, pendant 18 min environ, jusqu’à ce que le riz soit cuit et le liquide absorbé. Hors du feu, ajouter le parmesan et poivrer. Étaler sur une plaque et laisser refroidir complètement 2 h au frais.',
+    'Couper la mozzarella égouttée en 18 dés. Les mains humides, prendre une grosse cuillerée de riz, placer un dé de mozzarella au centre et refermer en boule de 5 cm.',
+    'Rouler les boules dans la farine, puis dans les œufs battus, puis dans la chapelure.',
+    'Chauffer l’huile à 175 °C et frire les arancini 4 par 4 pendant 4 min environ, jusqu’à ce qu’ils soient bien dorés. Égoutter sur du papier absorbant et servir chaud.'
+  ]);
+
+  R('crostini-figues-chevre', 'Crostini figues, chèvre et jambon cru', 'Italienne', 'Entrée', 20, 'Facile', 4, [
+    ['baguette', 1], ['figues', 4], ['chevre-frais', 150, 'g'], ['jambon-cru', 4], ['miel', 1, 'cs'], ['huile-olive', 2, 'cs'],
+    ['thym-frais', 1, 'pc', 'opt'], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C. Couper la baguette en 16 tranches, les badigeonner d’huile d’olive et les faire dorer 5 min au four.',
+    'Tartiner chaque tranche de chèvre frais.',
+    'Couper les figues en quartiers et déchirer le jambon cru en lanières. En garnir les crostini.',
+    'Arroser d’un filet de miel, parsemer de thym effeuillé et poivrer. Servir aussitôt, ou après 3 min au four pour tiédir le chèvre.'
+  ]);
+
+  R('patatas-bravas', 'Patatas bravas', 'Espagnole', 'Entrée', 55, 'Facile', 4, [
+    ['pommes-de-terre', 800, 'g'], ['huile-olive', 4, 'cs'], ['tomates-concassees', 200, 'g'], ['ail', 2], ['paprika-fume', 1, 'cc'],
+    ['piment-de-cayenne', 1, 'pincee'], ['vinaigre-de-xeres', 1, 'cs'], ['mayonnaise', 3, 'cs', 'opt'], ['sel', null]
+  ], [
+    'Préchauffer le four à 220 °C. Éplucher les pommes de terre, les couper en cubes de 2,5 cm, les sécher et les mélanger avec 3 cs d’huile d’olive et du sel.',
+    'Les étaler en une seule couche sur une plaque et les cuire 35 à 40 min en les retournant à mi-cuisson, jusqu’à ce qu’elles soient dorées et croustillantes.',
+    'Pendant ce temps, faire revenir l’ail haché 1 min à feu moyen dans le reste d’huile, ajouter le paprika et le piment, remuer 30 s, puis les tomates. Laisser mijoter 10 min à feu doux.',
+    'Ajouter le vinaigre, saler et mixer la sauce.',
+    'Servir les pommes de terre chaudes nappées de sauce brava, avec la mayonnaise à part.'
+  ]);
+
+  R('calamars-romaine', 'Calamars à la romaine', 'Espagnole', 'Entrée', 25, 'Facile', 4, [
+    ['calamars', 500, 'g'], ['farine', 100, 'g'], ['oeufs', 1], ['huile', 1, 'l'], ['citron', 1], ['mayonnaise', 4, 'cs', 'opt'],
+    ['sel', null]
+  ], [
+    'Rincer les anneaux de calamar et bien les sécher dans du papier absorbant.',
+    'Préparer la pâte : fouetter la farine, l’œuf, 12 cl d’eau très froide et une pincée de sel pour obtenir une pâte épaisse et lisse.',
+    'Chauffer l’huile à 180 °C. Tremper les anneaux dans la pâte et les frire par petites quantités 2 à 3 min, jusqu’à ce qu’ils soient dorés.',
+    'Égoutter sur du papier absorbant, saler et servir aussitôt avec des quartiers de citron et la mayonnaise.'
+  ]);
+
+  R('piquillos-farcis', 'Piquillos farcis au thon', 'Espagnole', 'Entrée', 30, 'Facile', 4, [
+    ['piquillos', 250, 'g'], ['thon-boite', 140, 'g'], ['fromage-frais-a-tartiner', 100, 'g'], ['echalotes', 1], ['persil', 0.25],
+    ['huile-olive', 2, 'cs'], ['piment', 1, 'pincee', 'opt'], ['poivre', null]
+  ], [
+    'Égoutter délicatement les piquillos (environ 12) en les gardant entiers.',
+    'Écraser le thon égoutté avec le fromage frais, l’échalote ciselée, le persil haché, le piment et du poivre.',
+    'Farcir chaque piquillo de cette préparation à la petite cuillère.',
+    'Les disposer sur un plat, arroser d’un filet d’huile d’olive et réserver 15 min au frais avant de servir.'
+  ]);
+
+  R('feuilles-vigne-farcies', 'Feuilles de vigne farcies', 'Libanaise', 'Entrée', 150, 'Moyenne', 6, [
+    ['feuilles-de-vigne', 250, 'g'], ['riz-rond', 200, 'g'], ['oignons', 1], ['tomates', 2], ['persil', 1], ['menthe', 0.5],
+    ['citron', 2], ['huile-olive', 8, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Rincer les feuilles de vigne en saumure (environ 40), les blanchir 2 min à l’eau bouillante et les égoutter. Rincer le riz.',
+    'Préparer la farce : mélanger le riz cru, l’oignon haché finement, les tomates épépinées en petits dés, le persil et la menthe ciselés, le jus d’un citron et 4 cs d’huile d’olive. Saler et poivrer.',
+    'Étaler une feuille, nervures vers le haut, déposer 1 cc de farce à la base, rabattre les côtés et rouler sans trop serrer (le riz gonfle). Tapisser le fond d’une cocotte avec les feuilles abîmées et y ranger les rouleaux bien serrés.',
+    'Arroser du reste d’huile et du jus du second citron, couvrir d’eau à hauteur et poser une assiette dessus pour les maintenir. Porter à frémissement puis cuire 1 h à 1 h 15 à feu doux, jusqu’à ce que le riz soit tendre et le liquide absorbé.',
+    'Laisser refroidir dans la cocotte. Servir tiède ou froid.'
+  ]);
+
+  R('muhammara', 'Muhammara (crème de poivrons aux noix)', 'Libanaise', 'Entrée', 15, 'Facile', 4, [
+    ['poivrons-grilles', 250, 'g'], ['cerneaux-de-noix', 100, 'g'], ['chapelure', 30, 'g'], ['melasse-de-grenade', 1, 'cs'], ['ail', 1],
+    ['cumin', 1, 'cc'], ['piment', 1, 'pincee'], ['huile-olive', 3, 'cs'], ['citron', 0.5], ['pains-pita', 4, 'pc', 'opt'], ['sel', null]
+  ], [
+    'Faire griller les noix 3 à 4 min à sec dans une poêle à feu moyen, en remuant.',
+    'Mixer les poivrons égouttés, les noix, la chapelure, la mélasse de grenade, l’ail, le cumin, le piment et le jus du demi-citron, en gardant une texture légèrement granuleuse.',
+    'Ajouter 2 cs d’huile d’olive, saler et goûter : la crème doit être à la fois fumée, acidulée et relevée.',
+    'Servir dans une assiette creuse, arrosée du reste d’huile, avec les pains pita.'
+  ]);
+
+  R('zaalouk', 'Zaalouk (salade d’aubergines)', 'Maghrébine', 'Entrée', 50, 'Facile', 4, [
+    ['aubergines', 2], ['tomates', 4], ['ail', 3], ['cumin', 1, 'cc'], ['paprika', 1, 'cc'], ['coriandre', 0.5], ['persil', 0.25],
+    ['huile-olive', 4, 'cs'], ['citron', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Éplucher les aubergines une bande sur deux, les couper en dés et les cuire 15 min à la vapeur.',
+    'Peler et concasser les tomates.',
+    'Dans une sauteuse, faire revenir l’ail haché 1 min dans l’huile à feu moyen, ajouter les tomates, le cumin et le paprika, et cuire 10 min.',
+    'Ajouter les aubergines, les écraser à la fourchette et cuire encore 15 à 20 min à feu doux en remuant, jusqu’à obtenir une compotée épaisse.',
+    'Ajouter la coriandre et le persil ciselés, le jus de citron, saler et poivrer. Servir tiède ou froid.'
+  ]);
+
+  R('spanakopita', 'Triangles épinards-feta (spanakopita)', 'Grecque', 'Entrée', 60, 'Moyenne', 6, [
+    ['pate-filo', 6], ['epinards', 500, 'g'], ['feta', 200, 'g'], ['oignons', 1], ['oeufs', 1], ['aneth', 0.5], ['beurre', 60, 'g'],
+    ['huile-olive', 1, 'cs'], ['muscade', 1, 'pincee', 'opt'], ['poivre', null]
+  ], [
+    'Préchauffer le four à 180 °C. Faire revenir l’oignon haché 5 min dans l’huile d’olive à feu moyen, ajouter les épinards et cuire jusqu’à ce qu’ils tombent et que leur eau s’évapore, environ 5 min.',
+    'Égoutter les épinards, les presser fortement et les hacher. Les mélanger avec la feta émiettée, l’œuf, l’aneth ciselé, la muscade et du poivre (la feta est déjà salée).',
+    'Faire fondre le beurre. Couper chaque feuille de filo en 3 bandes dans la longueur, en gardant les autres sous un linge humide. Badigeonner une bande de beurre, déposer 1 cs de farce en bas et replier en triangle jusqu’au bout.',
+    'Ranger les triangles sur une plaque couverte de papier cuisson et les badigeonner de beurre.',
+    'Cuire 20 à 25 min, jusqu’à ce qu’ils soient dorés et croustillants.'
+  ]);
+
+  R('gyozas-porc', 'Gyozas au porc', 'Japonaise', 'Entrée', 70, 'Moyenne', 4, [
+    ['feuilles-de-wonton', 30], ['porc-hache', 250, 'g'], ['chou-chinois', 0.25], ['ciboule', 0.5], ['gingembre', 10, 'g'], ['ail', 2],
+    ['sauce-soja', 4, 'cs'], ['huile-sesame', 1, 'cs'], ['vinaigre-riz', 2, 'cs'], ['huile', 2, 'cs'], ['huile-pimentee', 1, 'cc', 'opt'],
+    ['sel', null]
+  ], [
+    'Hacher finement le chou chinois (environ 200 g), le saler, le laisser dégorger 15 min puis le presser fortement dans un linge.',
+    'Mélanger le porc, le chou, la ciboule ciselée, le gingembre et l’ail râpés, 1 cs de sauce soja et l’huile de sésame.',
+    'Déposer 1 cc de farce au centre d’une feuille ronde à gyoza, humidifier le bord et refermer en demi-lune en formant des plis d’un côté.',
+    'Chauffer 1 cs d’huile dans une grande poêle antiadhésive à feu moyen-vif et y ranger la moitié des gyozas côté plat. Les dorer 2 min, verser 8 cl d’eau, couvrir aussitôt et cuire 5 min à feu moyen. Découvrir et laisser encore 1 min pour que le dessous redevienne croustillant. Recommencer avec le reste.',
+    'Servir chaud avec une sauce faite de 3 cs de sauce soja, du vinaigre de riz et de l’huile pimentée.'
+  ]);
+
+  R('salade-wakame', 'Salade de wakame', 'Japonaise', 'Entrée', 25, 'Facile', 4, [
+    ['algue-wakame-sechee', 10, 'g'], ['concombre', 1], ['vinaigre-riz', 4, 'cs'], ['sauce-soja', 1, 'cs'], ['sucre', 10, 'g'],
+    ['huile-sesame', 1, 'cc'], ['graines-sesame', 1, 'cs'], ['sel', null]
+  ], [
+    'Réhydrater le wakame 10 min dans un grand bol d’eau froide (il gonfle beaucoup). L’égoutter, le presser et couper les grands morceaux.',
+    'Couper le concombre en fines rondelles, le saler et le laisser dégorger 10 min, puis le presser.',
+    'Mélanger le vinaigre de riz, la sauce soja, le sucre jusqu’à ce qu’il soit dissous, et l’huile de sésame.',
+    'Faire griller les graines de sésame 2 min à sec dans une poêle. Mélanger wakame, concombre et sauce, parsemer de sésame et servir frais.'
+  ]);
+
+  R('bhajis-oignon', 'Bhajis à l’oignon', 'Indienne', 'Entrée', 35, 'Facile', 4, [
+    ['oignons', 3], ['farine-de-pois-chiche', 150, 'g'], ['cumin', 1, 'cc'], ['curcuma', 0.5, 'cc'], ['piment', 1, 'pincee'],
+    ['coriandre', 0.5], ['gingembre', 10, 'g'], ['huile', 1, 'l'], ['sel', null]
+  ], [
+    'Émincer finement les oignons, les saler et les laisser 10 min : ils rendent leur eau.',
+    'Ajouter la farine de pois chiche, le cumin, le curcuma, le piment, le gingembre râpé et la coriandre ciselée. Verser 8 à 10 cl d’eau petit à petit pour obtenir une pâte épaisse qui enrobe les oignons.',
+    'Chauffer l’huile à 175 °C. Y déposer des cuillerées de pâte et les frire 3 à 4 min en les retournant, jusqu’à ce qu’elles soient dorées et croustillantes.',
+    'Égoutter sur du papier absorbant et servir chaud.'
+  ]);
+
+  R('raita', 'Raïta au concombre', 'Indienne', 'Entrée', 15, 'Facile', 4, [
+    ['yaourt', 2], ['concombre', 0.5], ['cumin', 0.5, 'cc'], ['menthe', 0.25], ['piment', 1, 'pincee', 'opt'], ['sel', null]
+  ], [
+    'Râper le demi-concombre et le presser dans les mains pour retirer son eau.',
+    'Faire griller le cumin 30 s à sec dans une petite poêle à feu doux, jusqu’à ce qu’il embaume.',
+    'Mélanger les yaourts, le concombre, la menthe ciselée, le cumin, le piment et le sel.',
+    'Servir bien frais.'
+  ]);
+
+  R('tempura-crevettes', 'Tempura de crevettes', 'Japonaise', 'Entrée', 30, 'Moyenne', 4, [
+    ['gambas', 16], ['farine', 100, 'g'], ['maizena', 30, 'g'], ['oeufs', 1], ['huile', 1, 'l'], ['sauce-soja', 4, 'cs'],
+    ['mirin', 2, 'cs', 'opt'], ['sel', null]
+  ], [
+    'Décortiquer les gambas en gardant la queue, retirer le boyau noir et inciser 3 fois le ventre pour qu’elles ne se recourbent pas. Bien les sécher.',
+    'Chauffer l’huile à 180 °C.',
+    'Au dernier moment, battre l’œuf avec 20 cl d’eau glacée, ajouter la farine et la maïzena tamisées et mélanger à peine avec des baguettes : quelques grumeaux doivent rester.',
+    'Tremper les gambas une à une dans la pâte en les tenant par la queue et les frire 2 min, jusqu’à ce qu’elles soient légèrement blondes et croustillantes. Égoutter sur du papier absorbant et saler.',
+    'Servir aussitôt avec une sauce faite de la sauce soja, du mirin et de 2 cs d’eau.'
+  ]);
+
+  R('ceviche', 'Ceviche de poisson', 'Péruvienne', 'Entrée', 35, 'Facile', 4, [
+    ['cabillaud', 400, 'g'], ['citron-vert', 5], ['oignon-rouge', 1], ['piments-frais', 1], ['coriandre', 0.5], ['mais-doux', 100, 'g', 'opt'],
+    ['sel', null]
+  ], [
+    'Utiliser un poisson blanc extra-frais (dos de cabillaud, bar ou dorade). Retirer peau et arêtes et le couper en dés de 1,5 cm. Réserver au frais.',
+    'Émincer très finement l’oignon rouge et le rincer à l’eau froide. Épépiner et hacher le piment. Presser les citrons verts.',
+    'Saler le poisson, puis l’arroser du jus de citron vert. Ajouter le piment et l’oignon, mélanger et laisser mariner 10 à 15 min au frais : le poisson devient opaque à l’extérieur.',
+    'Ajouter la coriandre ciselée et servir aussitôt, bien froid, avec le maïs.'
+  ]);
+
+  R('nachos-gratines', 'Nachos gratinés', 'Mexicaine', 'Entrée', 20, 'Facile', 4, [
+    ['tortilla-chips', 200, 'g'], ['cheddar', 8], ['jalapenos', 40, 'g'], ['sauce-salsa', 4, 'cs'], ['creme-fraiche', 10, 'cl'],
+    ['avocat', 1, 'pc', 'opt'], ['coriandre', 0.25, 'pc', 'opt']
+  ], [
+    'Préchauffer le four à 200 °C.',
+    'Étaler les tortilla chips dans un plat allant au four, en couche épaisse. Parsemer du cheddar coupé en petits morceaux et des jalapeños émincés.',
+    'Enfourner 5 à 7 min, jusqu’à ce que le fromage soit fondu.',
+    'Garnir de sauce salsa, de crème fraîche, de dés d’avocat et de coriandre ciselée. Servir immédiatement.'
+  ]);
+
+  /* ───────────── Plats ───────────── */
+
+  R('aiguillettes-canard-orange', 'Aiguillettes de canard à l’orange', 'Française', 'Plat', 30, 'Facile', 4, [
+    ['aiguillettes-de-canard', 600, 'g'], ['oranges', 3], ['miel', 1, 'cs'], ['vinaigre', 1, 'cs'], ['fond-de-veau', 10, 'g', 'opt'],
+    ['beurre', 20, 'g'], ['liqueur-d-orange', 2, 'cl', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Prélever le zeste d’une orange bien lavée, le tailler en fine julienne et le blanchir 1 min à l’eau bouillante. Presser les 3 oranges.',
+    'Sécher les aiguillettes, saler et poivrer. Chauffer le beurre dans une grande poêle à feu vif et saisir les aiguillettes en deux fois, 1 min 30 à 2 min par face : elles doivent être dorées et rosées à cœur. Réserver au chaud sous une feuille d’aluminium.',
+    'Dans la même poêle, à feu moyen, faire caraméliser le miel 1 min, puis déglacer au vinaigre.',
+    'Ajouter le jus d’orange avec le fond de veau délayé dedans et les zestes. Faire réduire 5 à 6 min à feu vif, jusqu’à ce que la sauce soit sirupeuse. Ajouter la liqueur et rectifier l’assaisonnement.',
+    'Remettre les aiguillettes et leur jus 1 min dans la sauce pour les enrober, sans faire bouillir. Servir aussitôt.'
+  ]);
+
+  R('aiguillettes-canard-miel', 'Aiguillettes de canard au miel et au balsamique', 'Française', 'Plat', 25, 'Facile', 4, [
+    ['aiguillettes-de-canard', 600, 'g'], ['miel', 2, 'cs'], ['vinaigre-balsamique', 3, 'cs'], ['echalotes', 2], ['sauce-soja', 1, 'cs'],
+    ['huile', 1, 'cs'], ['thym', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Ciseler les échalotes. Sécher les aiguillettes et les saler légèrement.',
+    'Chauffer l’huile dans une grande poêle à feu vif et saisir les aiguillettes en deux fois, 1 min 30 par face. Réserver.',
+    'Baisser à feu moyen et faire fondre les échalotes 2 min dans la graisse restante.',
+    'Ajouter le miel et le laisser mousser 30 s, puis déglacer avec le vinaigre balsamique, la sauce soja et 3 cs d’eau. Ajouter le thym et laisser réduire 2 à 3 min, jusqu’à ce que la sauce soit sirupeuse.',
+    'Remettre les aiguillettes 1 min en les retournant pour bien les laquer. Poivrer et servir.'
+  ]);
+
+  R('garbure', 'Garbure', 'Française', 'Plat', 180, 'Moyenne', 6, [
+    ['confit-canard', 4], ['haricots-blancs-secs', 250, 'g'], ['chou', 0.5], ['pommes-de-terre', 500, 'g'], ['carottes', 3], ['navets', 2],
+    ['poireaux', 2], ['oignons', 1], ['ail', 3], ['bouquet-garni', 1], ['piment', 1, 'pincee'], ['pain', 6, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'La veille (non compté dans le temps de la recette), faire tremper les haricots 12 h dans un grand volume d’eau froide.',
+    'Les égoutter et les mettre dans un grand faitout avec 3 L d’eau froide, l’oignon émincé et le bouquet garni. Porter à ébullition, écumer et cuire 1 h à feu doux, sans saler.',
+    'Pendant ce temps, faire chauffer les cuisses confites 5 min à feu doux dans une poêle pour faire fondre leur graisse, et en garder 2 cs. Éplucher et couper les carottes, les navets et les pommes de terre en gros dés, les poireaux en rondelles et le chou en lanières.',
+    'Faire suer carottes, navets, poireaux et ail haché 5 min à feu moyen dans la graisse de canard, puis les ajouter aux haricots avec les pommes de terre et le chou. Saler, poivrer, ajouter le piment et cuire 45 min à frémissement.',
+    'Ajouter les cuisses de canard et cuire encore 20 min : la soupe doit être épaisse et les haricots fondants. Servir dans des assiettes creuses sur une tranche de pain grillée, avec le canard.'
+  ]);
+
+  R('filet-mignon-croute', 'Filet mignon en croûte', 'Française', 'Plat', 90, 'Moyenne', 6, [
+    ['filet-mignon-de-porc', 800, 'g'], ['pate-feuilletee', 2], ['champignons', 250, 'g'], ['echalotes', 2], ['jambon-cru', 6],
+    ['moutarde', 2, 'cs'], ['beurre', 20, 'g'], ['huile', 1, 'cs'], ['oeufs', 1], ['thym', 1, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Parer les deux filets mignons en retirant la peau argentée. Saler, poivrer et les saisir 6 à 8 min dans l’huile à feu vif, sur toutes les faces. Laisser refroidir 15 min, puis les badigeonner de moutarde.',
+    'Préparer la duxelles : hacher très finement les champignons et les échalotes, les cuire dans le beurre à feu moyen environ 10 min, jusqu’à ce que toute l’eau soit évaporée. Ajouter le thym, saler, poivrer et laisser refroidir.',
+    'Préchauffer le four à 200 °C. Sur chaque pâte, disposer 3 tranches de jambon cru qui se chevauchent, étaler la duxelles et poser un filet. Enrouler le jambon autour, puis la pâte, souder les bords à l’œuf battu et placer la soudure dessous.',
+    'Dorer à l’œuf battu, dessiner des croisillons avec la pointe d’un couteau et percer une petite cheminée.',
+    'Cuire 30 à 35 min, jusqu’à ce que la pâte soit bien dorée. Laisser reposer 10 min avant de trancher.'
+  ]);
+
+  R('joues-porc-cidre', 'Joues de porc au cidre', 'Française', 'Plat', 150, 'Facile', 4, [
+    ['joues-de-porc', 800, 'g'], ['cidre', 50, 'cl'], ['oignons', 2], ['carottes', 2], ['pommes', 2], ['lardons', 100, 'g', 'opt'],
+    ['farine', 15, 'g'], ['beurre', 20, 'g'], ['huile', 1, 'cs'], ['thym', 2], ['laurier', 1], ['creme-fraiche', 10, 'cl', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Parer les joues, saler et poivrer. Dans une cocotte, chauffer l’huile et le beurre à feu vif et dorer les joues 2 min par face. Réserver.',
+    'Baisser à feu moyen et faire revenir 5 min les lardons, les oignons émincés et les carottes en rondelles. Saupoudrer de farine et remuer 1 min.',
+    'Remettre les joues, verser le cidre (compléter d’eau pour les couvrir presque), ajouter le thym et le laurier. Porter à ébullition, couvrir et cuire 2 h à feu très doux : la viande doit se couper à la fourchette.',
+    'Ajouter les pommes en quartiers épais 20 min avant la fin.',
+    'Retirer joues et pommes, faire réduire la sauce 5 min à feu vif, ajouter la crème et rectifier l’assaisonnement. Napper et servir.'
+  ]);
+
+  R('roti-veau-cocotte', 'Rôti de veau en cocotte', 'Française', 'Plat', 120, 'Facile', 6, [
+    ['roti-de-veau', 1200, 'g'], ['carottes', 4], ['oignons', 2], ['ail', 3], ['vin-blanc', 15, 'cl'], ['beurre', 30, 'g'], ['huile', 1, 'cs'],
+    ['thym', 2], ['laurier', 1], ['sel', null], ['poivre', null]
+  ], [
+    'Sortir le rôti du réfrigérateur 30 min avant. Le saler et le poivrer.',
+    'Dans une cocotte, chauffer le beurre et l’huile à feu moyen-vif et dorer le rôti sur toutes ses faces, environ 10 min.',
+    'Ajouter les oignons en quartiers, les carottes en rondelles épaisses, l’ail en chemise, le thym et le laurier, et remuer 3 min.',
+    'Verser le vin blanc en grattant les sucs, puis 10 cl d’eau. Couvrir et cuire 1 h 10 à feu doux, en retournant le rôti à mi-cuisson et en ajoutant un peu d’eau si nécessaire.',
+    'Laisser reposer 10 min sous une feuille d’aluminium, trancher et servir avec les légumes et le jus.'
+  ]);
+
+  R('foie-veau-lyonnaise', 'Foie de veau à la lyonnaise', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['foie-de-veau', 4], ['oignons', 4], ['beurre', 50, 'g'], ['farine', 20, 'g'], ['vinaigre', 2, 'cs'], ['persil', 0.25],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Émincer les oignons et les faire fondre dans 30 g de beurre à feu moyen-doux pendant 20 min en remuant, jusqu’à ce qu’ils soient bien dorés et confits. Saler et réserver.',
+    'Fariner légèrement les tranches de foie et les tapoter pour retirer l’excédent.',
+    'Chauffer le reste du beurre dans une poêle à feu vif jusqu’à ce qu’il mousse et cuire le foie 1 min 30 à 2 min par face : il doit rester rosé à cœur. Saler, poivrer et dresser.',
+    'Remettre les oignons dans la poêle, déglacer au vinaigre 30 s en remuant, verser sur le foie et parsemer de persil ciselé.'
+  ]);
+
+  R('entrecote-bordelaise', 'Entrecôte à la bordelaise', 'Française', 'Plat', 60, 'Moyenne', 2, [
+    ['entrecotes', 2], ['os-a-moelle', 2], ['echalotes', 3], ['vin-rouge', 25, 'cl'], ['fond-de-veau', 15, 'g'], ['beurre', 40, 'g'],
+    ['thym', 1], ['laurier', 1], ['huile', 1, 'cs'], ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Sortir les entrecôtes du réfrigérateur 30 min avant. Faire tremper les os à moelle 10 min dans l’eau tiède, puis pousser la moelle hors de l’os avec le doigt. La couper en rondelles de 1 cm et la pocher 2 min dans l’eau salée frémissante. Égoutter.',
+    'Préparer la sauce : faire fondre les échalotes ciselées dans 10 g de beurre 3 min à feu doux. Ajouter le vin, le thym et le laurier et faire réduire des trois quarts à feu moyen, environ 10 min.',
+    'Ajouter le fond de veau délayé dans 15 cl d’eau et réduire 5 min, jusqu’à ce que la sauce soit nappante. Retirer les herbes et, hors du feu, incorporer 20 g de beurre froid en dés. Rectifier l’assaisonnement.',
+    'Chauffer l’huile dans une poêle très chaude et cuire les entrecôtes 2 à 3 min par face pour une cuisson saignante, en les arrosant en fin de cuisson avec le reste de beurre. Saler, poivrer et laisser reposer 5 min.',
+    'Dresser, poser les rondelles de moelle sur la viande, napper de sauce et parsemer de persil.'
+  ]);
+
+  R('pintade-chou', 'Pintade au chou', 'Française', 'Plat', 110, 'Moyenne', 4, [
+    ['pintade', 1], ['chou', 1], ['lardons', 150, 'g'], ['carottes', 2], ['oignons', 1], ['vin-blanc', 15, 'cl'], ['bouillon', 1],
+    ['beurre', 30, 'g'], ['thym', 2], ['laurier', 1], ['baies-de-genievre', 1, 'cc', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Couper la pintade en 4 morceaux. Effeuiller le chou vert, retirer les grosses côtes, blanchir les feuilles 5 min à l’eau bouillante salée, les égoutter et les émincer grossièrement.',
+    'Dans une grande cocotte, dorer les morceaux de pintade 10 min dans le beurre à feu moyen-vif. Saler, poivrer et réserver.',
+    'Faire revenir 5 min les lardons, l’oignon émincé et les carottes en rondelles.',
+    'Ajouter le chou, le thym, le laurier et le genièvre, mélanger, puis déposer la pintade par-dessus. Verser le vin blanc et le bouillon délayé dans 20 cl d’eau chaude.',
+    'Couvrir et cuire 1 h à feu doux : la chair doit se détacher facilement de l’os. Rectifier l’assaisonnement et servir la pintade sur le chou.'
+  ]);
+
+  R('cailles-raisins', 'Cailles aux raisins', 'Française', 'Plat', 50, 'Moyenne', 4, [
+    ['cailles', 8], ['raisin', 400, 'g'], ['cognac', 3, 'cl'], ['echalotes', 2], ['beurre', 40, 'g'], ['vin-blanc', 10, 'cl'],
+    ['fond-de-veau', 10, 'g', 'opt'], ['sel', null], ['poivre', null]
+  ], [
+    'Saler et poivrer les cailles à l’intérieur et à l’extérieur. Laver et égrener le raisin (le peler et l’épépiner si les grains sont gros).',
+    'Dans une cocotte, dorer les cailles 8 à 10 min dans 30 g de beurre à feu moyen, en les retournant.',
+    'Ajouter les échalotes ciselées et remuer 2 min. Verser le cognac chauffé et flamber, hotte éteinte.',
+    'Ajouter le vin blanc et le fond de veau délayé dans 10 cl d’eau. Couvrir et cuire 15 min à feu doux, puis ajouter le raisin et cuire encore 5 min.',
+    'Retirer les cailles, faire réduire la sauce 3 min à feu vif et incorporer le reste du beurre. Napper les cailles et servir.'
+  ]);
+
+  R('raie-beurre-noir', 'Raie au beurre noir et aux câpres', 'Française', 'Plat', 35, 'Facile', 4, [
+    ['ailes-de-raie', 4], ['vinaigre', 8, 'cs'], ['oignons', 1], ['thym', 1], ['laurier', 1], ['beurre', 100, 'g'], ['capres', 2, 'cs'],
+    ['persil', 0.25], ['sel', null], ['poivre', null]
+  ], [
+    'Préparer un court-bouillon : 2 L d’eau, 6 cs de vinaigre, l’oignon émincé, le thym, le laurier, du sel et du poivre. Laisser frémir 10 min.',
+    'Y plonger les ailes de raie rincées et les pocher 10 à 12 min à tout petit frémissement, jusqu’à ce que la chair se détache des cartilages.',
+    'Les égoutter, retirer la peau des deux côtés et les dresser dans des assiettes chaudes. Parsemer de câpres et de persil ciselé.',
+    'Dans une poêle, cuire le beurre à feu moyen 3 à 4 min, jusqu’à ce qu’il mousse et prenne une couleur noisette foncée, sans brûler. Le verser aussitôt sur la raie.',
+    'Déglacer la poêle chaude avec les 2 cs de vinaigre restantes (attention aux projections) et en arroser le poisson. Servir aussitôt.'
+  ]);
+
+  R('truites-amandes', 'Truites aux amandes', 'Française', 'Plat', 30, 'Facile', 4, [
+    ['truites', 4], ['amandes-effilees', 60, 'g'], ['beurre', 80, 'g'], ['farine', 40, 'g'], ['citron', 1], ['persil', 0.25],
+    ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Rincer et sécher les truites vidées. Les saler et les poivrer à l’intérieur et à l’extérieur, puis les fariner et les tapoter.',
+    'Dans une grande poêle, chauffer 40 g de beurre et l’huile à feu moyen et cuire les truites 5 à 6 min par face, jusqu’à ce que la peau soit dorée et la chair se détache de l’arête. Les dresser au chaud.',
+    'Essuyer la poêle, y faire fondre le reste du beurre et dorer les amandes 2 à 3 min à feu moyen en remuant.',
+    'Ajouter le jus d’un demi-citron et le persil ciselé, napper les truites et servir avec le reste du citron en quartiers.'
+  ]);
+
+  R('bouillabaisse', 'Bouillabaisse', 'Française', 'Plat', 120, 'Difficile', 6, [
+    ['filets-de-rouget', 6], ['lotte', 500, 'g'], ['merlan', 400, 'g'], ['dorade', 1], ['fumet-de-poisson', 20, 'g'],
+    ['pommes-de-terre', 800, 'g'], ['tomates', 4], ['oignons', 2], ['poireaux', 1], ['fenouil', 1], ['ail', 4], ['safran', 2, 'pincee'],
+    ['pastis', 3, 'cl'], ['huile-olive', 6, 'cs'], ['thym', 2], ['laurier', 1], ['rouille', 6, 'cs'], ['baguette', 1],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Couper la lotte en tronçons de 4 cm, le merlan en morceaux de 5 cm et la dorade écaillée et vidée en 4 tronçons. Les arroser de 2 cs d’huile, d’une pincée de safran et du pastis, et réserver 30 min au frais.',
+    'Dans une grande marmite, chauffer le reste de l’huile à feu moyen et faire suer 8 min les oignons, le poireau et le fenouil émincés avec 3 gousses d’ail écrasées. Ajouter les tomates pelées et concassées, le thym, le laurier et le reste du safran, et cuire 3 min.',
+    'Verser 2 L d’eau chaude dans laquelle on a dissous le fumet. Porter à ébullition, ajouter les pommes de terre en rondelles de 1,5 cm et cuire 15 min à gros bouillons, pour que l’huile s’émulsionne dans le bouillon.',
+    'Ajouter d’abord la lotte et la dorade, cuire 5 min à frémissement, puis le merlan et les rougets, et cuire encore 3 à 5 min, jusqu’à ce que la chair soit juste nacrée. Saler et poivrer.',
+    'Griller les tranches de baguette et les frotter avec la dernière gousse d’ail. Servir le bouillon brûlant sur les croûtons tartinés de rouille, puis les poissons et les pommes de terre à part.'
+  ]);
+
+  R('gratin-quenelles', 'Gratin de quenelles', 'Française', 'Plat', 50, 'Facile', 4, [
+    ['quenelles', 8], ['beurre', 50, 'g'], ['farine', 40, 'g'], ['lait', 50, 'cl'], ['champignons', 200, 'g'], ['fromage-rape', 60, 'g'],
+    ['muscade', 1, 'pincee'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 200 °C.',
+    'Préparer une béchamel : faire fondre 40 g de beurre, ajouter la farine et remuer 1 min, puis verser le lait froid en fouettant. Cuire 5 à 8 min à feu moyen en remuant, jusqu’à ce qu’elle nappe. Assaisonner de muscade, de sel et de poivre.',
+    'Faire sauter les champignons émincés 5 min à feu vif dans le reste du beurre et les ajouter à la béchamel.',
+    'Disposer les quenelles bien espacées dans un plat beurré (elles doublent de volume), napper de sauce et parsemer de fromage.',
+    'Cuire 25 à 30 min, jusqu’à ce que les quenelles soient gonflées et le dessus doré. Servir aussitôt, avant qu’elles ne retombent.'
+  ]);
+
+  R('saucisson-chaud', 'Saucisson chaud, pommes à l’huile', 'Française', 'Plat', 50, 'Facile', 4, [
+    ['saucisson-a-cuire', 1], ['pommes-de-terre', 1000, 'g'], ['echalotes', 2], ['vin-blanc', 5, 'cl'], ['vinaigre', 2, 'cs'],
+    ['moutarde', 1, 'cs'], ['huile', 5, 'cs'], ['persil', 0.25], ['sel', null], ['poivre', null]
+  ], [
+    'Plonger le saucisson, sans le piquer, dans une grande casserole d’eau froide. Porter à frémissement et le pocher 35 à 40 min sans jamais laisser bouillir, pour qu’il n’éclate pas.',
+    'Pendant ce temps, cuire les pommes de terre à chair ferme avec leur peau dans l’eau froide salée, 20 à 25 min après l’ébullition.',
+    'Préparer la vinaigrette avec la moutarde, le vinaigre, le sel, le poivre et l’huile. Ajouter les échalotes ciselées.',
+    'Éplucher les pommes de terre chaudes, les couper en rondelles épaisses, les arroser d’abord du vin blanc (elles l’absorbent), puis de la vinaigrette et du persil ciselé.',
+    'Trancher le saucisson en rondelles épaisses et le servir chaud sur les pommes de terre tièdes.'
+  ]);
+
+  R('cotes-veau-morilles', 'Côtes de veau aux morilles', 'Française', 'Plat', 60, 'Moyenne', 4, [
+    ['cotes-de-veau', 4], ['morilles-sechees', 30, 'g'], ['echalotes', 2], ['vin-blanc', 10, 'cl'], ['creme-fraiche', 25, 'cl'],
+    ['beurre', 40, 'g'], ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Réhydrater les morilles 30 min dans 30 cl d’eau tiède. Les égoutter en gardant l’eau, que l’on filtre dans un filtre à café. Rincer les morilles pour éliminer le sable et couper les plus grosses. Sortir les côtes du réfrigérateur.',
+    'Dans une grande poêle, chauffer l’huile et 20 g de beurre à feu moyen-vif et cuire les côtes 5 à 6 min par face en les arrosant, jusqu’à ce qu’elles soient dorées et rosées à cœur. Saler, poivrer et réserver au chaud.',
+    'Dans la même poêle, faire fondre les échalotes ciselées 2 min dans le reste du beurre, ajouter les morilles et cuire 3 min à feu moyen.',
+    'Déglacer au vin blanc et réduire de moitié, ajouter 10 cl d’eau de trempage filtrée et réduire 3 min. Verser la crème et cuire 5 min, jusqu’à ce que la sauce nappe.',
+    'Remettre les côtes et leur jus 2 min dans la sauce, rectifier l’assaisonnement et servir.'
+  ]);
+
+  R('souris-agneau', 'Souris d’agneau confites', 'Française', 'Plat', 200, 'Facile', 4, [
+    ['souris-d-agneau', 4], ['ail', 8], ['oignons', 2], ['carottes', 2], ['tomates-concassees', 200, 'g'], ['vin-blanc', 20, 'cl'],
+    ['romarin-frais', 2], ['thym', 3], ['huile-olive', 3, 'cs'], ['sel', null], ['poivre', null]
+  ], [
+    'Préchauffer le four à 150 °C.',
+    'Dans une cocotte en fonte allant au four, dorer les souris 10 min dans l’huile à feu vif, sur toutes les faces. Saler, poivrer et réserver.',
+    'Faire revenir 5 min à feu moyen les oignons émincés et les carottes en rondelles. Ajouter l’ail en chemise, les tomates, le vin blanc, le romarin et le thym, puis remettre les souris et ajouter 20 cl d’eau.',
+    'Couvrir et cuire 3 h au four en arrosant les souris toutes les 45 min : la viande doit se détacher de l’os.',
+    'Si le jus est trop abondant, le faire réduire quelques minutes à feu vif. Servir les souris nappées de leur jus.'
+  ]);
+
+  R('onglet-echalotes', 'Onglet à l’échalote', 'Française', 'Plat', 45, 'Facile', 4, [
+    ['onglet', 700, 'g'], ['echalotes', 6], ['beurre', 50, 'g'], ['vin-rouge', 10, 'cl'], ['huile', 1, 'cs'], ['persil', 0.25, 'pc', 'opt'],
+    ['sel', null], ['poivre', null]
+  ], [
+    'Sortir l’onglet du réfrigérateur 30 min avant. Retirer le nerf central, ce qui le sépare en deux morceaux.',
+    'Ciseler les échalotes et les faire fondre 10 min dans 30 g de beurre à feu doux, sans les colorer, avec une pincée de sel. Verser le vin rouge et faire réduire presque à sec, environ 5 min, à feu moyen. Réserver au chaud.',
+    'Chauffer l’huile et le reste du beurre dans une poêle très chaude et saisir l’onglet 2 à 3 min par face : il se mange saignant, sinon il durcit.',
+    'Saler, poivrer et laisser reposer 5 min. Trancher dans le sens contraire des fibres, napper d’échalotes et parsemer de persil.'
+  ]);
+
+  R('linguine-vongole', 'Linguine aux palourdes', 'Italienne', 'Plat', 100, 'Moyenne', 4, [
+    ['linguine', 400, 'g'], ['palourdes', 1000, 'g'], ['ail', 3], ['vin-blanc', 10, 'cl'], ['huile-olive', 4, 'cs'], ['persil', 0.5],
+    ['piment', 1, 'pincee'], ['sel', null], ['poivre', null]
+  ], [
+    'Faire dégorger les palourdes 1 h dans de l’eau froide salée (35 g de sel par litre), puis les rincer. Jeter celles qui sont cassées ou qui restent ouvertes quand on les tapote.',
+    'Cuire les linguine dans une grande casserole d’eau bouillante salée, 2 min de moins que le temps indiqué.',
+    'Pendant ce temps, dans une grande sauteuse, chauffer l’huile à feu moyen avec l’ail émincé et le piment 1 min, sans colorer. Ajouter les palourdes et le vin blanc, couvrir et cuire 3 à 4 min à feu vif, jusqu’à ce qu’elles s’ouvrent. Jeter celles qui restent fermées.',
+    'Égoutter les pâtes en gardant une louche d’eau de cuisson et les terminer 2 min dans la sauteuse avec le jus des palourdes, en remuant et en ajoutant un peu d’eau de cuisson, jusqu’à ce que la sauce les enrobe.',
+    'Ajouter le persil ciselé, poivrer et arroser d’un filet d’huile d’olive. Servir aussitôt.'
+  ]);
+
+  R('udon-dashi', 'Udon au bouillon dashi', 'Japonaise', 'Plat', 20, 'Facile', 4, [
+    ['nouilles-udon', 800, 'g'], ['dashi-en-poudre', 2, 'cc'], ['sauce-soja', 4, 'cs'], ['mirin', 3, 'cs'], ['ciboule', 0.5],
+    ['algue-wakame-sechee', 5, 'g'], ['oeufs', 4, 'pc', 'opt']
+  ], [
+    'Réhydrater le wakame 5 min dans l’eau froide et l’égoutter.',
+    'Porter 1,2 L d’eau à ébullition, y dissoudre le dashi, ajouter la sauce soja et le mirin et laisser frémir 2 min à feu doux.',
+    'Si vous le souhaitez, casser les œufs dans le bouillon frémissant et les pocher 3 min.',
+    'Plonger les udon précuites 1 à 2 min dans l’eau bouillante pour les détacher, puis les égoutter et les répartir dans des bols.',
+    'Verser le bouillon brûlant, ajouter les œufs, le wakame et la ciboule ciselée. Servir aussitôt.'
+  ]);
+
+  R('couscous-royal', 'Couscous royal', 'Maghrébine', 'Plat', 140, 'Moyenne', 8, [
+    ['agneau', 800, 'g'], ['cuisses-poulet', 4], ['merguez', 8], ['semoule', 750, 'g'], ['carottes', 4], ['navets', 3], ['courgettes', 3],
+    ['oignons', 2], ['tomates', 3], ['concentre-tomate', 2, 'cs'], ['pois-chiches', 400, 'g'], ['epices-a-couscous', 2, 'cc'],
+    ['harissa', 1, 'cc'], ['huile-olive', 4, 'cs'], ['beurre', 50, 'g'], ['coriandre', 0.5], ['sel', null], ['poivre', null]
+  ], [
+    'Dans un grand faitout, chauffer 2 cs d’huile à feu moyen-vif et dorer 10 min l’agneau en morceaux et les cuisses de poulet coupées en deux, puis ajouter les oignons émincés et cuire 5 min.',
+    'Ajouter les épices, le concentré et les tomates en quartiers, remuer 2 min, puis couvrir de 2,5 L d’eau. Saler, poivrer, ajouter la coriandre en bouquet ficelé. Porter à ébullition, écumer et cuire 45 min à frémissement, à couvert.',
+    'Ajouter les carottes et les navets en gros tronçons et cuire 20 min, puis les courgettes en tronçons et les pois chiches égouttés, et cuire encore 20 min.',
+    'Préparer la semoule : l’arroser de 75 cl d’eau tiède salée avec le reste d’huile, couvrir 10 min, égrainer à la fourchette, puis la réchauffer 5 min à la vapeur au-dessus du bouillon et l’égrainer avec le beurre.',
+    'Griller les merguez 8 à 10 min à la poêle à feu moyen. Délayer la harissa dans une louche de bouillon pour ceux qui aiment relevé. Servir semoule, viandes, légumes et bouillon à part.'
+  ]);
+
+  /* ───────────── Desserts français ───────────── */
+
+  R('mille-feuille', 'Mille-feuille', 'Française', 'Dessert', 210, 'Difficile', 6, [
+    ['pate-feuilletee', 2], ['lait', 50, 'cl'], ['oeufs', 4], ['sucre', 100, 'g'], ['maizena', 40, 'g'], ['gousses-de-vanille', 1],
+    ['beurre', 30, 'g'], ['sucre-glace', 150, 'g'], ['chocolat-noir', 20, 'g', 'opt']
+  ], [
+    'Préparer la crème pâtissière : chauffer le lait avec la gousse de vanille fendue et grattée. Fouetter les 4 jaunes avec le sucre, puis ajouter la maïzena. Verser le lait chaud dessus en fouettant, remettre dans la casserole et cuire à feu moyen en fouettant, jusqu’à épaississement, puis encore 1 min. Hors du feu, ajouter le beurre, filmer au contact et réfrigérer 2 h.',
+    'Préchauffer le four à 200 °C. Poser chaque pâte sur une plaque, la piquer, la couvrir de papier cuisson et d’une seconde plaque pour l’empêcher de gonfler. Cuire 20 à 25 min, jusqu’à ce qu’elle soit bien dorée, puis laisser refroidir.',
+    'Découper dans les abaisses 3 rectangles identiques d’environ 8 × 18 cm.',
+    'Préparer le glaçage : mélanger le sucre glace avec 2 cs d’eau pour obtenir une pâte épaisse et en napper un rectangle. Faire des traits de chocolat fondu et les étirer avec la pointe d’un couteau pour marbrer. Laisser prendre.',
+    'Lisser la crème au fouet et la mettre en poche. Monter : un rectangle, une couche de crème, un deuxième rectangle, une couche de crème, puis le rectangle glacé. Réfrigérer 30 min et couper au couteau-scie.'
+  ]);
+
+  R('paris-brest', 'Paris-Brest', 'Française', 'Dessert', 200, 'Difficile', 8, [
+    ['farine', 150, 'g'], ['beurre', 250, 'g'], ['oeufs', 6], ['lait', 25, 'cl'], ['sucre', 55, 'g'], ['maizena', 25, 'g'],
+    ['pralin', 150, 'g'], ['amandes-effilees', 30, 'g'], ['sucre-glace', 10, 'g', 'opt'], ['sel', 1, 'pincee']
+  ], [
+    'Préparer la crème pâtissière : chauffer le lait. Fouetter 2 jaunes avec 50 g de sucre et la maïzena, verser le lait chaud, puis cuire à feu moyen en fouettant jusqu’à épaississement et 1 min de plus. Filmer au contact et laisser refroidir complètement.',
+    'Préchauffer le four à 180 °C. Pâte à choux : porter à ébullition 25 cl d’eau, 100 g de beurre, le sel et 5 g de sucre. Hors du feu, verser la farine d’un coup et mélanger vivement, puis dessécher 1 à 2 min à feu moyen jusqu’à ce que la pâte se détache. Laisser tiédir 5 min et incorporer 4 œufs battus petit à petit : la pâte doit être lisse, brillante et retomber en ruban.',
+    'Sur une plaque couverte de papier cuisson, pocher avec une douille cannelée une couronne de 22 cm : deux boudins côte à côte et un troisième par-dessus. Dorer avec un peu d’œuf battu, parsemer d’amandes effilées.',
+    'Cuire 40 à 45 min sans ouvrir le four, jusqu’à ce que la couronne soit bien dorée et sèche. Laisser refroidir sur une grille.',
+    'Crème mousseline : fouetter 150 g de beurre mou avec le praliné, puis ajouter la crème pâtissière à la même température et fouetter 5 min jusqu’à ce qu’elle soit légère.',
+    'Couper la couronne en deux horizontalement, garnir généreusement de crème à la douille cannelée, replacer le chapeau et saupoudrer de sucre glace. Réfrigérer 1 h et sortir 20 min avant de servir.'
+  ]);
+
+  R('profiteroles', 'Profiteroles au chocolat', 'Française', 'Dessert', 90, 'Moyenne', 6, [
+    ['farine', 150, 'g'], ['beurre', 100, 'g'], ['oeufs', 4], ['sucre', 5, 'g'], ['sel', 1, 'pincee'], ['glace-a-la-vanille', 0.75, 'l'],
+    ['chocolat-noir', 150, 'g'], ['creme-liquide', 20, 'cl'], ['amandes-effilees', 30, 'g', 'opt']
+  ], [
+    'Préchauffer le four à 180 °C. Porter à ébullition 25 cl d’eau avec le beurre, le sucre et le sel. Hors du feu, verser la farine d’un coup et mélanger vivement, puis dessécher la pâte 1 à 2 min à feu moyen.',
+    'Laisser tiédir 5 min et incorporer les œufs battus petit à petit, jusqu’à obtenir une pâte lisse et brillante qui retombe en ruban.',
+    'Pocher une trentaine de petits choux de 3 cm bien espacés sur une plaque couverte de papier cuisson. Cuire 25 à 30 min sans ouvrir le four, jusqu’à ce qu’ils soient dorés et secs. Laisser refroidir.',
+    'Préparer la sauce : porter la crème à ébullition et la verser sur le chocolat haché. Attendre 1 min et lisser.',
+    'Couper les choux en deux, garnir d’une boule de glace et refermer. Napper de sauce chaude et parsemer d’amandes grillées.'
+  ]);
+
+  R('chouquettes', 'Chouquettes', 'Française', 'Dessert', 45, 'Moyenne', 6, [
+    ['farine', 150, 'g'], ['beurre', 100, 'g'], ['lait', 12, 'cl'], ['oeufs', 4], ['sucre', 10, 'g'], ['sucre-perle', 60, 'g'],
+    ['sel', 1, 'pincee']
+  ], [
+    'Préchauffer le four à 180 °C. Porter à ébullition le lait, 12 cl d’eau, le beurre, le sucre et le sel.',
+    'Hors du feu, verser la farine d’un coup et mélanger vivement, puis dessécher la pâte 1 à 2 min à feu moyen, jusqu’à ce qu’elle se détache de la casserole.',
+    'Laisser tiédir 5 min et incorporer les œufs battus petit à petit : la pâte doit être lisse, brillante et retomber en ruban.',
+    'Pocher des petits tas de 3 cm sur une plaque couverte de papier cuisson et les couvrir généreusement de sucre perlé.',
+    'Cuire 20 à 25 min sans ouvrir le four, jusqu’à ce qu’elles soient bien dorées. Laisser refroidir sur une grille.'
+  ]);
+
+  R('tarte-abricots', 'Tarte aux abricots', 'Française', 'Dessert', 60, 'Facile', 6, [
+    ['pate-sablee', 1], ['abricots', 16], ['amandes-poudre', 40, 'g'], ['sucre', 40, 'g'], ['confiture', 40, 'g', 'opt']
+  ], [
+    'Préchauffer le four à 180 °C. Foncer un moule à tarte de 26 cm avec la pâte et la piquer à la fourchette.',
+    'Mélanger la poudre d’amande avec 20 g de sucre et la répartir sur le fond : elle absorbera le jus des fruits.',
+    'Couper les abricots en deux, les dénoyauter et les disposer en rosace, bien serrés, face coupée vers le haut. Saupoudrer du reste de sucre.',
+    'Cuire 35 à 40 min, jusqu’à ce que la pâte soit dorée et les abricots fondants et légèrement caramélisés.',
+    'Faire tiédir la confiture d’abricots avec 1 cs d’eau et en badigeonner les fruits pour les faire briller. Servir tiède ou froid.'
+  ]);
+
+  R('tarte-mirabelles', 'Tarte aux mirabelles', 'Française', 'Dessert', 65, 'Facile', 6, [
+    ['pate-brisee', 1], ['mirabelles', 600, 'g'], ['amandes-poudre', 30, 'g'], ['oeufs', 2], ['creme-fraiche', 15, 'cl'], ['sucre', 70, 'g'],
+    ['sucre-vanille', 1]
+  ], [
+    'Préchauffer le four à 180 °C. Foncer un moule de 26 cm avec la pâte, la piquer et parsemer le fond de poudre d’amande.',
+    'Laver les mirabelles, les ouvrir en deux, les dénoyauter et les disposer serrées sur la pâte. Cuire 15 min.',
+    'Pendant ce temps, battre les œufs avec la crème, le sucre et le sucre vanillé.',
+    'Verser cet appareil sur les fruits et poursuivre la cuisson 25 min, jusqu’à ce qu’il soit pris et doré. Servir tiède.'
+  ]);
+
+  R('tarte-chocolat', 'Tarte au chocolat', 'Française', 'Dessert', 130, 'Moyenne', 8, [
+    ['pate-sablee', 1], ['chocolat-noir', 200, 'g'], ['creme-liquide', 20, 'cl'], ['lait', 10, 'cl'], ['oeufs', 1],
+    ['cacao-en-poudre', 5, 'g', 'opt']
+  ], [
+    'Préchauffer le four à 180 °C. Foncer un moule de 24 cm avec la pâte, la piquer, la couvrir de papier cuisson et de billes de cuisson (ou de légumes secs) et cuire 15 min à blanc. Retirer les billes et cuire encore 5 à 10 min, jusqu’à ce que le fond soit doré. Baisser le four à 150 °C.',
+    'Porter la crème et le lait à frémissement, verser sur le chocolat haché, attendre 1 min puis lisser au centre du bol en élargissant les cercles.',
+    'Incorporer l’œuf battu, sans faire mousser.',
+    'Verser la ganache sur le fond de tarte et cuire 15 à 20 min à 150 °C : les bords doivent être pris et le centre encore tremblotant.',
+    'Laisser refroidir au moins 1 h à température ambiante et saupoudrer légèrement de cacao avant de servir.'
+  ]);
+
+  R('tarte-sucre', 'Tarte au sucre', 'Française', 'Dessert', 140, 'Moyenne', 6, [
+    ['farine', 250, 'g'], ['levure-boulangere', 1], ['lait', 10, 'cl'], ['oeufs', 2], ['beurre', 80, 'g'], ['sucre', 25, 'g'],
+    ['sucre-roux', 100, 'g'], ['creme-fraiche', 5, 'cl'], ['sel', 1, 'pincee']
+  ], [
+    'Faire tiédir le lait et y délayer la levure. Laisser reposer 5 min.',
+    'Mélanger la farine, le sucre et le sel, ajouter un œuf et le lait, et pétrir 5 min. Incorporer 60 g de beurre mou et pétrir encore 5 min, jusqu’à obtenir une pâte souple et lisse.',
+    'Couvrir et laisser pousser 1 h dans un endroit tiède : la pâte doit doubler de volume.',
+    'Dégazer la pâte, l’étaler en disque de 28 cm dans un moule beurré et laisser pousser encore 30 min. Préchauffer le four à 180 °C.',
+    'Répartir la vergeoise (sucre roux) sur la pâte et parsemer du reste de beurre en noisettes. Battre le second œuf avec la crème et le verser délicatement.',
+    'Cuire environ 20 min, jusqu’à ce que la tarte soit dorée. Servir tiède.'
+  ]);
+
+  R('tarte-normande', 'Tarte normande', 'Française', 'Dessert', 60, 'Facile', 6, [
+    ['pate-brisee', 1], ['pommes', 4], ['oeufs', 2], ['creme-fraiche', 20, 'cl'], ['sucre', 80, 'g'], ['sucre-vanille', 1],
+    ['farine', 20, 'g'], ['cognac', 2, 'cl', 'opt']
+  ], [
+    'Préchauffer le four à 180 °C. Foncer un moule de 26 cm avec la pâte et la piquer.',
+    'Éplucher les pommes, les couper en quartiers puis en lamelles épaisses et les disposer sur la pâte. Cuire 15 min.',
+    'Battre les œufs avec le sucre, le sucre vanillé et la farine, puis ajouter la crème et le calvados (ou cognac).',
+    'Verser sur les pommes et poursuivre la cuisson 25 à 30 min, jusqu’à ce que l’appareil soit pris et doré. Servir tiède.'
+  ]);
+
+  R('gateau-basque', 'Gâteau basque', 'Française', 'Dessert', 150, 'Moyenne', 8, [
+    ['farine', 280, 'g'], ['beurre', 150, 'g'], ['sucre', 150, 'g'], ['oeufs', 3], ['amandes-poudre', 50, 'g'], ['confiture', 250, 'g'],
+    ['sel', 1, 'pincee']
+  ], [
+    'Fouetter le beurre mou avec le sucre jusqu’à ce qu’il soit crémeux. Ajouter un œuf entier et un jaune, puis la poudre d’amande, la farine et le sel. Mélanger sans trop travailler, filmer et réfrigérer 1 h.',
+    'Préchauffer le four à 180 °C. Beurrer un moule de 24 cm. Étaler les deux tiers de la pâte entre deux feuilles de papier cuisson et foncer le moule en remontant sur les bords.',
+    'Étaler la confiture de cerises noires en laissant 1 cm libre sur le bord.',
+    'Étaler le reste de pâte en disque, le poser sur la confiture et souder les bords. Dorer au jaune d’œuf restant et strier en croisillons à la fourchette.',
+    'Cuire 40 à 45 min, jusqu’à ce que le gâteau soit bien doré. Le laisser refroidir complètement avant de le démouler.'
+  ]);
+
+  R('crepes-suzette', 'Crêpes Suzette', 'Française', 'Dessert', 90, 'Moyenne', 4, [
+    ['farine', 125, 'g'], ['oeufs', 2], ['lait', 25, 'cl'], ['beurre', 80, 'g'], ['sucre', 70, 'g'], ['oranges', 2],
+    ['liqueur-d-orange', 6, 'cl'], ['sel', 1, 'pincee']
+  ], [
+    'Préparer la pâte : mélanger la farine, 10 g de sucre et le sel, ajouter les œufs puis le lait petit à petit en fouettant. Ajouter 20 g de beurre fondu et le zeste d’une demi-orange. Laisser reposer 1 h.',
+    'Cuire 8 crêpes fines dans une poêle légèrement beurrée à feu moyen-vif, 1 min par face.',
+    'Presser les oranges et prélever le reste du zeste. Dans une grande poêle, faire fondre 60 g de sucre à feu moyen jusqu’à obtenir un caramel blond, ajouter 40 g de beurre, puis le jus et le zeste (attention aux projections). Réduire 3 à 4 min jusqu’à ce que la sauce soit sirupeuse et ajouter 2 cl de liqueur.',
+    'Plier les crêpes en quatre et les réchauffer 1 min par face dans la sauce.',
+    'Chauffer le reste de liqueur dans une petite casserole, l’enflammer hotte éteinte et la verser sur les crêpes. Servir aussitôt.'
+  ]);
+
+  R('poires-vin-rouge', 'Poires pochées au vin rouge', 'Française', 'Dessert', 60, 'Facile', 4, [
+    ['poires', 4], ['vin-rouge', 75, 'cl'], ['sucre', 150, 'g'], ['oranges', 1], ['badiane', 1], ['gousses-de-vanille', 1, 'pc', 'opt']
+  ], [
+    'Dans une casserole juste assez grande pour les poires, porter à ébullition le vin, le sucre, le zeste et le jus de l’orange, la badiane et la vanille fendue. Laisser bouillir 5 min.',
+    'Peler les poires en gardant la queue et couper une fine tranche à la base pour qu’elles tiennent debout.',
+    'Les plonger dans le vin et les cuire 25 à 30 min à frémissement, à couvert, en les retournant de temps en temps, jusqu’à ce que la pointe d’un couteau entre facilement.',
+    'Retirer les poires et faire réduire le sirop à feu vif 10 à 15 min, jusqu’à ce qu’il soit sirupeux.',
+    'Napper les poires de sirop et servir tiède ou froid.'
+  ]);
+
+  R('peches-melba', 'Pêches Melba', 'Française', 'Dessert', 100, 'Facile', 4, [
+    ['peches', 4], ['sucre', 150, 'g'], ['gousses-de-vanille', 1], ['framboises', 250, 'g'], ['sucre-glace', 40, 'g'],
+    ['glace-a-la-vanille', 0.5, 'l'], ['amandes-effilees', 20, 'g', 'opt'], ['creme-liquide', 15, 'cl', 'opt']
+  ], [
+    'Porter à ébullition 50 cl d’eau avec le sucre et la vanille fendue. Y pocher les pêches entières 5 à 8 min à frémissement, selon leur maturité.',
+    'Les laisser refroidir dans le sirop, puis les peler, les couper en deux et les dénoyauter. Réfrigérer 1 h.',
+    'Mixer les framboises avec le sucre glace et passer au tamis pour obtenir un coulis sans pépins.',
+    'Fouetter la crème bien froide en chantilly. Faire dorer les amandes à sec dans une poêle.',
+    'Dans chaque coupe, déposer une boule de glace, deux demi-pêches, napper de coulis et décorer de chantilly et d’amandes.'
+  ]);
+
+  R('charlotte-chocolat', 'Charlotte au chocolat', 'Française', 'Dessert', 390, 'Moyenne', 8, [
+    ['boudoirs', 24], ['chocolat-noir', 200, 'g'], ['oeufs', 6], ['sucre', 40, 'g'], ['beurre', 50, 'g'], ['cafe', 20, 'cl'],
+    ['sel', 1, 'pincee']
+  ], [
+    'Faire fondre le chocolat avec le beurre au bain-marie à feu doux. Laisser tiédir, puis incorporer les jaunes d’œufs un à un.',
+    'Monter les blancs en neige avec le sel, puis les serrer avec le sucre. Les incorporer délicatement au chocolat en trois fois.',
+    'Tremper rapidement les biscuits dans le café refroidi et en tapisser le fond et les bords d’un moule à charlotte, face bombée contre le moule.',
+    'Verser la moitié de la mousse, ajouter une couche de biscuits imbibés, puis le reste de mousse, et terminer par des biscuits.',
+    'Couvrir d’une assiette avec un poids léger et réfrigérer au moins 6 h. Démouler au moment de servir (la mousse contient des œufs crus : à consommer dans les 24 h).'
+  ]);
+
+  R('petits-pots-creme', 'Petits pots de crème à la vanille', 'Française', 'Dessert', 180, 'Facile', 6, [
+    ['lait', 50, 'cl'], ['creme-liquide', 25, 'cl'], ['oeufs', 6], ['sucre', 100, 'g'], ['gousses-de-vanille', 1]
+  ], [
+    'Préchauffer le four à 150 °C. Chauffer le lait et la crème avec la gousse de vanille fendue et grattée, puis laisser infuser 15 min hors du feu.',
+    'Fouetter les 6 jaunes d’œufs avec le sucre, sans faire mousser. Verser le lait chaud filtré en remuant et retirer la mousse en surface.',
+    'Répartir dans 6 petits pots ou ramequins et les placer dans un plat rempli d’eau chaude à mi-hauteur.',
+    'Cuire 35 à 40 min au bain-marie : les bords doivent être pris et le centre encore légèrement tremblotant.',
+    'Laisser refroidir, puis réfrigérer au moins 2 h avant de servir.'
+  ]);
+
+  R('gateau-nantais', 'Gâteau nantais', 'Française', 'Dessert', 100, 'Moyenne', 8, [
+    ['beurre', 125, 'g'], ['sucre', 150, 'g'], ['amandes-poudre', 125, 'g'], ['oeufs', 3], ['farine', 40, 'g'], ['rhum', 10, 'cl'],
+    ['sucre-glace', 100, 'g']
+  ], [
+    'Préchauffer le four à 180 °C. Beurrer et fariner un moule de 22 cm.',
+    'Fouetter le beurre mou avec le sucre jusqu’à ce qu’il blanchisse. Ajouter la poudre d’amande, puis les œufs un à un, la farine et 4 cl de rhum.',
+    'Verser dans le moule et cuire 35 à 40 min, jusqu’à ce que le gâteau soit doré et qu’une lame en ressorte sèche.',
+    'Démouler tiède et imbiber le gâteau de 4 cl de rhum au pinceau. Laisser refroidir complètement.',
+    'Mélanger le sucre glace avec le reste du rhum pour obtenir un glaçage épais, en napper le gâteau et laisser figer.'
+  ]);
+
+  R('canneles', 'Cannelés bordelais', 'Française', 'Dessert', 90, 'Difficile', 6, [
+    ['lait', 50, 'cl'], ['beurre', 60, 'g'], ['farine', 100, 'g'], ['sucre', 250, 'g'], ['oeufs', 3], ['rhum', 5, 'cl'],
+    ['gousses-de-vanille', 1]
+  ], [
+    'Porter à ébullition le lait avec la gousse de vanille fendue et 50 g de beurre, puis laisser infuser 10 min hors du feu.',
+    'Mélanger la farine et le sucre, ajouter un œuf entier et deux jaunes, puis verser le lait chaud peu à peu en remuant doucement, sans fouetter, pour ne pas incorporer d’air.',
+    'Laisser tiédir, ajouter le rhum, couvrir et réfrigérer 24 h, 48 h c’est encore mieux (non compté dans le temps de la recette).',
+    'Préchauffer le four à 250 °C. Beurrer généreusement 12 moules à cannelés avec le reste du beurre. Remélanger doucement la pâte et remplir les moules jusqu’à 1 cm du bord.',
+    'Cuire 15 min à 250 °C, puis baisser à 180 °C et cuire encore 45 à 50 min : la croûte doit être brun foncé et caramélisée. Démouler aussitôt et laisser refroidir sur une grille.'
+  ]);
+
+  R('gateau-ardechois', 'Gâteau ardéchois à la crème de marrons', 'Française', 'Dessert', 60, 'Facile', 8, [
+    ['creme-de-marrons', 500, 'g'], ['beurre', 100, 'g'], ['oeufs', 3], ['farine', 30, 'g'], ['rhum', 2, 'cl', 'opt'], ['sel', 1, 'pincee']
+  ], [
+    'Préchauffer le four à 180 °C. Beurrer un moule de 22 cm.',
+    'Faire fondre le beurre. Le mélanger avec la crème de marrons, les jaunes d’œufs, la farine et le rhum.',
+    'Monter les blancs en neige ferme avec le sel et les incorporer délicatement.',
+    'Verser dans le moule et cuire 30 à 35 min : une lame doit ressortir légèrement humide, le gâteau reste moelleux.',
+    'Laisser tiédir avant de démouler.'
+  ]);
+
+  R('teurgoule', 'Teurgoule', 'Française', 'Dessert', 310, 'Facile', 8, [
+    ['riz-rond', 150, 'g'], ['lait-entier', 200, 'cl'], ['sucre', 150, 'g'], ['cannelle', 2, 'cc'], ['sel', 1, 'pincee']
+  ], [
+    'Préchauffer le four à 150 °C.',
+    'Dans une terrine en terre cuite d’au moins 2,5 L, mélanger le riz (sans le laver), le sucre, la cannelle et le sel.',
+    'Verser le lait froid et bien mélanger.',
+    'Cuire 5 h au four sans remuer : une croûte brune épaisse se forme et le riz devient très crémeux dessous. Servir tiède ou froid.'
+  ]);
+
+  R('beignets-pommes', 'Beignets aux pommes', 'Française', 'Dessert', 60, 'Moyenne', 4, [
+    ['pommes', 3], ['farine', 125, 'g'], ['oeufs', 2], ['biere-blonde', 15, 'cl'], ['sucre', 20, 'g'], ['sucre-glace', 30, 'g'],
+    ['cannelle', 1, 'cc', 'opt'], ['huile', 1, 'l'], ['sel', 1, 'pincee']
+  ], [
+    'Préparer la pâte : mélanger la farine, le sucre et le sel, ajouter les jaunes d’œufs puis la bière petit à petit en fouettant. Laisser reposer 30 min.',
+    'Éplucher les pommes, retirer le cœur au vide-pomme et les couper en rondelles de 1 cm.',
+    'Monter les blancs en neige et les incorporer délicatement à la pâte. Chauffer l’huile à 170 °C.',
+    'Tremper les rondelles dans la pâte et les frire 2 min par face, jusqu’à ce qu’elles soient dorées. Égoutter sur du papier absorbant.',
+    'Saupoudrer de sucre glace mélangé à la cannelle et servir chaud.'
+  ]);
+
+  R('sables-bretons', 'Sablés bretons', 'Française', 'Dessert', 110, 'Facile', 8, [
+    ['beurre-demi-sel', 200, 'g'], ['sucre', 180, 'g'], ['oeufs', 5], ['farine', 250, 'g'], ['levure-chimique', 1]
+  ], [
+    'Fouetter 4 jaunes d’œufs avec le sucre jusqu’à ce que le mélange blanchisse. Ajouter le beurre demi-sel mou et mélanger.',
+    'Incorporer la farine et la levure sans trop travailler la pâte. La former en boudin de 5 cm de diamètre, filmer et réfrigérer 1 h.',
+    'Préchauffer le four à 180 °C. Couper le boudin en tranches de 1 cm et les poser dans des cercles de 7 cm placés sur une plaque couverte de papier cuisson, pour qu’ils gardent leur forme.',
+    'Dorer au dernier jaune d’œuf et strier à la fourchette.',
+    'Cuire 15 à 18 min, jusqu’à ce qu’ils soient bien dorés. Démouler tiède et laisser refroidir sur une grille.'
+  ]);
+
+  R('palmiers', 'Palmiers', 'Française', 'Dessert', 45, 'Facile', 6, [
+    ['pate-feuilletee', 1], ['sucre', 100, 'g']
+  ], [
+    'Saupoudrer le plan de travail de la moitié du sucre, y dérouler la pâte et la couvrir du reste du sucre. Passer le rouleau pour faire pénétrer le sucre.',
+    'Rabattre deux bords opposés vers le centre, puis recommencer une fois, et plier les deux moitiés l’une sur l’autre. Réfrigérer 20 min.',
+    'Préchauffer le four à 200 °C. Couper le boudin en tranches de 1 cm et les poser bien espacées sur une plaque couverte de papier cuisson.',
+    'Cuire 8 à 10 min, retourner les palmiers et cuire encore 5 min, jusqu’à ce qu’ils soient caramélisés. Laisser refroidir sur une grille.'
+  ]);
+
+  R('kougelhopf', 'Kougelhopf', 'Française', 'Dessert', 360, 'Difficile', 8, [
+    ['farine', 500, 'g'], ['levure-fraiche', 20, 'g'], ['lait', 20, 'cl'], ['oeufs', 2], ['sucre', 80, 'g'], ['beurre', 170, 'g'],
+    ['raisins-secs', 100, 'g'], ['kirsch', 3, 'cl'], ['amandes', 20, 'g'], ['sucre-glace', 20, 'g'], ['sel', null]
+  ], [
+    'Faire macérer les raisins secs 1 h dans le kirsch.',
+    'Faire tiédir le lait (à peine chaud au doigt) et y délayer la levure émiettée.',
+    'Dans le bol d’un robot, mettre la farine, le sucre et 8 g de sel, ajouter le lait et les œufs, et pétrir 10 min en commençant lentement, jusqu’à ce que la pâte soit élastique. Ajouter 150 g de beurre mou en morceaux et pétrir encore 5 à 8 min, jusqu’à ce que la pâte se décolle du bol. Incorporer les raisins égouttés.',
+    'Couvrir et laisser pousser 1 h 30 à 2 h dans un endroit tiède, jusqu’à ce que la pâte double.',
+    'Beurrer généreusement un moule à kougelhopf avec le reste du beurre et placer une amande au fond de chaque cannelure. Dégazer la pâte, la former en boule, percer le centre et la déposer dans le moule. Laisser pousser encore 1 h 30, jusqu’à 1 cm du bord.',
+    'Préchauffer le four à 180 °C et cuire 40 à 45 min, en couvrant d’aluminium si le dessus colore trop. Démouler tiède, laisser refroidir et saupoudrer de sucre glace.'
+  ]);
+
+  R('tarte-fromage-blanc', 'Tarte au fromage blanc', 'Française', 'Dessert', 215, 'Moyenne', 8, [
+    ['pate-brisee', 1], ['fromage-blanc', 500, 'g'], ['oeufs', 4], ['sucre', 120, 'g'], ['creme-fraiche', 20, 'cl'], ['maizena', 40, 'g'],
+    ['sucre-vanille', 1], ['citron', 1]
+  ], [
+    'Préchauffer le four à 180 °C. Foncer un moule à manqué de 24 cm avec la pâte, en remontant bien sur les bords.',
+    'Mélanger le fromage blanc, les jaunes d’œufs, 60 g de sucre, la crème, la maïzena, le sucre vanillé et le zeste du citron.',
+    'Monter les blancs en neige, les serrer avec le reste du sucre et les incorporer délicatement.',
+    'Verser sur la pâte et cuire 50 à 60 min, jusqu’à ce que la tarte soit gonflée et dorée.',
+    'Éteindre le four et laisser la tarte 15 min dans le four entrouvert pour qu’elle ne retombe pas trop, puis la laisser refroidir complètement avant de la démouler.'
+  ]);
+
+  /* ───────────── Desserts d’ailleurs ───────────── */
+
+  R('salade-oranges-cannelle', 'Salade d’oranges à la cannelle', 'Maghrébine', 'Dessert', 45, 'Facile', 4, [
+    ['oranges', 4], ['fleur-d-oranger', 1, 'cs'], ['cannelle', 1, 'cc'], ['sucre-glace', 20, 'g'], ['menthe', 0.25, 'pc', 'opt']
+  ], [
+    'Peler les oranges à vif, en retirant toute la peau blanche, et les couper en fines rondelles au-dessus d’un plat pour recueillir le jus.',
+    'Disposer les rondelles sur un plat, arroser du jus mélangé à la fleur d’oranger.',
+    'Saupoudrer de sucre glace et de cannelle, puis réserver 30 min au frais.',
+    'Parsemer de feuilles de menthe ciselées au moment de servir.'
+  ]);
+
+  R('mouhalabieh', 'Mouhalabieh (crème à la fleur d’oranger)', 'Libanaise', 'Dessert', 200, 'Facile', 6, [
+    ['lait', 75, 'cl'], ['maizena', 60, 'g'], ['sucre', 80, 'g'], ['fleur-d-oranger', 1, 'cs'], ['eau-de-rose', 1, 'cs', 'opt'],
+    ['pistaches', 30, 'g']
+  ], [
+    'Délayer la maïzena dans 15 cl de lait froid.',
+    'Chauffer le reste du lait avec le sucre à feu moyen. Verser la maïzena délayée en fouettant et cuire en remuant sans arrêt jusqu’à épaississement, puis encore 2 min à petits bouillons.',
+    'Hors du feu, ajouter la fleur d’oranger et l’eau de rose.',
+    'Répartir dans des coupelles, laisser refroidir puis réfrigérer au moins 3 h. Parsemer de pistaches concassées avant de servir.'
+  ]);
+
+  R('zabaione', 'Zabaione', 'Italienne', 'Dessert', 15, 'Moyenne', 4, [
+    ['oeufs', 4], ['sucre', 80, 'g'], ['marsala', 8, 'cl'], ['boudoirs', 8, 'pc', 'opt']
+  ], [
+    'Préparer un bain-marie frémissant : l’eau ne doit pas toucher le fond du récipient.',
+    'Dans un cul-de-poule, fouetter les 4 jaunes d’œufs avec le sucre jusqu’à ce qu’ils blanchissent, puis ajouter le marsala.',
+    'Placer sur le bain-marie et fouetter sans arrêt 8 à 10 min, jusqu’à ce que la crème triple de volume, devienne épaisse et forme un ruban.',
+    'Servir aussitôt, tiède, dans des coupes, avec les biscuits.'
+  ]);
+
+  R('torta-caprese', 'Torta caprese (gâteau chocolat-amandes)', 'Italienne', 'Dessert', 75, 'Facile', 8, [
+    ['chocolat-noir', 200, 'g'], ['beurre', 150, 'g'], ['sucre', 150, 'g'], ['oeufs', 4], ['amandes-poudre', 200, 'g'],
+    ['sucre-glace', 10, 'g']
+  ], [
+    'Préchauffer le four à 170 °C. Beurrer un moule de 24 cm et en tapisser le fond de papier cuisson.',
+    'Faire fondre le chocolat avec le beurre au bain-marie.',
+    'Fouetter les jaunes d’œufs avec la moitié du sucre jusqu’à ce qu’ils blanchissent, ajouter le chocolat fondu puis la poudre d’amande.',
+    'Monter les blancs en neige, les serrer avec le reste du sucre et les incorporer délicatement en trois fois.',
+    'Cuire 40 à 45 min : le dessus doit être craquelé et le centre encore humide. Laisser refroidir dans le moule, démouler et saupoudrer de sucre glace.'
+  ]);
+
+  R('crema-catalana', 'Crema catalana', 'Espagnole', 'Dessert', 210, 'Moyenne', 6, [
+    ['lait', 50, 'cl'], ['oeufs', 5], ['sucre', 150, 'g'], ['maizena', 25, 'g'], ['citron', 1], ['cannelle', 0.5, 'cc']
+  ], [
+    'Chauffer 40 cl de lait avec le zeste du citron prélevé en rubans et la cannelle (un bâton, ou ½ cc en poudre). Laisser infuser 10 min hors du feu.',
+    'Fouetter les 5 jaunes d’œufs avec 100 g de sucre, puis ajouter la maïzena délayée dans le reste du lait froid.',
+    'Verser le lait chaud filtré sur les jaunes en fouettant, remettre dans la casserole et cuire à feu doux en remuant sans arrêt environ 5 min, jusqu’à ce que la crème épaississe, sans la laisser bouillir fort.',
+    'Répartir dans 6 cassolettes plates, laisser refroidir puis réfrigérer au moins 3 h.',
+    'Au moment de servir, saupoudrer du reste de sucre et le caraméliser au chalumeau.'
+  ]);
+
+  R('pasteis-nata', 'Pastéis de nata', 'Portugaise', 'Dessert', 60, 'Moyenne', 6, [
+    ['pate-feuilletee', 1], ['lait', 25, 'cl'], ['creme-liquide', 10, 'cl'], ['oeufs', 4], ['sucre', 100, 'g'], ['maizena', 20, 'g'],
+    ['citron', 1], ['cannelle', 1, 'cc'], ['beurre', 10, 'g']
+  ], [
+    'Préchauffer le four à 250 °C (chaleur statique). Beurrer 12 alvéoles d’un moule à muffins.',
+    'Rouler la pâte feuilletée en boudin serré et le couper en 12 tronçons de 2 cm. Poser chaque tronçon à plat, spirale vers le haut, dans une alvéole et l’étaler avec le pouce en remontant sur les bords. Réfrigérer pendant la préparation de la crème.',
+    'Chauffer le lait et la crème avec le zeste du citron. Fouetter les 4 jaunes d’œufs avec le sucre et la maïzena, verser le lait chaud, puis cuire à feu moyen 3 à 4 min en remuant, jusqu’à épaississement. Laisser tiédir et retirer le zeste.',
+    'Remplir les fonds aux trois quarts de crème.',
+    'Cuire 12 à 15 min, jusqu’à ce que la pâte soit dorée et le dessus tacheté de brun. Laisser tiédir et saupoudrer de cannelle.'
+  ]);
+
+  R('riz-gluant-mangue', 'Riz gluant à la mangue', 'Thaïlandaise', 'Dessert', 300, 'Moyenne', 4, [
+    ['riz-gluant', 250, 'g'], ['lait-coco', 40, 'cl'], ['sucre', 80, 'g'], ['mangues', 2], ['graines-sesame', 1, 'cs', 'opt'],
+    ['sel', 2, 'pincee']
+  ], [
+    'Faire tremper le riz gluant au moins 4 h (ou une nuit) dans l’eau froide.',
+    'L’égoutter et le cuire 20 à 25 min à la vapeur dans un panier tapissé d’un linge, jusqu’à ce que les grains soient translucides et tendres.',
+    'Chauffer 30 cl de lait de coco avec 60 g de sucre et une pincée de sel, sans faire bouillir. Le verser sur le riz chaud, couvrir et laisser absorber 20 min.',
+    'Chauffer le reste du lait de coco avec le reste du sucre et une pincée de sel 3 min à feu doux pour faire la sauce.',
+    'Peler les mangues et les couper en tranches. Servir le riz avec la mangue, napper de sauce et parsemer de sésame grillé.'
+  ]);
+
+  R('bananes-flambees', 'Bananes flambées au rhum', 'Antillaise', 'Dessert', 15, 'Facile', 4, [
+    ['bananes', 4], ['beurre', 30, 'g'], ['sucre-roux', 40, 'g'], ['citron-vert', 1], ['rhum', 5, 'cl'], ['glace-a-la-vanille', 0.5, 'l', 'opt']
+  ], [
+    'Éplucher les bananes et les couper en deux dans la longueur.',
+    'Dans une grande poêle, faire fondre le beurre et le sucre à feu moyen, poser les bananes et les cuire 2 min par face, jusqu’à ce qu’elles soient caramélisées. Arroser du jus du citron vert.',
+    'Chauffer le rhum dans une petite casserole, le verser sur les bananes et l’enflammer à distance, hotte éteinte. Arroser les bananes jusqu’à ce que la flamme s’éteigne.',
+    'Servir aussitôt, avec une boule de glace.'
+  ]);
+
+  R('gaufres-liege', 'Gaufres de Liège', 'Belge', 'Dessert', 110, 'Moyenne', 6, [
+    ['farine', 500, 'g'], ['levure-fraiche', 20, 'g'], ['lait', 15, 'cl'], ['oeufs', 2], ['beurre', 250, 'g'], ['sucre', 25, 'g'],
+    ['sucre-perle', 250, 'g'], ['sucre-vanille', 1], ['sel', 1, 'pincee']
+  ], [
+    'Faire tiédir le lait et y délayer la levure émiettée avec le sucre.',
+    'Mélanger la farine, les œufs, le lait levuré et le sel, et pétrir 5 min. Incorporer le beurre mou en morceaux et pétrir jusqu’à obtenir une pâte lisse et collante.',
+    'Couvrir et laisser lever 1 h dans un endroit tiède.',
+    'Incorporer à la main le sucre perlé et le sucre vanillé, puis laisser reposer 15 min. Diviser en 12 boules.',
+    'Chauffer un gaufrier à feu moyen et cuire les gaufres 3 à 4 min, jusqu’à ce qu’elles soient dorées et caramélisées. Attention, le sucre fondu brûle : nettoyer le gaufrier encore chaud.'
+  ]);
+
+  R('carrot-cake', 'Carrot cake', 'Américaine', 'Dessert', 150, 'Moyenne', 10, [
+    ['carottes', 3], ['farine', 250, 'g'], ['sucre-roux', 200, 'g'], ['oeufs', 3], ['huile', 15, 'cl'], ['levure-chimique', 1],
+    ['bicarbonate-de-soude', 1, 'cc'], ['cannelle', 2, 'cc'], ['cerneaux-de-noix', 80, 'g'], ['fromage-frais-a-tartiner', 250, 'g'],
+    ['beurre', 60, 'g'], ['sucre-glace', 100, 'g'], ['sel', 1, 'pincee']
+  ], [
+    'Préchauffer le four à 180 °C. Tapisser un moule de 24 cm de papier cuisson.',
+    'Fouetter les œufs avec le sucre roux 2 min, puis ajouter l’huile.',
+    'Mélanger la farine, la levure, le bicarbonate, la cannelle et le sel, et les incorporer. Ajouter les carottes finement râpées et les noix concassées.',
+    'Verser dans le moule et cuire 45 à 50 min, jusqu’à ce qu’une lame en ressorte sèche. Laisser refroidir complètement, au moins 1 h.',
+    'Glaçage : fouetter le beurre mou avec le sucre glace, puis ajouter le fromage frais bien froid et fouetter brièvement (trop battu, il devient liquide). En couvrir le gâteau.'
+  ]);
+
+  R('banana-bread', 'Banana bread', 'Américaine', 'Dessert', 75, 'Facile', 8, [
+    ['bananes', 3], ['farine', 250, 'g'], ['sucre-roux', 120, 'g'], ['beurre', 90, 'g'], ['oeufs', 2], ['levure-chimique', 1],
+    ['cannelle', 1, 'cc', 'opt'], ['cerneaux-de-noix', 60, 'g', 'opt'], ['sel', 1, 'pincee']
+  ], [
+    'Préchauffer le four à 180 °C. Beurrer un moule à cake de 25 cm.',
+    'Écraser les bananes bien mûres à la fourchette. Ajouter le beurre fondu, le sucre roux et les œufs, et mélanger.',
+    'Incorporer la farine, la levure, la cannelle et le sel sans trop travailler la pâte, puis les noix concassées.',
+    'Verser dans le moule et cuire 50 à 55 min, jusqu’à ce qu’une lame en ressorte sèche. Laisser tiédir avant de démouler.'
+  ]);
+
+  R('foret-noire', 'Forêt-noire', 'Allemande', 'Dessert', 400, 'Difficile', 10, [
+    ['oeufs', 4], ['sucre', 170, 'g'], ['farine', 80, 'g'], ['cacao-en-poudre', 30, 'g'], ['kirsch', 5, 'cl'], ['griottes', 300, 'g'],
+    ['creme-liquide', 60, 'cl'], ['sucre-glace', 60, 'g'], ['mascarpone', 100, 'g', 'opt'], ['chocolat-noir', 50, 'g']
+  ], [
+    'Préchauffer le four à 180 °C. Tapisser un moule de 22 cm de papier cuisson.',
+    'Génoise : fouetter les œufs avec 120 g de sucre au bain-marie tiède, puis hors du feu, 8 à 10 min, jusqu’à ce que le mélange triple de volume et forme un ruban. Incorporer délicatement la farine et le cacao tamisés. Cuire 25 à 30 min, jusqu’à ce qu’une lame ressorte sèche. Laisser refroidir 1 h, puis couper en 3 disques.',
+    'Sirop : faire bouillir 1 min 10 cl d’eau avec le reste du sucre, laisser refroidir et ajouter le kirsch.',
+    'Chantilly : fouetter la crème très froide avec le mascarpone et le sucre glace jusqu’à ce qu’elle soit ferme.',
+    'Montage : poser un disque, l’imbiber de sirop, étaler de la chantilly et la moitié des griottes égouttées. Recommencer, puis poser le dernier disque imbibé et couvrir tout le gâteau de chantilly.',
+    'Décorer de copeaux de chocolat faits à l’économe et de quelques griottes. Réfrigérer au moins 4 h avant de servir.'
+  ]);
+};

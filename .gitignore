@@ -3,3 +3,8 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Sauvegardes de base (données personnelles) : jamais dans le dépôt
+sauvegardes/
+*.sql.gz
+*.sql.gz.gpg

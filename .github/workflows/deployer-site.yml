@@ -1,0 +1,42 @@
+# Mise en ligne du site web (dossier site/) sur l'hébergement PulseHeberg, à chaque modification sur master.
+# Inactive tant que le dossier site/ et les secrets n'existent pas :
+#   SSH_HOTE        serveur (ex. web123.pulseheberg.net, voir Plesk → « Accès FTP / SSH »)
+#   SSH_UTILISATEUR identifiant système de l'abonnement Plesk
+#   SSH_CLE         clé privée SSH (la clé publique est ajoutée dans Plesk → « Clés SSH »)
+#   SSH_DOSSIER     dossier du site sur le serveur (ex. httpdocs)
+name: Déployer le site
+
+on:
+  push:
+    branches: [master]
+    paths: ['site/**', '.github/workflows/deployer-site.yml']
+  workflow_dispatch:
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prêt à déployer ?
+        id: pret
+        env:
+          HOTE: ${{ secrets.SSH_HOTE }}
+        run: |
+          if [ -d site ] && [ -n "$HOTE" ]; then echo "ok=1" >> "$GITHUB_OUTPUT"; else echo "::notice::Pas de site/ ou secrets SSH absents : rien à déployer."; fi
+      - name: Construire
+        if: steps.pret.outputs.ok
+        run: |
+          if [ -f site/package.json ]; then cd site && npm ci && npm run build; fi
+      - name: Envoyer (rsync sur SSH)
+        if: steps.pret.outputs.ok
+        env:
+          CLE: ${{ secrets.SSH_CLE }}
+          HOTE: ${{ secrets.SSH_HOTE }}
+          UTILISATEUR: ${{ secrets.SSH_UTILISATEUR }}
+          DOSSIER: ${{ secrets.SSH_DOSSIER }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$CLE" > ~/.ssh/cle && chmod 600 ~/.ssh/cle
+          ssh-keyscan -H "$HOTE" >> ~/.ssh/known_hosts 2>/dev/null
+          SOURCE=site/; [ -d site/dist ] && SOURCE=site/dist/
+          rsync -az --delete --exclude '.well-known' -e "ssh -i ~/.ssh/cle" "$SOURCE" "$UTILISATEUR@$HOTE:${DOSSIER:-httpdocs}/"

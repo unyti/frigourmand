@@ -1,5 +1,22 @@
 # Journal des versions
 
+## 0.6.0 — 27 septembre 2026
+
+- **Page d'accueil** : une présentation de Frigourmand avant la connexion, et un tableau de bord une fois connecté
+  (garde-manger, recettes réalisables, presque prêtes, favoris, derniers ajouts). Le logo ramène à l'accueil.
+- **Manque partiel ou total** : en orange quand tu en as mais pas assez (1 œuf sur 4), en rouge quand tu n'en as pas du tout.
+- **Nouveau classement** : dans chaque groupe, une recette où il manque de la ciboulette passe avant une recette où il
+  manque les œufs. L'importance d'un ingrédient dépend de son rôle (viande, poisson, œufs, ingrédient du titre),
+  de sa part dans la recette, et du fait qu'il manque en partie ou en totalité.
+- **335 recettes** (94 nouvelles, surtout des entrées et des desserts) et **692 ingrédients** (154 nouveaux, dont les
+  aiguillettes de canard), avec de nombreux autres noms reconnus à la saisie.
+- **Toutes les recettes relues** : temps total réaliste (repos et réfrigération compris), puissance du feu,
+  températures, quantités et listes d'ingrédients corrigées.
+- « Pâté » n'est plus confondu avec « pâtes ».
+- Préparation du déménagement de la base : guide `docs/MIGRATION.md`, scripts de sauvegarde et de restauration,
+  sauvegarde automatique chiffrée, mise en ligne automatique du futur site. L'appli garde les modifications en attente
+  si le serveur change ou si la session expire.
+
 ## 0.5.0 — 27 septembre 2026
 
 - **Connexion avec Google** (« Continuer avec Google ») sur les écrans de connexion et de création de compte.
