@@ -104,7 +104,6 @@
     --ok: #9CCB7E; --ok-fond: #2C3A24;
     --manque: #F09A80; --manque-fond: #4A2A20;
     --partiel: #EBC46E; --partiel-fond: #3D3218;
-  --partiel: #EBC46E; --partiel-fond: #3D3218;
     --neutre-fond: #322C28;
     --focus: #7DB1FF;
     --ombre: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -718,3 +717,120 @@ a.marque:hover, .bouton-marque:hover { color: var(--accent); }
 .legende { margin: 0 0 1rem; color: var(--attenue); font-size: 0.9rem; line-height: 1.8; }
 .vitrine .barre-actions { flex-direction: row; flex-wrap: wrap; gap: 0.75rem; }
 .vitrine .barre-actions .bouton-plein { width: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+
+/* ═════════════ Illustrations ═════════════ */
+:root {
+  --il-trait: #3B2F27; --il-blanc: #FFFDF8; --il-interieur: #E4EFF4; --il-ombre: rgba(42, 36, 32, 0.10); --il-bac: #D3E3EB;
+}
+:root[data-theme="sombre"] { --il-blanc: #EDE5D8; --il-interieur: #C8D8E0; --il-ombre: rgba(0, 0, 0, 0.35); --il-bac: #B9CDD8; --il-trait: #1A1411; }
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="systeme"] { --il-blanc: #EDE5D8; --il-interieur: #C8D8E0; --il-ombre: rgba(0, 0, 0, 0.35); --il-bac: #B9CDD8; --il-trait: #1A1411; }
+}
+.illu { display: block; width: 100%; height: auto; overflow: visible; }
+.illu .t { stroke: var(--il-trait); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.illu-plat .t { stroke-width: 1.8; }
+.illu .f-trait { fill: var(--il-trait); }
+.illu .f-ombre { fill: var(--il-ombre); }
+.illu .f-blanc { fill: var(--il-blanc); }
+.illu .f-interieur { fill: var(--il-interieur); }
+.illu .f-bac { fill: var(--il-bac); }
+.illu .f-rouge { fill: #D9573B; } .illu .f-vert { fill: #7FA650; } .illu .f-jaune { fill: #F2C94C; }
+.illu .f-orange { fill: #E8893A; } .illu .f-bleu { fill: #6FA3C8; } .illu .f-bleu-clair { fill: #A9C8DD; }
+.illu .f-brun { fill: #9A5B3C; } .illu .f-dore { fill: #D39A52; } .illu .f-creme { fill: #F6E7C8; }
+.illu .f-choco { fill: #6B3E2B; } .illu .f-pate { fill: #E3B46F; } .illu .f-pain { fill: #D8A15A; }
+.illu .f-bois { fill: #B98552; } .illu .f-oeuf { fill: #FFF3E0; } .illu .f-blanc-oeuf { fill: #FFFFFF; }
+.illu .f-jaune-oeuf { fill: #F4B63A; } .illu .f-carton { fill: #D9C4A0; } .illu .f-confiture { fill: #B8325A; }
+.illu .f-poireau { fill: #DDE8C4; } .illu .f-pomme { fill: #C9D86A; } .illu .f-trou { fill: #C99A2E; }
+.illu .f-verre { fill: rgba(220, 235, 242, 0.55); } .illu .f-soupe { fill: #E8A04A; } .illu .f-ocre { fill: #D2A65A; }
+@media (forced-colors: active) { .illu { forced-color-adjust: auto; } }
+
+/* ═════════════ Accueil et présentation (0.7) ═════════════ */
+.surtitre { margin: 0; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.puces { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.puce {
+  display: inline-flex; align-items: center; gap: 0.25rem; min-height: 2.25rem; padding: 0 0.875rem; border-radius: 999px;
+  border: 1px solid var(--bordure-champ); background: var(--champ); color: var(--texte); font: inherit; font-size: 0.95rem; cursor: pointer;
+}
+.puce:hover { border-color: var(--texte); }
+.puce[aria-pressed="true"] { background: var(--vert-fond); border-color: var(--ok); color: var(--texte); font-weight: 600; }
+.puce[aria-pressed="true"]::before { content: '✓'; color: var(--ok); }
+.puce-exclu { cursor: default; padding-right: 0.25rem; background: var(--manque-fond); border-color: var(--manque); }
+.puce-exclu .bouton-icone { width: 1.9rem; height: 1.9rem; margin: 0; }
+
+.cartes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: 1rem; }
+.carte-recette { display: flex; flex-direction: column; background: var(--panneau); border: 1px solid var(--bordure); border-radius: 10px; overflow: hidden; }
+.carte-illu { background: var(--teinte-fond); padding: 0.75rem 1.5rem 0.5rem; }
+.carte-illu .illu { max-height: 6.5rem; }
+.carte-corps { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.75rem 1rem 1rem; flex: 1; }
+.carte-titre { margin: 0; font-size: 1.02rem; line-height: 1.3; }
+.carte-titre a { color: var(--texte); text-decoration: none; }
+.carte-titre a:hover { text-decoration: underline; }
+.carte-titre a::after { content: ''; position: absolute; inset: 0; }
+.carte-recette { position: relative; }
+.carte-recette:hover { border-color: var(--accent); }
+.carte-recette .bouton-secondaire, .carte-recette .deja { position: relative; z-index: 1; align-self: flex-start; margin-top: auto; }
+.carte-meta { margin: 0; font-size: 0.9rem; color: var(--attenue); }
+.carte-manque { margin: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.bouton-petit { min-height: 2.25rem; padding: 0 0.75rem; font-size: 0.9rem; }
+.favori-texte { color: var(--partiel); font-weight: 600; }
+.teinte-violet { --teinte: var(--violet); --teinte-fond: var(--violet-fond); }
+.teinte-vert { --teinte: var(--vert); --teinte-fond: var(--vert-fond); }
+.teinte-bleu { --teinte: var(--bleu); --teinte-fond: var(--bleu-fond); }
+
+.accueil-haut { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(16rem, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+.idee { display: grid; grid-template-columns: minmax(12rem, 0.9fr) minmax(0, 1.3fr); overflow: hidden; }
+.idee-illu { background: var(--teinte-fond); display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.idee-illu .illu { max-width: 20rem; }
+.idee-corps { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.5rem 1.75rem; justify-content: center; }
+.idee-titre { margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 2rem; line-height: 1.15; }
+.idee-etat { margin: 0.25rem 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.resume { padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.resume .titre-section { margin: 0; }
+.liste-resume { list-style: none; margin: 0; padding: 0; }
+.liste-resume li { border-top: 1px solid var(--filet); }
+.liste-resume li:first-child { border-top: 0; }
+.liste-resume a { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.55rem 0; color: var(--texte); text-decoration: none; min-height: 2.25rem; }
+.liste-resume a:hover { color: var(--accent); }
+.liste-resume strong { font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 1.5rem; min-width: 2.5rem; color: var(--accent); }
+.bloc-accueil { margin-bottom: 2rem; }
+.bloc-tete { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.bloc-tete .titre-section { margin: 0; }
+.segments { display: inline-flex; border: 1px solid var(--bordure-champ); border-radius: 8px; overflow: hidden; }
+.segment { min-height: 2.25rem; padding: 0 0.875rem; border: 0; border-left: 1px solid var(--bordure-champ); background: var(--champ); color: var(--texte); font: inherit; font-size: 0.95rem; cursor: pointer; }
+.segment:first-child { border-left: 0; }
+.segment[aria-pressed="true"] { background: var(--texte); color: var(--fond); font-weight: 600; }
+
+.vitrine { max-width: 72rem; gap: 2.5rem; }
+.vitrine-haut { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 2.5rem; align-items: center; }
+.vitrine-intro { max-width: none; gap: 1.1rem; }
+.titre-vitrine { font-size: 3rem; line-height: 1.1; }
+.vitrine-image .illu { max-width: 28rem; margin-left: auto; }
+.vitrine-demo { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 1.75rem; padding: 1.5rem 1.75rem; }
+.demo-compte { margin: 0 0 0.875rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem; font-size: 1.1rem; }
+.demo-compte strong { font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 2rem; color: var(--accent); }
+.cartes-demo { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+.cartes-demo .carte-illu { padding: 0.5rem 1rem 0.25rem; }
+.cartes-demo .carte-illu .illu { max-height: 5.25rem; }
+.cartes-demo .carte-corps { padding: 0.5rem 0.75rem 0.75rem; }
+.cartes-demo .carte-titre { font-size: 0.95rem; }
+.vitrine-etapes li { flex-direction: column; gap: 0.35rem; }
+.etape-illu { width: 7rem; }
+.vitrine-catalogue { display: flex; flex-direction: column; gap: 0.75rem; }
+.vitrine-catalogue .titre-section { margin: 0; }
+.chiffres-types { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.chiffres-types li { padding: 0.5rem 1rem; border-radius: 8px; background: var(--teinte-fond); font-size: 1rem; }
+.chiffres-types strong { font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 1.4rem; margin-right: 0.25rem; }
+
+.pied-page { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--filet); }
+.legende { display: flex; gap: 0.5rem; margin: 0 0 0.75rem; }
+.rangee-exclus { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+.rangee-exclus > button { margin-top: 1.6rem; }
+.rangee-exclus .champ { flex: 1; }
+.liste-exclus { margin-bottom: 0.5rem; }
+
+@media (max-width: 1100px) {
+  .accueil-haut, .vitrine-haut, .vitrine-demo { grid-template-columns: minmax(0, 1fr); }
+  .idee { grid-template-columns: minmax(0, 1fr); }
+  .idee-illu .illu { max-width: 14rem; }
+  .cartes-demo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

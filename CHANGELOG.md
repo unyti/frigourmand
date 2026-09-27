@@ -1,5 +1,17 @@
 # Journal des versions
 
+## 0.7.0 — 27 septembre 2026
+
+- **Nouvelle page de présentation** : illustration, et un essai sans compte (touche des ingrédients, les recettes
+  réalisables s'affichent aussitôt), les étapes illustrées et le catalogue en chiffres.
+- **Nouvel accueil connecté** : une idée de recette selon le moment de la journée (« Une autre idée » pour changer),
+  les recettes réalisables en cartes illustrées (filtre entrées / plats / desserts), celles où il ne manque presque rien
+  avec « Ajouter à la liste », les favoris, et un ajout rapide d'ingrédients quand le garde-manger est presque vide.
+- **Ingrédients exclus** (allergies, goûts) dans Paramètres : les recettes qui en contiennent sont masquées partout ;
+  une recette ouverte depuis les favoris le signale.
+- Légende des recettes réduite à l'essentiel ; la liste des ingrédients toujours disponibles passe en bas du garde-manger.
+- Illustrations dessinées pour l'appli (aucune image externe), adaptées au mode sombre.
+
 ## 0.6.0 — 27 septembre 2026
 
 - **Page d'accueil** : une présentation de Frigourmand avant la connexion, et un tableau de bord une fois connecté

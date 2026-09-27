@@ -173,7 +173,8 @@
       theme: ['systeme', 'clair', 'sombre'].includes(a.theme) ? a.theme : 'systeme',
       texte: ['normal', 'grand', 'tres-grand'].includes(a.texte) ? a.texte : 'normal',
       personnes: 4,
-      basiques: INGREDIENTS.filter((i) => i.basique).map((i) => i.id)
+      basiques: INGREDIENTS.filter((i) => i.basique).map((i) => i.id),
+      exclus: []
     };
   }
   function etatDefaut() {
@@ -366,6 +367,11 @@
   /* ═════════════ Correspondance recettes / garde-manger ═════════════ */
 
   const toutesRecettes = () => RECETTES_BASE.concat(etat.recettesPerso);
+  /** Ingrédients exclus (allergies, goûts) : les recettes qui en contiennent sont masquées.
+      Un ingrédient exclu mais facultatif ne masque pas la recette. */
+  const exclus = () => new Set(etat.reglages.exclus || []);
+  const exclusDe = (r) => { const e = exclus(); return r.ingredients.filter(([id, , , opt]) => !opt && e.has(id)).map(([id]) => id); };
+  const recettesVisibles = () => { const e = exclus(); return e.size ? toutesRecettes().filter((r) => !r.ingredients.some(([id, , , opt]) => !opt && e.has(id))) : toutesRecettes(); };
   const recetteParId = (id) => toutesRecettes().find((r) => r.id === id) || null;
 
   function comparer(q, u, stock, i) {
@@ -611,38 +617,96 @@
     </div>`;
   }
 
+  /* ─── Cartes de recettes (accueil, présentation) ─── */
+
+  const ILLU = window.FrigourmandIllustrations;
+  const TEINTE_TYPE = { 'Entrée': 'vert', Plat: 'ocre', Dessert: 'violet' };
+
+  function carteRecette(r, o) {
+    const opt = o || {};
+    const titre = opt.lien === false ? esc(r.nom) : `<a href="#recette/${esc(r.id)}" id="${opt.prefixe || 'carte'}-${esc(r.id)}">${esc(r.nom)}</a>`;
+    return `<li class="carte-recette">
+        <div class="carte-illu teinte-${TEINTE_TYPE[r.type] || 'ocre'}">${ILLU.pourRecette(r, ing)}</div>
+        <div class="carte-corps">
+          <h3 class="carte-titre">${titre}</h3>
+          <p class="carte-meta">${esc(r.type)} · ${esc(duree(r.minutes))}${estFavori(r.id) ? ' · <span class="favori-texte">favori</span>' : ''}</p>
+          ${opt.extra || ''}
+        </div>
+      </li>`;
+  }
+
   /* ─── Présentation (avant connexion) ─── */
 
+  const DEMO_INGREDIENTS = ['oeufs', 'lait', 'beurre', 'farine', 'pates', 'lardons', 'creme-fraiche', 'fromage-rape',
+    'pommes-de-terre', 'oignons', 'ail', 'tomates', 'poulet', 'riz', 'champignons', 'chocolat-noir'];
+  const DEMO_DEPART = ['oeufs', 'lait', 'beurre', 'farine', 'pates', 'lardons', 'creme-fraiche', 'fromage-rape', 'pommes-de-terre', 'oignons', 'tomates'];
+
+  function analyseDemo() {
+    const dispo = new Set(ui.demo);
+    const basiques = new Set(reglagesDefaut().basiques);
+    return RECETTES_BASE.map((r) => ({
+      r,
+      manque: r.ingredients.filter(([id, , , opt]) => !opt && !dispo.has(id) && !basiques.has(id)).map(([id]) => ing(id).nom)
+    }));
+  }
+
   function vueVitrine() {
-    const nbR = infosAppli.nbRecettes || 300;
-    const nbI = infosAppli.nbIngredients || 600;
-    const etapes = [
-      ['Note ce que tu as', 'Frigo, placards, congélateur : tu ajoutes tes ingrédients en quelques lettres, avec la quantité si tu veux.'],
-      ['Vois ce que tu peux cuisiner', 'Les recettes réalisables tout de suite d’abord, puis celles où il manque un ou deux ingrédients, les moins gênants en premier.'],
-      ['Complète tes courses', 'Un clic ajoute ce qui manque à ta liste, avec les bonnes quantités pour le nombre de personnes.']
-    ];
+    if (!ui.demo) ui.demo = DEMO_DEPART.slice();
+    const a = analyseDemo();
+    const ok = a.filter((x) => !x.manque.length).sort((x, y) => x.r.minutes - y.r.minutes);
+    const un = a.filter((x) => x.manque.length === 1);
+    const parType = (t) => RECETTES_BASE.filter((r) => r.type === t).length;
+    const cuisines = [...new Set(RECETTES_BASE.map((r) => r.cuisine))].sort(trierFr);
     return `
       <div class="vitrine">
-        <section class="vitrine-intro" aria-labelledby="auth-titre">
-          <h1 class="titre titre-grand" id="auth-titre" tabindex="-1">Qu’est-ce qu’on mange avec ce qu’il y a dans le frigo ?</h1>
-          <p class="vitrine-texte">Frigourmand part de ce que tu as déjà chez toi et te propose des recettes, surtout françaises, mais aussi italiennes, asiatiques, maghrébines… Moins de gaspillage, moins de casse-tête.</p>
-          <div class="barre-actions">
-            <button type="button" class="bouton bouton-plein" id="vitrine-inscription" data-action="auth-mode" data-mode="inscription">Créer un compte</button>
-            <button type="button" class="bouton-secondaire" id="vitrine-connexion" data-action="auth-mode" data-mode="connexion">J’ai déjà un compte</button>
+        <section class="vitrine-haut" aria-labelledby="auth-titre">
+          <div class="vitrine-intro">
+            <p class="surtitre">Cuisine du quotidien, sans gaspiller</p>
+            <h1 class="titre titre-vitrine" id="auth-titre" tabindex="-1">Ouvre ton frigo, Frigourmand trouve la recette.</h1>
+            <p class="vitrine-texte">Tu notes ce que tu as. Frigourmand te montre ce que tu peux cuisiner tout de suite, ce qu’il te manque pour le reste, et prépare ta liste de courses.</p>
+            <div class="barre-actions">
+              <button type="button" class="bouton" id="vitrine-inscription" data-action="auth-mode" data-mode="inscription">Créer un compte gratuit</button>
+              <button type="button" class="bouton-secondaire" id="vitrine-connexion" data-action="auth-mode" data-mode="connexion">J’ai déjà un compte</button>
+            </div>
+          </div>
+          <div class="vitrine-image">${ILLU.frigo()}</div>
+        </section>
+
+        <section class="panneau vitrine-demo" aria-labelledby="demo-titre">
+          <div class="demo-choix">
+            <h2 id="demo-titre" class="titre-section">Essaie : qu’as-tu dans ta cuisine ?</h2>
+            <p class="aide">Touche les ingrédients pour les ajouter ou les retirer.</p>
+            <div class="puces" role="group" aria-label="Ingrédients de l’essai">
+              ${DEMO_INGREDIENTS.map((id) => `<button type="button" class="puce" id="demo-${id}" data-action="demo-basculer" data-id="${id}" aria-pressed="${ui.demo.includes(id)}">${esc(ing(id).nom.replace(/\s*\(.*?\)/, ''))}</button>`).join('')}
+            </div>
+          </div>
+          <div class="demo-resultat" aria-live="polite">
+            <p class="demo-compte"><strong>${ok.length}</strong> ${ok.length > 1 ? 'recettes réalisables' : 'recette réalisable'}
+              <span class="note-inline">et ${un.length} où il ne manque qu’un ingrédient</span></p>
+            ${ok.length ? `<ul class="cartes cartes-demo">${ok.slice(0, 6).map(({ r }) => carteRecette(r, { lien: false })).join('')}</ul>`
+              : '<p class="aide">Ajoute quelques ingrédients pour voir des recettes.</p>'}
           </div>
         </section>
+
         <section class="vitrine-etapes" aria-labelledby="vitrine-comment">
           <h2 id="vitrine-comment" class="titre-section">Comment ça marche</h2>
           <ol>
-            ${etapes.map(([t, d], n) => `<li><span class="num-etape" aria-hidden="true">${n + 1}</span><div><h3>${esc(t)}</h3><p>${esc(d)}</p></div></li>`).join('')}
+            <li><div class="etape-illu">${ILLU.plat('salade')}</div><h3>Note ce que tu as</h3><p>Frigo, placards, congélateur, avec la quantité si tu veux.</p></li>
+            <li><div class="etape-illu">${ILLU.plat('pates')}</div><h3>Choisis une recette</h3><p>Réalisables d’abord, puis celles où il manque peu de chose.</p></li>
+            <li><div class="etape-illu">${ILLU.plat('gateau')}</div><h3>Complète tes courses</h3><p>Ce qui manque va dans ta liste, en bonnes quantités.</p></li>
           </ol>
         </section>
-        <ul class="vitrine-chiffres" aria-label="En bref">
-          <li><strong>${nbR}</strong> recettes vérifiées, entrées, plats et desserts</li>
-          <li><strong>${nbI}</strong> ingrédients reconnus</li>
-          <li><strong>Synchronisé</strong> entre ton ordinateur et bientôt le site et le mobile</li>
-          <li><strong>Accessible</strong> : clavier, lecteur d’écran, mode sombre, grand texte</li>
-        </ul>
+
+        <section class="vitrine-catalogue" aria-labelledby="vitrine-cat">
+          <h2 id="vitrine-cat" class="titre-section">${RECETTES_BASE.length} recettes vérifiées</h2>
+          <ul class="chiffres-types">
+            <li class="teinte-vert"><strong>${parType('Entrée')}</strong> entrées</li>
+            <li class="teinte-ocre"><strong>${parType('Plat')}</strong> plats</li>
+            <li class="teinte-violet"><strong>${parType('Dessert')}</strong> desserts</li>
+          </ul>
+          <p class="note">Cuisines : ${esc(cuisines.join(', '))}.</p>
+          <p class="note">Tes données sont synchronisées entre tes appareils. L’appli se règle en mode sombre ou en grand texte, et se pilote entièrement au clavier.</p>
+        </section>
       </div>`;
   }
 
@@ -835,70 +899,113 @@
 
   /* ─── Accueil (connecté) ─── */
 
+  function momentDuJour() {
+    const h = new Date().getHours();
+    if (h >= 5 && h < 11) return { libelle: 'Idée pour aujourd’hui', type: null };
+    if (h >= 11 && h < 15) return { libelle: 'Idée pour ce midi', type: 'Plat' };
+    if (h >= 15 && h < 18) return { libelle: 'Idée pour le goûter', type: 'Dessert' };
+    return { libelle: 'Idée pour ce soir', type: 'Plat' };
+  }
+  /** Ordre qui change chaque jour (mais reste stable dans la journée). */
+  function melangeDuJour(liste) {
+    const jour = new Date().toISOString().slice(0, 10);
+    const h = (s) => { let x = 0; for (const c of jour + s) x = (x * 31 + c.charCodeAt(0)) | 0; return x; };
+    return liste.slice().sort((a, b) => h(a.r.id) - h(b.r.id));
+  }
+
   function vueAccueil() {
     const pers = personnesFiltre();
-    const analyses = toutesRecettes().map((r) => ({ r, a: analyser(r, pers) }));
-    const realisables = analyses.filter((x) => x.a.nb === 0)
-      .sort((x, y) => (estFavori(y.r.id) - estFavori(x.r.id)) || x.r.minutes - y.r.minutes);
+    const analyses = recettesVisibles().map((r) => ({ r, a: analyser(r, pers) }));
+    const realisables = analyses.filter((x) => x.a.nb === 0);
     const presque = analyses.filter((x) => x.a.nb === 1).sort((x, y) => x.a.gravite - y.a.gravite || x.r.minutes - y.r.minutes);
     const favoris = analyses.filter((x) => estFavori(x.r.id)).sort((x, y) => x.a.nb - y.a.nb);
     const aAcheter = etat.courses.filter((c) => !c.coche).length;
-    const derniers = etat.gardeManger.slice(-6).reverse();
-    const heure = new Date().getHours();
-    const salut = heure >= 18 || heure < 5 ? 'Bonsoir' : 'Bonjour';
-    const tuile = (href, id, n, texte) => `<li><a class="tuile" href="${href}" id="${id}"><strong>${n}</strong><span>${esc(texte)}</span></a></li>`;
-    const ligneRecette = ({ r, a }, avecManque) => `<li class="ligne-accueil">
-        <a href="#recette/${esc(r.id)}" id="acc-${avecManque ? 'p' : 'r'}-${esc(r.id)}">${esc(r.nom)}</a>
-        <span class="note-inline">${esc(r.type)} · ${esc(duree(r.minutes))}</span>
-        ${avecManque ? a.manquants.map((l) => `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(l.ing.nom)}${l.partiel ? ' (pas assez)' : ''}</span>`).join('') : ''}
-      </li>`;
-    const vide = !etat.gardeManger.length;
+    const moment = momentDuJour();
+
+    // Idée du moment : une recette réalisable (du bon type si possible), sinon une presque prête.
+    let pool = realisables.filter((x) => !moment.type || x.r.type === moment.type);
+    if (!pool.length) pool = realisables;
+    if (!pool.length) pool = presque.slice(0, 12);
+    pool = melangeDuJour(pool).sort((x, y) => estFavori(y.r.id) - estFavori(x.r.id));
+    const idee = pool.length ? pool[(ui.idee || 0) % pool.length] : null;
+
+    const filtre = ui.filtreAccueil || '';
+    const affichees = melangeDuJour(realisables).filter((x) => !filtre || x.r.type === filtre);
+    const manques = (a) => a.manquants.map((l) => `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(l.ing.nom.replace(/\s*\(.*?\)/, ''))}${l.partiel ? ' (pas assez)' : ''}</span>`).join('');
+    const ligneResume = (href, id, n, texte) => `<li><a href="${href}" id="${id}"><strong>${n}</strong> ${esc(texte)}</a></li>`;
+    const segments = [['', 'Tout'], ['Entrée', 'Entrées'], ['Plat', 'Plats'], ['Dessert', 'Desserts']];
+
     return `
-      <div class="titre-page">
-        <h1 class="titre" tabindex="-1">${salut}${utilisateur && utilisateur.nom ? ' ' + esc(utilisateur.nom) : ''}</h1>
-        <p class="sous-titre">Voici où en est ta cuisine.</p>
+      <h1 class="sr-only" tabindex="-1">Accueil</h1>
+      <div class="accueil-haut">
+        ${idee ? `
+        <section class="panneau idee" aria-labelledby="idee-titre">
+          <div class="idee-illu teinte-${TEINTE_TYPE[idee.r.type] || 'ocre'}">${ILLU.pourRecette(idee.r, ing)}</div>
+          <div class="idee-corps">
+            <p class="surtitre">${esc(moment.libelle)}${utilisateur && utilisateur.nom ? ', ' + esc(utilisateur.nom) : ''}</p>
+            <h2 class="idee-titre" id="idee-titre">${esc(idee.r.nom)}</h2>
+            <p class="carte-meta">${esc(idee.r.type)} · ${esc(duree(idee.r.minutes))} · ${esc(idee.r.difficulte)} · ${esc(idee.r.cuisine)}</p>
+            <p class="idee-etat">${idee.a.nb ? `Il te manque : ${manques(idee.a)}` : `<span class="pastille ok">${ICONES.coche}Tu as tout ce qu’il faut</span>`}</p>
+            <div class="barre-actions">
+              <a class="bouton" href="#recette/${esc(idee.r.id)}" id="idee-voir">Voir la recette</a>
+              ${pool.length > 1 ? '<button type="button" class="bouton-secondaire" id="idee-autre" data-action="idee-autre">Une autre idée</button>' : ''}
+            </div>
+          </div>
+        </section>` : `
+        <section class="panneau idee" aria-labelledby="idee-titre">
+          <div class="idee-illu teinte-bleu">${ILLU.frigo()}</div>
+          <div class="idee-corps">
+            <p class="surtitre">Pour commencer</p>
+            <h2 class="idee-titre" id="idee-titre">Remplis ton garde-manger</h2>
+            <p>Ajoute ce que tu as : les idées de recettes apparaîtront ici.</p>
+            <div class="barre-actions"><a class="bouton" href="#garde-manger" id="acc-remplir">Ouvrir le garde-manger</a></div>
+          </div>
+        </section>`}
+        <aside class="panneau resume" aria-labelledby="resume-titre">
+          <h2 id="resume-titre" class="titre-section">Ta cuisine</h2>
+          <ul class="liste-resume">
+            ${ligneResume('#garde-manger', 'res-gm', etat.gardeManger.length, etat.gardeManger.length > 1 ? 'ingrédients en stock' : 'ingrédient en stock')}
+            ${ligneResume('#recettes', 'res-rec', realisables.length, realisables.length > 1 ? 'recettes réalisables' : 'recette réalisable')}
+            ${ligneResume('#courses', 'res-courses', aAcheter, aAcheter > 1 ? 'articles à acheter' : 'article à acheter')}
+            ${ligneResume('#mes-recettes', 'res-fav', etat.favoris.length, etat.favoris.length > 1 ? 'favoris' : 'favori')}
+          </ul>
+          ${etat.gardeManger.length < 6 ? `
+            <h3 class="titre-bloc">Ajout rapide</h3>
+            <div class="puces">${DEMO_INGREDIENTS.filter((id) => !enStock(id)).slice(0, 8).map((id) => `<button type="button" class="puce" id="rapide-${id}" data-action="ajout-rapide" data-id="${id}">+ ${esc(ing(id).nom.replace(/\s*\(.*?\)/, ''))}</button>`).join('')}</div>` : ''}
+        </aside>
       </div>
-      <ul class="tuiles" aria-label="En bref">
-        ${tuile('#garde-manger', 'tuile-gm', etat.gardeManger.length, etat.gardeManger.length > 1 ? 'ingrédients dans le garde-manger' : 'ingrédient dans le garde-manger')}
-        ${tuile('#recettes', 'tuile-rec', realisables.length, realisables.length > 1 ? 'recettes réalisables maintenant' : 'recette réalisable maintenant')}
-        ${tuile('#courses', 'tuile-courses', aAcheter, aAcheter > 1 ? 'articles à acheter' : 'article à acheter')}
-        ${tuile('#mes-recettes', 'tuile-fav', etat.favoris.length, etat.favoris.length > 1 ? 'recettes favorites' : 'recette favorite')}
-      </ul>
-      ${vide ? `
-        <section class="panneau corps-panneau encart-demarrage" aria-labelledby="acc-demarrer">
-          <h2 id="acc-demarrer" class="titre-section">Pour commencer</h2>
-          <p>Ajoute ce que tu as dans ton frigo et tes placards : Frigourmand te montrera aussitôt ce que tu peux cuisiner.</p>
-          <a class="bouton bouton-plein" href="#garde-manger" id="acc-remplir">Remplir mon garde-manger</a>
-        </section>` : ''}
-      <div class="grille-2">
-        <section class="panneau corps-panneau" aria-labelledby="acc-maintenant">
-          <h2 id="acc-maintenant" class="titre-section">À cuisiner maintenant</h2>
-          ${realisables.length ? `<ul class="liste-accueil">${realisables.slice(0, 6).map((x) => ligneRecette(x, false)).join('')}</ul>
-            ${realisables.length > 6 ? `<p><a href="#recettes" id="acc-toutes">Voir les ${realisables.length} recettes réalisables</a></p>` : ''}`
-            : '<p class="aide">Aucune recette réalisable pour l’instant avec ton garde-manger.</p>'}
-        </section>
-        <section class="panneau corps-panneau" aria-labelledby="acc-presque">
-          <h2 id="acc-presque" class="titre-section">Il ne manque presque rien</h2>
-          ${presque.length ? `<ul class="liste-accueil">${presque.slice(0, 6).map((x) => ligneRecette(x, true)).join('')}</ul>`
-            : '<p class="aide">Rien à signaler de ce côté.</p>'}
-        </section>
-        <section class="panneau corps-panneau" aria-labelledby="acc-favoris">
-          <h2 id="acc-favoris" class="titre-section">Tes favoris</h2>
-          ${favoris.length ? `<ul class="liste-accueil">${favoris.slice(0, 6).map(({ r, a }) => `<li class="ligne-accueil">
-              <a href="#recette/${esc(r.id)}" id="acc-f-${esc(r.id)}">${esc(r.nom)}</a>
-              ${a.nb ? (a.partiels === a.nb
-                ? `<span class="pastille partiel">${ICONES.partiel}pas assez</span>`
-                : `<span class="pastille manque">${ICONES.alerte}${pluriel(a.nb, 'manquant', 'manquants')}</span>`) : `<span class="pastille ok">${ICONES.coche}réalisable</span>`}
-            </li>`).join('')}</ul>`
-            : '<p class="aide">Touche l’étoile d’une recette pour la retrouver ici.</p>'}
-        </section>
-        <section class="panneau corps-panneau" aria-labelledby="acc-derniers">
-          <h2 id="acc-derniers" class="titre-section">Derniers ajouts au garde-manger</h2>
-          ${derniers.length ? `<ul class="liste-accueil">${derniers.map((x) => `<li class="ligne-accueil"><span>${esc(ing(x.id).nom)}</span>${x.qte != null ? `<span class="note-inline">${esc(formatQteCourt(x.qte, x.unite, ing(x.id)))}</span>` : ''}</li>`).join('')}</ul>
-            <p><a href="#garde-manger" id="acc-gm">Gérer le garde-manger</a></p>`
-            : '<p class="aide">Ton garde-manger est vide.</p>'}
-        </section>
-      </div>`;
+
+      ${realisables.length ? `
+      <section class="bloc-accueil" aria-labelledby="acc-maintenant">
+        <div class="bloc-tete">
+          <h2 id="acc-maintenant" class="titre-section">Tu peux cuisiner maintenant</h2>
+          <div class="segments" role="group" aria-label="Type de recette">
+            ${segments.map(([v, l]) => `<button type="button" class="segment" id="seg-${v || 'tout'}" data-action="filtre-accueil" data-type="${v}" aria-pressed="${filtre === v}">${l}</button>`).join('')}
+          </div>
+        </div>
+        ${affichees.length ? `<ul class="cartes">${affichees.slice(0, 8).map((x) => carteRecette(x.r, { prefixe: 'acc-r' })).join('')}</ul>` : '<p class="aide">Aucune recette de ce type pour l’instant.</p>'}
+        ${realisables.length > 8 ? `<p><a href="#recettes" id="acc-toutes">Voir les ${realisables.length} recettes réalisables</a></p>` : ''}
+      </section>` : ''}
+
+      ${presque.length ? `
+      <section class="bloc-accueil" aria-labelledby="acc-presque">
+        <h2 id="acc-presque" class="titre-section">Il ne manque presque rien</h2>
+        <ul class="cartes">${presque.slice(0, 4).map((x) => carteRecette(x.r, {
+          prefixe: 'acc-p',
+          extra: `<p class="carte-manque">${manques(x.a)}</p>${x.a.manquants.every((l) => dansListe(l.id))
+            ? `<span class="deja">${ICONES.coche}Dans la liste</span>`
+            : `<button type="button" class="bouton-secondaire bouton-petit" id="acc-aj-${esc(x.r.id)}" data-action="liste-ajouter-recette" data-id="${esc(x.r.id)}" aria-label="Ajouter à la liste ce qui manque pour ${esc(x.r.nom)}">Ajouter à la liste</button>`}`
+        })).join('')}</ul>
+      </section>` : ''}
+
+      ${favoris.length ? `
+      <section class="bloc-accueil" aria-labelledby="acc-favoris">
+        <h2 id="acc-favoris" class="titre-section">Tes favoris</h2>
+        <ul class="cartes">${favoris.slice(0, 4).map((x) => carteRecette(x.r, {
+          prefixe: 'acc-f',
+          extra: x.a.nb ? `<p class="carte-manque">${manques(x.a)}</p>` : `<p class="carte-manque"><span class="pastille ok">${ICONES.coche}réalisable</span></p>`
+        })).join('')}</ul>
+      </section>` : ''}`;
   }
 
   /* ─── Garde-manger ─── */
@@ -912,7 +1019,7 @@
     const basiques = etat.reglages.basiques.map((id) => ing(id).nom);
 
     const pers = personnesFiltre();
-    const realisables = items.length ? toutesRecettes().filter((r) => analyser(r, pers).nb === 0).length : 0;
+    const realisables = items.length ? recettesVisibles().filter((r) => analyser(r, pers).nb === 0).length : 0;
 
     return `
       <div class="titre-page">
@@ -947,7 +1054,6 @@
             <button type="submit" class="bouton bouton-plein" id="gm-bouton-ajouter">Ajouter</button>
           </form>
           ${items.length ? `<p class="encart-info"><strong>${pluriel(realisables, 'recette réalisable', 'recettes réalisables')}</strong> avec ce que tu as, pour ${pluriel(pers, 'personne')}. <a href="#recettes">Voir les recettes</a></p>` : ''}
-          <p class="note">Toujours considérés comme disponibles : ${esc(basiques.join(', ') || 'aucun')}. <a href="#parametres">Modifier</a></p>
         </aside>
 
         <div class="colonne-principale">
@@ -973,7 +1079,10 @@
             <p>Ajoute ce que tu as dans le frigo et les placards. La quantité est facultative : sans quantité, Frigourmand considère que tu en as assez.</p>
           </div>`}
         </div>
-      </div>`;
+      </div>
+      <footer class="pied-page">
+        <p class="note">Toujours considérés comme disponibles : ${esc(basiques.join(', ') || 'aucun')}. <a href="#parametres">Modifier</a></p>
+      </footer>`;
   }
 
   /* ─── Recettes ─── */
@@ -981,7 +1090,7 @@
   function filtrerRecettes() {
     const f = ui.filtres;
     const q = norm(f.q);
-    return toutesRecettes().filter((r) => {
+    return recettesVisibles().filter((r) => {
       if (f.cuisine && r.cuisine !== f.cuisine) return false;
       if (f.type && r.type !== f.type) return false;
       if (f.temps && r.minutes > Number(f.temps)) return false;
@@ -1054,7 +1163,7 @@
       <div class="titre-page titre-page-filtres">
         <div>
           <h1 class="titre" tabindex="-1">Recettes</h1>
-          <p class="sous-titre">D’après ton garde-manger · ${pluriel(analyses.length, 'recette')}</p>
+          <p class="sous-titre">D’après ton garde-manger · ${pluriel(analyses.length, 'recette')}${(etat.reglages.exclus || []).length ? ` · <a href="#parametres">${pluriel(toutesRecettes().length - recettesVisibles().length, 'masquée', 'masquées')}</a>` : ''}</p>
         </div>
         <div class="filtres" role="group" aria-label="Filtrer les recettes">
           <div class="champ">
@@ -1084,7 +1193,7 @@
         </div>
       </div>
 
-      ${etat.gardeManger.length ? `<p class="legende">Légende : <span class="pastille partiel">${ICONES.partiel}pas assez</span> tu en as, mais pas la quantité demandée · <span class="pastille manque">${ICONES.alerte}à acheter</span> tu n’en as pas du tout. Dans chaque groupe, les recettes où il manque un ingrédient secondaire (herbes, épices…) passent avant celles où il manque l’ingrédient principal.</p>` : ''}
+      ${etat.gardeManger.length ? `<p class="legende"><span class="pastille partiel">${ICONES.partiel}pas assez</span> <span class="pastille manque">${ICONES.alerte}à acheter</span></p>` : ''}
       ${etat.gardeManger.length ? '' : `<p class="bandeau">Ton garde-manger est vide : toutes les recettes sont rangées dans « 3 ingrédients ou plus ». <a href="#garde-manger">Ajouter des ingrédients</a></p>`}
 
       ${sections.filter((s) => s.liste.length).map((s) => `
@@ -1121,6 +1230,7 @@
     const a = analyser(r, pers);
     const libellePers = pluriel(pers, 'personne');
     const statut = (l) => {
+      if (exclus().has(l.id)) return `<span class="pastille manque">${ICONES.alerte}exclu</span>`;
       if (l.statut === 'ok') return `<span class="pastille ok">${ICONES.coche}en stock</span>`;
       if (l.statut === 'basique') return '<span class="pastille neutre">basique</span>';
       if (l.statut === 'facultatif') return '<span class="pastille neutre">facultatif</span>';
@@ -1130,9 +1240,11 @@
       return `<span class="pastille ${l.partiel ? 'partiel' : 'manque'}">${l.partiel ? ICONES.partiel : ICONES.alerte}${esc(txt + detenu)}</span>${dansListe(l.id) ? '<span class="note-inline">dans ta liste</span>' : ''}`;
     };
     const tousDansListe = a.manquants.every((l) => dansListe(l.id));
+    const interdits = exclusDe(r);
 
     return `
       <a href="#recettes" class="lien-retour" id="lien-retour">${ICONES.retour}Retour aux recettes</a>
+      ${interdits.length ? `<p class="alerte" role="note">Contient ${esc(interdits.map((id) => ing(id).nom).join(', '))}, que tu as exclu${interdits.length > 1 ? 's' : ''} dans les paramètres.</p>` : ''}
       <div class="titre-fiche">
         <h1 class="titre titre-grand" tabindex="-1">${esc(r.nom)}</h1>
         <ul class="meta" aria-label="Informations">
@@ -1445,6 +1557,21 @@
             </div>
           </fieldset>
         </section>
+
+        <section class="panneau corps-panneau" aria-labelledby="p-exclus">
+          <h2 id="p-exclus" class="titre-section">Ingrédients exclus</h2>
+          <p class="aide">Allergie ou goût : les recettes qui en contiennent sont masquées partout.</p>
+          <form class="rangee-exclus" data-action="exclu-ajouter" novalidate>
+            <div class="champ">
+              <label class="etiquette" for="ex-nom">Exclure un ingrédient</label>
+              ${champRecherche('ex-nom', { mode: 'exclu', placeholder: 'ex. arachides, crevettes…', enLigne: true })}
+              ${erreurChamp('ex-nom')}
+            </div>
+            <button type="submit" class="bouton-secondaire" id="ex-ajouter">Exclure</button>
+          </form>
+          ${(r.exclus || []).length ? `<ul class="puces liste-exclus" aria-label="Ingrédients exclus">${r.exclus.map((id) => `<li class="puce puce-exclu">${esc(ing(id).nom)}<button type="button" class="bouton-icone" id="ex-sup-${esc(id)}" data-action="exclu-retirer" data-id="${esc(id)}" aria-label="Ne plus exclure ${esc(ing(id).nom)}">${ICONES.croix}</button></li>`).join('')}</ul>
+            <p class="note">${pluriel(toutesRecettes().length - recettesVisibles().length, 'recette masquée', 'recettes masquées')}. Vérifie toujours les étiquettes des produits tout prêts (bouillon, pâte feuilletée…).</p>` : ''}
+        </section>
         </div>
         <div class="colonne-parametres">
         <section class="panneau corps-panneau" aria-labelledby="p-apparence">
@@ -1624,6 +1751,23 @@
       if (res === 'ajoute' && rang) enStock(i.id).rangement = rang;
       toast(res === 'ajoute' ? i.nom + ' ajouté au garde-manger.' : res === 'maj' ? i.nom + ' : quantité mise à jour.' : i.nom + ' est déjà dans le garde-manger.');
     }, { focus: 'gm-nom' });
+  }
+
+  function actionAjouterExclu() {
+    ui.erreurs = {};
+    const champ = $('#ex-nom');
+    const nom = champ.value.trim();
+    const i = nom ? ingParNom(nom) : null;
+    if (!i) {
+      ui.erreurs['ex-nom'] = nom ? 'Ingrédient inconnu : choisis-le dans la liste des suggestions.' : 'Indique l’ingrédient à exclure.';
+      rendre({ focus: 'ex-nom' });
+      $('#ex-nom').value = nom;
+      return;
+    }
+    if ((etat.reglages.exclus || []).includes(i.id)) { toast(i.nom + ' est déjà exclu.'); return; }
+    const avant = recettesVisibles().length;
+    modifier(() => { etat.reglages.exclus = (etat.reglages.exclus || []).concat(i.id); }, { focus: 'ex-nom' });
+    toast(i.nom + ' exclu : ' + pluriel(avant - recettesVisibles().length, 'recette masquée', 'recettes masquées') + '.');
   }
 
   /** Préremplit unité et rangement quand le nom tapé correspond à un ingrédient connu. */
@@ -1992,7 +2136,7 @@
     const noms = Object.fromEntries(RANGEMENTS.map((r) => [r.id, r.nom]));
     let html = res.map((i, n) => `<li role="option" class="option" id="${el.id}-opt-${n}" data-id="${esc(i.id)}" aria-selected="false">
         <span class="option-nom">${esc(i.nom)}</span><span class="option-info">${esc(noms[i.rangement] || '')}</span></li>`).join('');
-    if (!exact && el.dataset.recherche !== 'courses') {
+    if (!exact && !['courses', 'exclu'].includes(el.dataset.recherche)) {
       html += `<li role="option" class="option option-nouveau" id="${el.id}-opt-nouveau" data-nouveau="1" aria-selected="false">
         <span class="option-nom">Ajouter « ${esc(t)} » comme nouvel ingrédient</span></li>`;
     }
@@ -2069,6 +2213,7 @@
     const a = f.dataset.action;
     if (a.startsWith('auth-')) actionAuth(a.slice(5));
     else if (a === 'gm-ajouter') actionAjouterGardeManger();
+    else if (a === 'exclu-ajouter') actionAjouterExclu();
     else if (a === 'courses-ajouter') actionAjouterCourse();
     else if (a === 'editeur-enregistrer') actionEnregistrerRecette();
   });
@@ -2092,6 +2237,23 @@
         break;
       case 'auth-mode': changerModeAuth(el.dataset.mode); break;
       case 'auth-google': connexionGoogle(); break;
+      case 'demo-basculer': {
+        const d = new Set(ui.demo);
+        if (d.has(id)) d.delete(id); else d.add(id);
+        ui.demo = [...d];
+        rendre();
+        break;
+      }
+      case 'idee-autre': ui.idee = (ui.idee || 0) + 1; rendre({ focus: 'idee-autre' }); break;
+      case 'filtre-accueil': ui.filtreAccueil = el.dataset.type; rendre(); break;
+      case 'ajout-rapide':
+        modifier(() => { ajouterAuStock(id, null, '', null); }, { focus: 'res-gm' });
+        toast(ing(id).nom + ' ajouté au garde-manger.');
+        break;
+      case 'exclu-retirer':
+        modifier(() => { etat.reglages.exclus = (etat.reglages.exclus || []).filter((x) => x !== id); }, { focus: 'ex-nom' });
+        toast(ing(id).nom + ' n’est plus exclu.');
+        break;
       case 'auth-annuler-google':
         bureau.compte.annulerGoogle();
         changerModeAuth('connexion');
@@ -2291,7 +2453,10 @@
       $('#contenu').innerHTML = '<h1 class="titre">Frigourmand</h1><p>Cette page doit être ouverte depuis l’application Frigourmand.</p>';
       return;
     }
-    const [etatCompte, infos, maj] = await Promise.all([bureau.compte.etat(), bureau.infos(), bureau.majEtat()]);
+    const [etatCompte, infos, maj, catalogue] = await Promise.all([bureau.compte.etat(), bureau.infos(), bureau.majEtat(), bureau.catalogue()]);
+    // Catalogue disponible dès la page de présentation (essai sans compte).
+    INGREDIENTS = catalogue.ingredients; RANGEMENTS = catalogue.rangements; RAYONS = catalogue.rayons; RECETTES_BASE = catalogue.recettes;
+    indexIngredients = null;
     infosAppli = infos;
     etatMaj = maj;
     bureau.surMaj(recevoirEtatMaj);

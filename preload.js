@@ -4,6 +4,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('frigourmandBureau', {
   charger: () => ipcRenderer.invoke('donnees:charger'),
+  catalogue: () => ipcRenderer.invoke('donnees:catalogue'),
   appliquer: (ops) => ipcRenderer.invoke('donnees:appliquer', ops),
   exporter: () => ipcRenderer.invoke('donnees:exporter'),
   importer: () => ipcRenderer.invoke('donnees:importer'),

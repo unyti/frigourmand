@@ -212,6 +212,8 @@ ipcMain.handle('synchro:maintenant', async () => {
 /* ─── Données ─── */
 
 ipcMain.handle('donnees:charger', () => { exigerSession(); return base.charger(uid); });
+// Catalogue seul (recettes et ingrédients communs) : sert à la page de présentation, avant la connexion.
+ipcMain.handle('donnees:catalogue', () => base.charger('local').catalogue);
 ipcMain.handle('donnees:appliquer', (_e, ops) => {
   exigerSession();
   base.appliquer(ops, uid);
