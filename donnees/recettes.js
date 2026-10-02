@@ -1249,5 +1249,10 @@ require('./recettes-simples-viandes-poissons')(R);
 require('./recettes-simples-cremerie')(R);
 require('./recettes-simples-epicerie')(R);
 require('./recettes-tomate')(R);
+require('./recettes-variantes-pizzas-tartes')(R);
+require('./recettes-variantes-pates-risottos')(R);
+require('./recettes-variantes-plats-quotidien')(R);
+require('./recettes-variantes-snacks-oeufs-gratins')(R);
+require('./recettes-variantes-desserts-apero')(R);
 
 module.exports = recettes;

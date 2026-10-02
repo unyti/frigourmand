@@ -1,5 +1,15 @@
 # Journal des versions
 
+## 0.10.0 — 2 octobre 2026
+
+- **1 010 recettes** (342 nouvelles) : les variantes courantes des grands classiques.
+  - 26 pizzas et flammekueches (chorizo, 4 fromages, calzone, chèvre-miel, savoyarde…), 16 quiches et tartes salées,
+    10 cakes salés, 11 feuilletés et tourtes ;
+  - 39 plats de pâtes (au chorizo, pesto-poulet, saumon, 4 fromages, one-pot…), 14 risottos, gnocchis, nouilles sautées ;
+  - 69 plats du quotidien (poêlées, woks, currys, plats au chorizo, poissons simples, plats sur une plaque) ;
+  - 77 sandwichs, croques, burgers, wraps, omelettes, gratins et galettes ;
+  - 46 desserts et goûters, 21 recettes d'apéritif.
+
 ## 0.9.2 — 27 septembre 2026
 
 - **Conserves de tomate** : pulpe (tomates concassées), tomates pelées, coulis et sauce tomate en bocal peuvent se
