@@ -1,5 +1,15 @@
 # Journal des versions
 
+## 0.11.0 — 2 octobre 2026
+
+- **Relecture complète des 1 010 recettes**, une par une (environ 770 modifiées) :
+  - chaque cuisson indique sa **durée** et sa **puissance** (feu vif, moyen ou doux ; température du four rappelée
+    dans l'étape de cuisson elle-même ; eau bouillante ou frémissante ; température de friture) ;
+  - « le temps indiqué sur le paquet » est remplacé par une durée chiffrée (pâtes, riz, nouilles, gnocchis) ;
+  - repères de cuisson ajoutés (pointe du couteau, température à cœur, saignant / à point / bien cuit) ;
+  - temps totaux recalculés d'après les étapes ; quantités et ingrédients manquants corrigés.
+- Nouveaux ingrédients : praliné (pâte) et semoule fine de blé.
+
 ## 0.10.0 — 2 octobre 2026
 
 - **1 010 recettes** (342 nouvelles) : les variantes courantes des grands classiques.

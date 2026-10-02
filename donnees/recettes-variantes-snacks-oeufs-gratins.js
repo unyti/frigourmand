@@ -78,7 +78,7 @@ module.exports = function ajouter(R) {
     ['pain', 2], ['avocat', 1], ['oeufs', 2], ['citron', 0.5], ['huile-olive', 1, 'cs'],
     ['piment', 1, 'pincee', 'opt'], ['graines-sesame', 1, 'cc', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Faire griller les tranches de pain.',
+    'Faire griller les tranches de pain 2 min au grille-pain, jusqu’à ce qu’elles soient dorées.',
     'Écraser la chair de l’avocat à la fourchette avec le jus du demi-citron, du sel et du poivre. Tartiner le pain.',
     'Chauffer l’huile dans une poêle à feu moyen et y cuire les œufs au plat 3 min, jusqu’à ce que le blanc soit pris et le jaune encore coulant.',
     'Poser un œuf sur chaque tartine, saler, saupoudrer de piment et de graines de sésame.'
@@ -100,7 +100,7 @@ module.exports = function ajouter(R) {
   ], [
     'Nettoyer les champignons et les couper en lamelles. Hacher une gousse d’ail.',
     'Chauffer 2 cuillerées d’huile dans une poêle à feu vif et y faire sauter les champignons 6 à 8 min, jusqu’à ce que leur eau soit évaporée et qu’ils soient dorés. Ajouter l’ail haché, saler, poivrer et cuire encore 1 min.',
-    'Faire griller les tranches de pain, les frotter avec la seconde gousse d’ail coupée en deux et les arroser du reste d’huile.',
+    'Faire griller les tranches de pain 2 min au grille-pain (ou 2 min par face sous le gril du four), les frotter avec la seconde gousse d’ail coupée en deux et les arroser du reste d’huile.',
     'Répartir les champignons sur le pain, parsemer de persil haché et de copeaux de parmesan.'
   ]);
 
@@ -152,7 +152,7 @@ module.exports = function ajouter(R) {
   ], [
     'Cuire les œufs 10 min dans l’eau bouillante, les refroidir, les écaler et les couper en rondelles.',
     'Égoutter le thon et l’émietter avec 2 cuillerées de mayonnaise et du poivre.',
-    'Faire griller les tranches de pain de mie. Couper la tomate et le concombre en fines rondelles, laver et essorer la salade.',
+    'Faire griller les tranches de pain de mie 1 à 2 min au grille-pain, jusqu’à ce qu’elles soient dorées. Couper la tomate et le concombre en fines rondelles, laver et essorer la salade.',
     'Pour chaque sandwich : étaler le thon sur une tranche, couvrir de concombre et d’une deuxième tranche tartinée du reste de mayonnaise, puis ajouter salade, tomate et œuf, et fermer avec la troisième tranche.',
     'Maintenir avec des piques et couper en deux triangles en diagonale.'
   ]);
@@ -186,7 +186,7 @@ module.exports = function ajouter(R) {
     'Couper les blancs de poulet en 4 escalopes de la taille des pains et les aplatir à 1 cm d’épaisseur. Saler, poivrer.',
     'Préparer trois assiettes : la farine mélangée au paprika, l’œuf battu, la chapelure. Y passer les escalopes dans cet ordre en appuyant bien.',
     'Chauffer l’huile dans une grande poêle à feu moyen et cuire le poulet 4 à 5 min de chaque côté, jusqu’à ce que la panure soit bien dorée et la chair cuite à cœur. Égoutter sur du papier absorbant et poser aussitôt le cheddar dessus.',
-    'Toaster les pains, face coupée, 1 min dans une poêle sèche.',
+    'Toaster les pains, face coupée, 1 min dans une poêle sèche à feu moyen.',
     'Tartiner les pains de mayonnaise et garnir de salade, de poulet et de rondelles de tomate.'
   ]);
 
@@ -197,8 +197,8 @@ module.exports = function ajouter(R) {
   ], [
     'Former 4 steaks de 2 cm d’épaisseur avec la viande, sans trop la tasser.',
     'Faire griller le bacon à sec dans une poêle à feu moyen, 3 à 4 min, jusqu’à ce qu’il soit croustillant. Réserver sur du papier absorbant.',
-    'Dans la même poêle, ajouter l’huile et cuire les steaks à feu vif, 3 min de chaque côté. Saler, poivrer, poser le cheddar la dernière minute et couvrir pour qu’il fonde.',
-    'Toaster les pains, face coupée, 1 min à la poêle.',
+    'Dans la même poêle, ajouter l’huile et cuire les steaks à feu vif, 3 min de chaque côté pour une viande rosée (4 min pour bien cuite). Saler, poivrer, poser le cheddar la dernière minute et couvrir pour qu’il fonde.',
+    'Toaster les pains, face coupée, 1 min à la poêle à feu moyen.',
     'Tartiner les pains de ketchup et de moutarde, puis monter avec la salade, le steak au cheddar, le bacon, l’oignon en fines rondelles et les cornichons émincés.'
   ]);
 
@@ -211,7 +211,7 @@ module.exports = function ajouter(R) {
     'Rincer et égoutter soigneusement les haricots rouges, puis les écraser grossièrement à la fourchette : il doit rester des morceaux.',
     'Mélanger les haricots avec l’oignon, la chapelure, l’œuf, le cumin et le paprika. Saler, poivrer. Former 4 galettes épaisses et les laisser raffermir 10 min au frais.',
     'Chauffer le reste de l’huile dans une poêle à feu moyen et cuire les galettes 4 min de chaque côté, en les retournant délicatement, jusqu’à ce qu’elles soient bien dorées.',
-    'Toaster les pains 1 min à la poêle. Les garnir de ketchup, de salade, d’une galette, de rondelles de tomate et de lamelles d’avocat.'
+    'Toaster les pains, face coupée, 1 min dans une poêle sèche à feu moyen. Les garnir de ketchup, de salade, d’une galette, de rondelles de tomate et de lamelles d’avocat.'
   ]);
 
   R('wraps-poulet-crudites', 'Wraps poulet-crudités', 'Française', 'Plat', 25, 'Facile', 4, [
@@ -221,7 +221,7 @@ module.exports = function ajouter(R) {
   ], [
     'Couper le poulet en lanières et les saupoudrer de paprika, de sel et de poivre. Les faire dorer dans l’huile à feu vif, 6 à 7 min, jusqu’à ce qu’elles soient cuites à cœur. Laisser tiédir.',
     'Râper les carottes, couper le concombre en bâtonnets et la tomate en dés, émincer la salade.',
-    'Tiédir les tortillas 20 s de chaque côté dans une poêle sèche pour les assouplir.',
+    'Tiédir les tortillas 20 s de chaque côté dans une poêle sèche à feu moyen pour les assouplir.',
     'Tartiner chaque tortilla de mayonnaise, répartir les crudités et le poulet au centre.',
     'Rabattre le bas de la tortilla sur la garniture, puis rouler en serrant. Couper en deux en biais.'
   ]);
@@ -240,7 +240,7 @@ module.exports = function ajouter(R) {
     ['bagels', 2], ['blanc-de-poulet', 4], ['avocat', 1], ['fromage-frais-a-tartiner', 60, 'g'],
     ['salade', 0.25, 'pc', 'opt'], ['tomates', 1, 'pc', 'opt'], ['citron', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Couper les bagels en deux et les faire griller au grille-pain.',
+    'Couper les bagels en deux et les faire griller 2 min au grille-pain, jusqu’à ce qu’ils soient dorés.',
     'Couper l’avocat en lamelles et les arroser de jus de citron. Couper la tomate en rondelles.',
     'Tartiner les deux moitiés de fromage frais. Poivrer.',
     'Garnir de salade, de blanc de poulet, d’avocat et de tomate. Saler légèrement et refermer.'
@@ -265,7 +265,7 @@ module.exports = function ajouter(R) {
     'Couper le poulet en petits dés. Les mélanger avec le paprika, le cumin, le piment, du sel, du poivre et une cuillerée d’huile.',
     'Couper les tomates en petits dés, émincer finement l’oignon rouge et couper l’avocat en dés. Arroser l’avocat de jus de citron vert.',
     'Chauffer le reste de l’huile dans une poêle à feu vif et y faire sauter le poulet 7 à 8 min, jusqu’à ce qu’il soit bien doré et cuit à cœur.',
-    'Chauffer les tortillas 20 s de chaque côté dans une poêle sèche et les garder au chaud dans un torchon.',
+    'Chauffer les tortillas 20 s de chaque côté dans une poêle sèche à feu moyen et les garder au chaud dans un torchon.',
     'Garnir chaque tortilla de poulet, de tomate, d’oignon et d’avocat. Ajouter une cuillerée de crème, de la coriandre ciselée, et plier en deux.'
   ]);
 
@@ -275,7 +275,7 @@ module.exports = function ajouter(R) {
     ['sauce-algerienne', 4, 'cs', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Cuire les frites au four selon les indications du paquet (en général 20 min à 220 °C), jusqu’à ce qu’elles soient dorées. Les saler.',
-    'Couper le poulet en petits dés, les assaisonner de paprika, de sel et de poivre, et les faire dorer dans l’huile à feu vif 7 à 8 min.',
+    'Couper le poulet en petits dés, les assaisonner de paprika, de sel et de poivre, et les faire dorer dans l’huile dans une poêle à feu vif, 7 à 8 min, jusqu’à ce qu’ils soient cuits à cœur.',
     'Chauffer la crème dans une petite casserole à feu doux, ajouter le fromage râpé et le cheddar en morceaux, et remuer 3 à 4 min jusqu’à obtenir une sauce lisse et nappante. Poivrer.',
     'Étaler la sauce algérienne au centre de chaque tortilla, répartir le poulet et les frites, et napper de sauce fromagère.',
     'Rabattre les côtés puis le bas et le haut pour former un rectangle bien fermé.',
@@ -333,7 +333,7 @@ module.exports = function ajouter(R) {
   ], [
     'Laver, sécher et ciseler finement les herbes.',
     'Battre les œufs à la fourchette avec les herbes, du sel et du poivre, juste assez pour mélanger blancs et jaunes.',
-    'Faire mousser le beurre dans une poêle à feu moyen-vif, sans le laisser colorer, et verser les œufs.',
+    'Faire mousser le beurre 1 min dans une poêle à feu moyen-vif, sans le laisser colorer, et verser les œufs.',
     'Remuer 30 s à la fourchette, puis laisser prendre 1 à 2 min en ramenant les bords vers le centre : l’omelette doit rester baveuse et ne pas colorer.',
     'Rouler l’omelette sur elle-même en inclinant la poêle et la faire glisser sur une assiette.'
   ]);
@@ -372,7 +372,7 @@ module.exports = function ajouter(R) {
   ], [
     'Sortir les œufs du réfrigérateur 15 min à l’avance pour éviter qu’ils ne se fendent.',
     'Porter une casserole d’eau à ébullition. Y déposer délicatement les œufs à l’aide d’une cuillère et compter 3 min à partir de la reprise de l’ébullition : le blanc doit être pris et le jaune coulant.',
-    'Pendant ce temps, faire griller le pain, le beurrer et le couper en bâtonnets de 1,5 cm de large.',
+    'Pendant ce temps, faire griller le pain 2 min au grille-pain, le beurrer et le couper en bâtonnets de 1,5 cm de large.',
     'Poser les œufs dans des coquetiers, les décalotter et servir aussitôt avec les mouillettes, du sel et du poivre.'
   ]);
 
@@ -381,8 +381,7 @@ module.exports = function ajouter(R) {
     ['ciboulette', 0.25, 'pc', 'opt'], ['pain', 2, 'pc', 'opt'], ['poivre', null]
   ], [
     'Couper le saumon fumé en lanières. Battre légèrement les œufs avec du poivre, sans saler.',
-    'Faire fondre le beurre dans une casserole à fond épais à feu doux. Verser les œufs et remuer sans arrêt avec une spatule, en raclant le fond, pendant 6 à 8 min : les œufs doivent épaissir en petits grains crémeux, sans jamais sécher.',
-    'Retirer du feu quand ils sont encore un peu coulants et ajouter la crème pour stopper la cuisson.',
+    'Faire fondre le beurre dans une casserole à fond épais à feu doux. Verser les œufs et remuer sans arrêt avec une spatule, en raclant le fond, pendant 6 à 8 min : les œufs doivent épaissir en petits grains crémeux, sans jamais sécher. Les retirer du feu encore un peu coulants et ajouter aussitôt la crème pour stopper la cuisson.',
     'Incorporer le saumon et la ciboulette ciselée. Servir aussitôt sur le pain grillé.'
   ]);
 
@@ -408,7 +407,7 @@ module.exports = function ajouter(R) {
 
   R('oeufs-cocotte-jambon-fromage', 'Œufs cocotte au jambon et au fromage', 'Française', 'Entrée', 20, 'Facile', 4, [
     ['oeufs', 4], ['jambon', 2], ['creme-fraiche', 8, 'cl'], ['fromage-rape', 40, 'g'], ['beurre', 10, 'g'],
-    ['ciboulette', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
+    ['ciboulette', 0.25, 'pc', 'opt'], ['pain', 4, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 180 °C. Beurrer 4 ramequins.',
     'Répartir le jambon coupé en petits dés au fond des ramequins, ajouter une cuillerée de crème, puis casser un œuf dans chacun sans crever le jaune.',
@@ -424,7 +423,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 180 °C. Beurrer 4 ramequins avec 5 g de beurre.',
     'Hacher les champignons et l’échalote. Les faire revenir dans le reste du beurre à feu vif, 6 à 7 min, jusqu’à évaporation complète de l’eau. Saler, poivrer, ajouter la moitié de la crème.',
     'Répartir les champignons dans les ramequins, casser un œuf dans chacun et ajouter une cuillerée de crème autour du jaune.',
-    'Cuire au bain-marie dans le four 10 à 12 min, jusqu’à ce que le blanc soit pris et le jaune encore coulant.',
+    'Poser les ramequins dans un plat, verser de l’eau bouillante à mi-hauteur et enfourner 10 à 12 min, jusqu’à ce que le blanc soit pris et le jaune encore coulant.',
     'Parsemer de persil haché.'
   ]);
 
@@ -434,9 +433,9 @@ module.exports = function ajouter(R) {
   ], [
     'Cuire les œufs 6 min dans l’eau bouillante (œufs mollets), les rafraîchir sous l’eau froide et les écaler délicatement.',
     'Laver et équeuter les épinards. Les faire tomber dans 15 g de beurre à feu vif, 3 à 4 min, puis les presser dans une passoire pour retirer toute l’eau. Saler, poivrer.',
-    'Préchauffer le four à 220 °C. Faire fondre le reste du beurre à feu moyen, ajouter la farine et remuer 1 min. Verser le lait peu à peu en fouettant et cuire 5 min, jusqu’à épaississement. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
+    'Allumer le gril du four. Faire fondre le reste du beurre dans une casserole à feu moyen, ajouter la farine et remuer 1 min. Verser le lait peu à peu en fouettant et cuire 5 min, jusqu’à épaississement. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
     'Étaler les épinards dans un plat à gratin, creuser 4 nids et y poser les œufs. Napper de sauce et parsemer du reste de fromage.',
-    'Gratiner 8 à 10 min, jusqu’à ce que le dessus soit doré : le jaune doit rester coulant.'
+    'Passer 5 à 6 min sous le gril du four, jusqu’à ce que le dessus soit doré : le jaune doit rester coulant.'
   ]);
 
   R('frittata-courgettes', 'Frittata aux courgettes', 'Italienne', 'Plat', 30, 'Facile', 4, [
@@ -457,7 +456,7 @@ module.exports = function ajouter(R) {
     'Laver et équeuter les épinards. Chauffer l’huile dans une poêle de 24 cm allant au four, à feu vif, et y faire tomber les épinards avec l’ail haché 3 à 4 min, jusqu’à ce que leur eau soit évaporée.',
     'Allumer le gril du four. Battre les œufs avec le parmesan râpé, la muscade, du poivre et peu de sel (la feta est salée).',
     'Baisser à feu doux, verser les œufs sur les épinards et répartir la feta émiettée.',
-    'Cuire 5 à 6 min sans remuer, jusqu’à ce que les bords soient pris.',
+    'Cuire 5 à 6 min à feu doux, sans remuer, jusqu’à ce que les bords soient pris.',
     'Finir 3 à 4 min sous le gril, jusqu’à ce que le dessus soit pris et doré.'
   ]);
 
@@ -469,7 +468,7 @@ module.exports = function ajouter(R) {
     'Chauffer l’huile dans une poêle antiadhésive de 24 cm à feu moyen-doux. Y cuire les pommes de terre et l’oignon 20 min, en remuant de temps en temps : ils doivent confire sans dorer. Ajouter le chorizo les 2 dernières minutes.',
     'Égoutter le tout dans une passoire en gardant une cuillerée d’huile. Battre les œufs dans un saladier avec du sel et du poivre, puis y mélanger les pommes de terre.',
     'Remettre l’huile réservée dans la poêle à feu moyen, verser la préparation et cuire 5 min, jusqu’à ce que les bords soient pris.',
-    'Poser une assiette sur la poêle, retourner la tortilla d’un geste franc et la faire glisser dans la poêle. Cuire encore 3 à 4 min : le centre doit rester moelleux.'
+    'Poser une assiette sur la poêle, retourner la tortilla d’un geste franc et la faire glisser dans la poêle. Cuire encore 3 à 4 min à feu moyen : le centre doit rester moelleux.'
   ]);
 
   /* ───────────── Gratins et plats gratinés ───────────── */
@@ -530,12 +529,12 @@ module.exports = function ajouter(R) {
     'Enfourner 50 à 55 min, jusqu’à ce que les pommes de terre soient tendres sous la pointe d’un couteau et le dessus doré.'
   ]);
 
-  R('gratin-poireaux-jambon', 'Poireaux au jambon gratinés', 'Française', 'Plat', 50, 'Facile', 4, [
+  R('gratin-poireaux-jambon', 'Poireaux au jambon gratinés', 'Française', 'Plat', 55, 'Facile', 4, [
     ['poireaux', 4], ['jambon', 4], ['beurre', 40, 'g'], ['farine', 40, 'g'], ['lait', 50, 'cl'],
     ['fromage-rape', 100, 'g'], ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Retirer le vert foncé des poireaux, les laver soigneusement et couper chaque blanc en deux tronçons. Les cuire 12 à 15 min dans une casserole d’eau bouillante salée, jusqu’à ce qu’ils soient tendres. Bien les égoutter en les pressant.',
-    'Préchauffer le four à 200 °C. Faire fondre le beurre à feu moyen, ajouter la farine et remuer 1 min. Verser le lait peu à peu en fouettant et cuire 5 min, jusqu’à épaississement. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
+    'Préchauffer le four à 200 °C. Faire fondre le beurre dans une casserole à feu moyen, ajouter la farine et remuer 1 min. Verser le lait peu à peu en fouettant et cuire 5 min, jusqu’à épaississement. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
     'Couper les tranches de jambon en deux et enrouler chaque tronçon de poireau dans une demi-tranche.',
     'Ranger les roulés dans un plat à gratin, napper de béchamel et parsemer du reste de fromage.',
     'Enfourner 20 min, jusqu’à ce que le dessus soit doré et bouillonnant.'
@@ -546,13 +545,13 @@ module.exports = function ajouter(R) {
     ['moutarde', 1, 'cs', 'opt'], ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 200 °C. Retirer le vert foncé des poireaux, les fendre, les laver et les couper en tronçons de 2 cm.',
-    'Les faire fondre dans le beurre à feu moyen-doux, à couvert, 15 min, en remuant de temps en temps : ils doivent être tendres sans colorer. Saler, poivrer.',
+    'Les faire fondre dans le beurre, dans une sauteuse à feu moyen-doux, à couvert, 15 min, en remuant de temps en temps : ils doivent être tendres sans colorer. Saler, poivrer.',
     'Mélanger la crème avec la moutarde, la muscade et la moitié du fromage.',
     'Verser les poireaux dans un plat à gratin, napper de crème et couvrir du reste de fromage.',
     'Enfourner 20 min, jusqu’à ce que le dessus soit bien doré.'
   ]);
 
-  R('gratin-epinards', 'Gratin d’épinards', 'Française', 'Plat', 40, 'Facile', 4, [
+  R('gratin-epinards', 'Gratin d’épinards', 'Française', 'Plat', 45, 'Facile', 4, [
     ['epinards', 1000, 'g'], ['creme-fraiche', 20, 'cl'], ['oeufs', 2], ['fromage-rape', 100, 'g'], ['beurre', 20, 'g'],
     ['ail', 1, 'pc', 'opt'], ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
@@ -580,7 +579,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 180 °C. Beurrer un plat à gratin.',
     'Éplucher les patates douces et les couper en rondelles de 3 mm.',
-    'Chauffer la crème avec l’ail haché, le thym effeuillé, la muscade, du sel et du poivre, jusqu’au premier frémissement.',
+    'Chauffer la crème 3 à 4 min dans une casserole à feu moyen, avec l’ail haché, le thym effeuillé, la muscade, du sel et du poivre, jusqu’au premier frémissement.',
     'Disposer les rondelles en couches dans le plat, verser la crème chaude et parsemer de fromage.',
     'Enfourner 45 à 50 min, jusqu’à ce que les patates douces soient fondantes sous la pointe d’un couteau et le dessus doré.'
   ]);
@@ -591,7 +590,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 210 °C. Couper les aubergines en rondelles de 1 cm, les étaler sur deux plaques couvertes de papier cuisson, les badigeonner de 3 cuillerées d’huile et saler.',
     'Enfourner 20 min en les retournant à mi-cuisson, jusqu’à ce qu’elles soient tendres et dorées.',
-    'Pendant ce temps, faire revenir l’ail haché 1 min dans le reste d’huile à feu moyen, ajouter les tomates concassées et les herbes de Provence. Laisser réduire 10 min. Saler, poivrer.',
+    'Pendant ce temps, faire revenir l’ail haché 1 min dans le reste d’huile à feu moyen, ajouter les tomates concassées et les herbes de Provence. Laisser réduire 10 min à feu doux. Saler, poivrer.',
     'Dans un plat à gratin, alterner des couches d’aubergines et de sauce tomate. Terminer par le chèvre coupé en rondelles.',
     'Baisser le four à 190 °C et enfourner 20 min, jusqu’à ce que le chèvre soit doré. Parsemer de basilic ciselé.'
   ]);
@@ -670,7 +669,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C. Couper le poisson en gros cubes en retirant les arêtes, les saler, les poivrer et les arroser de jus de citron.',
     'Faire fondre le beurre dans une casserole à feu moyen. Y faire revenir les champignons émincés 5 min, puis ajouter la farine et remuer 1 min.',
-    'Verser le lait peu à peu en fouettant et cuire 5 min, jusqu’à ce que la sauce épaississe. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
+    'Verser le lait peu à peu en fouettant et cuire 5 min à feu moyen, jusqu’à ce que la sauce épaississe. Saler, poivrer, ajouter la muscade et la moitié du fromage.',
     'Répartir le poisson cru dans un plat à gratin, napper de sauce, puis parsemer du reste de fromage et de chapelure.',
     'Enfourner 20 min, jusqu’à ce que le dessus soit doré et que le poisson s’effeuille facilement.'
   ]);
@@ -680,12 +679,12 @@ module.exports = function ajouter(R) {
     ['fromage-rape', 60, 'g'], ['echalotes', 2, 'pc', 'opt'], ['persil', 0.25, 'pc', 'opt'], ['laurier', 1, 'pc', 'opt'],
     ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Éplucher les pommes de terre, les couper en morceaux et les cuire 20 à 25 min dans une casserole d’eau salée frémissante, jusqu’à ce qu’elles soient tendres.',
+    'Éplucher les pommes de terre, les couper en morceaux et les couvrir d’eau froide salée dans une casserole. Porter à ébullition, puis cuire 20 à 25 min à petits bouillons, jusqu’à ce que la pointe d’un couteau s’y enfonce sans résistance.',
     'Pendant ce temps, porter le lait à frémissement avec le laurier. Y pocher le poisson 8 min à feu doux, à couvert. L’égoutter en gardant le lait, puis l’effeuiller en retirant les arêtes.',
     'Faire fondre les échalotes hachées dans 10 g de beurre, 3 min à feu doux. Les mélanger au poisson avec le persil haché, du sel et du poivre.',
-    'Égoutter les pommes de terre et les écraser avec le reste du beurre et 20 cl du lait de cuisson filtré. Saler, ajouter la muscade.',
+    'Égoutter les pommes de terre et les écraser avec le reste du beurre et 20 cl du lait de pochage filtré. Saler, ajouter la muscade.',
     'Préchauffer le four à 200 °C. Étaler le poisson dans un plat, couvrir de purée, strier à la fourchette et parsemer de fromage.',
-    'Gratiner 20 min, jusqu’à ce que le dessus soit doré.'
+    'Enfourner 20 min à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('parmentier-patate-douce', 'Parmentier de bœuf à la patate douce', 'Française', 'Plat', 60, 'Facile', 4, [
@@ -694,10 +693,10 @@ module.exports = function ajouter(R) {
     ['fromage-rape', 60, 'g', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Éplucher les patates douces, les couper en gros cubes et les cuire 15 à 20 min dans une casserole d’eau bouillante salée, jusqu’à ce qu’elles s’écrasent facilement.',
-    'Pendant ce temps, faire revenir les oignons et l’ail hachés dans l’huile, 5 min à feu moyen. Ajouter la viande, le concentré de tomate et le cumin, et cuire 8 min à feu vif en égrenant. Saler, poivrer.',
+    'Pendant ce temps, faire revenir les oignons et l’ail hachés dans l’huile, dans une sauteuse, 5 min à feu moyen. Ajouter la viande, le concentré de tomate et le cumin, et cuire 8 min à feu vif en égrenant. Saler, poivrer.',
     'Égoutter soigneusement les patates douces et les écraser avec le beurre. Saler et poivrer.',
     'Préchauffer le four à 200 °C. Étaler la viande dans un plat à gratin, couvrir de purée et parsemer de fromage.',
-    'Gratiner 20 min, jusqu’à ce que le dessus soit légèrement doré.'
+    'Enfourner 20 min à 200 °C, jusqu’à ce que le dessus soit légèrement doré.'
   ]);
 
   R('parmentier-lentilles', 'Parmentier végétarien aux lentilles', 'Française', 'Plat', 70, 'Facile', 4, [
@@ -705,12 +704,12 @@ module.exports = function ajouter(R) {
     ['beurre', 50, 'g'], ['concentre-tomate', 1, 'cs', 'opt'], ['ail', 1, 'pc', 'opt'], ['thym', 2, 'pc', 'opt'],
     ['fromage-rape', 60, 'g', 'opt'], ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Hacher l’oignon et l’ail, couper les carottes en petits dés. Les faire revenir 5 min dans 10 g de beurre à feu moyen.',
-    'Ajouter les lentilles rincées, le concentré de tomate, le thym et 60 cl d’eau. Couvrir et laisser mijoter 25 à 30 min à feu doux, jusqu’à ce que les lentilles soient tendres et le liquide presque absorbé. Saler et poivrer en fin de cuisson.',
-    'Pendant ce temps, éplucher les pommes de terre, les couper en morceaux et les cuire 20 à 25 min à l’eau salée frémissante.',
+    'Hacher l’oignon et l’ail, couper les carottes en petits dés. Les faire revenir 5 min dans 10 g de beurre, dans une casserole à feu moyen.',
+    'Ajouter les lentilles rincées, le concentré de tomate, le thym et 75 cl d’eau. Couvrir et laisser mijoter 25 à 30 min à feu doux, jusqu’à ce que les lentilles soient tendres et le liquide presque absorbé. Saler et poivrer en fin de cuisson.',
+    'Pendant ce temps, éplucher les pommes de terre, les couper en morceaux et les couvrir d’eau froide salée. Porter à ébullition, puis cuire 20 à 25 min à petits bouillons, jusqu’à ce qu’elles soient tendres à la pointe du couteau.',
     'Les égoutter et les écraser avec le lait chaud, le reste du beurre et la muscade. Saler.',
     'Préchauffer le four à 200 °C. Étaler les lentilles dans un plat à gratin, couvrir de purée et parsemer de fromage.',
-    'Gratiner 20 min, jusqu’à ce que le dessus soit doré.'
+    'Enfourner 20 min à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   /* ───────────── Galettes, crêpes salées et galettes de légumes ───────────── */
@@ -719,19 +718,19 @@ module.exports = function ajouter(R) {
     ['galettes-de-sarrasin', 4], ['oeufs', 4], ['jambon', 4], ['fromage-rape', 120, 'g'], ['beurre-demi-sel', 30, 'g'],
     ['poivre', null]
   ], [
-    'Faire fondre une noisette de beurre dans une grande poêle à feu moyen et y poser une galette.',
+    'Faire fondre une noisette de beurre dans une grande poêle à feu moyen et y réchauffer une galette 30 s.',
     'Parsemer de fromage râpé, poser une tranche de jambon et casser un œuf au centre, en étalant un peu le blanc à la spatule.',
     'Rabattre les quatre bords pour former un carré en laissant le jaune apparent.',
-    'Cuire 3 à 4 min, à couvert la dernière minute, jusqu’à ce que le blanc soit pris, le jaune encore coulant et le dessous croustillant. Poivrer.',
+    'Cuire 3 à 4 min à feu moyen, à couvert la dernière minute, jusqu’à ce que le blanc soit pris, le jaune encore coulant et le dessous croustillant. Poivrer.',
     'Garder au chaud et recommencer avec les autres galettes.'
   ]);
 
-  R('galettes-saucisse', 'Galettes-saucisses', 'Bretonne', 'Plat', 25, 'Facile', 4, [
+  R('galettes-saucisse', 'Galettes-saucisses', 'Bretonne', 'Plat', 30, 'Facile', 4, [
     ['galettes-de-sarrasin', 4], ['saucisses', 4], ['beurre-demi-sel', 20, 'g'],
     ['moutarde', 2, 'cs', 'opt'], ['oignons', 2, 'pc', 'opt']
   ], [
     'Piquer les saucisses et les cuire dans une poêle à feu moyen, 15 à 18 min, en les retournant régulièrement, jusqu’à ce qu’elles soient bien dorées et cuites à cœur.',
-    'Si on ajoute les oignons, les émincer et les faire fondre 10 min dans la même poêle, dans le gras des saucisses.',
+    'Si on ajoute les oignons, les émincer et les faire fondre 10 min à feu doux dans la même poêle, dans le gras des saucisses.',
     'Réchauffer chaque galette 1 min de chaque côté dans une poêle beurrée, à feu moyen.',
     'Tartiner d’un trait de moutarde, poser une saucisse et un peu d’oignons au bord de la galette, puis rouler serré. Manger chaud, à la main.'
   ]);
@@ -746,37 +745,37 @@ module.exports = function ajouter(R) {
     'Recommencer avec les autres galettes. Servir aussitôt avec le reste de crème et l’aneth.'
   ]);
 
-  R('galettes-chevre-miel', 'Galettes chèvre-miel aux noix', 'Bretonne', 'Plat', 15, 'Facile', 4, [
+  R('galettes-chevre-miel', 'Galettes chèvre-miel aux noix', 'Bretonne', 'Plat', 20, 'Facile', 4, [
     ['galettes-de-sarrasin', 4], ['chevre', 200, 'g'], ['miel', 2, 'cs'], ['beurre-demi-sel', 20, 'g'],
     ['cerneaux-de-noix', 40, 'g', 'opt'], ['roquette', 40, 'g', 'opt'], ['poivre', null]
   ], [
     'Couper le chèvre en rondelles et concasser les noix.',
-    'Faire fondre une noisette de beurre dans une poêle à feu moyen et y poser une galette.',
+    'Faire fondre une noisette de beurre dans une poêle à feu moyen et y réchauffer une galette 30 s.',
     'Répartir le chèvre au centre, ajouter les noix et poivrer. Rabattre les bords en carré.',
     'Cuire 3 min à feu moyen, à couvert, jusqu’à ce que le chèvre soit fondant et le dessous croustillant.',
     'Arroser de miel et servir avec la roquette. Recommencer avec les autres galettes.'
   ]);
 
-  R('galettes-savoyardes', 'Galettes savoyardes pommes de terre, lardons et raclette', 'Française', 'Plat', 40, 'Facile', 4, [
+  R('galettes-savoyardes', 'Galettes savoyardes pommes de terre, lardons et raclette', 'Française', 'Plat', 50, 'Facile', 4, [
     ['galettes-de-sarrasin', 4], ['pommes-de-terre', 400, 'g'], ['lardons', 150, 'g'], ['fromage-a-raclette', 200, 'g'],
     ['oignons', 1, 'pc', 'opt'], ['creme-fraiche', 8, 'cl', 'opt'], ['beurre', 20, 'g'], ['poivre', null]
   ], [
-    'Cuire les pommes de terre avec leur peau 20 min dans une casserole d’eau bouillante salée, jusqu’à ce qu’elles soient tendres. Les éplucher et les couper en rondelles.',
-    'Faire revenir les lardons et l’oignon émincé à sec, 5 min à feu moyen. Ajouter les pommes de terre et les faire dorer 3 min. Poivrer.',
+    'Cuire les pommes de terre avec leur peau 20 à 25 min dans une casserole d’eau bouillante salée, jusqu’à ce que la pointe d’un couteau s’y enfonce facilement. Les éplucher et les couper en rondelles.',
+    'Faire revenir les lardons et l’oignon émincé à sec dans une poêle, 5 min à feu moyen. Ajouter les pommes de terre et les faire dorer 3 min. Poivrer.',
     'Retirer la croûte du fromage à raclette et le couper en tranches.',
-    'Faire fondre une noisette de beurre dans une poêle à feu moyen, poser une galette, étaler une cuillerée de crème, puis répartir le quart de la garniture et du fromage.',
-    'Rabattre les bords et cuire 3 à 4 min à couvert, jusqu’à ce que le fromage soit fondu. Recommencer avec les autres galettes.'
+    'Faire fondre une noisette de beurre dans une poêle à feu moyen, y réchauffer une galette 30 s, étaler une cuillerée de crème, puis répartir le quart de la garniture et du fromage.',
+    'Rabattre les bords et cuire 3 à 4 min à feu moyen, à couvert, jusqu’à ce que le fromage soit fondu. Recommencer avec les autres galettes.'
   ]);
 
-  R('galettes-poireaux-lardons', 'Galettes poireaux-lardons', 'Bretonne', 'Plat', 35, 'Facile', 4, [
+  R('galettes-poireaux-lardons', 'Galettes poireaux-lardons', 'Bretonne', 'Plat', 40, 'Facile', 4, [
     ['galettes-de-sarrasin', 4], ['poireaux', 3], ['lardons', 150, 'g'], ['creme-fraiche', 10, 'cl'], ['beurre', 30, 'g'],
     ['fromage-rape', 60, 'g', 'opt'], ['poivre', null]
   ], [
     'Retirer le vert foncé des poireaux, les fendre, les laver et les émincer finement.',
     'Faire revenir les lardons à sec dans une sauteuse, 4 min à feu moyen. Ajouter 10 g de beurre et les poireaux, couvrir et laisser fondre 15 min à feu doux en remuant de temps en temps.',
-    'Ajouter la crème, poivrer et laisser réduire 2 min. Ne saler qu’après avoir goûté.',
-    'Faire fondre une noisette de beurre dans une poêle à feu moyen, poser une galette, répartir le quart de la fondue de poireaux et un peu de fromage râpé.',
-    'Rabattre les bords et cuire 2 à 3 min, jusqu’à ce que le dessous soit croustillant. Recommencer avec les autres galettes.'
+    'Ajouter la crème, poivrer et laisser réduire 2 min à feu moyen. Ne saler qu’après avoir goûté.',
+    'Faire fondre une noisette de beurre dans une poêle à feu moyen, y réchauffer une galette 30 s, répartir le quart de la fondue de poireaux et un peu de fromage râpé.',
+    'Rabattre les bords et cuire 2 à 3 min à feu moyen, jusqu’à ce que le dessous soit croustillant. Recommencer avec les autres galettes.'
   ]);
 
   R('crepes-roulees-jambon-fromage', 'Crêpes roulées jambon-fromage', 'Française', 'Plat', 15, 'Facile', 4, [
@@ -785,8 +784,7 @@ module.exports = function ajouter(R) {
   ], [
     'Étaler une fine couche de crème sur chaque crêpe, poser une tranche de jambon et parsemer de fromage râpé. Poivrer.',
     'Rouler les crêpes en serrant, ou les plier en quatre.',
-    'Faire fondre le beurre dans une grande poêle à feu moyen et y poser les crêpes, pliure dessous.',
-    'Cuire 2 à 3 min de chaque côté, jusqu’à ce qu’elles soient dorées et que le fromage soit fondu.'
+    'Faire fondre le beurre dans une grande poêle à feu moyen et y poser les crêpes, pliure dessous. Cuire 2 à 3 min de chaque côté, jusqu’à ce qu’elles soient dorées et que le fromage soit fondu.'
   ]);
 
   R('galettes-courgettes', 'Galettes de courgettes', 'Française', 'Plat', 30, 'Facile', 4, [
@@ -795,8 +793,8 @@ module.exports = function ajouter(R) {
   ], [
     'Râper grossièrement les courgettes sans les éplucher. Les mélanger avec une demi-cuillerée à café de sel et les laisser dégorger 10 min dans une passoire, puis les presser fortement dans un torchon.',
     'Mélanger les courgettes avec les œufs, la farine, le parmesan râpé, l’ail haché et la menthe ciselée. Poivrer.',
-    'Chauffer la moitié de l’huile dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
-    'Cuire 3 à 4 min de chaque côté, jusqu’à ce que les galettes soient bien dorées. Égoutter sur du papier absorbant.',
+    'Chauffer la moitié de l’huile 1 min dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
+    'Cuire 3 à 4 min de chaque côté à feu moyen, jusqu’à ce que les galettes soient bien dorées. Égoutter sur du papier absorbant.',
     'Recommencer avec le reste de pâte en rajoutant de l’huile.'
   ]);
 
@@ -806,8 +804,8 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les pommes de terre et les râper avec une râpe à gros trous. Les presser fortement dans un torchon pour en extraire l’eau.',
     'Les mélanger aussitôt avec les œufs, la farine, l’ail et le persil hachés, l’oignon râpé, du sel et du poivre.',
-    'Chauffer la moitié de l’huile dans une grande poêle à feu moyen-vif. Y déposer des tas de pâte et les aplatir en galettes de 1 cm d’épaisseur.',
-    'Cuire 4 à 5 min de chaque côté, jusqu’à ce qu’elles soient bien dorées et croustillantes, et tendres à cœur.',
+    'Chauffer la moitié de l’huile 1 min dans une grande poêle à feu moyen. Y déposer des tas de pâte et les aplatir en galettes de 1 cm d’épaisseur.',
+    'Cuire 5 min de chaque côté à feu moyen, jusqu’à ce qu’elles soient bien dorées et croustillantes, et tendres à cœur.',
     'Égoutter sur du papier absorbant et recommencer avec le reste de pâte et d’huile.'
   ]);
 
@@ -817,8 +815,8 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les carottes et les râper finement. Hacher l’oignon.',
     'Mélanger les carottes avec l’oignon, les œufs, la farine, le cumin et la coriandre ciselée. Saler et poivrer.',
-    'Chauffer la moitié de l’huile dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
-    'Cuire 4 min de chaque côté, sans feu trop vif pour que les carottes aient le temps de cuire, jusqu’à ce que les galettes soient bien dorées.',
+    'Chauffer la moitié de l’huile 1 min dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
+    'Cuire 4 min de chaque côté à feu moyen, sans monter le feu pour que les carottes aient le temps de cuire, jusqu’à ce que les galettes soient bien dorées.',
     'Recommencer avec le reste de pâte et d’huile.'
   ]);
 
@@ -828,8 +826,8 @@ module.exports = function ajouter(R) {
   ], [
     'Détailler le chou-fleur en bouquets et les cuire 10 min dans une casserole d’eau bouillante salée, jusqu’à ce qu’ils soient bien tendres. Les égoutter longuement.',
     'Écraser grossièrement le chou-fleur à la fourchette. Ajouter les œufs, le fromage, la farine, la ciboulette ciselée et la muscade. Saler et poivrer.',
-    'Chauffer la moitié de l’huile dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
-    'Cuire 3 à 4 min de chaque côté, en les retournant délicatement, jusqu’à ce que les galettes soient dorées.',
+    'Chauffer la moitié de l’huile 1 min dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte et les aplatir à 1 cm d’épaisseur.',
+    'Cuire 3 à 4 min de chaque côté à feu moyen, en les retournant délicatement, jusqu’à ce que les galettes soient dorées.',
     'Recommencer avec le reste de pâte et d’huile.'
   ]);
 
@@ -839,8 +837,8 @@ module.exports = function ajouter(R) {
   ], [
     'Égoutter soigneusement le maïs.',
     'Fouetter la farine avec les œufs et le lait jusqu’à obtenir une pâte épaisse et lisse. Ajouter le maïs, la ciboule émincée et le paprika. Saler et poivrer.',
-    'Chauffer la moitié de l’huile dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte en les espaçant.',
-    'Cuire 2 à 3 min de chaque côté, jusqu’à ce que les galettes soient gonflées et bien dorées.',
+    'Chauffer la moitié de l’huile 1 min dans une grande poêle à feu moyen. Y déposer des cuillerées de pâte en les espaçant.',
+    'Cuire 2 à 3 min de chaque côté à feu moyen, jusqu’à ce que les galettes soient gonflées et bien dorées.',
     'Recommencer avec le reste de pâte et d’huile. Servir chaud.'
   ]);
 };

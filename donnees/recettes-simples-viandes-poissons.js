@@ -5,14 +5,14 @@ module.exports = function ajouter(R) {
 
   /* ───────────── Bœuf ───────────── */
 
-  R('bavette-echalotes', 'Bavette à l’échalote', 'Française', 'Plat', 25, 'Facile', 4, [
+  R('bavette-echalotes', 'Bavette à l’échalote', 'Française', 'Plat', 30, 'Facile', 4, [
     ['bavette', 600, 'g'], ['echalotes', 4], ['beurre', 40, 'g'], ['vinaigre', 2, 'cs'],
     ['huile', 1, 'cs'], ['persil', 0.25, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Sortir la viande du réfrigérateur 20 min avant la cuisson. Éplucher et ciseler finement les échalotes.',
-    'Chauffer l’huile et 10 g de beurre dans une poêle à feu vif. Saisir la bavette 2 à 3 min de chaque côté pour une cuisson saignante. Saler, poivrer, la réserver sur une assiette sous une feuille d’aluminium.',
+    'Chauffer l’huile et 10 g de beurre dans une poêle à feu vif. Saisir la bavette 2 à 3 min de chaque côté pour une cuisson saignante (4 min pour à point). Saler, poivrer, la réserver sur une assiette sous une feuille d’aluminium.',
     'Baisser à feu moyen, ajouter 10 g de beurre et les échalotes dans la poêle. Les faire fondre 3 à 4 min en remuant, sans les brûler.',
-    'Déglacer avec le vinaigre et 3 cs d’eau en grattant les sucs, laisser réduire 1 min, puis hors du feu incorporer le reste du beurre.',
+    'Déglacer avec le vinaigre et 3 cs d’eau en grattant les sucs, laisser réduire 1 min à feu moyen, puis hors du feu incorporer le reste du beurre.',
     'Trancher la bavette dans le sens contraire des fibres, napper de la sauce aux échalotes et parsemer de persil ciselé.'
   ]);
 
@@ -23,19 +23,19 @@ module.exports = function ajouter(R) {
   ], [
     'Mélanger le jus des citrons verts, la sauce poisson, le sucre, le piment et 1 cs d’eau jusqu’à dissolution du sucre.',
     'Émincer finement l’oignon rouge. Couper le concombre en demi-rondelles. Effeuiller la menthe et la coriandre.',
-    'Chauffer l’huile dans une poêle à feu vif et saisir la bavette 2 à 3 min de chaque côté. Laisser reposer 5 min sous une feuille d’aluminium.',
+    'Chauffer l’huile dans une poêle à feu vif et saisir la bavette 2 à 3 min de chaque côté (saignante à rosée). Laisser reposer 5 min sous une feuille d’aluminium.',
     'Trancher la viande finement contre les fibres et la mélanger encore tiède avec la sauce, l’oignon et le concombre.',
     'Ajouter les herbes au dernier moment et servir sur quelques feuilles de salade.'
   ]);
 
-  R('fondue-bourguignonne', 'Fondue bourguignonne', 'Française', 'Plat', 25, 'Facile', 4, [
+  R('fondue-bourguignonne', 'Fondue bourguignonne', 'Française', 'Plat', 35, 'Facile', 4, [
     ['boeuf-pour-fondue', 800, 'g'], ['huile', 1, 'l'], ['mayonnaise', 6, 'cs'], ['sauce-bearnaise', 6, 'cs', 'opt'],
     ['ketchup', 4, 'cs', 'opt'], ['cornichons', 100, 'g'], ['sel', null], ['poivre', null]
   ], [
     'Sortir la viande du réfrigérateur 30 min avant le repas et la couper en cubes de 2 cm si ce n’est pas déjà fait. L’éponger avec du papier absorbant.',
     'Répartir les sauces et les cornichons dans des coupelles.',
-    'Chauffer l’huile dans le caquelon sur la cuisinière à feu moyen jusqu’à 170 °C (un morceau de viande doit grésiller vivement), puis placer le caquelon sur son réchaud.',
-    'Chacun pique un morceau de viande et le plonge 30 s à 1 min dans l’huile selon la cuisson désirée. Saler, poivrer et tremper dans les sauces.',
+    'Chauffer l’huile dans le caquelon sur la cuisinière à feu moyen, 8 à 10 min, jusqu’à 180 °C (un morceau de viande doit grésiller vivement), puis placer le caquelon sur son réchaud.',
+    'Chacun pique un morceau de viande et le plonge dans l’huile à 180 °C : 30 s pour saignant, 1 min pour à point, 1 min 30 pour bien cuit. Saler, poivrer et tremper dans les sauces.',
     'Ne pas plonger trop de morceaux à la fois pour que l’huile reste bien chaude.'
   ]);
 
@@ -44,19 +44,19 @@ module.exports = function ajouter(R) {
     ['farine', 20, 'g'], ['bouquet-garni', 1], ['huile', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Parer les joues en retirant les parties nerveuses et les couper en 2 ou 3 morceaux. Éplucher les carottes et les couper en rondelles, émincer les oignons.',
-    'Chauffer l’huile dans une cocotte à feu vif et bien dorer la viande sur toutes ses faces, en plusieurs fois. Réserver.',
+    'Chauffer l’huile dans une cocotte à feu vif et bien dorer la viande sur toutes ses faces, en plusieurs fois, 3 à 4 min par fournée. Réserver.',
     'Faire revenir les oignons 5 min à feu moyen, remettre la viande, saupoudrer de farine et remuer 1 min.',
-    'Verser le vin rouge, ajouter les carottes, l’ail écrasé et le bouquet garni. Saler, poivrer, porter à ébullition.',
+    'Verser le vin rouge, ajouter les carottes, l’ail écrasé et le bouquet garni. Saler, poivrer, porter à ébullition à feu vif.',
     'Couvrir et laisser mijoter 3 h à feu très doux, en remuant de temps en temps, jusqu’à ce que la viande se défasse à la cuillère. Retirer le bouquet garni avant de servir.'
   ]);
 
-  R('faux-filet-poivre', 'Faux-filet au poivre', 'Française', 'Plat', 20, 'Facile', 4, [
+  R('faux-filet-poivre', 'Faux-filet au poivre', 'Française', 'Plat', 30, 'Facile', 4, [
     ['faux-filet', 4], ['poivre', 2, 'cs'], ['cognac', 4, 'cl'], ['creme-fraiche', 20, 'cl'],
     ['beurre', 20, 'g'], ['huile', 1, 'cs'], ['sel', null]
   ], [
     'Sortir la viande 20 min avant la cuisson. Concasser grossièrement le poivre en grains au mortier ou sous une casserole, et en presser les deux faces des faux-filets.',
-    'Chauffer l’huile et le beurre dans une grande poêle à feu vif. Cuire les faux-filets 2 à 3 min par face pour une cuisson saignante. Saler et réserver au chaud sous une feuille d’aluminium.',
-    'Hors du feu, verser le cognac dans la poêle, remettre sur le feu et flamber prudemment.',
+    'Chauffer l’huile et le beurre dans une grande poêle à feu vif. Cuire les faux-filets 2 à 3 min par face pour une cuisson saignante (4 min pour à point). Saler et réserver au chaud sous une feuille d’aluminium.',
+    'Hors du feu, verser le cognac dans la poêle, remettre à feu moyen et flamber prudemment, 30 s, jusqu’à extinction des flammes.',
     'Ajouter la crème, gratter les sucs et laisser réduire 2 min à feu moyen jusqu’à ce que la sauce nappe la cuillère.',
     'Ajouter le jus rendu par la viande dans la sauce et en napper les faux-filets.'
   ]);
@@ -65,21 +65,21 @@ module.exports = function ajouter(R) {
     ['faux-filet', 4], ['beurre', 80, 'g'], ['persil', 0.25], ['citron', 0.5], ['huile', 1, 'cs'],
     ['fleur-de-sel', null], ['poivre', null]
   ], [
-    'Préparer le beurre : laisser ramollir le beurre, le mélanger avec le persil haché, le jus du demi-citron, sel et poivre. Le rouler en boudin dans du film alimentaire et le mettre 30 min au réfrigérateur.',
+    'Préparer le beurre : laisser ramollir le beurre, le mélanger avec le persil haché, le jus du demi-citron, une pincée de fleur de sel et du poivre. Le rouler en boudin dans du film alimentaire et le mettre 30 min au réfrigérateur.',
     'Sortir la viande 20 min avant la cuisson et l’huiler légèrement.',
-    'Chauffer une poêle-gril à feu vif. Cuire les faux-filets 2 à 3 min par face, en les tournant d’un quart de tour à mi-cuisson de chaque face pour le quadrillage.',
+    'Chauffer une poêle-gril à feu vif. Cuire les faux-filets 2 à 3 min par face pour une cuisson saignante (4 min pour à point), en les tournant d’un quart de tour à mi-cuisson de chaque face pour le quadrillage.',
     'Laisser reposer 3 min sous une feuille d’aluminium.',
     'Servir chaque faux-filet surmonté d’une rondelle de beurre maître d’hôtel, avec de la fleur de sel et du poivre.'
   ]);
 
-  R('cote-boeuf-poelee', 'Côte de bœuf poêlée et rôtie', 'Française', 'Plat', 40, 'Moyen', 4, [
+  R('cote-boeuf-poelee', 'Côte de bœuf poêlée et rôtie', 'Française', 'Plat', 45, 'Moyen', 4, [
     ['cote-de-boeuf', 1], ['beurre', 30, 'g'], ['ail', 3], ['thym-frais', 3], ['huile', 1, 'cs'],
     ['fleur-de-sel', null], ['poivre', null]
   ], [
     'Sortir la côte de bœuf du réfrigérateur 1 h avant la cuisson (non compté). Préchauffer le four à 180 °C.',
     'Chauffer l’huile dans une grande poêle allant au four à feu vif. Saisir la côte 3 à 4 min de chaque côté et sur la tranche grasse, jusqu’à ce qu’elle soit bien colorée.',
-    'Ajouter le beurre, l’ail en chemise écrasé et le thym. Arroser la viande 1 min avec le beurre mousseux.',
-    'Enfourner 12 à 15 min pour une cuisson saignante (50 °C à cœur), 18 à 20 min pour une cuisson à point (55 °C).',
+    'Ajouter le beurre, l’ail en chemise écrasé et le thym. Arroser la viande 1 min à feu moyen avec le beurre mousseux.',
+    'Enfourner à 180 °C : 12 à 15 min pour une cuisson saignante (50 °C à cœur), 18 à 20 min pour à point (55 °C), 25 min pour bien cuit (65 °C).',
     'Laisser reposer 10 min sous une feuille d’aluminium, puis découper en tranches épaisses le long de l’os. Assaisonner de fleur de sel et de poivre.'
   ]);
 
@@ -100,46 +100,46 @@ module.exports = function ajouter(R) {
     ['vin-blanc', 20, 'cl'], ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 160 °C. Éplucher les oignons et les couper en quartiers.',
-    'Chauffer l’huile dans une cocotte allant au four à feu vif et dorer les morceaux de plat de côtes sur toutes les faces. Saler, poivrer.',
-    'Ajouter les oignons, l’ail en chemise, le thym et le laurier, puis verser le vin blanc et 20 cl d’eau.',
-    'Couvrir et enfourner 2 h 30, en retournant la viande à mi-cuisson.',
+    'Chauffer l’huile dans une cocotte allant au four à feu vif et dorer les morceaux de plat de côtes sur toutes les faces, 8 à 10 min. Saler, poivrer.',
+    'Ajouter les oignons, l’ail en chemise, le thym et le laurier, puis verser le vin blanc et 20 cl d’eau. Porter à frémissement à feu vif, 2 à 3 min.',
+    'Couvrir et enfourner 2 h 30 à 160 °C, en retournant la viande à mi-cuisson.',
     'Retirer le couvercle, monter le four à 200 °C et poursuivre 20 min pour caraméliser la viande. Elle doit se détacher de l’os.'
   ]);
 
-  R('jarret-boeuf-carottes', 'Jarret de bœuf braisé aux carottes', 'Française', 'Plat', 200, 'Facile', 4, [
+  R('jarret-boeuf-carottes', 'Jarret de bœuf braisé aux carottes', 'Française', 'Plat', 215, 'Facile', 4, [
     ['jarret-de-boeuf', 1200, 'g'], ['carottes', 6], ['oignons', 2], ['vin-blanc', 25, 'cl'],
     ['bouquet-garni', 1], ['huile', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Couper le jarret en tranches épaisses ou gros morceaux. Éplucher les carottes et les couper en tronçons, émincer les oignons.',
-    'Chauffer l’huile dans une cocotte à feu vif et dorer la viande sur toutes les faces. Saler, poivrer, réserver.',
+    'Chauffer l’huile dans une cocotte à feu vif et dorer la viande sur toutes les faces, 8 à 10 min. Saler, poivrer, réserver.',
     'Faire revenir les oignons 5 min à feu moyen, puis déglacer au vin blanc.',
-    'Remettre la viande, ajouter les carottes, le bouquet garni et de l’eau à mi-hauteur. Porter à ébullition.',
+    'Remettre la viande, ajouter les carottes, le bouquet garni et de l’eau à mi-hauteur. Porter à ébullition à feu vif.',
     'Couvrir et laisser mijoter 3 h à feu très doux, jusqu’à ce que la viande soit fondante. Retirer le bouquet garni et rectifier l’assaisonnement.'
   ]);
 
-  R('queue-boeuf-vin-rouge', 'Queue de bœuf braisée au vin rouge', 'Française', 'Plat', 240, 'Moyen', 4, [
+  R('queue-boeuf-vin-rouge', 'Queue de bœuf braisée au vin rouge', 'Française', 'Plat', 250, 'Moyen', 4, [
     ['queue-de-boeuf', 1500, 'g'], ['vin-rouge', 75, 'cl'], ['carottes', 3], ['oignons', 2], ['ail', 2],
     ['concentre-tomate', 1, 'cs'], ['farine', 20, 'g'], ['bouquet-garni', 1], ['huile', 2, 'cs'],
     ['sel', null], ['poivre', null]
   ], [
     'Éponger les tronçons de queue. Éplucher les carottes et les couper en rondelles, émincer les oignons.',
-    'Chauffer l’huile dans une cocotte à feu vif et dorer les morceaux sur toutes les faces, en plusieurs fois. Retirer l’excès de graisse.',
+    'Chauffer l’huile dans une cocotte à feu vif et dorer les morceaux sur toutes les faces, en plusieurs fois, 4 à 5 min par fournée. Retirer l’excès de graisse.',
     'Faire revenir les oignons et les carottes 5 min à feu moyen, ajouter le concentré de tomate et la farine, remuer 1 min.',
-    'Remettre la viande, verser le vin rouge, ajouter l’ail écrasé et le bouquet garni. Saler, poivrer et porter à ébullition.',
+    'Remettre la viande, verser le vin rouge, ajouter l’ail écrasé et le bouquet garni. Saler, poivrer et porter à ébullition à feu vif.',
     'Couvrir et laisser mijoter 3 h 30 à feu très doux, jusqu’à ce que la chair se détache de l’os. Dégraisser la sauce à la cuillère avant de servir.'
   ]);
 
   /* ───────────── Porc ───────────── */
 
-  R('cotes-porc-moutarde', 'Côtes de porc à la moutarde', 'Française', 'Plat', 25, 'Facile', 4, [
+  R('cotes-porc-moutarde', 'Côtes de porc à la moutarde', 'Française', 'Plat', 30, 'Facile', 4, [
     ['cotes-de-porc', 4], ['moutarde', 2, 'cs'], ['creme-fraiche', 20, 'cl'], ['echalotes', 1],
     ['vin-blanc', 10, 'cl', 'opt'], ['huile', 1, 'cs'], ['beurre', 10, 'g'], ['sel', null], ['poivre', null]
   ], [
     'Sortir les côtes 15 min avant la cuisson. Ciseler l’échalote.',
     'Chauffer l’huile et le beurre dans une grande poêle à feu moyen-vif. Cuire les côtes 5 à 6 min de chaque côté, jusqu’à ce qu’elles soient dorées et juste cuites à cœur (65 °C). Saler, poivrer, réserver au chaud.',
-    'Faire revenir l’échalote 2 min dans la poêle à feu moyen, puis déglacer au vin blanc et laisser réduire de moitié.',
+    'Faire revenir l’échalote 2 min dans la poêle à feu moyen, puis déglacer au vin blanc et laisser réduire de moitié, 1 à 2 min.',
     'Ajouter la crème et la moutarde, mélanger et laisser épaissir 2 min à feu doux, sans faire bouillir fort.',
-    'Remettre les côtes dans la sauce 1 min pour les réchauffer et servir aussitôt.'
+    'Remettre les côtes dans la sauce 1 min à feu doux pour les réchauffer et servir aussitôt.'
   ]);
 
   R('cotes-porc-pommes-cidre', 'Côtes de porc aux pommes et au cidre', 'Française', 'Plat', 35, 'Facile', 4, [
@@ -148,42 +148,42 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les pommes, les couper en quartiers et retirer le cœur.',
     'Faire fondre 20 g de beurre dans une poêle à feu moyen et dorer les quartiers de pommes 8 à 10 min en les retournant. Réserver.',
-    'Dans la même poêle, ajouter le reste du beurre et cuire les côtes 5 à 6 min de chaque côté à feu moyen-vif, jusqu’à ce qu’elles soient dorées et cuites à cœur. Saler, poivrer.',
-    'Retirer les côtes, verser le cidre et gratter les sucs. Laisser réduire de moitié à feu vif, puis ajouter la crème.',
+    'Dans la même poêle, ajouter le reste du beurre et cuire les côtes 5 à 6 min de chaque côté à feu moyen-vif, jusqu’à ce qu’elles soient dorées et cuites à cœur (65 °C). Saler, poivrer.',
+    'Retirer les côtes, verser le cidre et gratter les sucs. Laisser réduire de moitié à feu vif, 2 à 3 min, puis ajouter la crème.',
     'Remettre les côtes et les pommes dans la sauce 2 min à feu doux et servir.'
   ]);
 
-  R('travers-porc-miel', 'Travers de porc laqués au miel', 'Française', 'Plat', 105, 'Facile', 4, [
+  R('travers-porc-miel', 'Travers de porc laqués au miel', 'Française', 'Plat', 125, 'Facile', 4, [
     ['travers-de-porc', 1500, 'g'], ['miel', 4, 'cs'], ['sauce-soja', 4, 'cs'], ['ail', 3],
     ['ketchup', 2, 'cs', 'opt'], ['paprika', 1, 'cc', 'opt'], ['poivre', null]
   ], [
     'Préchauffer le four à 160 °C. Couper le travers en portions de 3 ou 4 côtes.',
     'Mélanger le miel, la sauce soja, l’ail pressé, le ketchup, le paprika et le poivre.',
     'Disposer la viande dans un plat, badigeonner généreusement de laque, verser 10 cl d’eau au fond et couvrir d’aluminium.',
-    'Cuire 1 h, puis retirer l’aluminium, badigeonner à nouveau et monter le four à 200 °C.',
-    'Poursuivre 25 à 30 min en badigeonnant toutes les 10 min, jusqu’à ce que le travers soit bien laqué et que la viande se détache de l’os.'
+    'Enfourner 1 h 30 à 160 °C, puis retirer l’aluminium, badigeonner à nouveau et monter le four à 200 °C.',
+    'Poursuivre 20 à 25 min à 200 °C en badigeonnant toutes les 10 min, jusqu’à ce que le travers soit bien laqué et que la viande se détache de l’os.'
   ]);
 
-  R('jarret-porc-biere', 'Jarret de porc à la bière', 'Alsacienne', 'Plat', 165, 'Facile', 4, [
+  R('jarret-porc-biere', 'Jarret de porc à la bière', 'Alsacienne', 'Plat', 170, 'Facile', 4, [
     ['jarret-de-porc', 2], ['biere-blonde', 50, 'cl'], ['oignons', 2], ['carottes', 2], ['laurier', 2],
     ['baies-de-genievre', 1, 'cc', 'opt'], ['moutarde', 1, 'cs'], ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 170 °C. Émincer les oignons, éplucher les carottes et les couper en tronçons.',
     'Chauffer l’huile dans une cocotte à feu moyen-vif et dorer les jarrets sur toutes les faces, 10 min. Réserver.',
-    'Faire revenir les oignons 5 min, ajouter les carottes, le laurier et le genièvre.',
-    'Remettre les jarrets, badigeonner de moutarde, verser la bière. Poivrer, saler légèrement. Couvrir.',
-    'Enfourner 2 h en arrosant toutes les 30 min, puis retirer le couvercle et poursuivre 20 min pour dorer la couenne. La viande doit se détacher de l’os.'
+    'Faire revenir les oignons 5 min à feu moyen, ajouter les carottes, le laurier et le genièvre.',
+    'Remettre les jarrets, badigeonner de moutarde, verser la bière. Poivrer, saler légèrement. Porter à frémissement à feu vif, 3 à 4 min, puis couvrir.',
+    'Enfourner 2 h à 170 °C en arrosant toutes les 30 min, puis retirer le couvercle et poursuivre 20 min à 200 °C pour dorer la couenne. La viande doit se détacher de l’os.'
   ]);
 
   R('palette-porc-chou', 'Palette de porc fumée au chou', 'Française', 'Plat', 150, 'Facile', 4, [
     ['palette-de-porc', 1000, 'g'], ['chou', 1], ['pommes-de-terre', 800, 'g'], ['carottes', 4], ['oignons', 1],
     ['bouquet-garni', 1], ['clous-de-girofle', 2, 'pc', 'opt'], ['moutarde', 2, 'cs', 'opt'], ['poivre', null]
   ], [
-    'Mettre la palette dans un grand faitout, couvrir d’eau froide et porter à ébullition. Écumer.',
+    'Mettre la palette dans un grand faitout, couvrir d’eau froide et porter à ébullition à feu vif, environ 15 min. Écumer.',
     'Ajouter l’oignon piqué des clous de girofle et le bouquet garni. Laisser frémir 1 h à feu doux, couvert.',
     'Pendant ce temps, couper le chou en quartiers et le blanchir 5 min dans une autre casserole d’eau bouillante, puis l’égoutter. Éplucher les carottes et les pommes de terre.',
-    'Ajouter le chou et les carottes dans le faitout et cuire 40 min. Ajouter les pommes de terre et poursuivre 25 min.',
-    'Goûter avant de saler (la palette fumée est salée), poivrer. Trancher la viande et la servir entourée des légumes, avec de la moutarde.'
+    'Ajouter le chou et les carottes dans le faitout et cuire 40 min à petits frémissements. Ajouter les pommes de terre et poursuivre 25 min, jusqu’à ce qu’elles soient tendres à la pointe du couteau.',
+    'Ne pas saler (la palette fumée sale le bouillon), poivrer. Trancher la viande et la servir entourée des légumes, avec de la moutarde.'
   ]);
 
   /* ───────────── Agneau ───────────── */
@@ -193,8 +193,8 @@ module.exports = function ajouter(R) {
     ['fleur-de-sel', null], ['poivre', null]
   ], [
     'Mélanger l’huile d’olive, l’ail pressé et les feuilles de thym. En badigeonner les côtelettes et laisser mariner 20 min à température ambiante.',
-    'Chauffer une poêle-gril ou une plancha à feu vif.',
-    'Cuire les côtelettes 2 min de chaque côté pour une viande rosée, en saisissant aussi le bord gras 30 s.',
+    'Chauffer une poêle-gril ou une plancha 3 min à feu vif.',
+    'Cuire les côtelettes à feu vif 2 min de chaque côté pour une viande rosée (3 min pour à point), en plusieurs fois, en saisissant aussi le bord gras 30 s.',
     'Laisser reposer 2 min, assaisonner de fleur de sel et de poivre et servir aussitôt.'
   ]);
 
@@ -209,7 +209,7 @@ module.exports = function ajouter(R) {
     'Servir chaud avec la sauce au yaourt.'
   ]);
 
-  R('carre-agneau-herbes', 'Carré d’agneau en croûte d’herbes', 'Française', 'Plat', 45, 'Moyen', 4, [
+  R('carre-agneau-herbes', 'Carré d’agneau en croûte d’herbes', 'Française', 'Plat', 55, 'Moyen', 4, [
     ['carre-d-agneau', 1000, 'g'], ['chapelure', 50, 'g'], ['persil', 0.5], ['ail', 2], ['moutarde', 1, 'cs'],
     ['beurre', 30, 'g'], ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
@@ -217,19 +217,19 @@ module.exports = function ajouter(R) {
     'Mélanger la chapelure, le persil haché, l’ail pressé et le beurre fondu.',
     'Chauffer l’huile dans une poêle à feu vif et colorer le carré 2 min sur chaque face. Saler, poivrer.',
     'Badigeonner le côté gras de moutarde et y presser la croûte d’herbes.',
-    'Enfourner 15 à 20 min pour une viande rosée (57 °C à cœur). Laisser reposer 5 min, puis découper entre les os.'
+    'Enfourner 15 à 20 min à 200 °C pour une viande rosée (55 °C à cœur), 25 min pour à point (60 °C). Laisser reposer 5 min sous une feuille d’aluminium, puis découper entre les os.'
   ]);
 
   /* ───────────── Saucisses, boudins et abats ───────────── */
 
-  R('chipolatas-pommes-four', 'Chipolatas et pommes de terre au four', 'Française', 'Plat', 50, 'Facile', 4, [
+  R('chipolatas-pommes-four', 'Chipolatas et pommes de terre au four', 'Française', 'Plat', 55, 'Facile', 4, [
     ['chipolatas', 8], ['pommes-de-terre', 1000, 'g'], ['oignons', 2], ['herbes-provence', 1, 'cc'],
     ['huile-olive', 3, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 200 °C. Laver les pommes de terre et les couper en quartiers sans les éplucher. Couper les oignons en quartiers.',
     'Mélanger pommes de terre et oignons dans un grand plat avec l’huile, les herbes, sel et poivre.',
-    'Enfourner 20 min.',
-    'Poser les chipolatas sur les légumes et poursuivre la cuisson 20 à 25 min en les retournant à mi-cuisson, jusqu’à ce qu’elles soient dorées et les pommes de terre tendres.'
+    'Enfourner 20 min à 200 °C.',
+    'Poser les chipolatas sur les légumes et poursuivre la cuisson 20 à 25 min à 200 °C en les retournant à mi-cuisson, jusqu’à ce qu’elles soient dorées et les pommes de terre tendres.'
   ]);
 
   R('chipolatas-petits-pois', 'Chipolatas aux petits pois et carottes', 'Française', 'Plat', 35, 'Facile', 4, [
@@ -238,19 +238,19 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les carottes et les couper en rondelles, émincer l’oignon.',
     'Faire dorer les chipolatas 8 min dans une cocotte à feu moyen, sans matière grasse, en les retournant. Réserver.',
-    'Faire fondre le beurre dans la cocotte et faire revenir l’oignon 3 min. Ajouter les carottes, les petits pois, le demi-cube de bouillon émietté et 15 cl d’eau.',
+    'Faire fondre le beurre dans la cocotte à feu moyen et faire revenir l’oignon 3 min. Ajouter les carottes, les petits pois, le demi-cube de bouillon émietté et 15 cl d’eau.',
     'Remettre les chipolatas, couvrir et laisser mijoter 15 à 20 min à feu doux, jusqu’à ce que les carottes soient tendres. Rectifier l’assaisonnement.'
   ]);
 
-  R('saucisses-volaille-courgettes', 'Saucisses de volaille et poêlée de courgettes', 'Française', 'Plat', 30, 'Facile', 4, [
+  R('saucisses-volaille-courgettes', 'Saucisses de volaille et poêlée de courgettes', 'Française', 'Plat', 35, 'Facile', 4, [
     ['saucisses-de-volaille', 8], ['courgettes', 3], ['oignons', 1], ['ail', 1], ['herbes-provence', 1, 'cc'],
     ['huile-olive', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Couper les courgettes en demi-rondelles, émincer l’oignon et hacher l’ail.',
     'Chauffer 1 cs d’huile dans une poêle à feu moyen et dorer les saucisses 10 à 12 min en les retournant, jusqu’à ce qu’elles soient cuites à cœur. Réserver au chaud.',
-    'Dans la même poêle, ajouter le reste de l’huile et faire revenir l’oignon 3 min.',
+    'Dans la même poêle, ajouter le reste de l’huile et faire revenir l’oignon 3 min à feu moyen.',
     'Ajouter les courgettes, l’ail et les herbes. Cuire 10 min à feu moyen-vif en remuant, jusqu’à ce qu’elles soient dorées mais encore fermes. Saler, poivrer.',
-    'Remettre les saucisses 2 min dans la poêle et servir.'
+    'Remettre les saucisses 2 min dans la poêle à feu moyen et servir.'
   ]);
 
   R('boudin-noir-pommes', 'Boudin noir aux pommes', 'Française', 'Plat', 25, 'Facile', 4, [
@@ -258,7 +258,7 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les pommes, les couper en quartiers et retirer le cœur.',
     'Faire fondre 30 g de beurre dans une poêle à feu moyen et dorer les pommes 10 min en les retournant délicatement. Saupoudrer de sucre en fin de cuisson pour les caraméliser. Réserver au chaud.',
-    'Piquer légèrement le boudin à la fourchette. Faire fondre le reste du beurre dans la poêle et cuire le boudin 8 à 10 min à feu doux à moyen en le retournant, pour qu’il chauffe à cœur sans éclater.',
+    'Piquer légèrement le boudin à la fourchette. Faire fondre le reste du beurre dans la poêle et cuire le boudin 8 à 10 min à feu doux en le retournant, pour qu’il chauffe à cœur sans éclater.',
     'Servir le boudin avec les pommes, poivrer.'
   ]);
 
@@ -269,8 +269,8 @@ module.exports = function ajouter(R) {
     'Nettoyer et émincer les champignons, ciseler l’échalote.',
     'Faire fondre 15 g de beurre dans une poêle à feu doux et cuire les boudins 10 min en les retournant, jusqu’à ce qu’ils soient dorés. Réserver au chaud.',
     'Ajouter le reste du beurre, l’échalote et les champignons. Cuire 6 à 8 min à feu moyen-vif, jusqu’à évaporation de leur eau.',
-    'Déglacer au porto, ajouter la crème, saler, poivrer et laisser épaissir 2 min.',
-    'Remettre les boudins dans la sauce 1 min et servir.'
+    'Déglacer au porto, ajouter la crème, saler, poivrer et laisser épaissir 2 min à feu moyen.',
+    'Remettre les boudins dans la sauce 1 min à feu doux et servir.'
   ]);
 
   R('andouillette-moutarde', 'Andouillette à la moutarde', 'Française', 'Plat', 40, 'Facile', 4, [
@@ -279,9 +279,9 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C. Ciseler les échalotes et les répartir dans un plat beurré.',
     'Inciser légèrement les andouillettes en biais, les poser sur les échalotes et verser le vin blanc.',
-    'Enfourner 20 min en les retournant à mi-cuisson.',
+    'Enfourner 20 min à 200 °C en les retournant à mi-cuisson.',
     'Mélanger la crème et la moutarde, poivrer et napper les andouillettes.',
-    'Remettre 10 min au four, jusqu’à ce que la sauce bouillonne et que les andouillettes soient dorées.'
+    'Remettre 10 min au four à 200 °C, jusqu’à ce que la sauce bouillonne et que les andouillettes soient dorées.'
   ]);
 
   R('rognons-veau-moutarde', 'Rognons de veau à la moutarde', 'Française', 'Plat', 25, 'Moyen', 4, [
@@ -291,17 +291,17 @@ module.exports = function ajouter(R) {
     'Retirer la graisse et les parties blanches des rognons, puis les couper en morceaux de 2 cm. Ciseler les échalotes.',
     'Faire fondre 20 g de beurre dans une poêle à feu vif et saisir les rognons 3 min en remuant : ils doivent rester rosés. Les égoutter dans une passoire et jeter le jus rendu.',
     'Faire fondre le reste du beurre à feu moyen et faire revenir les échalotes 2 min. Déglacer au cognac.',
-    'Ajouter la crème et la moutarde, laisser réduire 2 min, puis remettre les rognons 1 min pour les réchauffer sans les faire bouillir. Saler, poivrer, parsemer de persil.'
+    'Ajouter la crème et la moutarde, laisser réduire 2 min à feu moyen, puis remettre les rognons 1 min à feu doux pour les réchauffer sans les faire bouillir. Saler, poivrer, parsemer de persil.'
   ]);
 
-  R('galettes-andouille', 'Galettes de sarrasin à l’andouille', 'Bretonne', 'Plat', 20, 'Facile', 4, [
+  R('galettes-andouille', 'Galettes de sarrasin à l’andouille', 'Bretonne', 'Plat', 25, 'Facile', 4, [
     ['galettes-de-sarrasin', 4], ['andouille', 200, 'g'], ['oeufs', 4], ['emmental', 100, 'g', 'opt'],
     ['beurre-demi-sel', 20, 'g'], ['moutarde', 1, 'cs', 'opt'], ['poivre', null]
   ], [
     'Couper l’andouille en fines rondelles.',
-    'Faire fondre un peu de beurre dans une grande poêle à feu moyen et y poser une galette.',
-    'Tartiner le centre d’un peu de moutarde, casser un œuf au milieu et étaler le blanc à la spatule. Répartir l’andouille et le fromage autour.',
-    'Cuire 3 à 4 min, jusqu’à ce que le blanc soit pris et le dessous croustillant. Replier les bords en carré, poivrer et servir. Recommencer avec les autres galettes.'
+    'Faire fondre une noisette de beurre dans une grande poêle à feu moyen et y réchauffer une galette 30 s.',
+    'Tartiner le centre d’un peu de moutarde, casser un œuf au milieu et étaler le blanc à la spatule. Répartir l’andouille et l’emmental râpé autour.',
+    'Cuire 3 à 4 min à feu moyen, jusqu’à ce que le blanc soit pris et le dessous croustillant. Replier les bords en carré, poivrer et servir. Recommencer avec les autres galettes.'
   ]);
 
   /* ───────────── Volailles ───────────── */
@@ -313,7 +313,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 210 °C. Séparer les ailes aux articulations si besoin et bien les sécher.',
     'Les mélanger avec l’huile, le paprika, l’ail en poudre, le miel, sel et poivre. Laisser reposer 10 min.',
     'Les étaler sans qu’elles se chevauchent sur une plaque recouverte de papier cuisson.',
-    'Cuire 40 à 45 min en les retournant à mi-cuisson, jusqu’à ce qu’elles soient bien dorées et croustillantes.'
+    'Enfourner 40 à 45 min à 210 °C en les retournant à mi-cuisson, jusqu’à ce qu’elles soient bien dorées et croustillantes.'
   ]);
 
   R('aiguillettes-poulet-panees', 'Aiguillettes de poulet panées', 'Française', 'Plat', 25, 'Facile', 4, [
@@ -333,7 +333,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 200 °C. Couper le citron en quartiers.',
     'Saler et poivrer l’intérieur des coquelets et y glisser un quartier de citron, une branche de thym et une gousse d’ail.',
     'Les placer dans un plat, les badigeonner de beurre mou, saler, poivrer, et disposer autour le reste du citron, du thym et de l’ail en chemise.',
-    'Enfourner 45 à 50 min en arrosant toutes les 15 min, jusqu’à ce que la peau soit dorée et que le jus de la cuisse soit clair.',
+    'Enfourner 45 à 50 min à 200 °C en arrosant toutes les 15 min, jusqu’à ce que la peau soit dorée et que le jus de la cuisse soit clair.',
     'Laisser reposer 5 min, puis couper chaque coquelet en deux dans la longueur pour servir.'
   ]);
 
@@ -343,7 +343,7 @@ module.exports = function ajouter(R) {
   ], [
     'Émincer les oignons.',
     'Chauffer l’huile et le beurre dans une cocotte à feu moyen-vif et dorer le rôti sur toutes les faces, 8 min. Saler, poivrer.',
-    'Ajouter les oignons et les faire revenir 5 min en remuant.',
+    'Ajouter les oignons et les faire revenir 5 min à feu moyen en remuant.',
     'Verser le vin blanc et 10 cl d’eau, ajouter le thym. Couvrir et cuire 50 min à feu doux en retournant le rôti deux fois : il doit atteindre 72 °C à cœur.',
     'Laisser reposer 5 min avant de trancher et servir nappé des oignons et du jus.'
   ]);
@@ -354,7 +354,7 @@ module.exports = function ajouter(R) {
   ], [
     'Équeuter les haricots verts et les cuire 8 à 10 min dans une grande casserole d’eau bouillante salée : ils doivent rester légèrement croquants. Égoutter.',
     'Chauffer l’huile dans une poêle à feu moyen et cuire les cordons bleus 5 à 6 min de chaque côté, jusqu’à ce qu’ils soient dorés et chauds à cœur.',
-    'Dans une autre poêle, faire fondre le beurre avec l’ail haché, ajouter les haricots et les faire sauter 2 min. Saler, poivrer.',
+    'Dans une autre poêle, faire fondre le beurre à feu moyen avec l’ail haché, ajouter les haricots et les faire sauter 2 min. Saler, poivrer.',
     'Servir les cordons bleus avec les haricots.'
   ]);
 
@@ -365,7 +365,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 180 °C. Piquer la peau des cuisses à la fourchette, saler et poivrer.',
     'Les poser côté peau dans une poêle froide et les faire dorer 10 min à feu moyen pour faire fondre la graisse. Réserver la graisse.',
     'Éplucher les pommes de terre, les couper en cubes et les mélanger dans un plat avec 3 cs de graisse de canard, l’ail en chemise, le thym, sel et poivre.',
-    'Poser les cuisses peau vers le haut sur les pommes de terre et enfourner 1 h 15, en remuant les pommes de terre à mi-cuisson, jusqu’à ce que la peau soit croustillante et la viande tendre.',
+    'Poser les cuisses peau vers le haut sur les pommes de terre et enfourner 1 h 15 à 180 °C, en remuant les pommes de terre à mi-cuisson, jusqu’à ce que la peau soit croustillante et la viande tendre.',
     'Parsemer de persil haché avant de servir.'
   ]);
 
@@ -389,11 +389,11 @@ module.exports = function ajouter(R) {
     'Parsemer de feuilles de basilic, arroser d’un filet d’huile d’olive et donner un tour de moulin à poivre.'
   ]);
 
-  R('toasts-rillettes', 'Toasts de rillettes aux cornichons', 'Française', 'Entrée', 10, 'Facile', 4, [
+  R('toasts-rillettes', 'Toasts de rillettes aux cornichons', 'Française', 'Entrée', 20, 'Facile', 4, [
     ['rillettes', 200, 'g'], ['pain', 8], ['cornichons', 60, 'g'], ['poivre', null]
   ], [
     'Sortir les rillettes du réfrigérateur 15 min avant pour qu’elles soient plus onctueuses.',
-    'Faire griller les tranches de pain de campagne et les couper en deux.',
+    'Faire griller les tranches de pain de campagne 2 à 3 min au grille-pain et les couper en deux.',
     'Tartiner généreusement de rillettes à la fourchette, sans les écraser.',
     'Couper les cornichons en éventail ou en fines rondelles, les poser sur les toasts et donner un tour de moulin à poivre.'
   ]);
@@ -401,18 +401,18 @@ module.exports = function ajouter(R) {
   R('toasts-foie-gras-figues', 'Toasts de foie gras au pain d’épices', 'Française', 'Entrée', 10, 'Facile', 6, [
     ['foie-gras', 250, 'g'], ['pain-d-epices', 6], ['confiture', 60, 'g', 'opt'], ['fleur-de-sel', null], ['poivre', null]
   ], [
-    'Placer le foie gras 15 min au congélateur pour le trancher plus facilement (ne pas compter), ou le sortir juste avant.',
+    'Placer le foie gras 15 min au congélateur pour le trancher plus facilement (non compté), ou le sortir juste avant.',
     'Couper les tranches de pain d’épices en deux et les griller légèrement 1 à 2 min au grille-pain.',
     'Trancher le foie gras avec un couteau trempé dans l’eau chaude, en 12 tranches.',
     'Poser une tranche de foie gras sur chaque toast, ajouter une pointe de confiture de figues, quelques grains de fleur de sel et un tour de moulin à poivre. Servir aussitôt.'
   ]);
 
-  R('pruneaux-bacon', 'Pruneaux au bacon', 'Française', 'Entrée', 20, 'Facile', 6, [
-    ['pruneaux', 150, 'g'], ['bacon', 12]
+  R('pruneaux-bacon', 'Pruneaux au bacon', 'Française', 'Entrée', 25, 'Facile', 6, [
+    ['pruneaux', 250, 'g'], ['bacon', 12]
   ], [
     'Préchauffer le four à 200 °C. Dénoyauter les pruneaux si besoin.',
-    'Couper les tranches de bacon en deux et enrouler chaque demi-tranche autour d’un pruneau. Maintenir avec un pique en bois.',
-    'Disposer sur une plaque recouverte de papier cuisson et enfourner 10 à 12 min, en les retournant à mi-cuisson, jusqu’à ce que le bacon soit croustillant.',
+    'Couper les tranches de bacon en deux et enrouler chaque demi-tranche autour d’un pruneau (24 bouchées). Maintenir avec un pique en bois.',
+    'Disposer sur une plaque recouverte de papier cuisson et enfourner 10 à 12 min à 200 °C, en les retournant à mi-cuisson, jusqu’à ce que le bacon soit croustillant.',
     'Laisser tiédir 2 min et servir à l’apéritif.'
   ]);
 
@@ -422,7 +422,7 @@ module.exports = function ajouter(R) {
   ], [
     'Si on ajoute les œufs, les cuire 10 min dans l’eau bouillante, les refroidir, les écaler et les couper en rondelles.',
     'Faire griller le bacon 3 à 4 min à la poêle à feu moyen, jusqu’à ce qu’il soit croustillant. Égoutter sur du papier absorbant.',
-    'Faire griller les tranches de pain de mie. Couper la tomate en rondelles, laver et essorer la laitue.',
+    'Faire griller les tranches de pain de mie 2 min au grille-pain. Couper la tomate en rondelles, laver et essorer la laitue.',
     'Pour chaque sandwich : tartiner une tranche de mayonnaise, poser laitue, poulet et tomate, couvrir d’une deuxième tranche tartinée, puis ajouter bacon, œuf et laitue, et fermer avec la troisième tranche.',
     'Maintenir avec des piques, couper en deux triangles en diagonale et servir.'
   ]);
@@ -448,13 +448,13 @@ module.exports = function ajouter(R) {
   ]);
 
   R('pizza-salami', 'Pizza au salami', 'Italienne', 'Plat', 30, 'Facile', 2, [
-    ['pate-pizza', 1], ['coulis-tomate', 10, 'cl'], ['mozzarella', 1], ['salami', 16], ['origan', 0.5, 'cc'],
+    ['pate-pizza', 1], ['coulis-tomate', 10, 'cl'], ['mozzarella', 125, 'g'], ['salami', 16], ['origan', 0.5, 'cc'],
     ['huile-olive', 1, 'cs']
   ], [
     'Préchauffer le four à 250 °C avec la plaque à l’intérieur.',
     'Étaler la pâte sur une feuille de papier cuisson. La napper de coulis de tomate en laissant 1 cm de bord.',
     'Répartir la mozzarella égouttée et coupée en morceaux, puis les tranches de salami. Parsemer d’origan et arroser d’huile d’olive.',
-    'Glisser la pizza sur la plaque chaude et cuire 10 à 12 min, jusqu’à ce que la pâte soit dorée et le fromage fondu.'
+    'Glisser la pizza sur la plaque chaude et enfourner 10 à 12 min à 250 °C, jusqu’à ce que la pâte soit dorée et le fromage fondu.'
   ]);
 
   R('focaccia-mortadelle', 'Focaccia mortadelle et burrata', 'Italienne', 'Plat', 10, 'Facile', 2, [
@@ -467,12 +467,12 @@ module.exports = function ajouter(R) {
     'Déchirer la burrata par-dessus, parsemer de pistaches, arroser d’un filet d’huile d’olive, poivrer et refermer.'
   ]);
 
-  R('pates-pancetta-petits-pois', 'Pâtes à la pancetta et aux petits pois', 'Italienne', 'Plat', 20, 'Facile', 4, [
+  R('pates-pancetta-petits-pois', 'Pâtes à la pancetta et aux petits pois', 'Italienne', 'Plat', 25, 'Facile', 4, [
     ['pates', 400, 'g'], ['pancetta', 150, 'g'], ['petits-pois', 250, 'g'], ['oignons', 1], ['parmesan', 50, 'g'],
     ['huile-olive', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
-    'Cuire les pâtes dans une grande casserole d’eau bouillante salée selon le temps indiqué. Ajouter les petits pois 4 min avant la fin.',
-    'Pendant ce temps, couper la pancetta en lardons et émincer l’oignon. Les faire revenir 6 à 8 min dans l’huile à feu moyen, jusqu’à ce que la pancetta soit dorée.',
+    'Cuire les pâtes dans une grande casserole d’eau bouillante salée 10 à 12 min selon le paquet, al dente. Ajouter les petits pois 4 min avant la fin.',
+    'Pendant ce temps, couper la pancetta en lardons et émincer l’oignon. Les faire revenir 6 à 8 min dans l’huile dans une grande poêle à feu moyen, jusqu’à ce que la pancetta soit dorée.',
     'Égoutter les pâtes et les petits pois en gardant une louche d’eau de cuisson.',
     'Les verser dans la poêle avec la moitié du parmesan et un peu d’eau de cuisson. Mélanger 1 min à feu doux pour lier.',
     'Poivrer généreusement et servir avec le reste du parmesan.'
@@ -484,31 +484,31 @@ module.exports = function ajouter(R) {
   ], [
     'Battre les œufs à la fourchette avec un peu de sel (le jambon est salé) et du poivre.',
     'Faire fondre le beurre dans une poêle à feu moyen, ajouter les dés de jambon et les chauffer 1 min.',
-    'Verser les œufs et remuer doucement avec une spatule en ramenant les bords vers le centre pendant 1 min.',
-    'Lorsque l’omelette est presque prise mais encore baveuse au centre, parsemer de fromage râpé et de ciboulette.',
+    'Verser les œufs et cuire 2 min à feu moyen en ramenant doucement les bords vers le centre à la spatule.',
+    'Lorsque l’omelette est presque prise mais encore baveuse au centre, parsemer d’emmental râpé et de ciboulette, puis laisser encore 30 s à feu doux.',
     'Replier l’omelette en deux et la faire glisser sur l’assiette.'
   ]);
 
   /* ───────────── Poissons ───────────── */
 
   R('bar-roti-fenouil', 'Bar rôti au fenouil et au citron', 'Française', 'Plat', 45, 'Facile', 4, [
-    ['bar', 2], ['fenouil', 2], ['citron', 1], ['thym-frais', 2], ['huile-olive', 4, 'cs'],
+    ['bar', 4], ['fenouil', 2], ['citron', 2], ['thym-frais', 2], ['huile-olive', 4, 'cs'],
     ['vin-blanc', 10, 'cl', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Préchauffer le four à 200 °C. Faire vider et écailler les bars par le poissonnier, les rincer et les sécher.',
-    'Émincer finement les fenouils et les étaler dans un plat avec 2 cs d’huile, sel et poivre. Enfourner 10 min.',
+    'Préchauffer le four à 200 °C. Faire vider et écailler les bars (portions de 400 g) par le poissonnier, les rincer et les sécher.',
+    'Émincer finement les fenouils et les étaler dans un plat avec 2 cs d’huile, sel et poivre. Enfourner 10 min à 200 °C.',
     'Saler et poivrer l’intérieur des bars, y glisser des rondelles de citron et le thym. Faire 2 ou 3 entailles sur chaque face.',
     'Poser les bars sur le fenouil, arroser du reste de l’huile et du vin blanc.',
-    'Cuire 20 à 25 min : la chair doit se détacher facilement de l’arête. Servir avec des quartiers de citron.'
+    'Enfourner 18 à 20 min à 200 °C : la chair doit se détacher facilement de l’arête. Servir avec des quartiers de citron.'
   ]);
 
   R('bar-croute-sel', 'Bar en croûte de sel', 'Française', 'Plat', 45, 'Moyen', 4, [
-    ['bar', 2], ['gros-sel', 2000, 'g'], ['oeufs', 2], ['citron', 1], ['thym-frais', 2], ['huile-olive', 3, 'cs']
+    ['bar', 4], ['gros-sel', 3000, 'g'], ['oeufs', 3], ['citron', 1], ['thym-frais', 2], ['huile-olive', 3, 'cs']
   ], [
-    'Préchauffer le four à 220 °C. Faire vider les bars mais ne pas les écailler (les écailles protègent la chair). Glisser dans le ventre des rondelles de citron et le thym.',
+    'Préchauffer le four à 220 °C. Faire vider les bars (portions de 400 g) mais ne pas les écailler (les écailles protègent la chair). Glisser dans le ventre des rondelles de citron et le thym.',
     'Mélanger le gros sel avec les blancs d’œufs et un demi-verre d’eau pour obtenir une pâte de sable mouillé.',
     'Étaler un tiers du sel dans un grand plat, y poser les bars et les recouvrir entièrement du reste en tassant bien.',
-    'Enfourner 25 à 30 min.',
+    'Enfourner 20 min à 220 °C, puis laisser reposer 5 min hors du four.',
     'Casser la croûte à table avec le dos d’une cuillère, retirer la peau et lever les filets. Servir arrosé d’huile d’olive et de jus de citron.'
   ]);
 
@@ -517,16 +517,16 @@ module.exports = function ajouter(R) {
     ['persil', 0.25, 'pc', 'opt'], ['poivre', null]
   ], [
     'Rincer rapidement les sardines sans les vider (ou les faire vider) et les sécher. Les huiler légèrement et les parsemer de gros sel.',
-    'Chauffer un barbecue, une plancha ou une poêle-gril à feu vif.',
-    'Cuire les sardines 2 à 3 min de chaque côté, jusqu’à ce que la peau soit grillée et que la chair se détache de l’arête.',
+    'Chauffer une plancha ou une poêle-gril 3 min à feu vif (ou un barbecue à braises vives).',
+    'Cuire les sardines à feu vif 2 à 3 min de chaque côté, jusqu’à ce que la peau soit grillée et que la chair se détache de l’arête.',
     'Servir aussitôt avec les citrons coupés en quartiers, un tour de moulin à poivre et du persil haché.'
   ]);
 
   R('sardines-marinees-citron', 'Sardines marinées au citron', 'Française', 'Entrée', 150, 'Moyen', 4, [
     ['sardines-fraiches', 600, 'g'], ['citron', 2], ['huile-olive', 4, 'cs'], ['echalotes', 1], ['persil', 0.25],
-    ['fleur-de-sel', null], ['poivre', null]
+    ['pain', 4, 'pc', 'opt'], ['fleur-de-sel', null], ['poivre', null]
   ], [
-    'Lever les filets des sardines (ou les faire lever par le poissonnier) : retirer la tête, ouvrir le ventre, retirer l’arête centrale. Rincer et sécher.',
+    'Lever les filets des sardines très fraîches (ou les faire lever par le poissonnier) : retirer la tête, ouvrir le ventre, retirer l’arête centrale. Rincer et sécher.',
     'Les disposer côté peau vers le haut dans un plat creux, saler de fleur de sel et arroser du jus des citrons.',
     'Couvrir et laisser mariner 2 h au réfrigérateur : la chair doit devenir blanche et opaque.',
     'Égoutter le jus, ajouter l’échalote finement ciselée, le persil haché et l’huile d’olive. Poivrer et servir bien frais avec du pain grillé.'
@@ -549,7 +549,7 @@ module.exports = function ajouter(R) {
     'Émincer les oignons et les poivrons épépinés en lanières. Couper les tomates en dés.',
     'Chauffer 2 cs d’huile dans une sauteuse à feu moyen et faire revenir les oignons et les poivrons 10 min.',
     'Ajouter les tomates, l’ail haché et le piment, saler, poivrer et laisser mijoter 15 min à feu doux.',
-    'Couper le thon en 4 pavés. Les saisir 1 min par face dans le reste d’huile à feu vif.',
+    'Couper le thon en 4 pavés. Les saisir 1 min par face dans une poêle avec le reste d’huile, à feu vif.',
     'Les poser sur la piperade, couvrir et cuire 5 min à feu doux : le cœur doit rester rosé.'
   ]);
 
@@ -558,9 +558,9 @@ module.exports = function ajouter(R) {
     ['huile-olive', 3, 'cs'], ['thym-frais', 2, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 200 °C. Couper le merlu en 4 portions et ôter les éventuelles arêtes.',
-    'Mettre dans un plat les tomates cerises coupées en deux, les olives, l’ail émincé et le thym. Arroser de 2 cs d’huile, saler, poivrer et enfourner 10 min.',
+    'Mettre dans un plat les tomates cerises coupées en deux, les olives, l’ail émincé et le thym. Arroser de 2 cs d’huile, saler, poivrer et enfourner 10 min à 200 °C.',
     'Poser le poisson sur les tomates, saler, poivrer, arroser du reste d’huile et du jus d’un demi-citron.',
-    'Cuire 12 à 15 min, jusqu’à ce que la chair soit nacrée et se détache en lamelles. Servir avec le reste du citron en quartiers.'
+    'Enfourner 12 à 15 min à 200 °C, jusqu’à ce que la chair soit nacrée et se détache en lamelles. Servir avec le reste du citron en quartiers.'
   ]);
 
   R('filets-truite-capres', 'Filets de truite au beurre citronné et aux câpres', 'Française', 'Plat', 15, 'Facile', 4, [
@@ -569,7 +569,7 @@ module.exports = function ajouter(R) {
   ], [
     'Sécher les filets, saler, poivrer et les fariner légèrement du côté chair. Tapoter pour retirer l’excédent.',
     'Faire fondre 20 g de beurre dans une grande poêle à feu moyen-vif. Cuire les filets 3 min côté peau, puis 1 min côté chair. Les réserver sur les assiettes.',
-    'Ajouter le reste du beurre dans la poêle et le laisser devenir noisette, 1 min.',
+    'Ajouter le reste du beurre dans la poêle et le laisser devenir noisette, 1 min à feu moyen.',
     'Hors du feu, ajouter le jus du citron, les câpres et le persil haché, puis napper aussitôt les filets.'
   ]);
 
@@ -577,7 +577,7 @@ module.exports = function ajouter(R) {
     ['truite-fumee', 8], ['pain-de-seigle', 4], ['fromage-frais-a-tartiner', 120, 'g'], ['aneth', 0.25],
     ['citron', 0.5], ['poivre', null]
   ], [
-    'Faire griller légèrement les tranches de pain de seigle et les couper en deux.',
+    'Faire griller légèrement les tranches de pain de seigle, 1 à 2 min au grille-pain, et les couper en deux.',
     'Mélanger le fromage frais avec la moitié de l’aneth ciselé et quelques gouttes de jus de citron. Poivrer.',
     'Tartiner le pain, poser par-dessus la truite fumée en vagues.',
     'Décorer du reste d’aneth, d’un filet de citron et d’un tour de moulin à poivre.'
@@ -587,9 +587,9 @@ module.exports = function ajouter(R) {
     ['haddock', 600, 'g'], ['lait', 75, 'cl'], ['pommes-de-terre', 800, 'g'], ['laurier', 1], ['beurre', 30, 'g'],
     ['poivre', null]
   ], [
-    'Éplucher les pommes de terre et les cuire 20 à 25 min à la vapeur ou dans l’eau salée.',
+    'Éplucher les pommes de terre et les cuire 20 à 25 min dans une casserole d’eau bouillante salée (ou à la vapeur), jusqu’à ce qu’elles soient tendres à la pointe du couteau.',
     'Pendant ce temps, couper le haddock en 4 portions et les mettre dans une sauteuse avec le laurier. Couvrir de lait.',
-    'Porter doucement à frémissement à feu moyen, puis cuire 8 min à feu très doux, sans faire bouillir.',
+    'Porter doucement à frémissement à feu moyen, environ 5 min, puis cuire 8 min à feu très doux, sans faire bouillir.',
     'Égoutter le poisson et le servir avec les pommes de terre écrasées à la fourchette avec le beurre et un peu de lait de cuisson. Poivrer (le haddock est déjà salé).'
   ]);
 
@@ -599,7 +599,7 @@ module.exports = function ajouter(R) {
   ], [
     'Couper le poisson en gros cubes. Émincer l’oignon et couper les tomates en dés.',
     'Chauffer l’huile dans une sauteuse à feu moyen et faire revenir l’oignon 4 min. Ajouter le curry et remuer 30 s.',
-    'Ajouter les tomates et le lait de coco, saler et laisser mijoter 8 min.',
+    'Ajouter les tomates et le lait de coco, saler et laisser mijoter 8 min à feu doux.',
     'Plonger les cubes de poisson dans la sauce et cuire 5 à 6 min à feu doux, sans remuer brutalement pour ne pas les briser.',
     'Parsemer de coriandre et servir avec du riz.'
   ]);
@@ -609,8 +609,8 @@ module.exports = function ajouter(R) {
     ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Couper le beurre en dés et le garder au froid. Ciseler très finement les échalotes.',
-    'Mettre les échalotes, le vin blanc et le vinaigre dans une petite casserole et faire réduire à feu moyen jusqu’à ce qu’il ne reste qu’une cuillerée de liquide.',
-    'À feu très doux, incorporer le beurre dés par dés en fouettant sans cesse : la sauce doit épaissir sans jamais bouillir. Saler, poivrer, garder au chaud au bain-marie.',
+    'Mettre les échalotes, le vin blanc et le vinaigre dans une petite casserole et faire réduire 5 à 6 min à feu moyen, jusqu’à ce qu’il ne reste qu’une cuillerée de liquide.',
+    'À feu très doux, incorporer le beurre dés par dés en fouettant sans cesse, 3 à 4 min : la sauce doit épaissir sans jamais bouillir. Saler, poivrer, garder au chaud au bain-marie.',
     'Couper le sandre en 4 portions. Chauffer l’huile dans une poêle à feu moyen-vif et cuire le poisson 4 min côté peau, puis 1 à 2 min côté chair. Saler, poivrer.',
     'Servir le sandre nappé de beurre blanc.'
   ]);
@@ -631,7 +631,7 @@ module.exports = function ajouter(R) {
   ], [
     'Porter une grande casserole d’eau à ébullition avec le laurier. Tenir le poulpe par la tête et le plonger trois fois 3 s dans l’eau pour faire friser les tentacules, puis l’immerger.',
     'Cuire 45 à 50 min à petits frémissements, jusqu’à ce que la pointe d’un couteau s’enfonce facilement dans la partie épaisse. Le laisser reposer 10 min dans l’eau hors du feu.',
-    'Pendant ce temps, éplucher les pommes de terre, les couper en rondelles épaisses et les cuire 15 à 20 min dans l’eau du poulpe prélevée, ou dans de l’eau salée.',
+    'Pendant ce temps, éplucher les pommes de terre, les couper en rondelles épaisses et les cuire 15 à 20 min dans une casserole d’eau bouillante salée (ou d’eau de cuisson du poulpe), jusqu’à ce qu’elles soient tendres.',
     'Couper les tentacules en rondelles de 1 cm aux ciseaux.',
     'Disposer les pommes de terre sur un plat, puis le poulpe. Parsemer de gros sel et de paprika fumé, arroser d’huile d’olive et servir tiède.'
   ]);
@@ -642,8 +642,8 @@ module.exports = function ajouter(R) {
   ], [
     'Nettoyer les seiches (ou les acheter prêtes), les sécher et quadriller le corps au couteau sans le transpercer. Couper en larges morceaux.',
     'Préparer la persillade : hacher finement l’ail et le persil, les mélanger avec 3 cs d’huile d’olive.',
-    'Chauffer une plancha ou une grande poêle à feu très vif avec le reste de l’huile.',
-    'Saisir les seiches 2 à 3 min en les retournant : elles doivent être dorées et juste opaques. Saler, poivrer, ajouter le piment.',
+    'Chauffer une plancha ou une grande poêle 2 min à feu très vif avec le reste de l’huile.',
+    'Saisir les seiches 2 à 3 min à feu très vif en les retournant : elles doivent être dorées et juste opaques. Saler, poivrer, ajouter le piment.',
     'Hors du feu, ajouter la persillade et le jus du citron, mélanger et servir aussitôt.'
   ]);
 
@@ -655,27 +655,27 @@ module.exports = function ajouter(R) {
   ], [
     'Hacher l’ail et le persil.',
     'Chauffer l’huile et le beurre dans une grande poêle à feu vif. Ajouter les crevettes et les faire sauter 2 min (déjà cuites, elles doivent juste chauffer et dorer).',
-    'Ajouter l’ail et le piment, faire sauter encore 1 min sans laisser brûler l’ail.',
+    'Baisser à feu moyen, ajouter l’ail et le piment, faire sauter encore 1 min sans laisser brûler l’ail.',
     'Parsemer de persil, poivrer et servir aussitôt avec des quartiers de citron. Décortiquer à la main à table.'
   ]);
 
   R('langoustines-mayonnaise', 'Langoustines à la mayonnaise', 'Française', 'Entrée', 20, 'Facile', 4, [
-    ['langoustines', 16], ['mayonnaise', 6, 'cs'], ['gros-sel', 30, 'g'], ['citron', 1], ['laurier', 1, 'pc', 'opt']
+    ['langoustines', 16], ['mayonnaise', 6, 'cs'], ['gros-sel', 90, 'g'], ['citron', 1], ['laurier', 1, 'pc', 'opt']
   ], [
-    'Porter une grande casserole d’eau à ébullition avec le gros sel et le laurier (30 g de sel par litre).',
-    'Plonger les langoustines vivantes ou très fraîches et compter 2 à 3 min après la reprise de l’ébullition selon leur taille.',
+    'Porter 3 l d’eau à ébullition à feu vif dans une grande casserole avec le gros sel et le laurier (30 g de sel par litre).',
+    'Plonger les langoustines vivantes ou très fraîches et compter 2 à 3 min à feu vif après la reprise de l’ébullition selon leur taille.',
     'Les égoutter et les plonger 1 min dans un bain d’eau glacée pour stopper la cuisson.',
     'Servir tièdes ou froides avec la mayonnaise et des quartiers de citron.'
   ]);
 
-  R('bulots-mayonnaise', 'Bulots mayonnaise', 'Française', 'Entrée', 40, 'Facile', 4, [
+  R('bulots-mayonnaise', 'Bulots mayonnaise', 'Française', 'Entrée', 55, 'Facile', 4, [
     ['bulots', 1000, 'g'], ['bouquet-garni', 1], ['gros-sel', 30, 'g'], ['poivre', 1, 'cc'], ['mayonnaise', 6, 'cs'],
     ['vin-blanc', 10, 'cl', 'opt']
   ], [
     'Laisser tremper les bulots 10 min dans de l’eau froide salée pour les faire dégorger, puis les rincer plusieurs fois.',
     'Les mettre dans une grande casserole d’eau froide avec le bouquet garni, le gros sel, le poivre en grains et le vin blanc.',
-    'Porter à ébullition puis cuire 15 à 20 min à petits frémissements.',
-    'Laisser refroidir dans l’eau de cuisson, égoutter et servir avec la mayonnaise et des piques pour les extraire.'
+    'Porter à ébullition à feu vif, puis cuire 15 à 20 min à petits frémissements, à feu doux.',
+    'Laisser tiédir 15 min dans l’eau de cuisson hors du feu, égoutter et servir avec la mayonnaise et des piques pour les extraire.'
   ]);
 
   R('verrines-avocat-surimi', 'Verrines d’avocat au surimi', 'Française', 'Entrée', 15, 'Facile', 4, [

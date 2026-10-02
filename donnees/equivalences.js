@@ -60,7 +60,9 @@ const REMPLACANTS = {
   'cuisses-poulet': ['poulet', 'blanc-de-poulet'],
   'pilons-de-poulet': ['poulet'],
   'hauts-de-cuisse-de-poulet': ['poulet'],
-  ciboule: ['oignons', 'ciboulette']
+  ciboule: ['oignons', 'ciboulette'],
+  'semoule-fine-de-ble': ['semoule'],
+  praline: ['pralin']
 };
 
 /* « recette > stock » : remplacement qui change le résultat. Les autres sont considérés comme équivalents. */
@@ -78,6 +80,7 @@ const APPROXIMATIFS = new Set([
   'concentre-tomate>coulis-tomate', 'concentre-tomate>tomates-concassees', 'concentre-tomate>sauce-tomate-cuisinee',
   'huile-olive>huile', 'huile-olive>huile-de-colza', 'sucre>sucre-roux', 'sucre-roux>sucre',
   'parmesan>pecorino', 'pecorino>parmesan', 'riz>riz-complet', 'riz-basmati>riz-complet', 'riz-complet>riz', 'riz-complet>riz-basmati',
+  'semoule-fine-de-ble>semoule', 'praline>pralin',
   'lait-coco>creme-de-coco', 'creme-de-coco>lait-coco', 'lardons>bacon', 'bacon>lardons'
 ]);
 

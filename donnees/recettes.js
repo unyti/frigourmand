@@ -24,7 +24,7 @@
     'Faire revenir les lardons à sec 5 min à feu moyen, puis les égoutter sur du papier absorbant.',
     'Battre les œufs avec la crème et le lait. Poivrer, saler légèrement (les lardons sont salés) et ajouter la muscade.',
     'Répartir les lardons sur la pâte et verser l’appareil par-dessus.',
-    'Enfourner 35 à 40 min, jusqu’à ce que la quiche soit dorée et que le centre soit pris.'
+    'Enfourner 35 à 40 min à 180 °C, jusqu’à ce que la quiche soit dorée et que le centre soit pris.'
   ]);
 
   R('quiche-poireaux', 'Quiche aux poireaux', 'Française', 'Plat', 65, 'Facile', 6, [
@@ -35,7 +35,7 @@
     'Émincer finement les poireaux et les faire fondre 15 min dans le beurre à feu doux, avec une pincée de sel, sans les colorer.',
     'Battre les œufs avec la crème et le lait, poivrer et ajouter la muscade.',
     'Étaler les poireaux sur la pâte, verser l’appareil et parsemer de fromage.',
-    'Cuire 35 à 40 min, jusqu’à ce que le dessus soit doré et le centre pris.'
+    'Cuire 35 à 40 min au four à 180 °C, jusqu’à ce que le dessus soit doré et le centre pris.'
   ]);
 
   R('gratin-dauphinois', 'Gratin dauphinois', 'Française', 'Accompagnement', 90, 'Facile', 6, [
@@ -46,7 +46,7 @@
     'Éplucher les pommes de terre et les couper en rondelles de 3 mm, sans les laver pour garder l’amidon.',
     'Les mettre dans une casserole avec le lait, le sel, le poivre et la muscade. Porter à frémissement à feu moyen et cuire 10 min en remuant délicatement.',
     'Verser le tout dans le plat et napper de crème.',
-    'Cuire 1 h, jusqu’à ce que le dessus soit doré et que la pointe d’un couteau s’enfonce sans résistance.'
+    'Cuire 1 h au four à 160 °C, jusqu’à ce que le dessus soit doré et que la pointe d’un couteau s’enfonce sans résistance.'
   ]);
 
   R('soupe-oignon', 'Soupe à l’oignon gratinée', 'Française', 'Soupe', 65, 'Facile', 4, [
@@ -54,9 +54,9 @@
     ['pain', 8], ['fromage-rape', 150, 'g'], ['sel', null], ['poivre', null]
   ], [
     'Émincer finement les oignons et les faire fondre 20 à 25 min dans le beurre à feu moyen, en remuant souvent, jusqu’à ce qu’ils soient bien dorés.',
-    'Saupoudrer de farine et remuer 1 min, puis déglacer au vin blanc.',
+    'Saupoudrer de farine et remuer 1 min à feu moyen, puis déglacer au vin blanc.',
     'Ajouter 1 L d’eau et le cube de bouillon. Porter à ébullition puis laisser mijoter 20 min à feu doux. Saler et poivrer.',
-    'Pendant ce temps, faire griller les tranches de pain. Allumer le gril du four.',
+    'Pendant ce temps, faire griller les tranches de pain 2 min au grille-pain. Allumer le gril du four.',
     'Répartir la soupe dans des bols allant au four, poser le pain grillé et couvrir de fromage.',
     'Gratiner 5 min sous le gril, jusqu’à ce que le fromage soit doré et bouillonnant.'
   ]);
@@ -70,7 +70,7 @@
     'Pendant ce temps, faire revenir les oignons et l’ail hachés dans 10 g de beurre, 5 min à feu moyen. Ajouter la viande et le concentré de tomate, et cuire 8 min à feu vif en égrenant. Saler, poivrer.',
     'Égoutter les pommes de terre et les écraser avec le lait chaud, 50 g de beurre et la muscade. Saler.',
     'Préchauffer le four à 200 °C. Étaler la viande dans un plat, couvrir de purée et de fromage râpé.',
-    'Gratiner 20 min, jusqu’à ce que le dessus soit doré.'
+    'Gratiner 20 min au four à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('boeuf-bourguignon', 'Bœuf bourguignon', 'Française', 'Plat', 225, 'Moyenne', 6, [
@@ -78,9 +78,9 @@
     ['champignons', 250, 'g'], ['ail', 2], ['farine', 30, 'g'], ['bouquet-garni', 1], ['beurre', 30, 'g'],
     ['huile', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
-    'Couper la viande en cubes de 5 cm. Les faire dorer à feu vif, par petites quantités, dans l’huile chaude, dans une cocotte. Réserver.',
+    'Couper la viande en cubes de 5 cm. Les faire dorer à feu vif, par petites quantités, dans l’huile chaude, dans une cocotte, 3 à 4 min par fournée. Réserver.',
     'Dans la même cocotte, faire revenir à feu moyen les lardons, les oignons émincés et les carottes en rondelles, 5 min.',
-    'Remettre la viande, saupoudrer de farine et remuer 2 min.',
+    'Remettre la viande, saupoudrer de farine et remuer 2 min à feu moyen.',
     'Verser le vin, ajouter l’ail écrasé et le bouquet garni. Compléter d’eau à hauteur si besoin, saler légèrement et poivrer. Porter à ébullition.',
     'Couvrir et laisser mijoter 3 h à feu très doux : la viande doit se couper à la cuillère.',
     'Faire sauter les champignons coupés en quatre dans le beurre, 5 min à feu vif, et les ajouter 15 min avant la fin. Retirer le bouquet garni avant de servir.'
@@ -91,12 +91,12 @@
     ['champignons', 250, 'g'], ['bouquet-garni', 1], ['bouillon', 1], ['beurre', 50, 'g'], ['farine', 40, 'g'],
     ['creme-fraiche', 20, 'cl'], ['oeufs', 1], ['citron', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Couper la viande en morceaux, la mettre dans une cocotte, couvrir d’eau froide, porter à ébullition à feu vif et écumer.',
+    'Couper la viande en morceaux, la mettre dans une cocotte, couvrir d’eau froide, porter à ébullition à feu vif et écumer 5 min.',
     'Ajouter le cube de bouillon, les carottes en tronçons, l’oignon piqué des clous de girofle, le poireau et le bouquet garni. Couvrir et laisser frémir 1 h 30 à feu doux.',
     'Faire revenir les champignons émincés dans 10 g de beurre, 5 min à feu moyen.',
     'Égoutter la viande et les carottes en gardant le bouillon. Dans une casserole, faire fondre 40 g de beurre à feu moyen, ajouter la farine et remuer 1 min, puis verser 75 cl de bouillon filtré. Laisser épaissir 5 min en fouettant.',
     'Hors du feu, ajouter la crème mélangée au jaune d’œuf et un filet de jus de citron. Saler, poivrer.',
-    'Remettre la viande, les carottes et les champignons dans la sauce. Réchauffer à feu doux sans faire bouillir.'
+    'Remettre la viande, les carottes et les champignons dans la sauce. Réchauffer 5 min à feu doux, sans faire bouillir.'
   ]);
 
   R('pot-au-feu', 'Pot-au-feu', 'Française', 'Plat', 240, 'Facile', 6, [
@@ -106,7 +106,7 @@
   ], [
     'Mettre la viande dans un grand faitout, couvrir largement d’eau froide et porter à ébullition à feu vif. Écumer.',
     'Ajouter l’oignon piqué des clous de girofle et le bouquet garni, saler, poivrer et laisser frémir 2 h 30 à feu doux, à couvert.',
-    'Ajouter les carottes, les poireaux ficelés et les navets, et cuire encore 45 min.',
+    'Ajouter les carottes, les poireaux ficelés et les navets, et cuire encore 45 min à feu doux, à frémissement.',
     'Cuire les pommes de terre à part dans une casserole de bouillon prélevé, 25 min à frémissement.',
     'Servir la viande et les légumes avec du gros sel et de la moutarde. Le bouillon dégraissé se boit en entrée.'
   ]);
@@ -115,11 +115,11 @@
     ['poulet-entier', 1], ['pommes-de-terre', 1000, 'g'], ['ail', 4], ['thym', 2, 'pc', 'opt'], ['beurre', 30, 'g'],
     ['huile-olive', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
-    'Sortir le poulet du réfrigérateur 30 min avant la cuisson. Préchauffer le four à 200 °C.',
+    'Sortir le poulet du réfrigérateur 30 min à l’avance. Préchauffer le four à 200 °C.',
     'Masser le poulet avec le beurre mou, saler et poivrer. Glisser le thym et une gousse d’ail à l’intérieur.',
     'Couper les pommes de terre en quartiers et les mélanger avec l’huile, les 3 gousses d’ail restantes en chemise, du sel et du poivre.',
     'Poser le poulet dans un grand plat et disposer les pommes de terre autour.',
-    'Cuire 1 h 15 en arrosant toutes les 20 min : le jus qui s’écoule de la cuisse piquée doit être clair.',
+    'Cuire 1 h 15 au four à 200 °C en arrosant toutes les 20 min : le jus qui s’écoule de la cuisse piquée doit être clair (75 °C à cœur).',
     'Laisser reposer 10 min sous une feuille d’aluminium avant de découper.'
   ]);
 
@@ -170,18 +170,18 @@
     'Préchauffer le four à 180 °C. Faire fondre l’oignon émincé et l’ail haché dans 1 cs d’huile, 5 min à feu moyen, et en tapisser le fond d’un plat à gratin.',
     'Couper les légumes en rondelles fines et les disposer debout en les alternant.',
     'Arroser du reste d’huile, saler, poivrer et parsemer d’herbes.',
-    'Cuire 1 h, en couvrant d’aluminium à mi-cuisson si le dessus colore trop.'
+    'Cuire 1 h au four à 180 °C, en couvrant d’aluminium à mi-cuisson si le dessus colore trop.'
   ]);
 
   R('tartiflette', 'Tartiflette', 'Française', 'Plat', 70, 'Facile', 4, [
     ['pommes-de-terre', 1000, 'g'], ['reblochon', 1], ['lardons', 200, 'g'], ['oignons', 2],
-    ['vin-blanc', 10, 'cl', 'opt'], ['creme-fraiche', 10, 'cl', 'opt'], ['poivre', null]
+    ['vin-blanc', 10, 'cl', 'opt'], ['creme-fraiche', 10, 'cl', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Cuire les pommes de terre avec la peau 20 min dans une casserole d’eau salée frémissante, puis les éplucher et les couper en rondelles.',
+    'Cuire les pommes de terre avec la peau 20 à 25 min dans une casserole d’eau salée frémissante, jusqu’à ce que la pointe d’un couteau s’enfonce facilement, puis les éplucher et les couper en rondelles.',
     'Faire revenir les lardons et les oignons émincés 10 min à feu moyen, puis déglacer au vin blanc.',
     'Préchauffer le four à 200 °C. Dans un plat, alterner pommes de terre et lardons, ajouter la crème et poivrer.',
     'Couper le reblochon en deux dans l’épaisseur et le poser croûte vers le haut.',
-    'Cuire 25 min, jusqu’à ce que le fromage soit fondu et doré.'
+    'Cuire 25 min au four à 200 °C, jusqu’à ce que le fromage soit fondu et doré.'
   ]);
 
   R('croque-monsieur', 'Croque-monsieur', 'Française', 'Plat', 25, 'Facile', 4, [
@@ -193,7 +193,7 @@
     'Beurrer légèrement l’extérieur des tranches de pain avec le reste du beurre.',
     'Sur 4 tranches, étaler un peu de béchamel, une tranche de jambon et du fromage. Refermer.',
     'Napper le dessus du reste de béchamel et de fromage.',
-    'Cuire 10 min au four, jusqu’à ce que le dessus soit doré.'
+    'Cuire 10 min au four à 220 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('omelette-champignons', 'Omelette aux champignons', 'Française', 'Plat', 15, 'Facile', 2, [
@@ -202,7 +202,7 @@
   ], [
     'Faire sauter les champignons émincés dans la moitié du beurre, 5 min à feu vif. Réserver.',
     'Battre les œufs avec le sel, le poivre et la ciboulette ciselée.',
-    'Faire fondre le reste du beurre à feu moyen, verser les œufs et cuire en ramenant les bords vers le centre.',
+    'Faire fondre le reste du beurre à feu moyen, verser les œufs et cuire 2 min en ramenant les bords vers le centre.',
     'Ajouter les champignons quand l’omelette est encore baveuse, plier et servir.'
   ]);
 
@@ -213,7 +213,7 @@
     'Préchauffer le four à 180 °C. Beurrer 4 ramequins.',
     'Mettre au fond un peu de jambon émincé et une cuillère de crème.',
     'Casser un œuf dans chaque ramequin, saler, poivrer.',
-    'Poser les ramequins dans un plat, verser de l’eau chaude à mi-hauteur et cuire 8 à 10 min : le blanc doit être pris et le jaune coulant. Parsemer de ciboulette.'
+    'Poser les ramequins dans un plat, verser de l’eau chaude à mi-hauteur et cuire 10 à 12 min au four à 180 °C : le blanc doit être pris et le jaune coulant. Parsemer de ciboulette.'
   ]);
 
   R('crepes', 'Crêpes', 'Française', 'Dessert', 75, 'Facile', 4, [
@@ -231,9 +231,9 @@
     ['sel', 1, 'pincee']
   ], [
     'Mélanger la farine de sarrasin, le sel, 1 œuf et 50 cl d’eau froide jusqu’à obtenir une pâte lisse. Laisser reposer 30 min.',
-    'Chauffer une grande poêle à feu moyen-vif et la beurrer. Verser une louche de pâte et l’étaler finement.',
-    'Quand le dessous est doré (2 min), baisser à feu moyen, parsemer de fromage, poser le jambon et casser un œuf au centre.',
-    'Rabattre les bords en carré et cuire 3 à 4 min, jusqu’à ce que le blanc soit pris. Garder au chaud et recommencer.'
+    'Chauffer une grande poêle à feu moyen-vif et la beurrer. Verser une louche de pâte, l’étaler finement et cuire 2 min, jusqu’à ce que le dessous soit doré.',
+    'Baisser à feu moyen, parsemer de fromage, poser le jambon et casser un œuf au centre.',
+    'Rabattre les bords en carré et cuire 3 à 4 min à feu moyen, jusqu’à ce que le blanc soit pris. Garder au chaud et recommencer.'
   ]);
 
   R('salade-nicoise', 'Salade niçoise', 'Française', 'Plat', 30, 'Facile', 4, [
@@ -261,7 +261,7 @@
     ['frisee', 1], ['lardons', 200, 'g'], ['oeufs', 4], ['pain', 4], ['vinaigre', 3, 'cs'], ['moutarde', 1, 'cs'],
     ['huile', 4, 'cs'], ['sel', null], ['poivre', null]
   ], [
-    'Faire dorer les lardons à sec, 5 min à feu moyen. Les réserver, puis faire dorer dans leur graisse le pain coupé en dés, 3 min.',
+    'Faire dorer les lardons à sec, 5 min à feu moyen. Les réserver, puis faire dorer dans leur graisse le pain coupé en dés, 3 min à feu moyen.',
     'Porter une casserole d’eau non salée à frémissement avec 2 cs de vinaigre. Y casser les œufs un à un et les pocher 3 min, puis les égoutter.',
     'Préparer une vinaigrette avec la moutarde, le reste du vinaigre, l’huile, du sel et du poivre.',
     'Assaisonner la frisée, ajouter les lardons et les croûtons, et poser un œuf poché sur chaque assiette.'
@@ -317,7 +317,7 @@
     'Mixer ou laisser en morceaux selon les goûts. Saler et poivrer.'
   ]);
 
-  R('veloute-poireaux', 'Velouté poireaux pommes de terre', 'Française', 'Soupe', 40, 'Facile', 4, [
+  R('veloute-poireaux', 'Velouté poireaux pommes de terre', 'Française', 'Soupe', 45, 'Facile', 4, [
     ['poireaux', 3], ['pommes-de-terre', 500, 'g'], ['oignons', 1], ['bouillon', 1], ['beurre', 20, 'g'],
     ['creme-liquide', 10, 'cl', 'opt'], ['sel', null], ['poivre', null]
   ], [
@@ -332,12 +332,12 @@
     ['parmesan', 50, 'g'], ['huile-olive', 5, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Couper les carottes, les pommes de terre, les courgettes, les haricots verts et une tomate en petits dés. Les mettre dans 2 L d’eau salée, porter à ébullition et cuire 40 min à feu moyen.',
-    'Ajouter les haricots blancs égouttés et les pâtes (de petites pâtes, type coquillettes), et cuire encore 10 min. Poivrer.',
+    'Ajouter les haricots blancs égouttés et les pâtes (de petites pâtes, type coquillettes), et cuire encore 10 min à feu moyen. Poivrer.',
     'Pour le pistou, piler ou mixer les feuilles de basilic avec l’ail, la seconde tomate pelée, le parmesan râpé et l’huile d’olive.',
     'Hors du feu, incorporer le pistou à la soupe juste avant de servir.'
   ]);
 
-  R('lentilles-saucisses', 'Lentilles aux saucisses', 'Française', 'Plat', 55, 'Facile', 4, [
+  R('lentilles-saucisses', 'Lentilles aux saucisses', 'Française', 'Plat', 60, 'Facile', 4, [
     ['lentilles', 300, 'g'], ['saucisses', 4], ['carottes', 2], ['oignons', 1], ['lardons', 100, 'g', 'opt'],
     ['bouquet-garni', 1, 'pc', 'opt'], ['huile', 1, 'cs'], ['sel', null], ['poivre', null]
   ], [
@@ -355,7 +355,7 @@
     'Dans une cocotte, faire fondre 2 cs de graisse prélevée sur les cuisses de canard. Y faire dorer les saucisses et le porc en morceaux, 10 min à feu moyen-vif.',
     'Ajouter les oignons et l’ail hachés, puis les tomates et le bouquet garni. Couvrir d’eau à hauteur (environ 50 cl), saler, poivrer et laisser mijoter 1 h à feu doux.',
     'Préchauffer le four à 160 °C. Dans une grande cocotte ou un plat en terre, alterner haricots égouttés, viandes, cuisses de canard coupées en deux et sauce. Le liquide doit arriver juste à hauteur.',
-    'Parsemer de chapelure et enfourner 1 h 30. Casser la croûte qui se forme et l’enfoncer 2 ou 3 fois pendant la cuisson, en ajoutant un peu d’eau si le cassoulet se dessèche.'
+    'Parsemer de chapelure et enfourner 1 h 30 à 160 °C. Casser la croûte qui se forme et l’enfoncer 2 ou 3 fois pendant la cuisson, en ajoutant un peu d’eau si le cassoulet se dessèche.'
   ]);
 
   R('steak-frites', 'Steak frites maison', 'Française', 'Plat', 50, 'Facile', 4, [
@@ -372,7 +372,7 @@
     ['pates', 400, 'g'], ['lardons', 200, 'g'], ['creme-fraiche', 20, 'cl'], ['oignons', 1, 'pc', 'opt'],
     ['fromage-rape', 50, 'g', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet.',
+    'Cuire les pâtes 10 à 12 min (selon le paquet) dans 4 L d’eau bouillante salée : elles doivent être al dente.',
     'Pendant ce temps, faire revenir les lardons et l’oignon émincé 5 min à feu moyen, sans matière grasse.',
     'Ajouter la crème, poivrer généreusement et laisser chauffer 2 min à feu doux.',
     'Mélanger avec les pâtes égouttées et servir avec le fromage.'
@@ -382,9 +382,9 @@
     ['pates', 400, 'g'], ['jambon', 4], ['creme-fraiche', 20, 'cl'], ['lait', 10, 'cl'], ['fromage-rape', 150, 'g'],
     ['sel', null], ['poivre', null]
   ], [
-    'Préchauffer le four à 200 °C. Cuire les pâtes dans 4 L d’eau bouillante salée, 2 min de moins que le temps indiqué. Égoutter.',
+    'Préchauffer le four à 200 °C. Cuire les pâtes 8 min dans 4 L d’eau bouillante salée (2 min de moins que le temps indiqué sur le paquet). Égoutter.',
     'Mélanger les pâtes avec le jambon en lanières, la crème, le lait et la moitié du fromage. Poivrer.',
-    'Verser dans un plat, couvrir du reste de fromage et gratiner 15 min, jusqu’à ce que le dessus soit doré.'
+    'Verser dans un plat, couvrir du reste de fromage et gratiner 15 min au four à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('gratin-chou-fleur', 'Gratin de chou-fleur', 'Française', 'Accompagnement', 50, 'Facile', 4, [
@@ -394,7 +394,7 @@
     'Détailler le chou-fleur en bouquets et les cuire 8 à 10 min dans l’eau bouillante salée : ils doivent rester un peu fermes. Bien égoutter.',
     'Préparer une béchamel : faire fondre le beurre à feu moyen, ajouter la farine et remuer 1 min, puis verser le lait en fouettant. Laisser épaissir 5 min, saler, poivrer et ajouter la muscade.',
     'Préchauffer le four à 200 °C. Mettre le chou-fleur dans un plat, napper de béchamel et couvrir de fromage.',
-    'Gratiner 20 min, jusqu’à ce que le dessus soit doré.'
+    'Gratiner 20 min au four à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('gratin-courgettes', 'Gratin de courgettes', 'Française', 'Accompagnement', 50, 'Facile', 4, [
@@ -404,7 +404,7 @@
     'Préchauffer le four à 180 °C. Couper les courgettes en rondelles et les faire revenir 10 min à feu moyen dans l’huile avec l’ail haché, pour qu’elles rendent leur eau. Égoutter.',
     'Battre les œufs avec la crème et la moitié du fromage, saler et poivrer.',
     'Mettre les courgettes dans un plat, verser l’appareil et couvrir du reste de fromage.',
-    'Cuire 25 à 30 min, jusqu’à ce que l’appareil soit pris et doré.'
+    'Cuire 25 à 30 min au four à 180 °C, jusqu’à ce que l’appareil soit pris et doré.'
   ]);
 
   R('endives-jambon', 'Endives au jambon', 'Française', 'Plat', 65, 'Facile', 4, [
@@ -414,7 +414,7 @@
     'Retirer le cône amer à la base des endives. Les cuire 20 min à la vapeur ou dans l’eau bouillante salée, puis bien les presser pour retirer l’eau.',
     'Préparer une béchamel : faire fondre le beurre à feu moyen, ajouter la farine et remuer 1 min, puis verser le lait en fouettant. Laisser épaissir 5 min, saler, poivrer et ajouter la muscade.',
     'Préchauffer le four à 200 °C. Rouler chaque endive dans une tranche de jambon et les ranger dans un plat.',
-    'Napper de béchamel, parsemer de fromage et gratiner 20 à 25 min.'
+    'Napper de béchamel, parsemer de fromage et gratiner 20 à 25 min au four à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('tomates-farcies', 'Tomates farcies', 'Française', 'Plat', 85, 'Facile', 4, [
@@ -425,7 +425,7 @@
     'Mélanger la chair à saucisse avec l’oignon, l’ail et le persil hachés. Poivrer.',
     'Remplir les tomates, parsemer de chapelure et reposer les chapeaux.',
     'Mettre le riz cru et la pulpe hachée au fond du plat avec 30 cl d’eau salée, et poser les tomates dessus.',
-    'Arroser d’huile d’olive et cuire 1 h, jusqu’à ce que la farce soit cuite et le riz tendre. Ajouter un peu d’eau en cours de cuisson si le riz sèche.'
+    'Arroser d’huile d’olive et cuire 1 h au four à 180 °C, jusqu’à ce que la farce soit cuite et le riz tendre. Ajouter un peu d’eau en cours de cuisson si le riz sèche.'
   ]);
 
   R('saumon-papillote', 'Saumon en papillote', 'Française', 'Plat', 30, 'Facile', 4, [
@@ -433,9 +433,9 @@
     ['huile-olive', 2, 'cs'], ['ciboulette', 0.5, 'pc', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 200 °C.',
-    'Sur 4 feuilles de papier cuisson, poser la courgette en fines rondelles, un pavé de saumon, des tomates cerises coupées en deux et une rondelle de citron.',
+    'Sur 4 feuilles de papier sulfurisé, poser la courgette en fines rondelles, un pavé de saumon, des tomates cerises coupées en deux et une rondelle de citron.',
     'Arroser d’huile, saler, poivrer et fermer hermétiquement les papillotes.',
-    'Cuire 15 min : la chair doit être rosée à cœur. Parsemer de ciboulette à l’ouverture.'
+    'Cuire 15 min au four à 200 °C : la chair doit être rosée à cœur. Parsemer de ciboulette à l’ouverture.'
   ]);
 
   R('cabillaud-poireaux', 'Cabillaud à la fondue de poireaux', 'Française', 'Plat', 45, 'Facile', 4, [
@@ -466,7 +466,7 @@
     'Faire dorer l’agneau dans l’huile, dans une cocotte, 10 min à feu vif. Ajouter les oignons émincés et cuire 3 min à feu moyen.',
     'Saupoudrer de farine et remuer 1 min. Ajouter le concentré de tomate, l’ail écrasé, le bouquet garni et couvrir d’eau à hauteur (environ 1 L). Saler, poivrer.',
     'Porter à ébullition, puis couvrir et laisser mijoter 1 h à feu doux.',
-    'Ajouter les carottes, les navets et les pommes de terre en morceaux, et cuire 30 min.',
+    'Ajouter les carottes, les navets et les pommes de terre en morceaux, et cuire 30 min à feu doux, à couvert.',
     'Ajouter les petits pois 10 min avant la fin. Rectifier l’assaisonnement.'
   ]);
 
@@ -474,7 +474,7 @@
     ['boeuf-braiser', 1200, 'g'], ['biere', 75, 'cl'], ['oignons', 4], ['pain-d-epices', 2], ['moutarde', 2, 'cs'],
     ['sucre-roux', 15, 'g'], ['beurre', 30, 'g'], ['bouquet-garni', 1], ['vinaigre', 1, 'cs', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Couper la viande en gros cubes et la faire dorer dans le beurre, dans une cocotte, à feu vif, par petites quantités. Réserver.',
+    'Couper la viande en gros cubes et la faire dorer dans le beurre, dans une cocotte, à feu vif, par petites quantités, 3 à 4 min par fournée. Réserver.',
     'Dans la même cocotte, faire fondre les oignons émincés avec la cassonade, 15 min à feu moyen, jusqu’à ce qu’ils caramélisent légèrement.',
     'Remettre la viande, verser la bière, ajouter le bouquet garni, saler et poivrer.',
     'Tartiner les tranches de pain d’épices de moutarde et les poser sur le dessus.',
@@ -485,10 +485,10 @@
     ['boeuf-braiser', 1200, 'g'], ['carottes', 10], ['oignons', 2], ['vin-blanc', 25, 'cl'], ['bouquet-garni', 1],
     ['huile', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
-    'Couper la viande en cubes et la faire dorer dans l’huile, dans une cocotte, à feu vif. Ajouter les oignons émincés et cuire 5 min à feu moyen.',
+    'Couper la viande en cubes et la faire dorer dans l’huile, dans une cocotte, 8 à 10 min à feu vif. Ajouter les oignons émincés et cuire 5 min à feu moyen.',
     'Ajouter le vin blanc, le bouquet garni et de l’eau à hauteur. Saler, poivrer et porter à ébullition.',
     'Couvrir et cuire 1 h 30 à feu doux.',
-    'Ajouter les carottes en rondelles épaisses et cuire encore 1 h, jusqu’à ce que la viande soit fondante. Rectifier l’assaisonnement.'
+    'Ajouter les carottes en rondelles épaisses et cuire encore 1 h à feu doux, à couvert, jusqu’à ce que la viande soit fondante. Rectifier l’assaisonnement.'
   ]);
 
   R('pissaladiere', 'Pissaladière', 'Française', 'Plat', 75, 'Facile', 6, [
@@ -498,7 +498,7 @@
     'Émincer les oignons et les faire compoter 40 min à feu doux dans l’huile d’olive avec le thym, sans les colorer. Saler légèrement et poivrer.',
     'Préchauffer le four à 220 °C. Étaler la pâte sur une plaque.',
     'Répartir les oignons, disposer les filets d’anchois en croisillons et placer une olive dans chaque losange.',
-    'Cuire 20 min, jusqu’à ce que la pâte soit dorée. Délicieuse tiède ou froide.'
+    'Cuire 20 min au four à 220 °C, jusqu’à ce que la pâte soit dorée. Délicieuse tiède ou froide.'
   ]);
 
   R('flammekueche', 'Flammekueche', 'Française', 'Plat', 30, 'Facile', 4, [
@@ -508,7 +508,7 @@
     'Préchauffer le four à 250 °C. Étaler la pâte très finement sur une plaque.',
     'Mélanger la crème et le fromage blanc, assaisonner de sel, de poivre et de muscade, et étaler sur la pâte.',
     'Parsemer d’oignons en fines lamelles et de lardons crus.',
-    'Cuire 10 à 12 min, jusqu’à ce que les bords soient bien dorés.'
+    'Cuire 10 à 12 min au four à 250 °C, jusqu’à ce que les bords soient bien dorés.'
   ]);
 
   R('tarte-tomate-moutarde', 'Tarte à la tomate et à la moutarde', 'Française', 'Plat', 50, 'Facile', 6, [
@@ -518,17 +518,17 @@
     'Préchauffer le four à 200 °C. Foncer un moule à tarte avec la pâte et la piquer à la fourchette.',
     'Tartiner le fond de moutarde et parsemer de fromage.',
     'Couper les tomates en rondelles, les égoutter quelques minutes sur du papier absorbant, puis les disposer sur la tarte. Arroser d’huile, saler, poivrer et parsemer d’herbes.',
-    'Cuire 30 à 35 min, jusqu’à ce que la pâte soit dorée.'
+    'Cuire 30 à 35 min au four à 200 °C, jusqu’à ce que la pâte soit dorée.'
   ]);
 
   R('cake-sale', 'Cake salé jambon olives', 'Française', 'Entrée', 65, 'Facile', 6, [
     ['farine', 200, 'g'], ['oeufs', 3], ['levure-chimique', 1], ['lait', 12, 'cl'], ['huile', 7, 'cs'],
     ['jambon', 4], ['olives', 80, 'g'], ['fromage-rape', 100, 'g'], ['sel', null], ['poivre', null]
   ], [
-    'Préchauffer le four à 180 °C. Huiler un moule à cake ou le chemiser de papier cuisson.',
+    'Préchauffer le four à 180 °C. Huiler un moule à cake ou le chemiser de papier sulfurisé.',
     'Mélanger la farine et la levure, ajouter les œufs un à un, puis le lait et l’huile.',
     'Ajouter le jambon en dés, les olives et le fromage. Saler peu et poivrer.',
-    'Verser dans le moule et cuire 45 min : la lame d’un couteau doit ressortir sèche. Laisser tiédir avant de démouler.'
+    'Verser dans le moule et cuire 45 min au four à 180 °C : la lame d’un couteau doit ressortir sèche. Laisser tiédir avant de démouler.'
   ]);
 
   R('puree-maison', 'Purée maison', 'Française', 'Accompagnement', 35, 'Facile', 4, [
@@ -536,7 +536,7 @@
     ['sel', null], ['poivre', null]
   ], [
     'Éplucher les pommes de terre, les couper en morceaux et les cuire 20 à 25 min dans une grande casserole d’eau salée frémissante, jusqu’à ce qu’elles soient tendres.',
-    'Faire chauffer le lait. Égoutter les pommes de terre et les écraser au presse-purée.',
+    'Faire chauffer le lait 3 min à feu moyen, sans le faire bouillir. Égoutter les pommes de terre et les écraser au presse-purée.',
     'Incorporer le beurre, puis le lait chaud petit à petit. Saler, poivrer et ajouter la muscade.'
   ]);
 
@@ -561,7 +561,7 @@
   R('mousse-chocolat', 'Mousse au chocolat', 'Française', 'Dessert', 200, 'Facile', 6, [
     ['chocolat-noir', 200, 'g'], ['oeufs', 6], ['sucre', 30, 'g', 'opt'], ['sel', 1, 'pincee']
   ], [
-    'Faire fondre le chocolat au bain-marie, à feu doux, puis le laisser tiédir.',
+    'Faire fondre le chocolat 5 min au bain-marie, à feu doux, puis le laisser tiédir.',
     'Séparer les blancs des jaunes. Incorporer les jaunes au chocolat tiédi.',
     'Monter les blancs en neige ferme avec le sel, en ajoutant le sucre à la fin.',
     'Incorporer délicatement les blancs au chocolat en soulevant la masse.',
@@ -572,9 +572,9 @@
     ['chocolat-noir', 200, 'g'], ['beurre', 160, 'g'], ['sucre', 120, 'g'], ['oeufs', 4], ['farine', 50, 'g']
   ], [
     'Préchauffer le four à 180 °C. Beurrer un moule de 22 cm avec 10 g de beurre.',
-    'Faire fondre le chocolat avec le reste du beurre, au bain-marie ou à feu très doux.',
+    'Faire fondre le chocolat avec le reste du beurre, 5 min au bain-marie ou à feu très doux.',
     'Fouetter les œufs avec le sucre, ajouter le chocolat fondu puis la farine.',
-    'Verser dans le moule et cuire 20 à 22 min : le centre doit rester tremblotant.'
+    'Verser dans le moule et cuire 20 à 22 min au four à 180 °C : le centre doit rester tremblotant.'
   ]);
 
   R('gateau-yaourt', 'Gâteau au yaourt', 'Française', 'Dessert', 45, 'Facile', 8, [
@@ -584,7 +584,7 @@
     'Préchauffer le four à 180 °C. Huiler un moule de 24 cm.',
     'Verser le yaourt dans un saladier et garder le pot pour mesurer : 2 pots de sucre, 3 pots de farine.',
     'Ajouter les œufs, le sucre et le sucre vanillé, puis la farine, la levure et l’huile. Bien mélanger.',
-    'Verser dans le moule et cuire 30 à 35 min : la lame d’un couteau doit ressortir sèche.'
+    'Verser dans le moule et cuire 30 à 35 min au four à 180 °C : la lame d’un couteau doit ressortir sèche.'
   ]);
 
   R('tarte-pommes', 'Tarte aux pommes', 'Française', 'Dessert', 55, 'Facile', 8, [
@@ -594,7 +594,7 @@
     'Préchauffer le four à 200 °C. Foncer un moule à tarte avec la pâte et la piquer à la fourchette.',
     'Éplucher les pommes, les épépiner et les couper en fines lamelles.',
     'Les disposer en rosace, saupoudrer de sucre, de sucre vanillé et de cannelle, et parsemer de noisettes de beurre.',
-    'Cuire 35 min, jusqu’à ce que la pâte et les pommes soient dorées.'
+    'Cuire 35 min au four à 200 °C, jusqu’à ce que la pâte et les pommes soient dorées.'
   ]);
 
   R('crumble-pommes', 'Crumble aux pommes', 'Française', 'Dessert', 55, 'Facile', 6, [
@@ -603,7 +603,7 @@
     'Préchauffer le four à 180 °C. Éplucher les pommes, les couper en dés et les mettre dans un plat avec la cannelle.',
     'Sabler du bout des doigts la farine, le sucre et le beurre froid en dés.',
     'Recouvrir les pommes de cette pâte sableuse.',
-    'Cuire 35 à 40 min, jusqu’à ce que le dessus soit doré.'
+    'Cuire 35 à 40 min au four à 180 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('clafoutis-cerises', 'Clafoutis aux cerises', 'Française', 'Dessert', 55, 'Facile', 6, [
@@ -611,7 +611,7 @@
   ], [
     'Préchauffer le four à 180 °C. Beurrer un plat et y répartir les cerises lavées et équeutées (avec les noyaux, c’est la tradition).',
     'Fouetter les œufs avec le sucre, ajouter la farine puis le lait.',
-    'Verser sur les cerises et cuire 35 à 40 min, jusqu’à ce que le clafoutis soit doré et pris.'
+    'Verser sur les cerises et cuire 35 à 40 min au four à 180 °C, jusqu’à ce que le clafoutis soit doré et pris.'
   ]);
 
   R('riz-au-lait', 'Riz au lait', 'Française', 'Dessert', 55, 'Facile', 6, [
@@ -619,7 +619,7 @@
   ], [
     'Porter le lait à ébullition à feu moyen avec le sucre vanillé.',
     'Ajouter le riz, baisser à feu très doux et cuire 40 min à petits frémissements, en remuant souvent, jusqu’à ce que le riz soit fondant et crémeux.',
-    'Ajouter le sucre en fin de cuisson. Servir tiède ou froid, saupoudré de cannelle.'
+    'Hors du feu, incorporer le sucre. Servir tiède ou froid, saupoudré de cannelle.'
   ]);
 
   R('pain-perdu', 'Pain perdu', 'Française', 'Dessert', 20, 'Facile', 4, [
@@ -636,7 +636,7 @@
   ], [
     'Éplucher les poires en gardant la queue.',
     'Porter 1 L d’eau à ébullition avec le sucre et le sucre vanillé. Y pocher les poires 20 min à feu doux, à frémissement : la pointe d’un couteau doit s’enfoncer facilement. Laisser refroidir 30 min dans le sirop.',
-    'Faire fondre le chocolat avec la crème, à feu doux, en remuant.',
+    'Faire fondre le chocolat avec la crème, 3 à 4 min à feu doux, en remuant.',
     'Servir les poires égouttées avec une boule de glace à la vanille, nappées de sauce chocolat chaude.'
   ]);
 
@@ -647,16 +647,16 @@
     'Préchauffer le four à 200 °C. Beurrer généreusement un plat.',
     'Mélanger la farine, le sucre et le sel, ajouter les œufs puis le lait petit à petit, en fouettant pour éviter les grumeaux.',
     'Répartir les pruneaux dans le plat et verser la pâte.',
-    'Cuire 10 min à 200 °C, puis 45 min à 180 °C, jusqu’à ce que le dessus soit bien doré. Laisser tiédir avant de servir.'
+    'Cuire 10 min au four à 200 °C, puis 45 min à 180 °C, jusqu’à ce que le dessus soit bien doré. Laisser tiédir avant de servir.'
   ]);
 
   R('ile-flottante', 'Île flottante', 'Française', 'Dessert', 110, 'Moyenne', 4, [
     ['oeufs', 4], ['lait', 50, 'cl'], ['sucre', 100, 'g'], ['sucre-vanille', 1]
   ], [
     'Crème anglaise : porter le lait à frémissement à feu moyen avec le sucre vanillé. Séparer les blancs des jaunes. Fouetter les jaunes avec 50 g de sucre et verser le lait chaud dessus en fouettant.',
-    'Remettre dans la casserole à feu doux et remuer sans cesse jusqu’à ce que la crème nappe la cuillère (83 °C), sans jamais bouillir. Laisser refroidir, puis réserver 1 h au réfrigérateur.',
+    'Remettre dans la casserole à feu doux et remuer sans cesse 5 à 8 min, jusqu’à ce que la crème nappe la cuillère (83 °C), sans jamais bouillir. Laisser refroidir, puis réserver 1 h au réfrigérateur.',
     'Monter les blancs en neige ferme en ajoutant le reste du sucre à la fin.',
-    'Former des quenelles de blancs et les pocher 1 min de chaque côté dans de l’eau frémissante. Égoutter sur un linge.',
+    'Former des quenelles de blancs et les pocher 1 min de chaque côté dans une casserole d’eau frémissante. Égoutter sur un linge.',
     'Servir les blancs sur la crème anglaise bien froide.'
   ]);
 
@@ -665,10 +665,10 @@
   R('spaghetti-carbonara', 'Spaghetti carbonara', 'Italienne', 'Plat', 25, 'Facile', 4, [
     ['spaghetti', 400, 'g'], ['guanciale', 150, 'g'], ['oeufs', 4], ['pecorino', 80, 'g'], ['poivre', null], ['sel', null]
   ], [
-    'Porter 4 L d’eau à ébullition, saler et y cuire les spaghetti al dente, selon le temps indiqué sur le paquet.',
+    'Porter 4 L d’eau à ébullition, saler et y cuire les spaghetti 9 à 11 min (selon le paquet) : ils doivent être al dente.',
     'Pendant ce temps, couper le guanciale (ou à défaut de la pancetta) en lardons et le faire dorer à sec, 5 à 6 min à feu moyen, jusqu’à ce que le gras soit fondu et translucide. Couper le feu.',
     'Mélanger 3 jaunes et 1 œuf entier avec le pecorino râpé et beaucoup de poivre.',
-    'Mettre les pâtes égouttées dans la poêle hors du feu, mélanger avec le guanciale, puis ajouter l’appareil aux œufs et quelques cuillères d’eau de cuisson en remuant vivement pour obtenir une sauce crémeuse. Pas de crème !'
+    'Mettre les pâtes égouttées dans la poêle hors du feu, mélanger avec le guanciale, puis ajouter l’appareil aux œufs et quelques cuillères de l’eau des pâtes en remuant vivement pour obtenir une sauce crémeuse. Pas de crème !'
   ]);
 
   R('spaghetti-bolognaise', 'Spaghetti bolognaise', 'Italienne', 'Plat', 60, 'Facile', 4, [
@@ -679,18 +679,18 @@
     'Faire revenir l’oignon, la carotte, le céleri et l’ail hachés finement dans l’huile, 5 min à feu moyen.',
     'Ajouter la viande et la faire dorer 5 min à feu vif en l’égrenant. Déglacer au vin.',
     'Ajouter les tomates et le concentré, saler, poivrer. Laisser mijoter 40 min à feu doux, à couvert.',
-    'Cuire les spaghetti al dente dans 4 L d’eau bouillante salée. Les servir avec la sauce et le parmesan râpé.'
+    'Cuire les spaghetti 9 à 11 min (selon le paquet) dans 4 L d’eau bouillante salée : ils doivent être al dente. Les servir avec la sauce et le parmesan râpé.'
   ]);
 
-  R('lasagnes', 'Lasagnes à la bolognaise', 'Italienne', 'Plat', 110, 'Moyenne', 6, [
+  R('lasagnes', 'Lasagnes à la bolognaise', 'Italienne', 'Plat', 120, 'Moyenne', 6, [
     ['lasagnes', 250, 'g'], ['boeuf-hache', 500, 'g'], ['tomates-concassees', 800, 'g'], ['oignons', 1], ['carottes', 1],
     ['ail', 2], ['beurre', 50, 'g'], ['farine', 50, 'g'], ['lait', 70, 'cl'], ['parmesan', 80, 'g'],
     ['muscade', 1, 'pincee', 'opt'], ['huile-olive', 2, 'cs'], ['sel', null], ['poivre', null]
   ], [
     'Sauce bolognaise : faire revenir l’oignon, la carotte et l’ail hachés dans l’huile, 5 min à feu moyen. Ajouter la viande et la faire dorer 5 min à feu vif, puis les tomates. Saler, poivrer et laisser mijoter 30 min à feu doux.',
     'Béchamel : faire fondre le beurre à feu moyen, ajouter la farine et remuer 1 min, puis verser le lait en fouettant. Laisser épaissir 5 min et assaisonner de sel, de poivre et de muscade.',
-    'Préchauffer le four à 180 °C. Dans un plat, alterner sauce, feuilles de lasagne (sans précuisson), béchamel, en finissant par la béchamel.',
-    'Parsemer de parmesan râpé et cuire 40 min, jusqu’à ce que le dessus soit doré et que les pâtes soient tendres. Laisser reposer 10 min avant de couper.'
+    'Préchauffer le four à 180 °C. Dans un plat, alterner sauce, feuilles de lasagne crues, béchamel, en finissant par la béchamel.',
+    'Parsemer de parmesan râpé et cuire 40 min au four à 180 °C, jusqu’à ce que le dessus soit doré et que les pâtes soient tendres. Laisser reposer 10 min avant de couper.'
   ]);
 
   R('risotto-champignons', 'Risotto aux champignons', 'Italienne', 'Plat', 40, 'Moyenne', 4, [
@@ -700,7 +700,7 @@
     'Délayer le cube dans 1 L d’eau bouillante et garder ce bouillon frémissant à feu doux.',
     'Faire revenir les champignons émincés dans 10 g de beurre, 5 min à feu vif. Réserver.',
     'Faire fondre l’oignon haché dans l’huile, 3 min à feu moyen. Ajouter le riz et le nacrer 2 min en remuant, jusqu’à ce qu’il devienne translucide.',
-    'Déglacer au vin blanc, puis ajouter le bouillon louche par louche, en attendant qu’il soit absorbé et en remuant, pendant environ 18 min : le riz doit être tendre mais encore légèrement ferme.',
+    'Déglacer au vin blanc, puis ajouter le bouillon louche par louche, en attendant qu’il soit absorbé et en remuant, pendant environ 18 min à feu moyen : le riz doit être tendre mais encore légèrement ferme.',
     'Hors du feu, incorporer les champignons, le reste du beurre et le parmesan râpé. Poivrer, goûter avant de saler, couvrir 2 min et servir.'
   ]);
 
@@ -708,10 +708,10 @@
     ['pates', 400, 'g'], ['basilic', 1], ['parmesan', 50, 'g'], ['pignons', 30, 'g'], ['ail', 1],
     ['huile-olive', 8, 'cs'], ['sel', null]
   ], [
-    'Cuire les pâtes dans 4 L d’eau bouillante salée, le temps indiqué sur le paquet.',
+    'Cuire les pâtes 10 à 12 min (selon le paquet) dans 4 L d’eau bouillante salée : elles doivent être al dente.',
     'Faire griller les pignons à sec, 2 à 3 min à feu doux, en remuant.',
     'Mixer les feuilles de basilic avec l’ail, les pignons, le parmesan râpé et l’huile d’olive. Saler légèrement.',
-    'Mélanger le pesto avec les pâtes égouttées et un peu d’eau de cuisson, hors du feu.'
+    'Hors du feu, mélanger le pesto avec les pâtes égouttées et 2 à 3 cs de leur eau.'
   ]);
 
   R('pates-arrabbiata', 'Penne all’arrabbiata', 'Italienne', 'Plat', 25, 'Facile', 4, [
@@ -720,7 +720,7 @@
   ], [
     'Faire revenir l’ail émincé et le piment dans l’huile d’olive, 1 à 2 min à feu doux, sans colorer.',
     'Ajouter les tomates, saler et laisser réduire 15 min à feu moyen.',
-    'Pendant ce temps, cuire les penne al dente dans 4 L d’eau bouillante salée.',
+    'Pendant ce temps, cuire les penne 10 à 12 min (selon le paquet) dans 4 L d’eau bouillante salée : elles doivent être al dente.',
     'Mélanger les pâtes égouttées avec la sauce et parsemer de persil ciselé.'
   ]);
 
@@ -730,8 +730,8 @@
   ], [
     'Faire revenir l’oignon et l’ail hachés dans l’huile d’olive, 5 min à feu moyen.',
     'Ajouter les tomates, saler, poivrer et laisser mijoter 10 min à feu doux.',
-    'Pendant ce temps, cuire les pâtes al dente dans 4 L d’eau bouillante salée.',
-    'Ajouter le thon égoutté et émietté et les olives à la sauce, réchauffer 2 min, puis mélanger avec les pâtes égouttées.'
+    'Pendant ce temps, cuire les pâtes 10 à 12 min (selon le paquet) dans 4 L d’eau bouillante salée : elles doivent être al dente.',
+    'Ajouter le thon égoutté et émietté et les olives à la sauce, réchauffer 2 min à feu doux, puis mélanger avec les pâtes égouttées.'
   ]);
 
   R('pizza-margherita', 'Pizza margherita', 'Italienne', 'Plat', 35, 'Facile', 2, [
@@ -739,9 +739,9 @@
     ['origan', 0.5, 'cc', 'opt'], ['huile-olive', 1, 'cs'], ['sel', null]
   ], [
     'Préchauffer le four au maximum (250 °C) pendant 20 min, avec la plaque à l’intérieur.',
-    'Étaler la pâte sur du papier cuisson, la couvrir de coulis de tomate salé et d’origan.',
+    'Étaler la pâte sur du papier sulfurisé, la couvrir de coulis de tomate salé et d’origan.',
     'Répartir la mozzarella égouttée et coupée en morceaux, et arroser d’huile.',
-    'Faire glisser sur la plaque chaude et cuire 10 à 12 min, jusqu’à ce que les bords soient dorés. Ajouter le basilic frais à la sortie du four.'
+    'Faire glisser sur la plaque chaude et cuire 8 à 10 min à 250 °C, jusqu’à ce que les bords soient dorés et le fromage bouillonnant. Ajouter le basilic frais à la sortie du four.'
   ]);
 
   R('aubergines-parmigiana', 'Aubergines à la parmigiana', 'Italienne', 'Plat', 90, 'Moyenne', 4, [
@@ -751,7 +751,7 @@
     'Préchauffer le four à 200 °C. Couper les aubergines en tranches de 1 cm, les badigeonner d’huile, saler et les faire griller au four 20 min, jusqu’à ce qu’elles soient dorées et fondantes.',
     'Pendant ce temps, faire revenir l’ail haché dans 1 cs d’huile, 1 min à feu doux, ajouter les tomates, saler, poivrer et laisser mijoter 15 min à feu moyen.',
     'Baisser le four à 180 °C. Dans un plat, alterner sauce, aubergines, mozzarella en tranches, feuilles de basilic et parmesan râpé, en finissant par la sauce et le parmesan.',
-    'Cuire 30 min, jusqu’à ce que le dessus soit doré et bouillonnant. Laisser reposer 10 min avant de servir.'
+    'Cuire 30 min au four à 180 °C, jusqu’à ce que le dessus soit doré et bouillonnant. Laisser reposer 10 min avant de servir.'
   ]);
 
   R('salade-caprese', 'Salade caprese', 'Italienne', 'Entrée', 10, 'Facile', 4, [
@@ -778,7 +778,7 @@
     ['fruits-rouges-surgeles', 200, 'g', 'opt']
   ], [
     'Faire ramollir la gélatine 5 min dans un bol d’eau froide.',
-    'Chauffer la crème avec 60 g de sucre et le sucre vanillé, à feu moyen, jusqu’aux premiers frémissements, sans faire bouillir.',
+    'Chauffer la crème avec 60 g de sucre et le sucre vanillé, 3 à 4 min à feu moyen, jusqu’aux premiers frémissements, sans faire bouillir.',
     'Hors du feu, ajouter la gélatine essorée et bien mélanger.',
     'Verser dans des verrines et réserver 4 h au réfrigérateur.',
     'Pour le coulis, mixer les fruits rouges décongelés avec le reste du sucre. En napper les panna cotta au moment de servir.'
@@ -812,7 +812,7 @@
     'Délayer le cube dans 90 cl d’eau bouillante avec le safran et garder chaud.',
     'Dans une grande poêle à paella, faire dorer le poulet en morceaux dans l’huile, 5 min à feu vif. Réserver.',
     'À feu moyen, faire revenir l’oignon, l’ail et le poivron hachés 5 min, puis ajouter les tomates râpées et cuire 3 min.',
-    'Ajouter le riz et le paprika, remuer 1 min pour enrober le riz.',
+    'Ajouter le riz et le paprika, remuer 1 min à feu moyen pour enrober le riz.',
     'Verser le bouillon chaud, remettre le poulet, répartir uniformément et ne plus remuer. Cuire 15 min à feu moyen.',
     'Ajouter les crevettes et les petits pois, cuire encore 5 min à feu doux, jusqu’à ce que le liquide soit absorbé. Laisser reposer 5 min sous un torchon. Servir avec des quartiers de citron.'
   ]);
@@ -826,7 +826,7 @@
     'Faire revenir l’oignon et l’ail hachés dans 1 cs d’huile, 5 min à feu moyen. Ajouter la viande et la faire dorer 5 min à feu vif, puis les tomates et la cannelle. Saler, poivrer et laisser mijoter 20 min à feu doux.',
     'Préparer une béchamel : faire fondre le beurre à feu moyen, ajouter la farine, puis le lait en fouettant. Laisser épaissir 5 min, assaisonner et, hors du feu, incorporer l’œuf battu.',
     'Baisser le four à 180 °C. Alterner aubergines et viande dans un plat, couvrir de béchamel et de parmesan râpé.',
-    'Cuire 40 min, jusqu’à ce que le dessus soit doré. Laisser reposer 10 min avant de couper.'
+    'Cuire 40 min au four à 180 °C, jusqu’à ce que le dessus soit doré. Laisser reposer 10 min avant de couper.'
   ]);
 
   R('salade-grecque', 'Salade grecque', 'Grecque', 'Entrée', 15, 'Facile', 4, [
@@ -856,7 +856,7 @@
   ], [
     'Dans un grand faitout, faire revenir les oignons émincés dans l’huile avec le ras el hanout, 5 min à feu moyen.',
     'Ajouter les tomates, les carottes et les navets en gros morceaux, couvrir de 2 L d’eau, saler et poivrer. Porter à ébullition, puis cuire 30 min à feu moyen.',
-    'Ajouter les courgettes en tronçons et les pois chiches égouttés, et cuire encore 20 min.',
+    'Ajouter les courgettes en tronçons et les pois chiches égouttés, et cuire encore 20 min à feu moyen.',
     'Préparer la semoule : la verser dans un saladier, ajouter 50 cl d’eau bouillante salée, couvrir 5 min, puis égrener à la fourchette avec le beurre.',
     'Cuire les merguez 8 à 10 min à la poêle à feu moyen. Servir la semoule avec les légumes, le bouillon, les merguez et la harissa à part.'
   ]);
@@ -868,7 +868,7 @@
   ], [
     'Faire dorer le poulet dans l’huile, dans un tajine ou une cocotte, 10 min à feu moyen, avec les oignons émincés, l’ail et le gingembre râpé. Ajouter le curcuma, saler peu et poivrer.',
     'Ajouter 30 cl d’eau, couvrir et cuire 45 min à feu doux.',
-    'Ajouter les citrons confits en quartiers et les olives, et cuire encore 15 min à découvert pour réduire la sauce.',
+    'Ajouter les citrons confits en quartiers et les olives, et cuire encore 15 min à feu doux, à découvert, pour réduire la sauce.',
     'Parsemer de coriandre ciselée avant de servir.'
   ]);
 
@@ -941,7 +941,7 @@
     ['coriandre', 0.25, 'pc', 'opt'], ['sel', null]
   ], [
     'Faire revenir l’oignon haché dans l’huile, 5 min à feu moyen. Ajouter l’ail, le gingembre râpé et les épices, et cuire 1 min en remuant.',
-    'Ajouter les tomates et laisser réduire 5 min.',
+    'Ajouter les tomates et laisser réduire 5 min à feu moyen.',
     'Ajouter les pois chiches égouttés et le lait de coco, et laisser mijoter 15 min à feu doux. Saler.',
     'Parsemer de coriandre et servir avec du riz.'
   ]);
@@ -985,7 +985,7 @@
     ['huile', 3, 'cs'], ['coriandre', 0.25, 'pc', 'opt'], ['sel', null]
   ], [
     'Faire grésiller le cumin dans l’huile chaude 30 s à feu moyen, puis ajouter l’oignon émincé, l’ail et le gingembre râpé, et cuire 5 min.',
-    'Ajouter les pommes de terre en cubes et le chou-fleur en petits bouquets, puis le curcuma et le sel. Faire revenir 3 min.',
+    'Ajouter les pommes de terre en cubes et le chou-fleur en petits bouquets, puis le curcuma et le sel. Faire revenir 3 min à feu moyen.',
     'Ajouter les tomates en dés et 10 cl d’eau, couvrir et cuire 25 min à feu doux, jusqu’à ce que les légumes soient tendres.',
     'Finir avec le garam masala et la coriandre ciselée.'
   ]);
@@ -999,15 +999,15 @@
     'Cuire le riz dans une grande casserole d’eau bouillante salée, environ 12 min, l’égoutter, l’étaler sur un plat et le laisser refroidir au moins 30 min au réfrigérateur (ou utiliser du riz cuit la veille) : un riz froid saute mieux.',
     'Chauffer l’huile dans un wok à feu vif, y brouiller les œufs battus 1 min, puis les réserver.',
     'Faire sauter le riz 3 min à feu vif, puis ajouter la sauce soja.',
-    'Remettre les œufs, ajouter la ciboule émincée et l’huile de sésame, sauter encore 1 min et rectifier le sel.'
+    'Remettre les œufs, ajouter la ciboule émincée et l’huile de sésame, sauter encore 1 min à feu vif et rectifier le sel.'
   ]);
 
   R('riz-cantonais', 'Riz cantonais', 'Chinoise', 'Plat', 60, 'Facile', 4, [
     ['riz', 300, 'g'], ['oeufs', 3], ['jambon', 3], ['petits-pois', 150, 'g'], ['crevettes', 150, 'g', 'opt'],
-    ['ciboule', 0.5, 'pc', 'opt'], ['sauce-soja', 3, 'cs'], ['huile', 3, 'cs']
+    ['ciboule', 0.5, 'pc', 'opt'], ['sauce-soja', 3, 'cs'], ['huile', 3, 'cs'], ['sel', null]
   ], [
     'Cuire le riz dans une grande casserole d’eau bouillante salée, environ 12 min, l’égoutter, l’étaler sur un plat et le laisser refroidir au moins 30 min au réfrigérateur (ou utiliser du riz cuit la veille).',
-    'Battre les œufs et cuire une omelette fine dans 1 cs d’huile, à feu moyen. La rouler et la couper en lanières.',
+    'Battre les œufs et cuire une omelette fine dans 1 cs d’huile, 2 min à feu moyen. La rouler et la couper en lanières.',
     'Dans un wok, faire sauter les petits pois, le jambon en dés et les crevettes dans le reste d’huile, 3 min à feu vif.',
     'Ajouter le riz et la sauce soja, et sauter 3 min à feu vif. Ajouter l’omelette et la ciboule émincée.'
   ]);
@@ -1020,24 +1020,24 @@
     'Faire griller les noix de cajou à sec dans un wok, 3 min à feu moyen. Réserver.',
     'Saisir le poulet dans l’huile à feu vif, 5 min, jusqu’à ce qu’il soit doré. Réserver.',
     'Faire sauter l’oignon, le poivron, l’ail et le gingembre 3 min à feu vif.',
-    'Remettre le poulet, ajouter le reste de sauce soja, la sauce d’huître, le sucre et 5 cl d’eau. Laisser épaissir 1 à 2 min, puis ajouter les noix de cajou.'
+    'Remettre le poulet, ajouter le reste de sauce soja, la sauce d’huître, le sucre et 5 cl d’eau. Laisser épaissir 1 à 2 min à feu moyen, puis ajouter les noix de cajou.'
   ]);
 
-  R('boeuf-oignons', 'Bœuf sauté aux oignons', 'Chinoise', 'Plat', 30, 'Facile', 4, [
+  R('boeuf-oignons', 'Bœuf sauté aux oignons', 'Chinoise', 'Plat', 35, 'Facile', 4, [
     ['boeuf-poeler', 500, 'g'], ['oignons', 3], ['ail', 2], ['gingembre', 10, 'g', 'opt'], ['sauce-soja', 3, 'cs'],
     ['sauce-huitre', 2, 'cs', 'opt'], ['maizena', 10, 'g'], ['sucre', 5, 'g'], ['huile', 3, 'cs']
   ], [
     'Couper le bœuf en fines lamelles et le mariner 15 min avec la maïzena et 1 cs de sauce soja.',
-    'Saisir le bœuf 2 min à feu très vif dans l’huile, dans un wok. Réserver.',
+    'Saisir le bœuf 2 min à feu vif dans l’huile bien chaude, dans un wok. Réserver.',
     'Faire sauter les oignons en quartiers avec l’ail et le gingembre, 4 min à feu vif.',
-    'Remettre le bœuf avec le reste des sauces et le sucre, et sauter 1 min. Servir avec du riz.'
+    'Remettre le bœuf avec le reste des sauces et le sucre, et sauter 1 min à feu vif. Servir avec du riz.'
   ]);
 
   R('nouilles-sautees', 'Nouilles sautées aux légumes', 'Chinoise', 'Plat', 25, 'Facile', 4, [
     ['nouilles', 300, 'g'], ['carottes', 2], ['poivrons', 1], ['chou', 0.25, 'pc', 'opt'], ['germes-soja', 150, 'g', 'opt'],
     ['oignons', 1], ['ail', 2], ['sauce-soja', 4, 'cs'], ['sauce-huitre', 1, 'cs', 'opt'], ['huile', 3, 'cs']
   ], [
-    'Cuire les nouilles dans une grande casserole d’eau bouillante, le temps indiqué sur le paquet, puis les égoutter et les rincer à l’eau froide.',
+    'Cuire les nouilles 4 à 5 min (selon le paquet) dans une grande casserole d’eau bouillante, puis les égoutter et les rincer à l’eau froide.',
     'Couper tous les légumes en fines lanières.',
     'Les faire sauter 4 min à feu vif dans l’huile avec l’ail haché, dans un wok : ils doivent rester croquants.',
     'Ajouter les nouilles et les sauces, et sauter 2 min à feu vif.'
@@ -1049,7 +1049,7 @@
     ['poulet', 600, 'g'], ['sauce-soja', 4, 'cs'], ['mirin', 3, 'cs'], ['miel', 1, 'cs'], ['gingembre', 10, 'g', 'opt'],
     ['graines-sesame', 1, 'cs', 'opt'], ['huile', 1, 'cs'], ['riz', 300, 'g']
   ], [
-    'Rincer le riz, puis le cuire à couvert dans 45 cl d’eau salée : porter à ébullition, puis 12 min à feu très doux et 10 min de repos hors du feu.',
+    'Rincer le riz, puis le cuire à couvert dans 45 cl d’eau : porter à ébullition, puis 12 min à feu très doux et 10 min de repos hors du feu.',
     'Mélanger la sauce soja, le mirin, le miel et le gingembre râpé.',
     'Faire dorer le poulet en morceaux dans l’huile, 6 min à feu moyen-vif.',
     'Verser la sauce et laisser réduire 3 à 4 min à feu moyen, jusqu’à ce qu’elle soit sirupeuse et nappe le poulet.',
@@ -1063,7 +1063,7 @@
     'Rincer le riz, puis le cuire à couvert dans 30 cl d’eau : porter à ébullition, puis 12 min à feu très doux et 10 min de repos hors du feu.',
     'Dans une petite poêle, porter à frémissement 20 cl d’eau avec le demi-cube de bouillon, la sauce soja, le mirin et le sucre.',
     'Ajouter l’oignon émincé et le poulet en petits morceaux, et cuire 8 min à feu moyen.',
-    'Verser les œufs légèrement battus, couvrir et cuire 1 min à feu doux : ils doivent rester baveux.',
+    'Verser les œufs légèrement battus, couvrir et cuire 1 à 2 min à feu doux : ils doivent rester baveux.',
     'Glisser sur le riz et parsemer de ciboule émincée.'
   ]);
 
@@ -1073,7 +1073,7 @@
   ], [
     'Émincer très finement le chou.',
     'Mélanger la farine, les œufs et 10 cl d’eau, puis ajouter le chou et la ciboule émincée.',
-    'Chauffer l’huile dans une poêle à feu moyen, verser la pâte en une galette épaisse et poser les tranches de bacon dessus.',
+    'Chauffer l’huile 1 min dans une poêle à feu moyen, verser la pâte en une galette épaisse et poser les tranches de bacon dessus.',
     'Cuire 5 min, retourner et cuire encore 5 min à feu moyen, jusqu’à ce que la galette soit dorée et cuite à cœur.',
     'Servir nappé de mayonnaise et d’un filet de sauce soja.'
   ]);
@@ -1082,8 +1082,8 @@
     ['miso', 3, 'cs'], ['tofu-soyeux', 150, 'g'], ['ciboule', 0.5], ['shiitakes', 80, 'g', 'opt']
   ], [
     'Porter 1 L d’eau (idéalement du dashi) à frémissement, à feu moyen.',
-    'Ajouter le tofu en petits cubes et les shiitakés émincés, et cuire 3 min.',
-    'Hors du feu, délayer le miso dans une louche de bouillon et l’ajouter : il ne doit pas bouillir.',
+    'Ajouter le tofu en petits cubes et les shiitakés émincés, et cuire 3 min à frémissement, à feu doux.',
+    'Hors du feu, délayer le miso dans une louche de bouillon et le reverser dans la casserole, sans remettre sur le feu.',
     'Parsemer de ciboule émincée.'
   ]);
 
@@ -1096,9 +1096,9 @@
   ], [
     'Faire tremper les nouilles 10 min dans de l’eau chaude (non bouillante), jusqu’à ce qu’elles soient souples, puis les égoutter.',
     'Mélanger la sauce poisson, le tamarin, le sucre, le jus d’un demi-citron vert et 2 cs d’eau.',
-    'Dans un wok à feu vif, faire sauter l’ail haché, les crevettes et le tofu en dés dans l’huile, 2 min. Pousser sur le côté et brouiller les œufs.',
+    'Dans un wok à feu vif, faire sauter l’ail haché, les crevettes et le tofu en dés dans l’huile, 2 min. Pousser sur le côté et brouiller les œufs 1 min.',
     'Ajouter les nouilles et la sauce, et sauter 3 min à feu vif, jusqu’à ce que la sauce soit absorbée.',
-    'Ajouter les pousses de soja et la ciboule émincée, sauter 30 s. Servir avec les cacahuètes concassées, le piment et des quartiers de citron vert.'
+    'Ajouter les pousses de soja et la ciboule émincée, sauter 30 s à feu vif. Servir avec les cacahuètes concassées, le piment et des quartiers de citron vert.'
   ]);
 
   R('curry-vert-poulet', 'Curry vert au poulet', 'Thaïlandaise', 'Plat', 30, 'Facile', 4, [
@@ -1117,7 +1117,7 @@
   ], [
     'Faire revenir la pâte de curry dans l’huile, 1 min à feu moyen.',
     'Ajouter le lait de coco et le poivron en lanières, et laisser mijoter 8 min à feu doux.',
-    'Ajouter les crevettes et la sauce poisson, et cuire 3 min, jusqu’à ce que les crevettes soient roses.',
+    'Ajouter les crevettes et la sauce poisson, et cuire 3 min à feu doux, jusqu’à ce que les crevettes soient roses.',
     'Finir avec un filet de jus de citron vert et la coriandre ciselée.'
   ]);
 
@@ -1161,7 +1161,7 @@
     ['porc-epaule', 700, 'g'], ['sucre', 60, 'g'], ['sauce-poisson', 4, 'cs'], ['oignons', 1], ['ail', 3],
     ['ciboule', 0.25, 'pc', 'opt'], ['poivre', null]
   ], [
-    'Dans une cocotte, faire un caramel brun à feu moyen avec le sucre et 2 cs d’eau, sans remuer.',
+    'Dans une cocotte, faire un caramel brun avec le sucre et 2 cs d’eau, 5 à 7 min à feu moyen, sans remuer.',
     'Hors du feu, ajouter la sauce poisson (attention aux projections), puis l’oignon émincé et l’ail haché.',
     'Ajouter le porc en cubes, bien l’enrober, poivrer et couvrir d’eau à mi-hauteur (environ 30 cl).',
     'Laisser mijoter 45 min à feu doux, à découvert, en remuant de temps en temps, jusqu’à ce que la sauce soit sirupeuse. Parsemer de ciboule et servir avec du riz.'
@@ -1175,7 +1175,7 @@
     'Rincer le riz, puis le cuire à couvert dans 45 cl d’eau : porter à ébullition, puis 12 min à feu très doux et 10 min de repos hors du feu.',
     'Faire revenir le bœuf avec l’ail haché dans 1 cs d’huile, 5 min à feu vif, puis ajouter la sauce soja.',
     'Faire sauter séparément chaque légume dans un peu d’huile, à feu vif : carottes et courgette en bâtonnets 2 à 3 min, épinards et pousses de soja 1 min. Assaisonner chacun d’un filet d’huile de sésame.',
-    'Cuire les œufs au plat à feu moyen, en gardant le jaune coulant.',
+    'Cuire les œufs au plat 3 min à feu moyen, dans le reste d’huile, en gardant le jaune coulant.',
     'Dans chaque bol, poser le riz, les légumes en couronne, la viande et l’œuf. Servir avec le gochujang et parsemer de sésame.'
   ]);
 
@@ -1189,7 +1189,7 @@
     'Faire revenir l’oignon, le poivron et l’ail hachés dans l’huile, 5 min à feu moyen.',
     'Ajouter la viande et les épices, et cuire 5 min à feu vif en égrenant.',
     'Ajouter les tomates, le concentré et 15 cl d’eau. Saler et laisser mijoter 30 min à feu doux.',
-    'Ajouter les haricots rouges égouttés et cuire encore 10 min. Servir avec du riz.'
+    'Ajouter les haricots rouges égouttés et cuire encore 10 min à feu doux. Servir avec du riz.'
   ]);
 
   R('fajitas-poulet', 'Fajitas au poulet', 'Mexicaine', 'Plat', 40, 'Facile', 4, [
@@ -1198,7 +1198,7 @@
   ], [
     'Couper le poulet en lanières et le mariner 15 min avec les épices, le jus du citron vert, l’huile et le sel.',
     'Saisir le poulet 5 min à feu vif dans une grande poêle, puis ajouter les poivrons et l’oignon en lanières et cuire 5 min : les légumes doivent rester croquants.',
-    'Réchauffer les tortillas 30 s de chaque côté dans une poêle sèche.',
+    'Réchauffer les tortillas 30 s de chaque côté dans une poêle sèche, à feu moyen.',
     'Garnir chaque tortilla de poulet, de légumes, d’avocat en tranches et de crème.'
   ]);
 
@@ -1217,7 +1217,7 @@
   ], [
     'Former 4 steaks de 150 g, un peu plus larges que les pains, sans trop tasser la viande.',
     'Les cuire dans une poêle à feu vif, 3 min de chaque côté. Saler, poivrer et poser le cheddar la dernière minute, à couvert, pour qu’il fonde.',
-    'Toaster les pains, face coupée, 1 min dans la poêle.',
+    'Toaster les pains, face coupée, 1 min dans la poêle à feu moyen.',
     'Monter les burgers avec la moutarde et le ketchup, la salade, la tomate et l’oignon en rondelles, et la viande.'
   ]);
 
@@ -1227,18 +1227,18 @@
   ], [
     'Mélanger la farine, la levure, le sucre et le sel.',
     'Ajouter les œufs, le lait, puis 30 g de beurre fondu. La pâte doit être épaisse.',
-    'Graisser légèrement une poêle avec le reste du beurre et la chauffer à feu moyen. Y verser des petites louches de pâte.',
-    'Retourner quand des bulles apparaissent à la surface (environ 2 min), puis cuire 1 min sur l’autre face.'
+    'Graisser légèrement une poêle avec le reste du beurre et la chauffer 1 min à feu moyen. Y verser de petites louches de pâte.',
+    'Cuire environ 2 min à feu moyen, jusqu’à ce que des bulles apparaissent à la surface, retourner et cuire 1 min sur l’autre face.'
   ]);
 
   R('cookies', 'Cookies aux pépites de chocolat', 'Américaine', 'Dessert', 30, 'Facile', 6, [
     ['farine', 200, 'g'], ['beurre', 100, 'g'], ['sucre', 100, 'g'], ['oeufs', 1], ['chocolat-noir', 100, 'g'],
     ['levure-chimique', 0.5], ['sucre-vanille', 1, 'pc', 'opt'], ['sel', 1, 'pincee']
   ], [
-    'Préchauffer le four à 180 °C. Couvrir une plaque de papier cuisson.',
+    'Préchauffer le four à 180 °C. Couvrir une plaque de papier sulfurisé.',
     'Mélanger le beurre mou avec le sucre et le sucre vanillé, puis ajouter l’œuf.',
     'Ajouter la farine, la levure et le sel, puis le chocolat grossièrement haché.',
-    'Former des boules, les espacer sur la plaque en les aplatissant légèrement et cuire 10 à 12 min : les bords doivent être dorés et le centre encore mou. Laisser durcir 5 min sur la plaque.'
+    'Former des boules, les espacer sur la plaque en les aplatissant légèrement et cuire 10 à 12 min au four à 180 °C : les bords doivent être dorés et le centre encore mou. Laisser durcir 5 min sur la plaque.'
   ]);
 
 require('./recettes-supplementaires')(R);

@@ -39,7 +39,7 @@ module.exports = function ajouter(R) {
     'Peler les pamplemousses à vif avec un couteau bien aiguisé, puis lever les suprêmes au-dessus d’un bol pour recueillir le jus.',
     'Couper les avocats en deux, retirer le noyau et la peau, puis tailler la chair en lamelles.',
     'Fouetter 3 cuillerées à soupe du jus recueilli avec l’huile d’olive, du sel et du poivre.',
-    'Disposer les suprêmes, l’avocat et les crevettes dans les assiettes, napper de sauce et parsemer de ciboulette ciselée.'
+    'Disposer les suprêmes, l’avocat et les crevettes cuites décortiquées dans les assiettes, napper de sauce et parsemer de ciboulette ciselée.'
   ]);
 
   R('salade-endives-grenade-noix', 'Salade d’endives, grenade et noix', 'Française', 'Entrée', 20, 'Facile', 4, [
@@ -103,7 +103,7 @@ module.exports = function ajouter(R) {
     'Réserver 15 min au réfrigérateur et servir parsemé de menthe ciselée.'
   ]);
 
-  R('salade-fruits-exotiques-coco', 'Salade de fruits exotiques à la noix de coco', 'Antillaise', 'Dessert', 40, 'Facile', 6, [
+  R('salade-fruits-exotiques-coco', 'Salade de fruits exotiques à la noix de coco', 'Antillaise', 'Dessert', 45, 'Facile', 6, [
     ['ananas', 1], ['mangues', 2], ['papayes', 1], ['fruits-de-la-passion', 3], ['noix-de-coco', 1], ['citron-vert', 1],
     ['sucre-roux', 30, 'g', 'opt']
   ], [
@@ -119,7 +119,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C. Couper les nectarines en deux et retirer les noyaux.',
     'Les ranger dans un plat, face coupée vers le haut. Déposer une noisette de beurre dans chaque creux, arroser de miel et parsemer de thym.',
-    'Enfourner 20 min, en arrosant à mi-cuisson avec le jus, jusqu’à ce que les fruits soient tendres et légèrement caramélisés.',
+    'Enfourner 20 min à 200 °C, en arrosant à mi-cuisson avec le jus, jusqu’à ce que les fruits soient tendres et légèrement caramélisés.',
     'Servir tiède, nappé du jus de cuisson, avec une boule de glace à la vanille.'
   ]);
 
@@ -130,7 +130,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 180 °C. Beurrer un plat à gratin de 24 cm.',
     'Couper les prunes en deux, retirer les noyaux et les ranger dans le plat, face bombée vers le haut.',
     'Fouetter les œufs avec le sucre et le sucre vanillé, ajouter la farine, puis délayer progressivement avec le lait pour obtenir une pâte lisse.',
-    'Verser sur les prunes et enfourner 35 à 40 min, jusqu’à ce que le clafoutis soit gonflé, doré et que la lame d’un couteau ressorte sèche.',
+    'Verser sur les prunes et enfourner 35 à 40 min à 180 °C, jusqu’à ce que le clafoutis soit gonflé, doré et que la lame d’un couteau ressorte sèche.',
     'Laisser tiédir avant de servir.'
   ]);
 
@@ -140,7 +140,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 200 °C. Foncer un moule de 26 cm avec la pâte et la piquer à la fourchette.',
     'Mélanger la poudre d’amande avec 20 g de sucre et la répartir sur le fond : elle absorbera le jus des fruits.',
     'Couper les prunes en deux, retirer les noyaux et les ranger en rosace bien serrée, face coupée vers le haut.',
-    'Enfourner 35 à 40 min, jusqu’à ce que la pâte soit dorée et les prunes fondantes.',
+    'Enfourner 35 à 40 min à 200 °C, jusqu’à ce que la pâte soit dorée et les prunes fondantes.',
     'À la sortie du four, saupoudrer du reste de sucre mélangé à la cannelle. Servir tiède ou froid.'
   ]);
 
@@ -151,7 +151,7 @@ module.exports = function ajouter(R) {
     'Préchauffer le four à 180 °C. Couper les reines-claudes en deux et retirer les noyaux.',
     'Fendre la gousse de vanille, gratter les graines et les mélanger au sucre.',
     'Beurrer un plat, y ranger les fruits face coupée vers le haut, saupoudrer de sucre vanillé, parsemer du reste de beurre en dés et ajouter la gousse.',
-    'Enfourner 20 à 25 min, jusqu’à ce que les fruits soient tendres et entourés d’un sirop.',
+    'Enfourner 20 à 25 min à 180 °C, jusqu’à ce que les fruits soient tendres et entourés d’un sirop.',
     'Servir tiède, avec le jus et une boule de glace.'
   ]);
 
@@ -163,7 +163,7 @@ module.exports = function ajouter(R) {
     'Les mélanger dans un plat avec les mûres, 20 g de sucre et la cannelle.',
     'Du bout des doigts, sabler la farine avec le reste du sucre et le beurre froid coupé en dés, jusqu’à obtenir une texture de grosse chapelure.',
     'Répartir le crumble sur les fruits sans tasser.',
-    'Enfourner 30 à 35 min, jusqu’à ce que le dessus soit doré et que le jus bouillonne sur les bords. Servir tiède.'
+    'Enfourner 30 à 35 min à 180 °C, jusqu’à ce que le dessus soit doré et que le jus bouillonne sur les bords. Servir tiède.'
   ]);
 
   R('salade-fruits-rouges-groseilles', 'Salade de fruits rouges aux groseilles', 'Française', 'Dessert', 50, 'Facile', 4, [
@@ -180,13 +180,13 @@ module.exports = function ajouter(R) {
     ['creme-liquide', 50, 'cl'], ['sucre', 100, 'g'], ['gelatine', 3], ['cassis', 200, 'g'], ['gousses-de-vanille', 1, 'pc', 'opt']
   ], [
     'Faire tremper les feuilles de gélatine 10 min dans un bol d’eau froide.',
-    'Chauffer la crème avec 50 g de sucre et les graines de vanille à feu moyen, jusqu’au frémissement.',
+    'Chauffer la crème avec 50 g de sucre et les graines de vanille 4 à 5 min à feu moyen, jusqu’au frémissement, sans laisser bouillir.',
     'Hors du feu, ajouter la gélatine bien essorée et remuer jusqu’à ce qu’elle soit fondue. Répartir dans six verrines et réserver au moins 4 h au réfrigérateur.',
     'Pour le coulis, cuire le cassis avec le reste du sucre et 3 cuillerées à soupe d’eau, 5 min à feu moyen, jusqu’à ce que les baies éclatent. Mixer, passer au tamis et laisser refroidir.',
     'Napper les panna cotta de coulis au moment de servir.'
   ]);
 
-  R('salade-litchis-framboises', 'Salade de litchis et framboises à l’eau de rose', 'Française', 'Dessert', 20, 'Facile', 4, [
+  R('salade-litchis-framboises', 'Salade de litchis et framboises à l’eau de rose', 'Française', 'Dessert', 30, 'Facile', 4, [
     ['litchis', 500, 'g'], ['framboises', 125, 'g'], ['citron-vert', 0.5], ['eau-de-rose', 1, 'cc'], ['sucre', 15, 'g', 'opt'],
     ['menthe', 0.25, 'pc', 'opt']
   ], [
@@ -201,7 +201,7 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher la rhubarbe en retirant les fils, la couper en tronçons de 2 cm et la mélanger avec 50 g de sucre. Laisser dégorger 30 min, puis égoutter.',
     'Préchauffer le four à 200 °C. Foncer un moule de 26 cm avec la pâte et la piquer à la fourchette.',
-    'Répartir la rhubarbe sur la pâte et enfourner 20 min.',
+    'Répartir la rhubarbe sur la pâte et enfourner 20 min à 200 °C.',
     'Pendant ce temps, fouetter les œufs avec le reste du sucre et la crème.',
     'Verser l’appareil sur la rhubarbe, baisser le four à 180 °C et cuire encore 20 min, jusqu’à ce que la crème soit prise et dorée. Servir tiède ou froid.'
   ]);
@@ -210,8 +210,8 @@ module.exports = function ajouter(R) {
     ['coings', 2], ['pommes', 4], ['sucre', 80, 'g'], ['citron', 0.5], ['gousses-de-vanille', 1, 'pc', 'opt']
   ], [
     'Frotter les coings avec un torchon pour retirer le duvet. Les éplucher, les couper en quartiers, retirer le cœur dur avec un couteau solide et tailler en dés de 1 cm. Arroser de jus de citron.',
-    'Les mettre dans une casserole avec le sucre, la vanille fendue et 20 cl d’eau. Couvrir et cuire 20 min à feu doux.',
-    'Ajouter les pommes épluchées et coupées en dés, et poursuivre la cuisson 20 min à couvert, jusqu’à ce que tous les fruits soient fondants.',
+    'Les mettre dans une casserole avec le sucre, la vanille fendue et 20 cl d’eau. Porter à frémissement, couvrir et cuire 20 min à feu doux.',
+    'Ajouter les pommes épluchées et coupées en dés, et poursuivre la cuisson 20 min à feu doux, à couvert, jusqu’à ce que tous les fruits soient fondants.',
     'Retirer la vanille, écraser à la fourchette ou mixer selon la texture souhaitée. Servir tiède ou froid.'
   ]);
 
@@ -238,7 +238,7 @@ module.exports = function ajouter(R) {
     ['sel', null], ['poivre', null]
   ], [
     'Casser la queue des artichauts à la main pour arracher les fibres, rincer et frotter la base avec un demi-citron.',
-    'Les plonger dans une grande casserole d’eau bouillante salée et citronnée et cuire 30 à 40 min : une feuille du centre doit se détacher sans effort.',
+    'Les plonger dans une grande casserole d’eau bouillante salée et citronnée et cuire 30 à 40 min à petits bouillons, selon leur grosseur : une feuille du centre doit se détacher sans effort.',
     'Égoutter les artichauts tête en bas.',
     'Préparer la vinaigrette : fouetter la moutarde avec le vinaigre, du sel et du poivre, ajouter l’huile puis l’échalote finement ciselée.',
     'Servir les artichauts tièdes, avec la vinaigrette pour y tremper les feuilles puis le fond.'
@@ -250,7 +250,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 220 °C. Casser la base fibreuse des asperges : elle se rompt naturellement au bon endroit.',
     'Les étaler sur une plaque, arroser d’huile d’olive, saler, poivrer et les rouler pour bien les enrober.',
-    'Enfourner 10 à 12 min, jusqu’à ce qu’elles soient tendres et légèrement dorées.',
+    'Enfourner 10 à 12 min à 220 °C, jusqu’à ce qu’elles soient tendres à la pointe du couteau et légèrement dorées.',
     'Parsemer de copeaux de parmesan et d’un peu de zeste de citron, puis servir aussitôt.'
   ]);
 
@@ -276,7 +276,7 @@ module.exports = function ajouter(R) {
     'Parsemer de copeaux de parmesan et de graines de courge.'
   ]);
 
-  R('radis-beurre', 'Radis au beurre et à la fleur de sel', 'Française', 'Entrée', 10, 'Facile', 4, [
+  R('radis-beurre', 'Radis au beurre et à la fleur de sel', 'Française', 'Entrée', 15, 'Facile', 4, [
     ['radis', 1], ['beurre-demi-sel', 60, 'g'], ['baguette', 0.5], ['fleur-de-sel', null]
   ], [
     'Couper les fanes des radis en laissant 1 cm de queue, retirer la racine, puis laver et sécher les radis.',
@@ -293,7 +293,7 @@ module.exports = function ajouter(R) {
     'Ajouter le radis, mélanger et servir frais.'
   ]);
 
-  R('salade-mache-betterave', 'Salade de mâche et betterave', 'Française', 'Entrée', 10, 'Facile', 4, [
+  R('salade-mache-betterave', 'Salade de mâche et betterave', 'Française', 'Entrée', 15, 'Facile', 4, [
     ['mache', 150, 'g'], ['betteraves-cuites', 2], ['echalotes', 1], ['moutarde', 1, 'cc'], ['vinaigre', 1], ['huile', 3],
     ['cerneaux-de-noix', 40, 'g', 'opt'], ['sel', null], ['poivre', null]
   ], [
@@ -380,10 +380,10 @@ module.exports = function ajouter(R) {
     'Verser sur les légumes et laisser mariner 20 min au réfrigérateur. Servir parsemé de sésame.'
   ]);
 
-  R('edamame-sel-sesame', 'Edamame au sel et au sésame', 'Japonaise', 'Entrée', 10, 'Facile', 4, [
+  R('edamame-sel-sesame', 'Edamame au sel et au sésame', 'Japonaise', 'Entrée', 15, 'Facile', 4, [
     ['edamame', 400, 'g'], ['fleur-de-sel', null], ['huile-sesame', 1, 'cc', 'opt'], ['graines-sesame', 1, 'cs', 'opt']
   ], [
-    'Plonger les edamame encore surgelés dans une casserole d’eau bouillante salée et cuire 4 à 5 min.',
+    'Plonger les edamame encore surgelés dans une casserole d’eau bouillante salée et cuire 4 à 5 min à partir de la reprise de l’ébullition.',
     'Égoutter et mélanger aussitôt avec la fleur de sel, l’huile et les graines de sésame.',
     'Servir chaud ou tiède : on presse les cosses entre les dents pour en extraire les fèves.'
   ]);
@@ -392,8 +392,8 @@ module.exports = function ajouter(R) {
     ['gyozas', 20], ['huile', 1], ['sauce-soja', 3], ['vinaigre-riz', 2], ['huile-pimentee', 0.5, 'cc', 'opt']
   ], [
     'Chauffer l’huile dans une grande poêle antiadhésive à feu moyen et y ranger les gyozas encore surgelés, face plate dessous. Les laisser dorer 2 à 3 min.',
-    'Verser 10 cl d’eau, couvrir aussitôt et cuire 6 à 7 min, jusqu’à ce que l’eau soit évaporée.',
-    'Retirer le couvercle et laisser recroustiller 1 min.',
+    'Verser 10 cl d’eau, couvrir aussitôt et cuire 6 à 7 min à feu moyen, jusqu’à ce que l’eau soit évaporée.',
+    'Retirer le couvercle et laisser recroustiller 1 à 2 min à feu moyen, jusqu’à ce que le dessous soit bien doré.',
     'Mélanger la sauce soja avec le vinaigre de riz et l’huile pimentée, et servir en trempette.'
   ]);
 
@@ -405,9 +405,9 @@ module.exports = function ajouter(R) {
   ], [
     'Laver le potimarron (inutile de l’éplucher), le couper en deux, retirer les graines et tailler la chair en cubes.',
     'Faire fondre l’oignon émincé dans le beurre, 5 min à feu moyen.',
-    'Ajouter le potimarron, 150 g de châtaignes, 1 L d’eau et le cube de bouillon. Porter à ébullition puis cuire 25 min à feu doux.',
+    'Ajouter le potimarron, 150 g de châtaignes, 1 L d’eau et le cube de bouillon. Porter à ébullition puis cuire 25 min à feu doux, à couvert, jusqu’à ce que le potimarron soit tendre.',
     'Mixer finement, ajouter la crème, saler et poivrer.',
-    'Servir parsemé du reste des châtaignes émiettées et dorées 2 min à la poêle.'
+    'Servir parsemé du reste des châtaignes émiettées et dorées à sec dans une poêle, 2 min à feu moyen.'
   ]);
 
   R('veloute-topinambours', 'Velouté de topinambours', 'Française', 'Soupe', 45, 'Facile', 4, [
@@ -416,7 +416,7 @@ module.exports = function ajouter(R) {
   ], [
     'Éplucher les topinambours et la pomme de terre à l’économe et les couper en morceaux.',
     'Faire fondre l’oignon émincé dans le beurre, 5 min à feu moyen.',
-    'Ajouter les légumes, 80 cl d’eau et le cube de bouillon. Porter à ébullition puis cuire 25 min à feu doux.',
+    'Ajouter les légumes, 80 cl d’eau et le cube de bouillon. Porter à ébullition puis cuire 25 min à feu doux, à couvert, jusqu’à ce que les légumes soient tendres.',
     'Mixer avec le lait et la crème, saler et poivrer. Servir bien chaud.'
   ]);
 
@@ -426,21 +426,21 @@ module.exports = function ajouter(R) {
   ], [
     'Trier le cresson en retirant les grosses tiges et le laver soigneusement. Réserver quelques feuilles.',
     'Faire fondre l’oignon émincé dans le beurre, 5 min à feu moyen.',
-    'Ajouter les pommes de terre épluchées et coupées en dés, 1 L d’eau et du sel. Cuire 20 min à feu doux.',
-    'Ajouter le cresson et cuire encore 5 min.',
+    'Ajouter les pommes de terre épluchées et coupées en dés, 1 L d’eau et du sel. Porter à ébullition puis cuire 20 min à feu doux, à couvert.',
+    'Ajouter le cresson et cuire encore 5 min à feu doux : il doit rester bien vert.',
     'Mixer, incorporer la crème, poivrer et servir décoré des feuilles réservées.'
   ]);
 
   /* ───────────── Légumes : plats et accompagnements ───────────── */
 
-  R('poelee-choux-bruxelles-chataignes', 'Poêlée de choux de Bruxelles aux châtaignes', 'Française', 'Plat', 35, 'Facile', 4, [
+  R('poelee-choux-bruxelles-chataignes', 'Poêlée de choux de Bruxelles aux châtaignes', 'Française', 'Plat', 40, 'Facile', 4, [
     ['choux-de-bruxelles', 600, 'g'], ['chataignes', 200, 'g'], ['lardons', 150, 'g'], ['beurre', 20, 'g'], ['sel', null], ['poivre', null]
   ], [
     'Parer les choux de Bruxelles en coupant la base et en retirant les feuilles abîmées, puis les couper en deux.',
     'Les blanchir 5 min dans une casserole d’eau bouillante salée et les égoutter.',
     'Faire revenir les lardons à sec dans une grande poêle, 5 min à feu moyen.',
-    'Ajouter le beurre et les choux, face coupée dessous, et les laisser dorer 8 à 10 min en remuant de temps en temps.',
-    'Ajouter les châtaignes, cuire encore 5 min pour les réchauffer, poivrer et saler légèrement.'
+    'Ajouter le beurre et les choux, face coupée dessous, et les laisser dorer 8 à 10 min à feu moyen en remuant de temps en temps.',
+    'Ajouter les châtaignes, cuire encore 5 min à feu moyen pour les réchauffer, poivrer et saler légèrement.'
   ]);
 
   R('poelee-asperges-pois-gourmands-feves', 'Poêlée d’asperges, pois gourmands et fèves', 'Française', 'Accompagnement', 35, 'Facile', 4, [
@@ -450,19 +450,19 @@ module.exports = function ajouter(R) {
     'Plonger les fèves écossées 2 min dans une casserole d’eau bouillante salée, les rafraîchir dans de l’eau glacée puis retirer leur peau en les pinçant.',
     'Casser la base fibreuse des asperges et les couper en tronçons de 4 cm. Effiler les pois gourmands.',
     'Blanchir les asperges et les pois gourmands 3 min dans la même eau bouillante, puis les rafraîchir et les égoutter.',
-    'Faire fondre le beurre dans une poêle à feu moyen et y faire sauter tous les légumes 3 à 4 min.',
+    'Faire fondre le beurre dans une poêle à feu moyen et y faire sauter tous les légumes 3 à 4 min : ils doivent rester croquants.',
     'Saler, poivrer et parsemer de menthe ciselée.'
   ]);
 
-  R('gratin-blettes', 'Gratin de blettes', 'Française', 'Plat', 55, 'Facile', 4, [
+  R('gratin-blettes', 'Gratin de blettes', 'Française', 'Plat', 60, 'Facile', 4, [
     ['blettes', 1000, 'g'], ['beurre', 30, 'g'], ['farine', 30, 'g'], ['lait', 40, 'cl'], ['fromage-rape', 80, 'g'],
     ['muscade', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
     'Séparer les côtes des feuilles. Effiler les côtes et les couper en tronçons de 2 cm, émincer les feuilles.',
     'Cuire les côtes 10 min dans une casserole d’eau bouillante salée, ajouter les feuilles pour les 2 dernières minutes. Égoutter en pressant bien les feuilles.',
-    'Préchauffer le four à 200 °C. Pour la béchamel, faire fondre le beurre, ajouter la farine et remuer 1 min, puis verser le lait froid petit à petit en fouettant. Cuire 5 min à feu moyen jusqu’à ce qu’elle épaississe. Saler, poivrer, ajouter la muscade.',
+    'Préchauffer le four à 200 °C. Pour la béchamel, faire fondre le beurre à feu moyen, ajouter la farine et remuer 1 min, puis verser le lait froid petit à petit en fouettant. Cuire 5 min à feu moyen jusqu’à ce qu’elle épaississe. Saler, poivrer, ajouter la muscade.',
     'Mélanger les blettes avec la béchamel, verser dans un plat à gratin et parsemer de fromage râpé.',
-    'Enfourner 20 à 25 min, jusqu’à ce que le dessus soit doré.'
+    'Enfourner 20 à 25 min à 200 °C, jusqu’à ce que le dessus soit doré.'
   ]);
 
   R('panais-rotis-miel', 'Panais rôtis au miel et au thym', 'Française', 'Accompagnement', 45, 'Facile', 4, [
@@ -470,8 +470,8 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C. Éplucher les panais et les couper en quatre dans la longueur ; retirer le cœur s’il est ligneux.',
     'Les mélanger sur une plaque avec l’huile d’olive, le thym, du sel et du poivre.',
-    'Enfourner 25 min en les retournant à mi-cuisson.',
-    'Arroser de miel, remuer et cuire encore 10 min, jusqu’à ce qu’ils soient tendres et caramélisés.'
+    'Enfourner 25 min à 200 °C en les retournant à mi-cuisson.',
+    'Arroser de miel, remuer et remettre au four 10 min à 200 °C, jusqu’à ce qu’ils soient tendres et caramélisés.'
   ]);
 
   R('courge-spaghetti-parmesan', 'Courge spaghetti au beurre et au parmesan', 'Française', 'Plat', 60, 'Facile', 4, [
@@ -479,9 +479,9 @@ module.exports = function ajouter(R) {
     ['sel', null], ['poivre', null]
   ], [
     'Préchauffer le four à 200 °C. Couper la courge en deux dans la longueur et retirer les graines.',
-    'La poser face coupée dessous sur une plaque couverte de papier cuisson et enfourner 40 à 45 min, jusqu’à ce que la chair se détache en filaments à la fourchette.',
+    'La poser face coupée dessous sur une plaque couverte de papier cuisson et enfourner 40 à 45 min à 200 °C, jusqu’à ce que la chair se détache en filaments à la fourchette.',
     'Gratter la chair à la fourchette pour obtenir les « spaghettis ».',
-    'Faire fondre le beurre à feu doux avec l’ail haché, 1 min, puis y mélanger les filaments. Saler, poivrer.',
+    'Faire fondre le beurre dans une sauteuse avec l’ail haché, 1 min à feu doux, puis y mélanger les filaments 1 min. Saler, poivrer.',
     'Servir couvert de parmesan râpé et de persil ciselé.'
   ]);
 
@@ -490,15 +490,15 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C. Laver le potimarron sans l’éplucher, le couper en deux et retirer les graines.',
     'Le tailler en quartiers de 2 cm d’épaisseur et les mélanger avec l’huile, le cumin, le miel, du sel et du poivre.',
-    'Les étaler sur une plaque et enfourner 30 à 35 min en les retournant à mi-cuisson, jusqu’à ce qu’ils soient tendres et dorés sur les bords.'
+    'Les étaler sur une plaque et enfourner 30 à 35 min à 200 °C en les retournant à mi-cuisson, jusqu’à ce qu’ils soient tendres et dorés sur les bords.'
   ]);
 
   R('poelee-champignons-persillade', 'Poêlée de champignons en persillade', 'Française', 'Accompagnement', 25, 'Facile', 4, [
     ['melange-de-champignons', 600, 'g'], ['huile', 1], ['beurre', 30, 'g'], ['ail', 2], ['persil', 0.5], ['sel', null], ['poivre', null]
   ], [
     'Nettoyer les champignons avec une brosse ou un linge humide, sans les faire tremper, et couper les plus gros en morceaux.',
-    'Chauffer l’huile dans une grande poêle à feu vif et y faire sauter les champignons en deux fois, 5 à 6 min, jusqu’à ce que leur eau soit évaporée et qu’ils soient dorés.',
-    'Remettre tous les champignons dans la poêle, ajouter le beurre, l’ail et le persil hachés, et remuer 1 min.',
+    'Chauffer l’huile dans une grande poêle à feu vif et y faire sauter les champignons en deux fois, 5 à 6 min par fournée, jusqu’à ce que leur eau soit évaporée et qu’ils soient dorés.',
+    'Remettre tous les champignons dans la poêle, ajouter le beurre, l’ail et le persil hachés, et remuer 1 min à feu moyen.',
     'Saler, poivrer et servir aussitôt.'
   ]);
 
@@ -518,7 +518,7 @@ module.exports = function ajouter(R) {
     'Nettoyer les cèpes avec un linge humide et gratter les pieds. Séparer les têtes des pieds.',
     'Couper les têtes en tranches d’1 cm et hacher finement les pieds avec les échalotes, l’ail et le persil.',
     'Chauffer l’huile dans une grande poêle à feu vif et y saisir les têtes 5 à 6 min en les retournant, jusqu’à ce qu’elles soient bien dorées.',
-    'Baisser le feu, ajouter le hachis et cuire encore 3 min en remuant.',
+    'Baisser à feu moyen, ajouter le hachis et cuire encore 3 min en remuant.',
     'Saler, poivrer et servir aussitôt.'
   ]);
 
@@ -528,7 +528,7 @@ module.exports = function ajouter(R) {
   ], [
     'Effilocher les pleurotes en lanières à la main.',
     'Les faire sauter dans le beurre 5 min à feu vif, jusqu’à ce qu’elles soient dorées. Ajouter l’ail haché, remuer 1 min, saler et poivrer.',
-    'Pendant ce temps, faire griller les tranches de pain.',
+    'Pendant ce temps, faire griller les tranches de pain 2 à 3 min au grille-pain, jusqu’à ce qu’elles soient dorées.',
     'Tartiner le pain de chèvre frais, répartir les pleurotes chaudes et parsemer de thym.'
   ]);
 
@@ -536,11 +536,11 @@ module.exports = function ajouter(R) {
     ['nouilles', 300, 'g'], ['shiitakes', 250, 'g'], ['ail', 2], ['gingembre', 15, 'g'], ['sauce-soja', 3], ['huile', 2],
     ['huile-sesame', 1, 'cc'], ['ciboule', 0.5], ['sauce-huitre', 1, 'cs', 'opt']
   ], [
-    'Cuire les nouilles selon les indications du paquet, les égoutter et les rincer à l’eau froide.',
+    'Cuire les nouilles 4 à 5 min dans une casserole d’eau bouillante (ou selon le paquet), les égoutter et les rincer à l’eau froide.',
     'Retirer les pieds durs des shiitakes et émincer les chapeaux.',
     'Chauffer l’huile dans un wok à feu vif et y faire sauter les shiitakes 3 à 4 min.',
     'Ajouter l’ail et le gingembre hachés et remuer 30 s.',
-    'Ajouter les nouilles, la sauce soja et la sauce d’huître, et faire sauter 2 min. Arroser d’huile de sésame et parsemer de ciboule émincée.'
+    'Ajouter les nouilles, la sauce soja et la sauce d’huître, et faire sauter 2 min à feu vif. Arroser d’huile de sésame et parsemer de ciboule émincée.'
   ]);
 
   R('epis-mais-grilles', 'Épis de maïs grillés au beurre', 'Américaine', 'Accompagnement', 30, 'Facile', 4, [
@@ -557,8 +557,8 @@ module.exports = function ajouter(R) {
     ['huile', 1], ['sel', null], ['poivre', null]
   ], [
     'Équeuter l’oseille, la laver et la ciseler grossièrement.',
-    'Faire suer les échalotes ciselées dans le beurre, 2 min à feu doux. Verser le vin blanc et laisser réduire presque à sec, environ 5 min.',
-    'Ajouter la crème et laisser réduire 3 min. Ajouter l’oseille et cuire 1 min : elle fond et prend une couleur kaki, c’est normal. Saler, poivrer.',
+    'Faire suer les échalotes ciselées dans le beurre, 2 min à feu doux. Verser le vin blanc et laisser réduire presque à sec, 3 à 4 min à feu vif.',
+    'Ajouter la crème et laisser réduire 3 min à feu moyen, jusqu’à ce qu’elle nappe la cuillère. Ajouter l’oseille et cuire 1 min : elle fond et prend une couleur kaki, c’est normal. Saler, poivrer.',
     'Chauffer l’huile dans une poêle à feu moyen et cuire les pavés côté peau 4 à 5 min, puis 1 à 2 min de l’autre côté : le cœur doit rester rosé. Saler.',
     'Servir le saumon nappé de sauce à l’oseille.'
   ]);
@@ -568,16 +568,16 @@ module.exports = function ajouter(R) {
   ], [
     'Choisir des bananes plantains bien mûres, à la peau noircie. Couper les extrémités, inciser la peau dans la longueur et la retirer.',
     'Couper les bananes en tronçons de 1,5 cm, en biais.',
-    'Chauffer l’huile à 170 °C dans une sauteuse et y frire les bananes en plusieurs fois, 3 à 4 min en les retournant, jusqu’à ce qu’elles soient bien dorées.',
+    'Chauffer l’huile à 170 °C dans une sauteuse et y frire les bananes en plusieurs fois, 3 à 4 min par fournée en les retournant, jusqu’à ce qu’elles soient bien dorées.',
     'Égoutter sur du papier absorbant, saler et relever d’une pincée de piment.'
   ]);
 
-  R('salsifis-persilles', 'Salsifis sautés au beurre persillé', 'Française', 'Accompagnement', 50, 'Facile', 4, [
+  R('salsifis-persilles', 'Salsifis sautés au beurre persillé', 'Française', 'Accompagnement', 60, 'Facile', 4, [
     ['salsifis', 1000, 'g'], ['citron', 1], ['farine', 20, 'g'], ['beurre', 40, 'g'], ['persil', 0.5], ['sel', null], ['poivre', null]
   ], [
     'Avec des gants, éplucher les salsifis à l’économe, les couper en tronçons de 5 cm et les plonger au fur et à mesure dans de l’eau additionnée de la moitié du jus de citron pour qu’ils ne noircissent pas.',
     'Délayer la farine dans 1,5 L d’eau froide, ajouter le reste du jus de citron et du sel, et porter à ébullition en remuant.',
-    'Y cuire les salsifis 20 à 25 min à petits bouillons, jusqu’à ce qu’ils soient tendres, puis les égoutter.',
+    'Y cuire les salsifis 20 à 25 min à feu moyen, à petits bouillons, jusqu’à ce qu’ils soient tendres à la pointe du couteau, puis les égoutter.',
     'Les faire dorer dans le beurre 8 à 10 min à feu moyen. Poivrer et parsemer de persil haché.'
   ]);
 
@@ -588,17 +588,17 @@ module.exports = function ajouter(R) {
     'Détailler le chou romanesco en bouquets et les rincer.',
     'Les cuire 8 à 10 min à la vapeur, jusqu’à ce qu’ils soient tendres mais encore fermes.',
     'Faire fondre le beurre dans une poêle à feu moyen et le laisser mousser 3 à 4 min, jusqu’à ce qu’il prenne une couleur noisette et une odeur de noisette grillée.',
-    'Ajouter le romanesco et les amandes, faire sauter 1 min. Saler, poivrer et arroser d’un filet de jus de citron.'
+    'Ajouter le romanesco et les amandes, faire sauter 1 min à feu moyen. Saler, poivrer et arroser d’un filet de jus de citron.'
   ]);
 
   R('haricots-beurre-tomate', 'Haricots beurre à la tomate', 'Française', 'Accompagnement', 40, 'Facile', 4, [
     ['haricots-beurre', 600, 'g'], ['tomates', 4], ['oignons', 1], ['ail', 2], ['huile-olive', 2], ['thym', 2, 'pc', 'opt'],
     ['sel', null], ['poivre', null]
   ], [
-    'Équeuter les haricots et les cuire 8 min dans une casserole d’eau bouillante salée. Les égoutter.',
-    'Faire revenir l’oignon émincé dans l’huile, 5 min à feu moyen, puis ajouter l’ail haché.',
+    'Équeuter les haricots et les cuire 8 à 10 min dans une casserole d’eau bouillante salée : ils doivent être tendres. Les égoutter.',
+    'Faire revenir l’oignon émincé dans l’huile, 5 min à feu moyen, puis ajouter l’ail haché et remuer 30 s.',
     'Ajouter les tomates coupées en dés et le thym, et cuire 10 min à feu moyen, jusqu’à ce qu’elles soient compotées.',
-    'Ajouter les haricots et laisser mijoter 5 min ensemble. Saler et poivrer.'
+    'Ajouter les haricots et laisser mijoter 5 min à feu doux. Saler et poivrer.'
   ]);
 
   R('cocos-paimpol-thym', 'Cocos de Paimpol mijotés au thym', 'Française', 'Accompagnement', 50, 'Facile', 4, [
@@ -607,9 +607,9 @@ module.exports = function ajouter(R) {
   ], [
     'Écosser les cocos.',
     'Faire revenir l’oignon et la carotte coupés en petits dés dans 1 cuillerée d’huile, 5 min à feu moyen.',
-    'Ajouter les cocos, l’ail écrasé, le thym et le laurier, et couvrir d’eau à hauteur plus 2 cm. Ne pas saler.',
-    'Laisser mijoter 30 à 35 min à feu doux, jusqu’à ce que les cocos soient fondants.',
-    'Saler en fin de cuisson, poivrer et arroser du reste de l’huile d’olive.'
+    'Ajouter les cocos, l’ail écrasé, le thym et le laurier, et couvrir d’eau à hauteur plus 2 cm. Porter à ébullition, sans saler.',
+    'Laisser mijoter 30 à 35 min à feu doux, à couvert, jusqu’à ce que les cocos soient fondants.',
+    'Hors du feu, saler, poivrer et arroser du reste de l’huile d’olive.'
   ]);
 
   R('pates-pesto-ail-des-ours', 'Pâtes au pesto d’ail des ours', 'Italienne', 'Plat', 25, 'Facile', 4, [
@@ -618,8 +618,8 @@ module.exports = function ajouter(R) {
     'Laver et sécher soigneusement l’ail des ours.',
     'Faire griller les pignons à sec 2 min dans une poêle à feu moyen.',
     'Mixer l’ail des ours avec les pignons, le parmesan, l’huile d’olive et une pincée de sel jusqu’à obtenir une pâte.',
-    'Cuire les pâtes al dente dans une grande casserole d’eau bouillante salée et réserver une louche d’eau de cuisson.',
-    'Hors du feu, mélanger les pâtes avec le pesto et un peu d’eau de cuisson pour le rendre onctueux. Poivrer et servir.'
+    'Cuire les pâtes 10 à 12 min (selon le paquet, al dente) dans une grande casserole d’eau bouillante salée et réserver une louche d’eau de cuisson.',
+    'Hors du feu, mélanger les pâtes avec le pesto et un peu de l’eau réservée pour le rendre onctueux. Poivrer et servir.'
   ]);
 
   /* ───────────── Surgelés ───────────── */
@@ -629,7 +629,7 @@ module.exports = function ajouter(R) {
     ['sel', null], ['poivre', null]
   ], [
     'Mettre les épinards surgelés dans une sauteuse avec le beurre et les faire décongeler à feu moyen, 8 à 10 min en remuant, jusqu’à ce que leur eau soit évaporée.',
-    'Ajouter la crème et laisser mijoter 3 min.',
+    'Ajouter la crème et laisser mijoter 3 min à feu doux.',
     'Saler, poivrer et ajouter la muscade.'
   ]);
 
@@ -638,15 +638,15 @@ module.exports = function ajouter(R) {
   ], [
     'Cuire les saucisses dans l’huile, 15 min à feu moyen en les retournant régulièrement. Les réserver.',
     'Verser la poêlée de légumes encore surgelée dans la graisse de cuisson et la cuire 10 à 12 min à feu vif en remuant, jusqu’à ce que les légumes soient tendres et légèrement dorés.',
-    'Couper les saucisses en rondelles, les remettre dans la poêle avec les herbes et réchauffer 2 min. Saler et poivrer.'
+    'Couper les saucisses en rondelles, les remettre dans la poêle avec les herbes et réchauffer 2 min à feu moyen. Saler et poivrer.'
   ]);
 
   R('poisson-pane-frites', 'Poisson pané et frites au four', 'Française', 'Plat', 35, 'Facile', 4, [
     ['poisson-pane', 4], ['frites-surgelees', 800, 'g'], ['citron', 1], ['mayonnaise', 4, 'cs', 'opt']
   ], [
     'Préchauffer le four à 220 °C. Étaler les frites en une seule couche sur une plaque couverte de papier cuisson.',
-    'Enfourner 25 min en les retournant à mi-cuisson.',
-    'Au bout de 5 min, ajouter les filets de poisson pané sur une seconde plaque et les cuire 20 min, en les retournant à mi-cuisson.',
+    'Enfourner 25 min à 220 °C en les retournant à mi-cuisson.',
+    'Au bout de 5 min, enfourner aussi les filets de poisson pané, encore surgelés, sur une seconde plaque et les cuire 20 min à 220 °C, en les retournant à mi-cuisson.',
     'Servir avec des quartiers de citron et un peu de mayonnaise.'
   ]);
 
@@ -656,7 +656,7 @@ module.exports = function ajouter(R) {
   ], [
     'Préchauffer le four à 200 °C et y cuire les nuggets 12 à 15 min, en les retournant à mi-cuisson.',
     'Pendant ce temps, émincer la salade et couper les tomates en rondelles.',
-    'Réchauffer les tortillas 20 s de chaque côté dans une poêle sèche.',
+    'Réchauffer les tortillas 20 s de chaque côté dans une poêle sèche, à feu moyen.',
     'Tartiner chaque tortilla de sauce, garnir de salade, de tomates, de cheddar et de nuggets coupés en deux, puis rouler bien serré.'
   ]);
 
@@ -667,7 +667,7 @@ module.exports = function ajouter(R) {
     'Faire revenir les lardons et l’oignon émincé à sec, 8 min à feu moyen.',
     'Étaler les pommes noisettes encore surgelées dans un plat à gratin, répartir les lardons et l’oignon, puis la crème. Poivrer.',
     'Couvrir de tranches de reblochon, croûte vers le haut.',
-    'Enfourner 30 min, jusqu’à ce que le fromage soit fondu et le dessus doré.'
+    'Enfourner 30 min à 200 °C, jusqu’à ce que le fromage soit fondu et le dessus doré.'
   ]);
 
   R('potatoes-sauce-herbes', 'Potatoes au four, sauce fromage blanc aux herbes', 'Française', 'Plat', 35, 'Facile', 4, [
@@ -679,14 +679,14 @@ module.exports = function ajouter(R) {
     'Servir les potatoes bien croustillantes avec la sauce.'
   ]);
 
-  R('linguine-fruits-de-mer', 'Linguine aux fruits de mer', 'Italienne', 'Plat', 30, 'Facile', 4, [
+  R('linguine-fruits-de-mer', 'Linguine aux fruits de mer', 'Italienne', 'Plat', 35, 'Facile', 4, [
     ['linguine', 350, 'g'], ['cocktail-de-fruits-de-mer', 400, 'g'], ['tomates-cerises', 250, 'g'], ['ail', 3], ['vin-blanc', 10, 'cl'],
     ['huile-olive', 3], ['persil', 0.5], ['piment', 1, 'pincee', 'opt'], ['sel', null], ['poivre', null]
   ], [
-    'Décongeler les fruits de mer (une nuit au réfrigérateur, ou 20 min dans une passoire sous l’eau froide), puis bien les égoutter et les sécher.',
-    'Cuire les linguine al dente dans une grande casserole d’eau bouillante salée et réserver une louche d’eau de cuisson.',
-    'Pendant ce temps, chauffer l’huile avec l’ail émincé et le piment, 1 min à feu moyen. Ajouter les tomates cerises coupées en deux et cuire 3 min.',
-    'Verser le vin blanc et laisser réduire 2 min, puis ajouter les fruits de mer et cuire 3 à 4 min à feu vif.',
-    'Ajouter les linguine et un peu d’eau de cuisson, mélanger 1 min, poivrer et parsemer de persil haché.'
+    'Décongeler les fruits de mer la veille au réfrigérateur (non compté), ou 20 min dans une passoire sous l’eau froide, puis bien les égoutter et les sécher.',
+    'Cuire les linguine 9 à 11 min (selon le paquet, al dente) dans une grande casserole d’eau bouillante salée et réserver une louche d’eau de cuisson.',
+    'Pendant ce temps, chauffer l’huile dans une sauteuse avec l’ail émincé et le piment, 1 min à feu moyen. Ajouter les tomates cerises coupées en deux et cuire 3 min.',
+    'Verser le vin blanc et laisser réduire 2 min à feu vif, puis ajouter les fruits de mer et cuire 3 à 4 min à feu vif, sans plus, pour qu’ils restent tendres.',
+    'Ajouter les linguine et un peu de l’eau réservée, mélanger 1 min à feu moyen, poivrer et parsemer de persil haché.'
   ]);
 };

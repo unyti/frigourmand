@@ -540,6 +540,7 @@ const GROUPES = [
   ['placard', 'epi', 'g', [
     ['Pois chiches secs', 'g'],
     ['Riz basmati', 'g', { alias: ['basmati'] }],
+    ['Semoule fine de blé', 'g', { alias: ['semoule fine', 'semoule de blé'] }],
     ['Haricots blancs secs', 'g', { alias: ['lingots', 'haricots lingots', 'haricots tarbais'] }],
     ['Blé précuit', 'g', { alias: ['ebly', 'blé tendre'] }],
     ['Fécule de pomme de terre', 'g', { alias: ['fécule'] }],
@@ -553,7 +554,8 @@ const GROUPES = [
     ['Feuilles de vigne', 'g'],
     ['Oignons frits', 'g'],
     ['Sucre perlé', 'g', { alias: ['sucre en grains'] }],
-    ['Pralin', 'g', { alias: ['pralin en poudre', 'praliné'] }],
+    ['Pralin', 'g', { alias: ['pralin en poudre'] }],
+    ['Praliné (pâte)', 'g', { alias: ['pâte de praliné', 'pralinoise'] }],
     ['Pâte d’amande', 'g', { alias: ['massepain'] }],
     ['Fruits confits', 'g', { alias: ['écorces d’orange confites', 'cerises confites', 'bigarreaux confits', 'orangettes'] }],
     ['Griottes', 'g', { alias: ['griottes au sirop', 'cerises au sirop', 'amarena'] }],
