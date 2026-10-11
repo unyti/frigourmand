@@ -368,6 +368,8 @@
 
   /* ═════════════ Correspondance recettes / garde-manger ═════════════ */
 
+  /** Mode sans compte : données seulement sur cet ordinateur, pas de connexion ni de synchronisation. */
+  const modeLocal = () => !!(utilisateur && utilisateur.id === 'local');
   const toutesRecettes = () => RECETTES_BASE.concat(etat.recettesPerso);
   /** Ingrédients exclus (allergies, goûts) : les recettes qui en contiennent sont masquées.
       Un ingrédient exclu mais facultatif ne masque pas la recette. */
@@ -585,7 +587,7 @@
       <nav class="nav" aria-label="Navigation principale">
         ${onglets.map(([r, l]) => `<a href="#${r}" id="nav-${r}"${actif === r ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}
       </nav>
-      <a href="#parametres" class="synchro synchro-${classeSynchro}" id="indicateur-synchro" title="État de la synchronisation"><span class="point" aria-hidden="true"></span>${esc(libelleSynchro)}</a>
+      ${modeLocal() ? '' : `<a href="#parametres" class="synchro synchro-${classeSynchro}" id="indicateur-synchro" title="État de la synchronisation"><span class="point" aria-hidden="true"></span>${esc(libelleSynchro)}</a>`}
       <button type="button" class="bouton-theme" id="bouton-theme" data-action="basculer-theme" aria-pressed="${sombre}">${ICONES.lune}Mode sombre</button>
       <a href="#parametres" id="nav-parametres" class="lien-entete"${actif === 'parametres' ? ' aria-current="page"' : ''}>Paramètres</a>`;
   }
@@ -1575,6 +1577,7 @@
       <h1 class="titre" tabindex="-1">Paramètres</h1>
       <div class="grille-2 grille-parametres">
         <div class="colonne-parametres">
+        ${modeLocal() ? '' : `
         <section class="panneau corps-panneau" aria-labelledby="p-compte">
           <h2 id="p-compte" class="titre-section">Mon compte</h2>
           <p>Connecté${utilisateur && utilisateur.nom ? ' en tant que <strong>' + esc(utilisateur.nom) + '</strong>' : ''} avec l’adresse <strong>${esc(utilisateur ? utilisateur.email : '')}</strong>.</p>
@@ -1585,6 +1588,7 @@
             <button type="button" class="bouton-secondaire bouton-danger" id="p-deconnexion" data-action="compte-deconnecter">Se déconnecter</button>
           </div>
         </section>
+        `}
 
         <section class="panneau corps-panneau" aria-labelledby="p-recettes">
           <h2 id="p-recettes" class="titre-section">Recettes</h2>
@@ -1625,7 +1629,7 @@
 
         <section class="panneau corps-panneau" aria-labelledby="p-donnees">
           <h2 id="p-donnees" class="titre-section">Mes données</h2>
-          <p class="aide">Tes données sont enregistrées sur ton compte et gardées aussi sur cet ordinateur, pour fonctionner sans Internet. L’export crée un fichier de sauvegarde que tu peux réimporter plus tard.</p>
+          <p class="aide">${modeLocal() ? 'Tes données sont enregistrées sur cet ordinateur. Pense à exporter de temps en temps : l’export crée un fichier de sauvegarde que tu peux réimporter plus tard, ou sur un autre ordinateur.' : 'Tes données sont enregistrées sur ton compte et gardées aussi sur cet ordinateur, pour fonctionner sans Internet. L’export crée un fichier de sauvegarde que tu peux réimporter plus tard.'}</p>
           <div class="barre-actions">
             <button type="button" class="bouton-secondaire" id="p-exporter" data-action="exporter">Exporter</button>
             <button type="button" class="bouton-secondaire" id="p-importer" data-action="importer">Importer</button>
@@ -2496,7 +2500,9 @@
       $('#contenu').innerHTML = '<h1 class="titre">Frigourmand</h1><p>Cette page doit être ouverte depuis l’application Frigourmand.</p>';
       return;
     }
-    const [etatCompte, infos, maj, catalogue] = await Promise.all([bureau.compte.etat(), bureau.infos(), bureau.majEtat(), bureau.catalogue()]);
+    const [infos, maj, catalogue] = await Promise.all([bureau.infos(), bureau.majEtat(), bureau.catalogue()]);
+    // Sans compte, on n'interroge pas le serveur (il peut ne plus exister).
+    const etatCompte = infos.comptes ? await bureau.compte.etat() : { utilisateur: null };
     // Catalogue disponible dès la page de présentation (essai sans compte).
     INGREDIENTS = catalogue.ingredients; RANGEMENTS = catalogue.rangements; RAYONS = catalogue.rayons; RECETTES_BASE = catalogue.recettes;
     EQUIVALENCES = catalogue.equivalences || {};
@@ -2506,6 +2512,16 @@
     bureau.surMaj(recevoirEtatMaj);
     bureau.surSynchro(recevoirEtatSynchro);
     bureau.surDonneesDistantes(recevoirDonneesDistantes);
+    if (!infos.comptes) {
+      // Sans compte : on ouvre directement les données de cet ordinateur.
+      const r = await bureau.compte.ouvrirLocal();
+      utilisateur = r.utilisateur;
+      etatSynchro = r.synchro;
+      initialiserDepuis(r.donnees);
+      appliquerApparence();
+      lireRoute();
+      return;
+    }
     derniereAdresse = etatCompte.derniereAdresse || '';
     ui.auth = etatAuthInitial();
     appliquerApparence();

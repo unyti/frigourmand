@@ -28,6 +28,7 @@ contextBridge.exposeInMainWorld('frigourmandBureau', {
     reinitialiser: (email, code, mdp) => ipcRenderer.invoke('compte:reinitialiser', email, code, mdp),
     changerMotDePasse: (mdp) => ipcRenderer.invoke('compte:changerMotDePasse', mdp),
     ouvrir: (utilisateur) => ipcRenderer.invoke('compte:ouvrir', utilisateur),
+    ouvrirLocal: () => ipcRenderer.invoke('compte:ouvrirLocal'),
     deconnecter: () => ipcRenderer.invoke('compte:deconnecter')
   },
   synchroniser: () => ipcRenderer.invoke('synchro:maintenant'),

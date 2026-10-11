@@ -15,7 +15,9 @@ const { Base } = require('./main/base');
 const majAuto = require('./main/mises-a-jour');
 const { Compte, stockageSession } = require('./main/compte');
 const { Synchro } = require('./main/synchro');
-const { SUPABASE_URL, SUPABASE_CLE } = require('./main/configuration');
+const { SUPABASE_URL, SUPABASE_CLE, COMPTES } = require('./main/configuration');
+// Tests : FRIGOURMAND_COMPTES=1 force les comptes (faux serveur).
+const COMPTES_ACTIFS = COMPTES || process.env.FRIGOURMAND_COMPTES === '1';
 
 let base = null;
 let fenetre = null;
@@ -197,6 +199,24 @@ ipcMain.handle('compte:demanderReinitialisation', (_e, email) => compte.demander
 ipcMain.handle('compte:reinitialiser', (_e, email, code, mdp) => compte.reinitialiser(email, code, mdp));
 ipcMain.handle('compte:changerMotDePasse', (_e, mdp) => compte.changerMotDePasse(mdp));
 ipcMain.handle('compte:ouvrir', (_e, utilisateur) => ouvrirSession(utilisateur));
+
+/* ─── Mode sans compte : données uniquement sur cet ordinateur ─── */
+const UTILISATEUR_LOCAL = { id: 'local', email: '', nom: '' };
+ipcMain.handle('compte:ouvrirLocal', () => {
+  if (synchro) synchro.arreter();
+  synchro = null;
+  uid = 'local';
+  base.assurerUtilisateur(uid);
+  // Premier lancement sans compte : on reprend les données du dernier compte utilisé sur ce PC.
+  if (!base.meta('mode_local')) {
+    let source = null;
+    try { source = JSON.parse(fs.readFileSync(path.join(app.getPath('userData'), 'dernier-compte.json'), 'utf8')).id; } catch (_) { /* aucun */ }
+    if (!source || !base.aDesDonnees(source)) source = base.dernierUtilisateurActif();
+    if (source && base.aDesDonnees(source)) base.transferer(source, uid);
+    base.meta('mode_local', new Date().toISOString());
+  }
+  return { utilisateur: UTILISATEUR_LOCAL, donnees: base.charger(uid), synchro: { etat: 'local', enAttente: 0 } };
+});
 ipcMain.handle('compte:deconnecter', async () => {
   if (synchro) { await synchro.vider(); synchro.arreter(); }
   synchro = null;
@@ -217,7 +237,7 @@ ipcMain.handle('donnees:catalogue', () => base.charger('local').catalogue);
 ipcMain.handle('donnees:appliquer', (_e, ops) => {
   exigerSession();
   base.appliquer(ops, uid);
-  synchro.enfiler(ops);
+  if (synchro) synchro.enfiler(ops);
   return true;
 });
 
@@ -268,7 +288,7 @@ ipcMain.handle('donnees:confirmerImport', (_e, jeton) => {
   exigerSession();
   const avant = base.exporter(uid);
   base.importer(d, uid);
-  synchro.enfiler(opsRemplacement(avant, base.exporter(uid)));
+  if (synchro) synchro.enfiler(opsRemplacement(avant, base.exporter(uid)));
   return base.charger(uid);
 });
 
@@ -276,7 +296,7 @@ ipcMain.handle('donnees:toutEffacer', () => {
   exigerSession();
   const avant = base.exporter(uid);
   base.effacer(uid);
-  synchro.enfiler(opsRemplacement(avant, base.exporter(uid)));
+  if (synchro) synchro.enfiler(opsRemplacement(avant, base.exporter(uid)));
   return base.charger(uid);
 });
 
@@ -289,6 +309,7 @@ ipcMain.handle('appli:infos', () => ({
   version: app.getVersion(),
   donnees: path.join(app.getPath('userData'), 'frigourmand.sqlite'),
   installee: app.isPackaged,
+  comptes: COMPTES_ACTIFS,
   // Pour la page de présentation (avant connexion) : taille du catalogue.
   nbRecettes: base.db.prepare('SELECT COUNT(*) AS n FROM recettes WHERE proprietaire IS NULL').get().n,
   nbIngredients: base.db.prepare('SELECT COUNT(*) AS n FROM ingredients WHERE proprietaire IS NULL').get().n

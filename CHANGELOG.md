@@ -1,5 +1,14 @@
 # Journal des versions
 
+## 0.12.0 — 11 octobre 2026
+
+- **Plus de connexion obligatoire** : l'appli s'ouvre directement, sans compte ni serveur. Les données sont enregistrées
+  sur cet ordinateur (pense à utiliser « Exporter » dans Paramètres pour en garder une sauvegarde).
+- Au premier lancement, les données du dernier compte utilisé sur l'ordinateur (garde-manger, listes, favoris, recettes
+  perso, réglages) sont reprises automatiquement.
+- Les comptes et la synchronisation restent dans le code, désactivés : on pourra les réactiver avec un nouveau serveur
+  (`main/configuration.js`, `COMPTES: true`).
+
 ## 0.11.0 — 2 octobre 2026
 
 - **Relecture complète des 1 010 recettes**, une par une (environ 770 modifiées) :

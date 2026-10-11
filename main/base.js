@@ -397,6 +397,27 @@ Base.prototype.tailleFile = function (u) {
   return this.db.prepare('SELECT COUNT(*) AS n FROM file_attente WHERE utilisateur_id = ?').get(u).n;
 };
 
+/** Déplace toutes les données d'un utilisateur vers un autre (passage au mode sans compte). */
+Base.prototype.transferer = function (source, cible) {
+  this.assurerUtilisateur(cible);
+  this.transaction(() => {
+    this.effacerSansTransaction(cible);
+    for (const table of ['garde_manger', 'courses', 'favoris', 'reglages']) {
+      this.db.prepare(`UPDATE ${table} SET utilisateur_id = ? WHERE utilisateur_id = ?`).run(cible, source);
+    }
+    this.db.prepare('UPDATE recettes SET proprietaire = ? WHERE proprietaire = ?').run(cible, source);
+    this.db.prepare('UPDATE ingredients SET proprietaire = ? WHERE proprietaire = ?').run(cible, source);
+    this.db.prepare('DELETE FROM file_attente WHERE utilisateur_id = ?').run(source);
+  });
+};
+
+/** Utilisateur (autre que « local ») dont les données ont été modifiées le plus récemment. */
+Base.prototype.dernierUtilisateurActif = function () {
+  const l = this.db.prepare("SELECT utilisateur_id AS u FROM garde_manger WHERE utilisateur_id != 'local' ORDER BY modifie_le DESC LIMIT 1").get()
+    || this.db.prepare("SELECT utilisateur_id AS u FROM reglages WHERE utilisateur_id != 'local' LIMIT 1").get();
+  return l ? l.u : null;
+};
+
 /** Vrai si l'utilisateur a des données personnelles en local. */
 Base.prototype.aDesDonnees = function (u) {
   const n = (sql) => this.db.prepare(sql).get(u).n;
